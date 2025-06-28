@@ -88,4 +88,48 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  
+  /* Performance optimizations */
+  .optimized-animation {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Reduce motion for better accessibility and performance */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bounce,
+    .animate-pulse,
+    .transition-all,
+    .transition-transform {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+  
+  /* Optimize font rendering */
+  .font-playfair {
+    font-display: swap;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Critical CSS for above-the-fold content */
+@layer components {
+  .hero-section {
+    min-height: 100vh;
+    contain: layout style paint;
+  }
+  
+  .hero-background {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
 }

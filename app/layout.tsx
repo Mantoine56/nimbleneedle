@@ -5,19 +5,23 @@ import { Playfair_Display, Montserrat, Poppins } from 'next/font/google';
 const playfairDisplay = Playfair_Display({ 
   subsets: ['latin'],
   weight: ['700', '800'],
-  variable: '--font-playfair'
+  variable: '--font-playfair',
+  display: 'swap',
+  preload: true
 });
 
 const montserrat = Montserrat({ 
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  variable: '--font-montserrat'
+  variable: '--font-montserrat',
+  display: 'swap'
 });
 
 const poppins = Poppins({ 
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  variable: '--font-poppins'
+  variable: '--font-poppins',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {
@@ -38,6 +42,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${montserrat.variable} ${poppins.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="font-montserrat">{children}</body>
     </html>
   );
