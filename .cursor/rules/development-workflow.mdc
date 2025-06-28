@@ -1,0 +1,285 @@
+---
+description: Development Workflow & Conventions
+globs: 
+alwaysApply: false
+---
+# Development Workflow & Conventions
+
+## File Structure Conventions
+
+### Naming Patterns
+- **Components**: PascalCase (e.g., `HeroSection.tsx`, `Navigation.tsx`)
+- **Utility Files**: camelCase (e.g., `utils.ts`, `google-reviews.js`)
+- **API Routes**: lowercase with hyphens (e.g., `route.js`)
+- **Static Assets**: descriptive lowercase (e.g., `logo.png`, `image.webp`)
+
+### File Organization
+```
+components/
+├── ui/                 # shadcn/ui primitives
+│   ├── button.tsx     # Reusable UI components
+│   └── card.tsx
+├── HeroSection.tsx    # Page-specific components
+└── Navigation.tsx
+
+lib/
+├── data.ts           # Static data constants
+├── utils.ts          # Utility functions
+└── google-reviews.js # API utilities
+
+app/
+├── api/              # API routes
+│   └── reviews/
+├── layout.tsx        # Root layout
+└── page.tsx          # Main page
+```
+
+## Development Scripts
+
+### Package.json Commands
+From **[package.json](mdc:package.json)**:
+```bash
+# Development
+npm run dev           # Start development server
+npm run build         # Production build
+npm run start         # Start production server
+npm run lint          # ESLint code checking
+
+# Data Management
+npm run scrape:website            # General website scraping
+npm run scrape:reviews            # Basic Google reviews scraping
+npm run scrape:reviews-enhanced   # Advanced reviews scraping
+npm run find-place-id            # Find Google Place ID utility
+```
+
+### Environment Setup
+Required environment variables in `.env.local`:
+```bash
+GOOGLE_PLACES_API_KEY=your_google_places_api_key
+GOOGLE_PLACE_ID=your_business_google_place_id
+```
+
+## Code Quality Standards
+
+### TypeScript Usage
+- **Components**: Use TypeScript (.tsx) for all React components
+- **Props**: Define interfaces for all component props
+- **API Routes**: JavaScript (.js) for Next.js API routes
+- **Utilities**: TypeScript (.ts) for utility functions
+
+### Import Patterns
+```typescript
+// External libraries first
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+
+// Internal components
+import { Button } from '@/components/ui/button';
+import Navigation from '@/components/Navigation';
+
+// Data and utilities
+import { testimonials, services } from '@/lib/data';
+import { cn } from '@/lib/utils';
+```
+
+### Component Structure Template
+```typescript
+"use client"; // Only if using client-side features
+
+import { useState, useEffect } from 'react';
+import type { ComponentProps } from 'react';
+
+// Define props interface
+interface ExampleComponentProps {
+  title: string;
+  isActive?: boolean;
+  onAction?: () => void;
+}
+
+export default function ExampleComponent({ 
+  title, 
+  isActive = false, 
+  onAction 
+}: ExampleComponentProps) {
+  // State management
+  const [localState, setLocalState] = useState(false);
+  
+  // Effects
+  useEffect(() => {
+    // Side effects
+  }, []);
+  
+  // Event handlers
+  const handleClick = () => {
+    onAction?.();
+  };
+  
+  // Render
+  return (
+    <div className="component-classes">
+      <h2>{title}</h2>
+      {/* Component content */}
+    </div>
+  );
+}
+```
+
+## Performance Best Practices
+
+### Image Optimization
+```typescript
+// Always use Next.js Image component
+<Image
+  src="/path/to/image.webp"     // Use WebP format when possible
+  alt="Descriptive alt text"    // Always include alt text
+  width={800}                   // Specify dimensions
+  height={600}
+  sizes="(max-width: 768px) 100vw, 50vw"  // Responsive sizes
+  priority={isAboveFold}        // For LCP optimization
+  className="object-cover"      // Tailwind styling
+/>
+```
+
+### Animation Performance
+```typescript
+// Use GPU acceleration for smooth animations
+style={{
+  transform: `translate3d(0, ${scrollY * 0.5}px, 0)`,
+  willChange: 'transform'
+}}
+
+// Intersection Observer for scroll-triggered animations
+const [isVisible, setIsVisible] = useState(false);
+const elementRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  
+  if (elementRef.current) observer.observe(elementRef.current);
+  return () => observer.disconnect();
+}, []);
+```
+
+### Data Fetching Patterns
+```typescript
+// API route pattern (JavaScript)
+export async function GET() {
+  try {
+    // API logic
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.json(
+      { error: 'Error message' },
+      { status: 500 }
+    );
+  }
+}
+
+// Client-side fetching with error handling
+const [data, setData] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/endpoint');
+      const result = await response.json();
+      
+      if (result.success) {
+        setData(result.data);
+      } else {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+```
+
+## UI/UX Development Guidelines
+
+### Responsive Design Approach
+1. **Mobile First**: Start with mobile styles, add desktop overrides
+2. **Breakpoint Usage**: Use standard Tailwind breakpoints consistently
+3. **Touch Targets**: Ensure buttons are at least 44px for mobile
+4. **Content Priority**: Show most important content first on mobile
+
+### Animation Guidelines
+1. **Subtle Animations**: Use subtle animations to enhance UX
+2. **Performance**: Prefer transform and opacity for animations
+3. **Accessibility**: Respect `prefers-reduced-motion` settings
+4. **Timing**: Use consistent timing functions and durations
+
+### Component Reusability
+1. **Single Responsibility**: Each component should have one clear purpose
+2. **Props Interface**: Make components configurable through props
+3. **Default Values**: Provide sensible defaults for optional props
+4. **Documentation**: Include JSDoc comments for complex components
+
+## Testing & Debugging
+
+### Browser Testing
+- **Chrome/Safari**: Primary development browsers
+- **Mobile Testing**: Use device simulation for responsive testing
+- **Performance**: Use Lighthouse for performance auditing
+
+### Common Debugging Patterns
+```typescript
+// Console logging for development
+console.log('Debug info:', { state, props });
+
+// Error boundaries for React components
+try {
+  // Component logic
+} catch (error) {
+  console.error('Component error:', error);
+  // Fallback UI
+}
+```
+
+## Deployment Considerations
+
+### Build Optimization
+- **Image Formats**: Use WebP for better compression
+- **Bundle Size**: Monitor bundle size with Next.js analyzer
+- **API Performance**: Implement caching for external APIs
+- **SEO**: Ensure proper meta tags and semantic HTML
+
+### Environment Configuration
+- **Development**: Local development with hot reload
+- **Production**: Optimized build with static generation where possible
+- **API Keys**: Secure storage of environment variables
+- **Error Handling**: Graceful fallbacks for API failures
+
+## Maintenance Guidelines
+
+### Code Review Checklist
+- [ ] TypeScript types are properly defined
+- [ ] Components are responsive and accessible
+- [ ] Images are optimized with proper alt text
+- [ ] API calls have error handling
+- [ ] Animations are performance-optimized
+- [ ] Code follows established patterns
+
+### Regular Maintenance Tasks
+- Update dependencies monthly
+- Review and optimize images
+- Monitor API quota usage
+- Test cross-browser compatibility
+- Audit performance with Lighthouse

@@ -1,0 +1,242 @@
+---
+description: API Integration & Data Management
+globs: 
+alwaysApply: false
+---
+# 
+
+## Google Reviews Integration
+
+### API Route Structure
+Located in **[app/api/reviews/route.js](mdc:app/api/reviews/route.js)** - handles Google Places API integration.
+
+### Environment Variables Required
+```bash
+GOOGLE_PLACES_API_KEY=your_api_key_here
+GOOGLE_PLACE_ID=your_business_place_id
+```
+
+### API Response Structure
+```javascript
+{
+  businessInfo: {
+    name: "Business Name",
+    rating: 4.9,
+    totalReviews: 500,
+    address: "Formatted Address",
+    phone: "Formatted Phone"
+  },
+  reviews: [
+    {
+      id: "google_0",
+      name: "Reviewer Name",
+      rating: 5,
+      text: "Review text content",
+      avatar: "profile_photo_url",
+      timeAgo: "2 weeks ago",
+      date: "MM/DD/YYYY",
+      source: "Google",
+      verified: true
+    }
+  ],
+  success: true
+}
+```
+
+### Error Handling Pattern
+```javascript
+try {
+  // API call logic
+  if (data.status === 'OK') {
+    // Success handling
+    return NextResponse.json({ success: true, data });
+  } else {
+    // API error handling
+    return NextResponse.json(
+      { error: `API error: ${data.status}` },
+      { status: 400 }
+    );
+  }
+} catch (error) {
+  console.error('Error:', error);
+  return NextResponse.json(
+    { error: 'Failed to fetch data' },
+    { status: 500 }
+  );
+}
+```
+
+## Data Transformation Patterns
+
+### Review Data Mapping
+```javascript
+const formattedReviews = (result.reviews || []).map((review, index) => ({
+  id: `google_${index}`,
+  name: review.author_name,
+  rating: review.rating,
+  text: review.text,
+  avatar: review.profile_photo_url,
+  timeAgo: formatRelativeTime(review.time),
+  date: new Date(review.time * 1000).toLocaleDateString(),
+  source: 'Google',
+  verified: true
+}));
+```
+
+### Time Formatting Utility
+```javascript
+function formatRelativeTime(timestamp) {
+  const now = Date.now();
+  const reviewTime = timestamp * 1000;
+  const diffInMs = now - reviewTime;
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  
+  if (diffInDays === 0) return 'Today';
+  if (diffInDays === 1) return '1 day ago';
+  if (diffInDays < 7) return `${diffInDays} days ago`;
+  if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`;
+  if (diffInDays < 365) return `${Math.floor(diffInDays / 30)} months ago`;
+  return `${Math.floor(diffInDays / 365)} years ago`;
+}
+```
+
+## Static Data Management
+
+### Data Constants Location
+**[lib/data.ts](mdc:lib/data.ts)** contains all static data structures:
+
+### Business Data Structure
+```typescript
+export const locations = [
+  {
+    name: string,
+    address: string,
+    phone: string,
+    hours: {
+      weekdays: string,
+      saturday: string,
+      sunday: string
+    },
+    mapUrl: string, // Google Maps embed URL
+    delay: number   // Animation delay
+  }
+];
+```
+
+### Service Data Structure
+```typescript
+export const services = [
+  {
+    title: string,           // Service name in caps
+    subtitle: string,        // Detailed description in caps
+    image: string,          // Path to service image
+    delay: number           // Stagger animation delay
+  }
+];
+```
+
+### Review Data Structure
+```typescript
+export const testimonials = [
+  {
+    name: string,           // Customer name
+    rating: number,         // 1-5 star rating
+    text: string,          // Review content
+    avatar: string         // Path to avatar image
+  }
+];
+```
+
+## Custom Hooks Pattern
+
+### Google Reviews Hook
+Located in **[hooks/useGoogleReviews.js](mdc:hooks/useGoogleReviews.js)**:
+```javascript
+const useGoogleReviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch('/api/reviews');
+        const data = await response.json();
+        
+        if (data.success) {
+          setReviews(data.reviews);
+        } else {
+          setError(data.error);
+        }
+      } catch (err) {
+        setError('Failed to fetch reviews');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  return { reviews, loading, error };
+};
+```
+
+## Data Scraping Integration
+
+### Script Configuration
+Located in **[scripts/](mdc:scripts)** directory:
+
+- **[scrape-google-reviews.js](mdc:scripts/scrape-google-reviews.js)**: Basic review scraping
+- **[scrape-google-reviews-enhanced.js](mdc:scripts/scrape-google-reviews-enhanced.js)**: Advanced scraping with retry logic
+- **[find-place-id.js](mdc:scripts/find-place-id.js)**: Utility to find Google Place ID
+- **[scrape-website.js](mdc:scripts/scrape-website.js)**: General website scraping utility
+
+### Package.json Scripts
+```json
+{
+  "scripts": {
+    "scrape:reviews": "node scripts/scrape-google-reviews.js",
+    "scrape:reviews-enhanced": "node scripts/scrape-google-reviews-enhanced.js",
+    "find-place-id": "node scripts/find-place-id.js"
+  }
+}
+```
+
+## Rate Limiting & Caching
+
+### API Rate Limiting Considerations
+- Google Places API has usage quotas
+- Implement caching for frequently accessed data  
+- Consider storing reviews in database for production
+
+### Recommended Caching Strategy
+```javascript
+// Cache reviews for 1 hour
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+let cachedReviews = null;
+let lastFetchTime = 0;
+
+export async function GET() {
+  const now = Date.now();
+  
+  if (cachedReviews && (now - lastFetchTime) < CACHE_DURATION) {
+    return NextResponse.json(cachedReviews);
+  }
+  
+  // Fresh API call...
+}
+```
+
+## Error Boundaries
+
+### API Error States
+- **Missing API Key**: Configuration error
+- **Invalid Place ID**: Business identification error  
+- **API Quota Exceeded**: Rate limiting error
+- **Network Failure**: Connection error
+
+### User Experience for Errors
+- Fallback to static testimonials data from **[lib/data.ts](mdc:lib/data.ts)**
+- Display generic error message to users
+- Log detailed errors for developers

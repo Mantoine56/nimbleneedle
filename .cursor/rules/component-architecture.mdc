@@ -1,0 +1,172 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Component Architecture & Patterns
+
+## Component Organization
+
+### Core Components
+- **[Navigation.tsx](mdc:components/Navigation.tsx)**: Main navigation with mobile responsive menu
+- **[HeroSection.tsx](mdc:components/HeroSection.tsx)**: Landing hero with parallax and review carousel
+- **[SocialSidebar.tsx](mdc:components/SocialSidebar.tsx)**: Fixed social media sidebar
+- **[LocationSelector.tsx](mdc:components/LocationSelector.tsx)**: Interactive location picker
+
+### UI Component System
+Located in **[components/ui/](mdc:components/ui)** - shadcn/ui primitives:
+- **Base Components**: Button, Card, Badge, Input, Textarea
+- **Layout Components**: Sheet, Dialog, Tabs, Accordion
+- **Data Display**: Table, Avatar, Progress, Skeleton
+- **Navigation**: Breadcrumb, Pagination, Command
+- **Form Components**: Form, Select, Checkbox, Radio Group
+- **Feedback**: Alert, Toast, Tooltip
+
+## Component Patterns
+
+### Functional Components with Hooks
+```typescript
+// Standard pattern used throughout the project
+export default function ComponentName({ prop }: Props) {
+  const [state, setState] = useState(initialValue);
+  
+  useEffect(() => {
+    // Side effects
+  }, [dependencies]);
+  
+  return (
+    <div className="tailwind-classes">
+      {/* JSX content */}
+    </div>
+  );
+}
+```
+
+### Props Interface Pattern
+```typescript
+interface ComponentProps {
+  title: string;
+  isVisible?: boolean;
+  onAction?: () => void;
+  children?: React.ReactNode;
+}
+```
+
+### Animation & Intersection Observer Pattern
+Used in **[app/page.tsx](mdc:app/page.tsx)** for scroll-triggered animations:
+```typescript
+const [isVisible, setIsVisible] = useState(false);
+const elementRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  
+  if (elementRef.current) observer.observe(elementRef.current);
+  return () => observer.disconnect();
+}, []);
+```
+
+## Styling Patterns
+
+### Conditional Classes with Tailwind
+```typescript
+className={`base-classes transition-all duration-300 ${
+  isActive 
+    ? 'active-classes' 
+    : 'inactive-classes'
+}`}
+```
+
+### Responsive Design Pattern
+```typescript
+className="text-sm md:text-base lg:text-lg xl:text-xl"
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+className="px-4 sm:px-6 lg:px-8"
+```
+
+### Animation Classes
+- `transition-all duration-300` - Standard transition
+- `transform hover:scale-105` - Hover scaling
+- `opacity-0 group-hover:opacity-100` - Group hover effects
+- `translate-y-8` to `translate-y-0` - Slide in animations
+
+## Data Management Patterns
+
+### Static Data Import
+From **[lib/data.ts](mdc:lib/data.ts)**:
+```typescript
+import { testimonials, services, locations } from '@/lib/data';
+```
+
+### State Management for Carousels
+```typescript
+const [currentIndex, setCurrentIndex] = useState(0);
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  }, 4000);
+  return () => clearInterval(timer);
+}, []);
+```
+
+## Performance Optimization Patterns
+
+### Image Optimization
+```typescript
+<Image
+  src={imagePath}
+  alt={altText}
+  fill
+  sizes="(max-width: 768px) 100vw, 50vw"
+  className="object-cover"
+  priority={isAboveFold}
+/>
+```
+
+### GPU Acceleration
+```typescript
+style={{
+  transform: `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.05)`
+}}
+```
+
+### Lazy Loading & Intersection Observer
+Used for triggering animations and loading content when elements come into view.
+
+## Component Communication
+
+### Parent-Child Props
+```typescript
+// Parent component
+<HeroSection scrollY={scrollY} />
+
+// Child component
+interface HeroSectionProps {
+  scrollY: number;
+}
+```
+
+### Event Handling
+```typescript
+const handleClick = () => {
+  // Action logic
+};
+
+<Button onClick={handleClick}>Action</Button>
+```
+
+## Accessibility Patterns
+- **Semantic HTML**: Proper heading hierarchy, navigation landmarks
+- **ARIA Labels**: Screen reader support for interactive elements
+- **Keyboard Navigation**: Focus management for modals and menus
+- **Alt Text**: Descriptive image alternatives

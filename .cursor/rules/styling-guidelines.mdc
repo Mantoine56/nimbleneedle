@@ -1,0 +1,285 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Styling Guidelines & Design System
+
+## Color Palette
+
+### Primary Colors
+- **Pink**: `pink-500`, `pink-600`, `pink-700` - Primary brand color for CTAs and accents
+- **Gray**: `gray-50` to `gray-900` - Text and background variations
+- **White/Black**: Base colors for high contrast elements
+
+### Gradient Patterns
+```css
+/* Primary gradient for buttons and highlights */
+bg-gradient-to-r from-pink-500 to-pink-600
+hover:from-pink-600 hover:to-pink-700
+
+/* Background gradients for overlays */
+bg-gradient-to-t from-black/85 via-black/30 to-transparent
+bg-gradient-to-r from-black/70 via-black/50 to-black/30
+```
+
+## Typography System
+
+### Font Configuration
+From **[app/layout.tsx](mdc:app/layout.tsx)**:
+- **Playfair Display**: `font-playfair` - Headings and elegant display text
+- **Montserrat**: `font-montserrat` - Body text (default)
+- **Poppins**: `font-poppins` - UI elements and labels
+
+### Typography Scale
+```css
+/* Heading Scale */
+text-5xl md:text-7xl         /* Hero headings */
+text-4xl md:text-5xl lg:text-6xl  /* Section headings */
+text-2xl md:text-3xl         /* Subsection headings */
+text-xl font-bold            /* Card titles */
+
+/* Body Text Scale */
+text-lg md:text-2xl          /* Large body text (hero) */
+text-lg                      /* Standard large text */
+text-base                    /* Default body text */
+text-sm                      /* Small text, labels */
+text-xs                      /* Fine print, metadata */
+```
+
+### Font Weight Usage
+- `font-bold` - Headings, important text
+- `font-semibold` - Subheadings, labels
+- `font-medium` - Buttons, navigation
+- `font-light` - Hero descriptions
+
+## Layout & Spacing
+
+### Container Patterns
+```css
+/* Page containers */
+max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+
+/* Content sections */
+py-24                        /* Large section padding */
+py-16                        /* Medium section padding */
+py-8                         /* Small section padding */
+
+/* Grid layouts */
+grid md:grid-cols-3 gap-8    /* Service cards */
+grid lg:grid-cols-2 gap-12   /* Hero layout */
+```
+
+### Responsive Breakpoints
+- `sm:` - 640px and up
+- `md:` - 768px and up  
+- `lg:` - 1024px and up
+- `xl:` - 1280px and up
+
+## Component Styling Patterns
+
+### Card Components
+```css
+/* Base card styles */
+rounded-2xl shadow-lg hover:shadow-2xl
+transition-all duration-500
+transform hover:-translate-y-3
+
+/* Overlay cards with blur */
+bg-white/10 backdrop-blur-xl border border-white/20
+
+/* Service cards with image overlay */
+relative overflow-hidden rounded-2xl
+```
+
+### Button Styles
+```css
+/* Primary CTA buttons */
+bg-gradient-to-r from-pink-500 to-pink-600
+hover:from-pink-600 hover:to-pink-700
+text-white px-12 py-4 text-lg font-semibold
+rounded-full shadow-lg shadow-pink-500/25
+hover:shadow-pink-500/40 transition-all duration-300
+transform hover:scale-105
+
+/* Secondary buttons */
+bg-white/10 backdrop-blur-md border-2 border-white/30
+text-white hover:bg-white hover:text-gray-900
+hover:border-white transition-all duration-300
+```
+
+### Navigation Styles
+```css
+/* Fixed navigation */
+fixed top-0 left-0 right-0 z-50
+bg-white/95 backdrop-blur-sm border-b border-gray-200/20
+
+/* Mobile menu toggle */
+md:hidden flex flex-col space-y-2 p-2
+```
+
+## Animation Patterns
+
+### Transition Standards
+```css
+/* Standard transitions */
+transition-all duration-300   /* Default UI transitions */
+transition-all duration-500   /* Card hovers, major changes */
+transition-all duration-700   /* Slide animations */
+transition-all duration-1000  /* Scroll-triggered reveals */
+```
+
+### Hover Effects
+```css
+/* Scale on hover */
+transform hover:scale-105
+hover:scale-110              /* For images */
+
+/* Translate on hover */
+hover:-translate-y-3         /* Card lift effect */
+translate-y-8 to translate-y-0  /* Slide up reveal */
+
+/* Opacity transitions */
+opacity-0 group-hover:opacity-100  /* Group reveal */
+opacity-0 hover:opacity-100        /* Individual reveal */
+```
+
+### Scroll-Triggered Animations
+```css
+/* Initial state (hidden) */
+opacity-0 translate-y-8
+
+/* Revealed state */
+opacity-100 translate-y-0
+
+/* With stagger delays */
+transition-delay: ${delay}ms
+```
+
+### GPU Acceleration
+```css
+/* Use translate3d for better performance */
+transform: translate3d(0, ${scrollY * 0.5}px, 0) scale(1.05)
+
+/* Enable GPU acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+```
+
+## Background Patterns
+
+### Hero Background
+```css
+/* Parallax background with scaling */
+bg-cover bg-center bg-no-repeat scale-105
+transform: translate3d(0, ${scrollY * 0.5}px, 0) scale(1.05)
+
+/* Gradient overlays */
+bg-gradient-to-r from-black/70 via-black/50 to-black/30
+```
+
+### Section Backgrounds
+```css
+/* Dot pattern background */
+background-image: url("data:image/svg+xml,%3Csvg...")
+opacity-5
+
+/* Geometric patterns for visual interest */
+absolute inset-0 opacity-5
+```
+
+## Image Optimization
+
+### Next.js Image Component
+```jsx
+<Image
+  src={imagePath}
+  alt={altText}
+  fill                         /* Fill parent container */
+  sizes="(max-width: 768px) 100vw, 50vw"  /* Responsive sizing */
+  className="object-cover"     /* Cover cropping */
+  priority={isAboveFold}       /* LCP optimization */
+/>
+```
+
+### Image Effects
+```css
+/* Hover zoom effect */
+transition-transform duration-700 group-hover:scale-110
+
+/* Parallax movement */
+transform: translateY(${scrollY * 0.02}px)
+```
+
+## Responsive Design Patterns
+
+### Mobile-First Approach
+```css
+/* Base styles for mobile */
+text-center
+flex flex-col
+
+/* Desktop overrides */
+lg:text-left
+lg:flex-row
+```
+
+### Navigation Responsive
+```css
+/* Mobile hidden */
+hidden md:flex
+
+/* Mobile visible */
+md:hidden
+
+/* Responsive padding */
+px-4 sm:px-6 lg:px-8
+```
+
+## Accessibility Considerations
+
+### Focus States
+```css
+/* Visible focus indicators */
+focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2
+
+/* High contrast ratios */
+text-white            /* On dark backgrounds */
+text-gray-900         /* On light backgrounds */
+```
+
+### Motion Preferences
+```css
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .optimized-animation {
+    animation: none;
+    transition: none;
+  }
+}
+```
+
+## Performance Optimizations
+
+### Critical CSS Classes
+```css
+/* LCP optimization */
+.optimized-animation {
+  animation-fill-mode: both;
+  animation-duration: 0.6s;
+}
+
+/* GPU acceleration */
+.hero-background {
+  transform: translateZ(0);
+  will-change: transform;
+}
+```
+
+### Efficient Selectors
+- Use utility classes over custom CSS
+- Leverage Tailwind's built-in optimizations
+- Avoid complex nested selectors
+- Use CSS Grid and Flexbox for layouts

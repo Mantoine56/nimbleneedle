@@ -1,0 +1,220 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Quick Reference Guide
+
+## Project Summary
+**Nimble Needle** - Professional tailoring and clothing alterations business website built with Next.js 13 App Router, TypeScript, Tailwind CSS, and Google Reviews integration.
+
+## Key File Locations
+
+### Essential Files
+- **[app/page.tsx](mdc:app/page.tsx)** - Main landing page with hero, services, reviews
+- **[app/layout.tsx](mdc:app/layout.tsx)** - Root layout with fonts and metadata
+- **[lib/data.ts](mdc:lib/data.ts)** - All static data (testimonials, services, locations)
+- **[app/api/reviews/route.js](mdc:app/api/reviews/route.js)** - Google Reviews API endpoint
+
+### Core Components
+- **[components/HeroSection.tsx](mdc:components/HeroSection.tsx)** - Hero with parallax and review carousel
+- **[components/Navigation.tsx](mdc:components/Navigation.tsx)** - Main navigation component
+- **[components/ui/](mdc:components/ui)** - shadcn/ui component library
+
+## Business Context
+- **Services**: Wedding dress alterations, suit tailoring, custom clothing, zipper repairs
+- **Locations**: 2 Ottawa locations (Preston St, Riverside Dr)
+- **Target Audience**: Ottawa residents needing professional clothing alterations
+- **USP**: 15+ years experience, expert craftsmanship, modern convenience
+
+## Technical Stack
+```
+Framework: Next.js 13 (App Router)
+Language: TypeScript + JavaScript
+Styling: Tailwind CSS
+UI: shadcn/ui (Radix primitives)
+Fonts: Playfair Display, Montserrat, Poppins
+Icons: Lucide React
+API: Google Places API for reviews
+Tools: Puppeteer for scraping
+```
+
+## Development Commands
+```bash
+npm run dev                    # Start development
+npm run build                  # Production build
+npm run scrape:reviews         # Scrape Google reviews
+npm run find-place-id          # Find Google Place ID
+```
+
+## Common Patterns
+
+### Component Structure
+```jsx
+"use client";
+import { useState, useEffect } from 'react';
+
+interface ComponentProps {
+  title: string;
+  isVisible?: boolean;
+}
+
+export default function Component({ title, isVisible = false }: ComponentProps) {
+  const [state, setState] = useState(false);
+  
+  return <div className="tailwind-classes">{title}</div>;
+}
+```
+
+### Animation Pattern
+```jsx
+const [isVisible, setIsVisible] = useState(false);
+const elementRef = useRef<HTMLElement>(null);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }),
+    { threshold: 0.1 }
+  );
+  
+  if (elementRef.current) observer.observe(elementRef.current);
+  return () => observer.disconnect();
+}, []);
+```
+
+### Styling Conventions
+```css
+/* Containers */
+max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+
+/* Responsive Typography */
+text-4xl md:text-5xl lg:text-6xl font-bold font-playfair
+
+/* Button Styles */
+bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700
+text-white px-12 py-4 text-lg font-semibold rounded-full
+shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40
+transition-all duration-300 transform hover:scale-105
+
+/* Cards */
+rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500
+transform hover:-translate-y-3 group
+```
+
+## Data Structures
+
+### Services Array
+```typescript
+{
+  title: string,           // ALL CAPS service name
+  subtitle: string,        // ALL CAPS description
+  image: string,          // /services/filename.webp
+  delay: number           // Animation stagger (0, 200, 400)
+}
+```
+
+### Testimonials Array
+```typescript
+{
+  name: string,           // Customer name
+  rating: number,         // 1-5 stars
+  text: string,          // Review content
+  avatar: string         // /testimonials/filename.webp
+}
+```
+
+### Locations Array
+```typescript
+{
+  name: string,           // Location name
+  address: string,        // Full address
+  phone: string,         // Formatted phone
+  hours: {
+    weekdays: string,
+    saturday: string,
+    sunday: string
+  },
+  mapUrl: string,        // Google Maps embed URL
+  delay: number          // Animation delay
+}
+```
+
+## API Integration
+
+### Environment Variables
+```bash
+GOOGLE_PLACES_API_KEY=your_api_key
+GOOGLE_PLACE_ID=your_business_place_id
+```
+
+### Reviews API Response
+```javascript
+{
+  businessInfo: { name, rating, totalReviews, address, phone },
+  reviews: [{ id, name, rating, text, avatar, timeAgo, date, source, verified }],
+  success: true
+}
+```
+
+## Performance Patterns
+
+### Image Optimization
+```jsx
+<Image
+  src="/path/image.webp"
+  alt="Description"
+  fill
+  sizes="(max-width: 768px) 100vw, 50vw"
+  className="object-cover"
+  priority={isAboveFold}
+/>
+```
+
+### GPU Acceleration
+```css
+transform: translate3d(0, ${scrollY * 0.5}px, 0) scale(1.05)
+will-change: transform
+```
+
+## Responsive Breakpoints
+- `sm:` 640px+ (Mobile landscape)
+- `md:` 768px+ (Tablet portrait)  
+- `lg:` 1024px+ (Tablet landscape)
+- `xl:` 1280px+ (Desktop)
+
+## Color System
+- **Primary**: pink-500, pink-600, pink-700
+- **Text**: gray-900 (dark), white (on dark bg)
+- **Backgrounds**: white, gray-50, black overlays
+- **Gradients**: pink gradients for CTAs, black gradients for overlays
+
+## Common Issues & Solutions
+
+### Missing Google Reviews
+- Check environment variables are set
+- Verify Google Place ID is correct
+- Fallback to static testimonials from data.ts
+
+### Animation Performance
+- Use transform instead of changing layout properties
+- Add will-change: transform for moving elements
+- Use Intersection Observer for scroll-triggered animations
+
+### Mobile Responsiveness
+- Start with mobile-first design
+- Test on actual devices, not just browser simulation
+- Ensure touch targets are at least 44px
+
+### Image Loading
+- Use WebP format for better compression
+- Include proper alt text for accessibility
+- Set priority=true for above-fold images
+
+## Quick Debugging
+```javascript
+console.log('State:', { isVisible, currentIndex });
+console.log('Props:', { title, isActive });
+console.log('API Response:', data);
+```

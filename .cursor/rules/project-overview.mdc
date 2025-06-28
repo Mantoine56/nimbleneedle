@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Nimble Needle - Project Overview
+
+## Project Description
+Nimble Needle is a professional tailoring and clothing alterations business website built with Next.js 13 (App Router). The site showcases services, locations, and integrates Google Reviews for social proof.
+
+## Key Business Context
+- **Business Type**: Tailoring and clothing alterations service
+- **Target Audience**: Ottawa residents needing professional clothing alterations
+- **Primary Services**: Wedding dress alterations, suit tailoring, custom clothing, zipper repairs
+- **Locations**: Two Ottawa locations (Downtown Preston St, Riverside Dr)
+- **Experience**: 15+ years in the tailoring industry
+
+## Technology Stack
+- **Framework**: Next.js 13 with App Router
+- **Language**: TypeScript + JavaScript (mixed)
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: Radix UI primitives (shadcn/ui)
+- **Fonts**: Playfair Display (headings), Montserrat (body), Poppins (accent)
+- **Icons**: Lucide React
+- **API Integration**: Google Places API for reviews
+- **Data Scraping**: Puppeteer for web scraping
+
+## Project Structure
+- **[app/](mdc:app)**: Next.js 13 app router pages and API routes
+- **[components/](mdc:components)**: Reusable React components
+- **[components/ui/](mdc:components/ui)**: shadcn/ui primitive components
+- **[lib/](mdc:lib)**: Utility functions and data constants
+- **[hooks/](mdc:hooks)**: Custom React hooks
+- **[scripts/](mdc:scripts)**: Data scraping and utility scripts
+- **[public/](mdc:public)**: Static assets (images, mockups)
+
+## Key Features
+1. **Hero Section**: Animated parallax background with rotating Google reviews
+2. **Services Showcase**: Interactive cards with hover effects
+3. **Location Information**: Embedded Google Maps for both locations
+4. **Reviews Integration**: Real-time Google Reviews via API
+5. **Responsive Design**: Mobile-first responsive layout
+6. **Performance Optimized**: Image optimization, lazy loading, GPU acceleration
+
+## Development Patterns
+- **Component Architecture**: Functional components with hooks
+- **State Management**: Local state with useState, useEffect
+- **Animation**: CSS transitions with Tailwind, Intersection Observer
+- **Data Fetching**: Server-side API routes for Google Reviews
+- **Type Safety**: TypeScript for components, JavaScript for APIs
+
+## Environment Configuration
+- **Google Places API Key**: Required for reviews integration
+- **Google Place ID**: Business location identifier
+- **Development Scripts**: npm run dev, build, lint
+- **Custom Scripts**: scraping, reviews, place ID finder
