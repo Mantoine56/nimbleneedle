@@ -1,0 +1,1100 @@
+"use client";
+
+import { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Star, Phone, MapPin, Clock, Scissors, Shirt, Users, Award, ChevronLeft, ChevronRight, Quote, Heart, Shield, MessageCircle, Mail, Facebook, Instagram, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import Navigation from '@/components/Navigation';
+import SocialSidebar from '@/components/SocialSidebar';
+
+export default function Home() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentHeroReview, setCurrentHeroReview] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const servicesRef = useRef<HTMLElement>(null);
+  const promiseRef = useRef<HTMLElement>(null);
+  const craftsmanRef = useRef<HTMLElement>(null);
+
+  const locationRef = useRef<HTMLElement>(null);
+  const reviewsRef = useRef<HTMLElement>(null);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const [isPromiseVisible, setIsPromiseVisible] = useState(false);
+  const [isCraftsmanVisible, setIsCraftsmanVisible] = useState(false);
+
+  const [isLocationVisible, setIsLocationVisible] = useState(false);
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
+
+  const testimonials = [
+    {
+      name: "Michael Chen",
+      rating: 5,
+      text: "Exceptional craftsmanship and attention to detail. My suits fit perfectly and the service was outstanding.",
+      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    },
+    {
+      name: "David Rodriguez",
+      rating: 5,
+      text: "Professional service from start to finish. The alterations were done perfectly and on time.",
+      avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    },
+    {
+      name: "James Wilson",
+      rating: 5,
+      text: "Best tailoring service in the city. They transformed my old suits into perfect fits.",
+      avatar: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    },
+    {
+      name: "Robert Thompson",
+      rating: 5,
+      text: "Outstanding quality and customer service. Highly recommend for all tailoring needs.",
+      avatar: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    },
+    {
+      name: "Alexander Brown",
+      rating: 5,
+      text: "Incredible attention to detail and craftsmanship. My wedding suit was absolutely perfect.",
+      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    }
+  ];
+
+  const heroReviews = [
+    {
+      name: "Sarah Johnson",
+      rating: 5,
+      text: "Amazing work! They made my dress fit like it was custom made for me.",
+      avatar: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop",
+      timeAgo: "2 days ago"
+    },
+    {
+      name: "Mark Thompson",
+      rating: 5,
+      text: "Best tailor in Ottawa! Professional service and perfect results every time.",
+      avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop",
+      timeAgo: "1 week ago"
+    },
+    {
+      name: "Emily Chen",
+      rating: 5,
+      text: "Exceptional quality and attention to detail. Highly recommend!",
+      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop",
+      timeAgo: "3 days ago"
+    },
+    {
+      name: "David Wilson",
+      rating: 5,
+      text: "They transformed my old suit into something that looks brand new.",
+      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop",
+      timeAgo: "5 days ago"
+    }
+  ];
+
+  const services = [
+    {
+      title: "ALTERATIONS AND REPAIRS",
+      subtitle: "WEDDING DRESSES, JACKETS, SUITS, PANTS, SHIRTS, DRESSES, SKIRTS, FITTING BRIDAL WEAR AND EVENING WEAR, PATCHING AND REPAIRING HOUSEHOLD TEXTILES",
+      image: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      delay: 0
+    },
+    {
+      title: "CUSTOM AND RETAIL SUITS",
+      subtitle: "WE HAVE A SELECTION OF RETAIL SUITS OR WE CAN CREATE A CUSTOM ONE FOR YOU",
+      image: "https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      delay: 200
+    },
+    {
+      title: "ZIPPER REPAIR",
+      subtitle: "ALL KINDS OF ZIPPERS",
+      image: "https://images.pexels.com/photos/7679659/pexels-photo-7679659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      delay: 400
+    }
+  ];
+
+  const features = [
+    {
+      icon: Heart,
+      title: "MEET WITH US",
+      description: "Call or visit our location to review your needs. No need for an appointment. We can provide you options if needed and give you a fixed, clear cost for the work.",
+      delay: 0
+    },
+    {
+      icon: Shield,
+      title: "SIT BACK AND RELAX",
+      description: "Let our clothing experts work on your items quickly and efficiently to get the results you'll love, in the timeframe you need.",
+      delay: 200
+    },
+    {
+      icon: MessageCircle,
+      title: "TEXT NOTIFICATIONS",
+      description: "Get notified by text as soon as your order is ready for pickup.",
+      delay: 400
+    }
+  ];
+
+  const locations = [
+    {
+      name: "Downtown Ottawa - Preston",
+      address: "141 Preston St, Ottawa, ON K1R 7P4",
+      phone: "(343) 588-1300",
+      hours: {
+        weekdays: "Tue-Sat: 9am-9pm",
+        saturday: "Tue-Sat: 9am-9pm", 
+        sunday: "Sun-Mon: 10am-7pm"
+      },
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.4928542718835!2d-75.71163!3d45.4085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04e7311278bd%3A0x65c3031023e94dc7!2s141%20Preston%20St%2C%20Ottawa%2C%20ON%20K1R%207P4%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
+      delay: 0
+    },
+    {
+      name: "New Location - Riverside",
+      address: "3681 Riverside Dr, Ottawa, ON K1V 1H7",
+      phone: "(343) 588-3182",
+      hours: {
+        weekdays: "Tue-Sat: 9am-9pm",
+        saturday: "Tue-Sat: 9am-9pm",
+        sunday: "Sun-Mon: 10am-7pm"
+      },
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.2735842718835!2d-75.66663!3d45.3685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0759aa93a4c5%3A0x65c3031023e94dc8!2s3681%20Riverside%20Dr%2C%20Ottawa%2C%20ON%20K1V%201H7%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
+      delay: 300
+    }
+  ];
+
+  const detailedReviews = [
+    {
+      name: "Sarah Mitchell",
+      rating: 5,
+      date: "2 weeks ago",
+      text: "Absolutely incredible service! I brought in my wedding dress for alterations and they made it fit like a glove. The attention to detail was remarkable, and they completed everything ahead of schedule. The staff was so professional and understanding of how important this was to me. I couldn't be happier with the results!",
+      avatar: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop",
+      service: "Wedding Dress Alterations"
+    },
+    {
+      name: "Michael Thompson",
+      rating: 5,
+      date: "1 month ago",
+      text: "I've been coming to Nimble Needle for over 3 years now, and they never disappoint. Whether it's suit alterations for work or casual clothing adjustments, they always deliver perfection. The turnaround time is excellent, and the pricing is very fair. Highly recommend to anyone in Ottawa!",
+      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop",
+      service: "Suit Alterations"
+    },
+    {
+      name: "Jennifer Lee",
+      rating: 5,
+      date: "3 weeks ago",
+      text: "Outstanding craftsmanship and customer service. They repaired a vintage jacket that other tailors said couldn't be fixed. Not only did they repair it beautifully, but they also gave me tips on how to care for it properly. This is true expertise and passion for their craft.",
+      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop",
+      service: "Vintage Clothing Repair"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  useEffect(() => {
+    const heroTimer = setInterval(() => {
+      setCurrentHeroReview((prev) => (prev + 1) % heroReviews.length);
+    }, 3000);
+    return () => clearInterval(heroTimer);
+  }, [heroReviews.length]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === servicesRef.current) {
+              setIsServicesVisible(true);
+            } else if (entry.target === promiseRef.current) {
+              setIsPromiseVisible(true);
+            } else if (entry.target === craftsmanRef.current) {
+              setIsCraftsmanVisible(true);
+
+            } else if (entry.target === locationRef.current) {
+              setIsLocationVisible(true);
+            } else if (entry.target === reviewsRef.current) {
+              setIsReviewsVisible(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const refs = [servicesRef.current, promiseRef.current, craftsmanRef.current, locationRef.current, reviewsRef.current];
+    refs.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      refs.forEach(ref => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      <SocialSidebar />
+
+      {/* Full-Screen Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-75 ease-out"
+          style={{
+            backgroundImage: "url('/image.webp')",
+            transform: `translateY(${scrollY * 0.5}px) scale(1.05)`
+          }}
+        ></div>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Main Content */}
+            <div className="max-w-2xl">
+              <div className="mb-6">
+                <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
+                  ⭐ 4.9/5 Rating • 500+ Reviews
+                </Badge>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 text-white font-playfair">
+                CLOTHING<br />
+                ALTERATIONS<br />
+                AND TAILORING<br />
+                <span className="bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent">
+                  SERVICES FOR YOU
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed font-light">
+                Expert craftsmanship meets modern style. We provide premium tailoring services with attention to every detail.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6">
+                <Button 
+                  size="lg" 
+                  className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-500 px-10 py-6 text-lg font-semibold transform hover:scale-105 hover:-translate-y-1 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Book Your Appointment
+                    <span className="inline-block transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">📅</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </Button>
+                <Button 
+                  size="lg" 
+                  className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-500 px-10 py-6 text-lg font-semibold transform hover:scale-105 hover:-translate-y-1 shadow-lg shadow-white/10 hover:shadow-white/20 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    View Services
+                    <span className="inline-block transform transition-all duration-300 group-hover:rotate-45 group-hover:scale-110">⚡</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Column - Google Reviews Carousel */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-full max-w-sm">
+                {/* Google Reviews Header */}
+                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 mb-4 border border-white/20">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                      <span className="text-blue-600 font-bold text-sm">G</span>
+                    </div>
+                    <div>
+                      <h3 className="text-white font-semibold">Google Reviews</h3>
+                      <div className="flex items-center space-x-1">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-white/80 text-sm ml-2">4.9 • 500+ reviews</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Animated Review Cards */}
+                <div className="relative h-64 overflow-hidden">
+                  {heroReviews.map((review, index) => (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-all duration-700 transform ${
+                        index === currentHeroReview
+                          ? 'translate-y-0 opacity-100'
+                          : index < currentHeroReview
+                          ? '-translate-y-full opacity-0'
+                          : 'translate-y-full opacity-0'
+                      }`}
+                    >
+                      <Card className="bg-white/10 backdrop-blur-xl border border-white/20 h-full">
+                        <CardContent className="p-6 h-full flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center space-x-3 mb-4">
+                              <Image
+                                src={review.avatar}
+                                alt={review.name}
+                                width={48}
+                                height={48}
+                                className="rounded-full border-2 border-white/20"
+                              />
+                              <div>
+                                <h4 className="text-white font-semibold text-sm">{review.name}</h4>
+                                <p className="text-white/60 text-xs">{review.timeAgo}</p>
+                              </div>
+                            </div>
+                            
+                            <div className="flex mb-3">
+                              {[...Array(review.rating)].map((_, i) => (
+                                <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                              ))}
+                            </div>
+                            
+                            <p className="text-white/90 text-sm leading-relaxed">
+                              "{review.text}"
+                            </p>
+                          </div>
+                          
+                          <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                            <span className="text-white/60 text-xs">Posted on Google</span>
+                            <Quote className="h-4 w-4 text-white/40" />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Review Indicators */}
+                <div className="flex justify-center space-x-2 mt-4">
+                  {heroReviews.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentHeroReview(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentHeroReview 
+                          ? 'bg-pink-500 w-6' 
+                          : 'bg-white/30 hover:bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Services Section */}
+      <section 
+        ref={servicesRef}
+        className="relative py-24 bg-white overflow-hidden"
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className={`text-center mb-20 transition-all duration-1000 ${
+            isServicesVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
+                SERVICES
+              </span>
+              <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-playfair">
+              EXPERIENCE OUR HASSLE-<br />
+              FREE CLOTHING SERVICES
+            </h2>
+            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+              We handle all fabrics and styles
+            </p>
+          </div>
+          
+          {/* Service Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`group transition-all duration-1000 ${
+                  isServicesVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${service.delay}ms`
+                }}
+              >
+                <Card className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group h-full">
+                  <CardContent className="p-0 relative h-80">
+                    {/* Image Container */}
+                    <div className="relative h-full overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{
+                          transform: `translateY(${scrollY * 0.02}px)`
+                        }}
+                      />
+                      
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:from-black/90 transition-all duration-500"></div>
+                      
+                      {/* Content Overlay */}
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                        <div className="transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
+                          <h3 className="text-xl font-bold mb-3 leading-tight font-playfair">
+                            {service.title}
+                          </h3>
+                          <p className="text-sm text-white/90 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-3">
+                            {service.subtitle}
+                          </p>
+                        </div>
+                        
+                        {/* Decorative Element */}
+                        <div className="absolute top-4 right-4 w-10 h-10 border-2 border-white/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Effect Border */}
+                      <div className="absolute inset-0 border-2 border-transparent group-hover:border-pink-500/50 rounded-2xl transition-all duration-500"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className={`text-center transition-all duration-1000 delay-600 ${
+            isServicesVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+              VIEW ALL SERVICES
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Promise Section */}
+      <section 
+        ref={promiseRef}
+        className="relative py-24 bg-gray-50 overflow-hidden"
+      >
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image Column */}
+            <div className={`relative transition-all duration-1000 ${
+              isPromiseVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-12'
+            }`}>
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                  alt="Professional Tailor"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover rounded-3xl shadow-2xl"
+                />
+                {/* Subtle Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className={`transition-all duration-1000 delay-300 ${
+              isPromiseVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-12'
+            }`}>
+              <div className="max-w-xl">
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-playfair">
+                  OUR<br />
+                  PROMISE
+                </h2>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
+                  We are proud to be an Ottawa company that delivers top-quality services to our clients. Our family-run business can meet your needs for clothing alterations, repairs and custom sewing for clothing and other textiles. Join our hundreds of highly satisfied customers.
+                </p>
+                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                  LEARN MORE
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Craftsman Ship Section */}
+      <section 
+        ref={craftsmanRef}
+        className="relative py-24 bg-white overflow-hidden"
+      >
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236b7280' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Content Column */}
+            <div className={`order-2 lg:order-1 transition-all duration-1000 ${
+              isCraftsmanVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-12'
+            }`}>
+              <div className="max-w-xl">
+                <div className="mb-6">
+                  <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase font-montserrat">
+                    CRAFT
+                  </span>
+                </div>
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-playfair">
+                  THE<br />
+                  CRAFTSMAN<br />
+                  SHIP
+                </h2>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
+                  At our tailoring studio, we pride ourselves on delivering high-quality craftsmanship with quick turnaround times, all while providing friendly, personalized service. Our commitment to excellence has earned us the trust and satisfaction of countless happy customers.
+                </p>
+                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                  LEARN MORE
+                </Button>
+              </div>
+            </div>
+
+            {/* Image Column */}
+            <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${
+              isCraftsmanVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-12'
+            }`}>
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                  alt="Master Craftsman"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover rounded-3xl shadow-2xl"
+                />
+                {/* Subtle Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - Rebuilt Clean */}
+      <section className="relative py-24 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          ></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase font-montserrat">
+                WHY CHOOSE US
+              </span>
+              <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              EXPERIENCE THE<br />
+              NIMBLE NEEDLE<br />
+              DIFFERENCE
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-montserrat">
+              Discover what makes our tailoring services exceptional
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="text-center group"
+                >
+                  <Card className="bg-white/80 backdrop-blur-sm border-2 border-gray-100 rounded-3xl p-8 h-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-pink-200">
+                    <CardContent className="p-0">
+                      {/* Icon */}
+                      <div className="mb-6 flex justify-center">
+                        <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-pink-500/25 transition-all duration-300 transform group-hover:scale-110">
+                          <IconComponent className="h-10 w-10 text-white" />
+                        </div>
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
+                        {feature.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 leading-relaxed text-base font-montserrat">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Decorative Element */}
+                      <div className="mt-6 w-12 h-0.5 bg-gradient-to-r from-pink-400 to-pink-600 mx-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </CardContent>
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Locations Section */}
+      <section 
+        ref={locationRef}
+        className="relative py-24 bg-white overflow-hidden"
+        style={{
+          transform: `translateY(${scrollY * 0.05}px)`
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className={`text-center mb-20 transition-all duration-1000 ${
+            isLocationVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
+                LOCATIONS
+              </span>
+              <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              VISIT US AT OUR<br />
+              TWO CONVENIENT<br />
+              OTTAWA LOCATIONS
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              We're here to serve you better with two locations across Ottawa
+            </p>
+          </div>
+
+          {/* Locations Grid */}
+          <div className="grid lg:grid-cols-2 gap-12">
+            {locations.map((location, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-1000 ${
+                  isLocationVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${location.delay}ms`
+                }}
+              >
+                <Card className="overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                  <CardContent className="p-0">
+                    {/* Map Embed */}
+                    <div className="h-64 bg-gray-200 relative overflow-hidden">
+                      <iframe
+                        src={location.mapUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="absolute inset-0"
+                      ></iframe>
+                      {/* Overlay for styling */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+                    </div>
+                    
+                    {/* Location Details */}
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                        {location.name}
+                      </h3>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <MapPin className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
+                          <div>
+                            <p className="text-gray-700 font-medium">{location.address}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <Phone className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
+                          <div>
+                            <p className="text-gray-700 font-medium">{location.phone}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <Clock className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
+                          <div>
+                            <p className="text-gray-700 font-medium">{location.hours.weekdays}</p>
+                            <p className="text-gray-700">{location.hours.saturday}</p>
+                            <p className="text-gray-700">{location.hours.sunday}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6 flex space-x-3">
+                        <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
+                          Get Directions
+                        </Button>
+                        <Button variant="outline" className="border-pink-500 text-pink-600 hover:bg-pink-50 flex-1">
+                          <Phone className="h-4 w-4 mr-2" />
+                          Call Now
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section 
+        ref={reviewsRef}
+        className="relative py-24 bg-gray-50 overflow-hidden"
+        style={{
+          transform: `translateY(${scrollY * 0.03}px)`
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className={`text-center mb-20 transition-all duration-1000 ${
+            isReviewsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
+                TESTIMONIALS
+              </span>
+              <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              WHAT OUR CLIENTS<br />
+              SAY ABOUT US
+            </h2>
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
+              <span className="text-gray-500">• 500+ Reviews</span>
+            </div>
+          </div>
+
+          {/* Reviews Grid */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {detailedReviews.map((review, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-1000 ${
+                  isReviewsVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${index * 200}ms`
+                }}
+              >
+                <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 rounded-2xl">
+                  <CardContent className="p-8 h-full flex flex-col">
+                    {/* Rating Stars */}
+                    <div className="flex mb-4">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    
+                    {/* Review Text */}
+                    <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
+                      "{review.text}"
+                    </p>
+                    
+                    {/* Service Badge */}
+                    <div className="mb-4">
+                      <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-3 py-1">
+                        {review.service}
+                      </Badge>
+                    </div>
+                    
+                    {/* Reviewer Info */}
+                    <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
+                      <Image
+                        src={review.avatar}
+                        alt={review.name}
+                        width={48}
+                        height={48}
+                        className="rounded-full border-2 border-gray-200"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{review.name}</h4>
+                        <p className="text-sm text-gray-500">{review.date}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className={`text-center transition-all duration-1000 delay-600 ${
+            isReviewsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <p className="text-lg text-gray-600 mb-6">
+              Ready to experience our exceptional service?
+            </p>
+            <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+              Book Your Appointment
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-pink-400 mb-2">15+</div>
+              <div className="text-sm uppercase tracking-wide">Years Experience</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-pink-400 mb-2">5000+</div>
+              <div className="text-sm uppercase tracking-wide">Happy Customers</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-pink-400 mb-2">24hr</div>
+              <div className="text-sm uppercase tracking-wide">Express Service</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-pink-400 mb-2">100%</div>
+              <div className="text-sm uppercase tracking-wide">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+        {/* Main Footer Content */}
+        <div className="py-16 border-b border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-4 gap-12">
+              {/* Company Branding */}
+              <div className="lg:col-span-1">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/10 backdrop-blur-sm p-2">
+                    <Image
+                      src="/logo.png"
+                      alt="Nimble Needle Logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-2xl font-bold font-playfair">Nimble Needle</span>
+                </div>
+                <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
+                  Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
+                </p>
+                
+                {/* Social Media */}
+                <div className="flex space-x-3">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2">
+                    <Facebook className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2">
+                    <Instagram className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Preston Location */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Downtown Ottawa - Preston</h3>
+                <div className="space-y-4 text-gray-300 font-montserrat">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">141 Preston St</p>
+                      <p>Ottawa, ON K1R 7P4</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
+                    <a href="tel:3435881300" className="hover:text-pink-400 transition-colors font-medium">
+                      (343) 588-1300
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p>Tue-Sat: 9am-9pm</p>
+                      <p>Sun-Mon: 10am-7pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Riverside Location */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">New Location - Riverside</h3>
+                <div className="space-y-4 text-gray-300 font-montserrat">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">3681 Riverside Dr</p>
+                      <p>Ottawa, ON K1V 1H7</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
+                    <a href="tel:3435883182" className="hover:text-pink-400 transition-colors font-medium">
+                      (343) 588-3182
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p>Tue-Sat: 9am-9pm</p>
+                      <p>Sun-Mon: 10am-7pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Services & Contact */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
+                <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
+                  <li><a href="#" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
+                  <li><a href="#" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
+                  <li><a href="#" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
+                  <li><a href="#" className="hover:text-pink-400 transition-colors">Wedding Dress Alterations</a></li>
+                  <li><a href="#" className="hover:text-pink-400 transition-colors">Hemming Services</a></li>
+                </ul>
+
+                {/* Email Contact */}
+                <div className="bg-gray-800/50 rounded-xl p-4 border border-gray-700">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Mail className="h-5 w-5 text-pink-400" />
+                    <span className="font-semibold text-pink-400">Email Us</span>
+                  </div>
+                  <a 
+                    href="mailto:nimble.needle.tailoring@gmail.com" 
+                    className="text-gray-300 hover:text-pink-400 transition-colors break-all"
+                  >
+                    nimble.needle.tailoring@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="py-6 bg-gray-900/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-gray-400 text-sm font-montserrat">
+                Copyright © 2025 - Nimble Needle Tailoring
+              </div>
+              <div className="flex items-center space-x-6 text-sm text-gray-400 font-montserrat">
+                <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-semibold">
+                  Walk-ins Welcome
+                </span>
+                <a href="#" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-pink-400 transition-colors">Terms of Service</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

@@ -1,0 +1,6 @@
+scripts/
+scraped-data/
+node_modules/
+.next/
+dist/
+build/ 
