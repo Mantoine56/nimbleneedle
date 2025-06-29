@@ -10,7 +10,8 @@
     "scrape:website": "node scripts/scrape-website.js",
     "scrape:reviews": "node scripts/scrape-google-reviews.js",
     "scrape:reviews-enhanced": "node scripts/scrape-google-reviews-enhanced.js",
-    "find-place-id": "node scripts/find-place-id.js"
+    "find-place-id": "node scripts/find-place-id.js",
+    "extract:media": "node scripts/extract-wordpress-media.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -45,6 +46,7 @@
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
+    "@xmldom/xmldom": "^0.9.8",
     "autoprefixer": "10.4.15",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",

@@ -68,7 +68,7 @@ export default function LocationSelector() {
         className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 px-6 py-3 font-semibold transform hover:scale-105 overflow-hidden"
       >
         <span className="relative z-10 flex items-center gap-2">
-          Contact Us
+          Call Us
           <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
         </span>
         <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
@@ -110,7 +110,12 @@ export default function LocationSelector() {
                   <Button
                     onClick={() => handleCall(location.phone)}
                     size="sm"
-                    className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs"
+                    // Alternative colors to consider:
+                    // Teal: bg-teal-500 hover:bg-teal-600 (modern, fresh)
+                    // Slate: bg-slate-600 hover:bg-slate-700 (professional, neutral)
+                    // Amber: bg-amber-500 hover:bg-amber-600 (warm, friendly)
+                    // Cyan: bg-cyan-500 hover:bg-cyan-600 (bright, energetic)
+                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-xs transition-all duration-200"
                   >
                     <Phone className="h-3 w-3 mr-1" />
                     Call Now

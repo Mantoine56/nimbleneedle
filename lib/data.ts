@@ -68,20 +68,20 @@ export const heroReviews = [
 export const services = [
   {
     title: "ALTERATIONS AND REPAIRS",
-    subtitle: "WEDDING DRESSES, JACKETS, SUITS, PANTS, SHIRTS, DRESSES, SKIRTS, FITTING BRIDAL WEAR AND EVENING WEAR, PATCHING AND REPAIRING HOUSEHOLD TEXTILES",
-    image: "/services/alterations.webp",
+    subtitle: "Wedding Dresses, Jackets, Suits, Pants, Shirts, Dresses, Skirts, Fitting Bridalwear and Eveningwear, Patching and Repairing Household Textiles",
+    image: "/alterations.jpg",
     delay: 0
   },
   {
     title: "CUSTOM AND RETAIL SUITS",
-    subtitle: "WE HAVE A SELECTION OF RETAIL SUITS OR WE CAN CREATE A CUSTOM ONE FOR YOU",
-    image: "/services/suits.webp",
+    subtitle: "We have a selection of retail suits or we can create a custom one for you",
+    image: "/custom.jpg",
     delay: 200
   },
   {
     title: "ZIPPER REPAIR",
-    subtitle: "ALL KINDS OF ZIPPERS",
-    image: "/services/zipper.webp",
+    subtitle: "Clothing Zippers, Suitcase Zippers",
+    image: "/zipper.jpg",
     delay: 400
   }
   ];

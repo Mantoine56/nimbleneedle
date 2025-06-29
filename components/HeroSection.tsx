@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Quote } from 'lucide-react';
-import Image from 'next/image';
+import { Star, Quote, User } from 'lucide-react';
 import { heroReviews } from '@/lib/data';
 
 interface HeroSectionProps {
@@ -23,7 +22,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
   }, []);
 
   return (
-    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax - GPU Accelerated */}
       <div 
         className="hero-background absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-75 ease-out"
@@ -37,34 +36,37 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
-            <div className="mb-6">
+            <div className="mb-8">
               <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
                 ⭐ 4.9/5 Rating • 500+ Reviews
               </Badge>
             </div>
             
             {/* Critical LCP Element - Optimized */}
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 text-white font-playfair optimized-animation">
-              CLOTHING<br />
-              ALTERATIONS<br />
-              AND TAILORING<br />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white font-playfair optimized-animation">
+              EXPERT TAILORING &<br />
+              CLOTHING ALTERATIONS<br />
+              IN OTTAWA<br />
               <span className="bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent">
-                SERVICES FOR YOU
+                NIMBLE NEEDLE
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed font-light">
-              Expert craftsmanship meets modern style. We provide premium tailoring services with attention to every detail.
+            <h2 className="text-xl md:text-2xl mb-6 text-white/95 leading-relaxed font-medium font-montserrat">
+              Friendly, Expert Tailoring
+            </h2>
+            <p className="text-base md:text-lg mb-8 text-white/90 leading-relaxed font-light">
+              Your one-stop shop for all your tailoring, seamstress, and clothing alteration needs in Ottawa! No appointment needed.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 px-10 py-6 text-lg font-semibold optimized-animation"
+                className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 px-8 py-4 text-base font-semibold optimized-animation"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Book Your Appointment
@@ -73,7 +75,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
               </Button>
               <Button 
                 size="lg" 
-                className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300 px-10 py-6 text-lg font-semibold optimized-animation"
+                className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300 px-8 py-4 text-base font-semibold optimized-animation"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   View Services
@@ -123,14 +125,9 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
                       <CardContent className="p-6 h-full flex flex-col justify-between">
                         <div>
                           <div className="flex items-center space-x-3 mb-4">
-                            <Image
-                              src={review.avatar}
-                              alt={review.name}
-                              width={48}
-                              height={48}
-                              className="rounded-full border-2 border-white/20"
-                              priority={index === 0}
-                            />
+                            <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/20 flex items-center justify-center">
+                              <User className="h-6 w-6 text-white/70" />
+                            </div>
                             <div>
                               <h4 className="text-white font-semibold text-sm">{review.name}</h4>
                               <p className="text-white/60 text-xs">{review.timeAgo}</p>

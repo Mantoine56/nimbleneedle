@@ -34,14 +34,26 @@ npm run find-place-id           # Find Google Place ID for reviews
 
 ## Architecture
 
+### Page Structure
+- **Homepage**: `app/page.tsx` - Main landing page with hero, services overview, testimonials
+- **Service Pages**:
+  - `app/services/page.tsx` - Complete services overview with pricing
+  - `app/clothing-alterations/page.tsx` - Detailed clothing alterations page
+  - `app/zipper-repair/page.tsx` - Zipper repair services and pricing
+  - `app/wedding-dress-alterations/page.tsx` - Bridal alterations specialist page
+- **Info Pages**:
+  - `app/about/page.tsx` - Company story, values, and team information
+  - `app/contact-us/page.tsx` - Location details, maps, and contact info
+- **Layout**: `app/layout.tsx` - Root layout with metadata and structured data
+
 ### Component Structure
-- **Page Components**: `app/page.tsx` (main landing page), `app/layout.tsx`
 - **UI Components**: `components/ui/` (shadcn/ui components)
 - **Custom Components**: 
-  - `Navigation.tsx` - Fixed header with scroll effects
+  - `Navigation.tsx` - Fixed header with scroll effects and mobile menu
   - `HeroSection.tsx` - Main hero section with parallax
   - `SocialSidebar.tsx` - Social media sidebar
   - `LocationSelector.tsx` - Location selection dropdown
+  - `Breadcrumb.tsx` - Navigation breadcrumbs for pages
 - **Data**: `lib/data.ts` - Static data (testimonials, services, locations)
 - **Hooks**: `hooks/` - Custom React hooks (toast, Google reviews)
 - **Utilities**: `lib/utils.ts` - Tailwind class utilities

@@ -97,7 +97,7 @@ export default function Home() {
       {/* Enhanced Services Section */}
       <section 
         ref={servicesRef}
-        className="relative py-24 bg-white overflow-hidden"
+        className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -108,7 +108,7 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-20 transition-all duration-1000 ${
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
             isServicesVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -128,7 +128,7 @@ export default function Home() {
             </p>
           </div>
           
-          {/* Service Cards Grid */}
+          {/* Service Cards Grid - Completely Rebuilt */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {services.map((service, index) => (
               <div
@@ -142,46 +142,72 @@ export default function Home() {
                   transitionDelay: `${service.delay}ms`
                 }}
               >
-                <Card className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group h-full">
-                  <CardContent className="p-0 relative h-80">
-                    {/* Image Container */}
-                    <div className="relative h-full overflow-hidden">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        style={{
-                          transform: `translateY(${scrollY * 0.02}px)`
-                        }}
-                      />
-                      
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:from-black/90 transition-all duration-500"></div>
-                      
-                      {/* Content Overlay */}
-                      <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                        <div className="transform transition-all duration-500 group-hover:translate-y-0 translate-y-2">
-                          <h3 className="text-xl font-bold mb-3 leading-tight font-playfair">
-                            {service.title}
-                          </h3>
-                          <p className="text-sm text-white/90 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-3">
-                            {service.subtitle}
-                          </p>
-                        </div>
-                        
-                        {/* Decorative Element */}
-                        <div className="absolute top-4 right-4 w-10 h-10 border-2 border-white/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
-                          <div className="w-4 h-4 bg-white/20 rounded-full"></div>
-                        </div>
-                      </div>
-                      
-                      {/* Hover Effect Border */}
-                      <div className="absolute inset-0 border-2 border-transparent group-hover:border-pink-500/50 rounded-2xl transition-all duration-500"></div>
+                {/* Modern Service Card Design */}
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-4 group h-full border border-gray-100">
+                  
+                  {/* Top Image Section */}
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={`${service.title} - Professional tailoring services at Nimble Needle Ottawa`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    
+                    {/* Floating Number Badge */}
+                    <div className="absolute top-4 left-4 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">
+                      <span className="text-lg font-bold font-playfair text-gray-800 group-hover:text-white">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-8 relative">
+                    {/* Service Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight font-playfair group-hover:text-gray-800 transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    {/* Service Description */}
+                    <p className="text-gray-600 leading-relaxed text-sm mb-6 font-montserrat line-clamp-3 group-hover:text-gray-700 transition-colors duration-300">
+                      {service.subtitle}
+                    </p>
+
+                    {/* Action Area */}
+                    <div className="flex items-center justify-between">
+                      {/* Learn More Link */}
+                      <button className="group/btn inline-flex items-center text-pink-600 hover:text-pink-700 font-semibold text-sm transition-all duration-300 transform group-hover:translate-x-1">
+                        <span className="font-montserrat">Learn More</span>
+                        <svg 
+                          className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+
+                      {/* Decorative Dot Pattern */}
+                      <div className="flex space-x-1 opacity-30 group-hover:opacity-60 transition-opacity duration-300">
+                        <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                        <div className="w-2 h-2 bg-pink-300 rounded-full"></div>
+                      </div>
+                    </div>
+
+                    {/* Subtle Bottom Border Accent */}
+                    <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-pink-500/5 via-transparent to-pink-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                </div>
               </div>
             ))}
           </div>
@@ -192,7 +218,10 @@ export default function Home() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+            <Button 
+              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+              onClick={() => window.location.href = '/services'}
+            >
               VIEW ALL SERVICES
             </Button>
           </div>
@@ -202,7 +231,7 @@ export default function Home() {
       {/* Our Promise Section */}
       <section 
         ref={promiseRef}
-        className="relative py-24 bg-gray-50 overflow-hidden"
+        className="relative py-16 md:py-20 bg-gray-50 overflow-hidden"
       >
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -212,7 +241,7 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Image Column */}
             <div className={`relative transition-all duration-1000 ${
               isPromiseVisible 
@@ -221,8 +250,8 @@ export default function Home() {
             }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
-                  src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
-                  alt="Professional Tailor"
+                  src="/promise-image.webp"
+                  alt="Professional tailor working on clothing alterations at Nimble Needle Ottawa tailoring shop"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover rounded-3xl shadow-2xl"
@@ -244,9 +273,12 @@ export default function Home() {
                   PROMISE
                 </h2>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
-                  We are proud to be an Ottawa company that delivers top-quality services to our clients. Our family-run business can meet your needs for clothing alterations, repairs and custom sewing for clothing and other textiles. Join our hundreds of highly satisfied customers.
+                  We are proud to be an Ottawa company that delivers top-quality services to our clients. Our family-run business can meet your needs for clothing alterations, repairs and custom sewing for clothing and other textiles. With high-quality work, quick turnaround times, and friendly service, we&apos;ve earned the trust of hundreds of highly satisfied customers.
                 </p>
-                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                <Button 
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+                  onClick={() => window.location.href = '/about'}
+                >
                   LEARN MORE
                 </Button>
               </div>
@@ -258,7 +290,7 @@ export default function Home() {
       {/* The Craftsman Ship Section */}
       <section 
         ref={craftsmanRef}
-        className="relative py-24 bg-white overflow-hidden"
+        className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -268,7 +300,7 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Content Column */}
             <div className={`order-2 lg:order-1 transition-all duration-1000 ${
               isCraftsmanVisible 
@@ -287,7 +319,7 @@ export default function Home() {
                   SHIP
                 </h2>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
-                  At our tailoring studio, we pride ourselves on delivering high-quality craftsmanship with quick turnaround times, all while providing friendly, personalized service. Our commitment to excellence has earned us the trust and satisfaction of countless happy customers.
+                  At our tailoring studio, we pride ourselves on delivering high-quality craftsmanship with quick turnaround times, all while providing friendly, personalized service. No appointment needed - we offer fixed, clear pricing and handle all fabrics and styles. Our commitment to excellence has earned us the trust and satisfaction of countless happy customers.
                 </p>
                 <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
                   LEARN MORE
@@ -303,8 +335,8 @@ export default function Home() {
             }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
-                  src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
-                  alt="Master Craftsman"
+                  src="/craftsmanship-image.webp"
+                  alt="Master craftsman demonstrating expert tailoring techniques at Nimble Needle Ottawa"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover rounded-3xl shadow-2xl"
@@ -318,7 +350,7 @@ export default function Home() {
       </section>
 
       {/* Features Section - Rebuilt Clean */}
-      <section className="relative py-24 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div 
@@ -331,7 +363,7 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase font-montserrat">
                 WHY CHOOSE US
@@ -390,14 +422,11 @@ export default function Home() {
       {/* Locations Section */}
       <section 
         ref={locationRef}
-        className="relative py-24 bg-white overflow-hidden"
-        style={{
-          transform: `translateY(${scrollY * 0.05}px)`
-        }}
+        className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-20 transition-all duration-1000 ${
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
             isLocationVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -414,7 +443,7 @@ export default function Home() {
               OTTAWA LOCATIONS
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We're here to serve you better with two locations across Ottawa
+                                We&apos;re here to serve you better with two locations across Ottawa
             </p>
           </div>
 
@@ -502,14 +531,11 @@ export default function Home() {
       {/* Reviews Section */}
       <section 
         ref={reviewsRef}
-        className="relative py-24 bg-gray-50 overflow-hidden"
-        style={{
-          transform: `translateY(${scrollY * 0.03}px)`
-        }}
+        className="relative py-16 md:py-20 bg-gray-50 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-20 transition-all duration-1000 ${
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
             isReviewsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -560,7 +586,7 @@ export default function Home() {
                     
                     {/* Review Text */}
                     <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
-                      "{review.text}"
+                      &quot;{review.text}&quot;
                     </p>
                     
                     {/* Service Badge */}
@@ -599,36 +625,16 @@ export default function Home() {
             <p className="text-lg text-gray-600 mb-6">
               Ready to experience our exceptional service?
             </p>
-            <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+            <Button 
+              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+              onClick={() => window.location.href = '/contact-us'}
+            >
               Book Your Appointment
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-pink-400 mb-2">15+</div>
-              <div className="text-sm uppercase tracking-wide">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-pink-400 mb-2">5000+</div>
-              <div className="text-sm uppercase tracking-wide">Happy Customers</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-pink-400 mb-2">24hr</div>
-              <div className="text-sm uppercase tracking-wide">Express Service</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-pink-400 mb-2">100%</div>
-              <div className="text-sm uppercase tracking-wide">Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -642,7 +648,7 @@ export default function Home() {
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/10 backdrop-blur-sm p-2">
                     <Image
                       src="/logo.png"
-                      alt="Nimble Needle Logo"
+                      alt="Nimble Needle Tailoring - Ottawa's premier clothing alterations and tailoring service logo"
                       fill
                       className="object-contain"
                     />
