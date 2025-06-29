@@ -62,7 +62,7 @@ export default function Navigation() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'backdrop-blur-xl bg-white/60 border-b border-gray-200/50 shadow-lg' 
+          ? 'backdrop-blur-xl bg-white/30 border-b border-gray-200/50 shadow-lg' 
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
