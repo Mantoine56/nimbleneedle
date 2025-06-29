@@ -62,7 +62,7 @@ export default function Navigation() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'backdrop-blur-xl bg-gradient-to-b from-black/20 to-black/10 border-b border-white/30 shadow-xl shadow-black/20' 
+          ? 'backdrop-blur-xl bg-white/60 border-b border-gray-200/50 shadow-lg' 
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +70,11 @@ export default function Navigation() {
             
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/25 backdrop-blur-sm p-1 shadow-lg">
+              <div className={`relative w-12 h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
+                isScrolled 
+                  ? 'bg-gray-100' 
+                  : 'bg-white/25 backdrop-blur-sm'
+              }`}>
                 <Image
                   src="/logo.png"
                   alt="Nimble Needle Tailoring - Expert clothing alterations and tailoring services in Ottawa"
@@ -78,7 +82,11 @@ export default function Navigation() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-2xl font-bold text-white tracking-tight font-playfair drop-shadow-lg">Nimble Needle</span>
+              <span className={`text-2xl font-bold tracking-tight font-playfair transition-colors duration-500 ${
+                isScrolled 
+                  ? 'text-gray-900' 
+                  : 'text-white drop-shadow-lg'
+              }`}>Nimble Needle</span>
             </div>
             
             {/* Desktop Navigation Menu */}
@@ -88,7 +96,11 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="relative group px-6 py-3 text-white/90 hover:text-white transition-all duration-300 font-medium drop-shadow-md"
+                  className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-gray-900' 
+                      : 'text-white/90 hover:text-white drop-shadow-md'
+                  }`}
                 >
                   <span className="relative z-10">{item.name}</span>
                   
@@ -96,7 +108,11 @@ export default function Navigation() {
                   <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
                   
                   {/* Hover Effect - Subtle Glow */}
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg"></div>
+                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
+                    isScrolled 
+                      ? 'bg-gray-100/50' 
+                      : 'bg-white/10'
+                  }`}></div>
                 </a>
               ))}
               
@@ -106,7 +122,11 @@ export default function Navigation() {
                 onMouseEnter={() => setIsServicesDropdownOpen(true)}
                 onMouseLeave={() => setIsServicesDropdownOpen(false)}
               >
-                <button className="relative group px-6 py-3 text-white/90 hover:text-white transition-all duration-300 font-medium drop-shadow-md flex items-center">
+                <button className={`relative group px-6 py-3 transition-all duration-300 font-medium flex items-center ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-gray-900' 
+                    : 'text-white/90 hover:text-white drop-shadow-md'
+                }`}>
                   <span className="relative z-10">Services</span>
                   <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
                   
@@ -114,7 +134,11 @@ export default function Navigation() {
                   <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
                   
                   {/* Hover Effect - Subtle Glow */}
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg"></div>
+                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
+                    isScrolled 
+                      ? 'bg-gray-100/50' 
+                      : 'bg-white/10'
+                  }`}></div>
                 </button>
                 
                 {/* Creative Dropdown Menu */}
@@ -180,7 +204,11 @@ export default function Navigation() {
               {/* Contact Link */}
               <a
                 href="/contact-us"
-                className="relative group px-6 py-3 text-white/90 hover:text-white transition-all duration-300 font-medium drop-shadow-md"
+                className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-gray-900' 
+                    : 'text-white/90 hover:text-white drop-shadow-md'
+                }`}
               >
                 <span className="relative z-10">Contact</span>
                 
@@ -188,7 +216,11 @@ export default function Navigation() {
                 <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
                 
                 {/* Hover Effect - Subtle Glow */}
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg"></div>
+                <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
+                  isScrolled 
+                    ? 'bg-gray-100/50' 
+                    : 'bg-white/10'
+                }`}></div>
               </a>
             </nav>
 
@@ -197,7 +229,11 @@ export default function Navigation() {
               {/* Mobile Menu Button */}
               <Button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 p-3"
+                className={`md:hidden p-3 transition-all duration-500 ${
+                  isScrolled 
+                    ? 'bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200' 
+                    : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20'
+                }`}
                 size="sm"
               >
                 {isMobileMenuOpen ? (
