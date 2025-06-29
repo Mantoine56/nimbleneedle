@@ -181,7 +181,12 @@ export default function Home() {
                     {/* Action Area */}
                     <div className="flex items-center justify-between">
                       {/* Learn More Link */}
-                      <button className="group/btn inline-flex items-center text-pink-600 hover:text-pink-700 font-semibold text-sm transition-all duration-300 transform group-hover:translate-x-1">
+                      <button 
+                        onClick={() => {
+                          const serviceLinks = ['/clothing-alterations', '/services', '/zipper-repair'];
+                          window.location.href = serviceLinks[index] || '/services';
+                        }}
+                        className="group/btn inline-flex items-center text-pink-600 hover:text-pink-700 font-semibold text-sm transition-all duration-300 transform group-hover:translate-x-1">
                         <span className="font-montserrat">Learn More</span>
                         <svg 
                           className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" 
@@ -321,7 +326,9 @@ export default function Home() {
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
                   At our tailoring studio, we pride ourselves on delivering high-quality craftsmanship with quick turnaround times, all while providing friendly, personalized service. No appointment needed - we offer fixed, clear pricing and handle all fabrics and styles. Our commitment to excellence has earned us the trust and satisfaction of countless happy customers.
                 </p>
-                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                <Button 
+                  onClick={() => window.location.href = '/about'}
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
                   LEARN MORE
                 </Button>
               </div>
@@ -511,10 +518,18 @@ export default function Home() {
                       </div>
                       
                       <div className="mt-6 flex space-x-3">
-                        <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
+                        <Button 
+                          onClick={() => {
+                            const address = encodeURIComponent(location.address);
+                            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                          }}
+                          className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
                           Get Directions
                         </Button>
-                        <Button variant="outline" className="border-pink-500 text-pink-600 hover:bg-pink-50 flex-1">
+                        <Button 
+                          onClick={() => window.location.href = `tel:${location.phone.replace(/[^0-9]/g, '')}`}
+                          variant="outline" 
+                          className="border-pink-500 text-pink-600 hover:bg-pink-50 flex-1">
                           <Phone className="h-4 w-4 mr-2" />
                           Call Now
                         </Button>
@@ -732,11 +747,11 @@ export default function Home() {
               <div>
                 <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
                 <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
-                  <li><a href="#" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
-                  <li><a href="#" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
-                  <li><a href="#" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
-                  <li><a href="#" className="hover:text-pink-400 transition-colors">Wedding Dress Alterations</a></li>
-                  <li><a href="#" className="hover:text-pink-400 transition-colors">Hemming Services</a></li>
+                  <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
+                  <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
+                  <li><a href="/zipper-repair" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
+                  <li><a href="/wedding-dress-alterations" className="hover:text-pink-400 transition-colors">Wedding Dress Alterations</a></li>
+                  <li><a href="/services" className="hover:text-pink-400 transition-colors">Hemming Services</a></li>
                 </ul>
 
                 {/* Email Contact */}
@@ -768,8 +783,8 @@ export default function Home() {
                 <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-semibold">
                   Walk-ins Welcome
                 </span>
-                <a href="#" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-pink-400 transition-colors">Terms of Service</a>
+                <a href="/privacy-policy" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
+                <a href="/terms-of-service" className="hover:text-pink-400 transition-colors">Terms of Service</a>
               </div>
             </div>
           </div>

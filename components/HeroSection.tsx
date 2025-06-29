@@ -66,6 +66,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
+                onClick={() => window.location.href = '/contact-us'}
                 className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 px-8 py-4 text-base font-semibold optimized-animation"
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -75,6 +76,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
               </Button>
               <Button 
                 size="lg" 
+                onClick={() => window.location.href = '/services'}
                 className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300 px-8 py-4 text-base font-semibold optimized-animation"
               >
                 <span className="relative z-10 flex items-center gap-2">
