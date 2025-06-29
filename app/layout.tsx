@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Playfair_Display, Montserrat, Poppins } from 'next/font/google';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const playfairDisplay = Playfair_Display({ 
   subsets: ['latin'],
@@ -50,6 +51,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
+          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -169,7 +173,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-montserrat">{children}</body>
+      <body className="font-montserrat">
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   );
 }

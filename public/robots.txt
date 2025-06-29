@@ -1,0 +1,43 @@
+# Robots.txt for Nimble Needle Tailoring
+# https://nimbleneedle.ca
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Sitemap location
+Sitemap: https://nimbleneedle.ca/sitemap.xml
+
+# Crawl-delay (optional - be crawler-friendly)
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+# Block bad bots (optional security measure)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
