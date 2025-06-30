@@ -10,6 +10,7 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isLightBackground, setIsLightBackground] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,12 @@ export default function Navigation() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Detect if we're on a page with light background (not homepage)
+    const isHomepage = window.location.pathname === '/';
+    setIsLightBackground(!isHomepage);
   }, []);
 
   // Close mobile menu when clicking outside or on a link
@@ -61,8 +68,8 @@ export default function Navigation() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'backdrop-blur-xl bg-white/30 border-b border-gray-200/50 shadow-lg' 
+        isLightBackground || isScrolled
+          ? 'backdrop-blur-xl bg-white/95 border-b border-gray-200/50 shadow-lg' 
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +78,7 @@ export default function Navigation() {
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className={`relative w-12 h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
-                isScrolled 
+                isLightBackground || isScrolled 
                   ? 'bg-gray-100' 
                   : 'bg-white/25 backdrop-blur-sm'
               }`}>
@@ -83,7 +90,7 @@ export default function Navigation() {
                 />
               </div>
               <span className={`text-2xl font-bold tracking-tight font-playfair transition-colors duration-500 ${
-                isScrolled 
+                isLightBackground || isScrolled 
                   ? 'text-gray-900' 
                   : 'text-white drop-shadow-lg'
               }`}>Nimble Needle</span>
@@ -97,7 +104,7 @@ export default function Navigation() {
                   key={item.name}
                   href={item.href}
                   className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
-                    isScrolled 
+                    isLightBackground || isScrolled 
                       ? 'text-gray-700 hover:text-gray-900' 
                       : 'text-white/90 hover:text-white drop-shadow-md'
                   }`}
@@ -109,7 +116,7 @@ export default function Navigation() {
                   
                   {/* Hover Effect - Subtle Glow */}
                   <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                    isScrolled 
+                    isLightBackground || isScrolled 
                       ? 'bg-gray-100/50' 
                       : 'bg-white/10'
                   }`}></div>
@@ -123,7 +130,7 @@ export default function Navigation() {
                 onMouseLeave={() => setIsServicesDropdownOpen(false)}
               >
                 <button className={`relative group px-6 py-3 transition-all duration-300 font-medium flex items-center ${
-                  isScrolled 
+                  isLightBackground || isScrolled 
                     ? 'text-gray-700 hover:text-gray-900' 
                     : 'text-white/90 hover:text-white drop-shadow-md'
                 }`}>
@@ -135,7 +142,7 @@ export default function Navigation() {
                   
                   {/* Hover Effect - Subtle Glow */}
                   <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                    isScrolled 
+                    isLightBackground || isScrolled 
                       ? 'bg-gray-100/50' 
                       : 'bg-white/10'
                   }`}></div>
@@ -205,7 +212,7 @@ export default function Navigation() {
               <a
                 href="/contact-us"
                 className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
-                  isScrolled 
+                  isLightBackground || isScrolled 
                     ? 'text-gray-700 hover:text-gray-900' 
                     : 'text-white/90 hover:text-white drop-shadow-md'
                 }`}
@@ -217,7 +224,7 @@ export default function Navigation() {
                 
                 {/* Hover Effect - Subtle Glow */}
                 <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                  isScrolled 
+                  isLightBackground || isScrolled 
                     ? 'bg-gray-100/50' 
                     : 'bg-white/10'
                 }`}></div>
@@ -230,7 +237,7 @@ export default function Navigation() {
               <Button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`md:hidden p-3 transition-all duration-500 ${
-                  isScrolled 
+                  isLightBackground || isScrolled 
                     ? 'bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200' 
                     : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20'
                 }`}
