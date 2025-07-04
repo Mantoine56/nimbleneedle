@@ -14,12 +14,15 @@ import {
   ArrowRight,
   ExternalLink,
   Calendar,
-  Users
+  Users,
+  Facebook,
+  Instagram
 } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
+import { useState, useEffect, useRef } from 'react';
 
 const locations = [
   {
@@ -64,8 +67,8 @@ const contactMethods = [
   {
     method: "Phone",
     icon: Phone,
-    primary: "(343) 588-1300",
-    secondary: "(343) 588-3182", 
+    primary: "(343) 588-1300 - Preston St",
+    secondary: "(343) 588-3182 - Riverside Dr", 
     description: "Call either location directly",
     available: "During business hours"
   },
@@ -115,6 +118,21 @@ const faqItems = [
 ];
 
 export default function ContactPage() {
+  const [isDirectionsPopupOpen, setIsDirectionsPopupOpen] = useState(false);
+  const directionsPopupRef = useRef<HTMLDivElement>(null);
+
+  // Handle click outside to close popups
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (directionsPopupRef.current && !directionsPopupRef.current.contains(event.target as Node)) {
+        setIsDirectionsPopupOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const breadcrumbItems = [
     { label: 'Contact Us', current: true }
   ];
@@ -126,42 +144,121 @@ export default function ContactPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-green-50 to-emerald-50 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-green-100 text-green-700 border-green-200 px-6 py-3 text-base font-medium mb-8">
-              <MapPin className="h-5 w-5 mr-2" />
-              Two Convenient Ottawa Locations
-            </Badge>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-8 font-playfair">
-              CONTACT<br />
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                NIMBLE NEEDLE
-              </span><br />
-              TAILORING
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 font-montserrat leading-relaxed">
-              Ready to experience expert tailoring? Visit us at either of our convenient Ottawa locations. 
-              No appointment necessary - walk-ins are always welcome!
-            </p>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Contact Information */}
+            <div>
+              <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-4 py-2 text-sm font-medium mb-6">
+                <MapPin className="h-4 w-4 mr-2" />
+                Two Convenient Ottawa Locations
+              </Badge>
+              
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+                CONTACT<br />
+                <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
+                  NIMBLE NEEDLE
+                </span><br />
+                TAILORING
+              </h1>
+              
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed font-montserrat mb-8">
+                <p>
+                  Ready to experience expert tailoring? Visit us at either of our convenient Ottawa locations. 
+                  No appointment necessary - walk-ins are always welcome!
+                </p>
+                
+                <p className="font-semibold text-pink-600">
+                  We serve customers in English, Arabic, and Kurdish.
+                </p>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg">
-                <Phone className="h-5 w-5 mr-2" />
-                Call (343) 588-1300
-              </Button>
-              <Button variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 px-10 py-4 text-lg font-semibold rounded-full">
-                <Mail className="h-5 w-5 mr-2" />
-                Email Us
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 relative">
+                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Book Appointment
+                </Button>
+                <Button 
+                  onClick={() => {
+                    setIsDirectionsPopupOpen(!isDirectionsPopupOpen);
+                  }}
+                  variant="outline" 
+                  className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
+                >
+                  <NavigationIcon className="h-5 w-5 mr-2" />
+                  Directions
+                </Button>
+              </div>
+
+              {/* Directions Popup */}
+              {isDirectionsPopupOpen && (
+                <div 
+                  ref={directionsPopupRef}
+                  className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
+                >
+                  <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
+                    <h3 className="text-white font-semibold font-playfair text-lg">Get Directions</h3>
+                    <p className="text-white/80 text-sm">Choose your destination</p>
+                  </div>
+                  <div className="p-4 space-y-4">
+                    {locations.map((location, index) => (
+                      <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
+                        <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
+                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
+                          <MapPin className="h-3 w-3" />
+                          {location.address}
+                        </p>
+                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
+                          <Phone className="h-3 w-3" />
+                          {location.phone}
+                        </p>
+                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
+                          <Clock className="h-3 w-3" />
+                          {location.hours.weekdays}
+                        </p>
+                        <Button
+                          onClick={() => {
+                            const address = encodeURIComponent(location.address);
+                            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                            setIsDirectionsPopupOpen(false);
+                          }}
+                          className="w-full bg-pink-500 hover:bg-pink-600 text-white text-sm mt-3"
+                        >
+                          <NavigationIcon className="h-3 w-3 mr-1" />
+                          Get Directions
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Backdrop for directions popup */}
+              {isDirectionsPopupOpen && (
+                <div 
+                  className="fixed inset-0 bg-black/50 z-[9998]"
+                  onClick={() => setIsDirectionsPopupOpen(false)}
+                />
+              )}
+            </div>
+
+            {/* Contact Image */}
+            <div className="relative">
+              <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/craftsmanship-image.webp"
+                  alt="Professional tailor working on clothing alterations at Nimble Needle Tailoring in Ottawa"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -183,9 +280,9 @@ export default function ContactPage() {
             {contactMethods.map((method, index) => {
               const IconComponent = method.icon;
               return (
-                <Card key={index} className="border-0 bg-gradient-to-br from-white to-green-50 hover:shadow-xl transition-all duration-300 rounded-2xl">
+                <Card key={index} className="border-0 bg-gradient-to-br from-white to-pink-50 hover:shadow-xl transition-all duration-300 rounded-2xl">
                   <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
                     
@@ -194,15 +291,15 @@ export default function ContactPage() {
                     </h3>
                     
                     <div className="mb-4">
-                      <p className="text-lg font-semibold text-green-700 mb-1">{method.primary}</p>
+                      <p className="text-lg font-semibold text-pink-600 mb-1">{method.primary}</p>
                       {method.secondary && (
-                        <p className="text-base text-gray-600">{method.secondary}</p>
+                        <p className="text-lg font-semibold text-pink-600">{method.secondary}</p>
                       )}
                     </div>
                     
                     <p className="text-gray-600 mb-3">{method.description}</p>
                     
-                    <Badge className="bg-green-100 text-green-700 text-xs">
+                    <Badge className="bg-pink-100 text-pink-700 text-xs">
                       {method.available}
                     </Badge>
                   </CardContent>
@@ -246,14 +343,14 @@ export default function ContactPage() {
                     <h3 className="text-2xl font-bold text-gray-900 font-playfair">
                       {location.name}
                     </h3>
-                    <Badge className="bg-green-100 text-green-700">
+                    <Badge className="bg-pink-100 text-pink-700">
                       Walk-ins Welcome
                     </Badge>
                   </div>
                   
                   <div className="space-y-4 mb-6">
                     <div className="flex items-start space-x-3">
-                      <MapPin className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                      <MapPin className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
                       <div>
                         <p className="text-gray-700 font-medium">{location.address}</p>
                         <p className="text-gray-600">{location.city}</p>
@@ -261,17 +358,17 @@ export default function ContactPage() {
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <Phone className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <Phone className="h-5 w-5 text-pink-500 flex-shrink-0" />
                       <a 
                         href={`tel:${location.phone.replace(/[^\d]/g, '')}`}
-                        className="text-gray-700 hover:text-green-600 transition-colors font-medium"
+                        className="text-gray-700 hover:text-pink-600 transition-colors font-medium"
                       >
                         {location.phone}
                       </a>
                     </div>
                     
                     <div className="flex items-start space-x-3">
-                      <Clock className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                      <Clock className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
                       <div>
                         <p className="text-gray-700">{location.hours.weekdays}</p>
                         <p className="text-gray-700">{location.hours.weekend}</p>
@@ -284,7 +381,7 @@ export default function ContactPage() {
                     <div className="grid grid-cols-2 gap-2">
                       {location.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                          <CheckCircle className="h-4 w-4 text-pink-500 mr-2 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
@@ -293,7 +390,7 @@ export default function ContactPage() {
                   
                   <div className="flex space-x-3">
                     <Button 
-                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white flex-1"
+                      className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1"
                       onClick={() => window.open(location.directions, '_blank')}
                     >
                       <NavigationIcon className="h-4 w-4 mr-2" />
@@ -301,7 +398,7 @@ export default function ContactPage() {
                     </Button>
                     <Button 
                       variant="outline" 
-                      className="border-green-600 text-green-700 hover:bg-green-50"
+                      className="border-pink-500 text-pink-600 hover:bg-pink-50"
                       onClick={() => window.open(`tel:${location.phone.replace(/[^\d]/g, '')}`, '_self')}
                     >
                       <Phone className="h-4 w-4" />
@@ -310,6 +407,108 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* A Family Tradition in Tailoring */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Content */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+                A Family Tradition in Tailoring
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed font-montserrat">
+                Nimble Needle Tailoring is a family-owned business built on a tradition of 
+                craftsmanship and attention to detail. Led by Riber Baabo, a tailor with 
+                over 20 years of experience, our team is dedicated to delivering precise 
+                and high-quality tailoring solutions. Our family values are reflected in the 
+                care and precision we bring to every garment, ensuring each client 
+                receives personalized service and seamless alterations.
+              </p>
+            </div>
+
+            {/* Image */}
+            <div className="relative">
+              <div className="relative w-full h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/wordpress-media/original/dress-black.jpg"
+                  alt="Beautiful black dress alterations by Nimble Needle Tailoring - expert wedding and formal wear services"
+                  fill
+                  className="object-cover"
+                />
+                {/* Decorative scissors icon */}
+                <div className="absolute top-6 right-6 w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Tailoring Services */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image */}
+            <div className="relative">
+              <div className="relative w-full h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/wordpress-media/original/img_9047.jpeg"
+                  alt="Professional button and detail work at Nimble Needle Tailoring - precision craftsmanship"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+                Our Tailoring Services
+              </h2>
+              <p className="text-lg text-gray-700 mb-6 font-montserrat">
+                At Nimble Needle Tailoring, we provide a range of tailoring services, 
+                including but not limited to:
+              </p>
+              
+              <ul className="space-y-4 text-gray-700 font-montserrat">
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">Wedding dress alterations</strong> for bridal gowns and formal attire</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">Dress alterations</strong> for casual and formal wear</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">Zipper repair</strong> for jackets, dresses, and more</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">Suit alterations</strong> for a tailored and refined fit</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">General garment alterations</strong> for men's, women's, and children's clothing</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span><strong className="text-pink-600">Repairs and restorations</strong> for damaged clothing</span>
+                </li>
+              </ul>
+
+              <p className="text-gray-700 mt-6 font-montserrat">
+                If you require a specific service that is not listed, please contact us, and 
+                our team will be happy to assist you.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -343,34 +542,145 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-green-600 to-emerald-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
-            Ready to Visit Us?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            No appointment necessary! Stop by either location during business hours, 
-            or give us a call to discuss your tailoring needs.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-green-700 hover:bg-gray-100 px-8 py-3 text-lg font-semibold rounded-full">
-              <Phone className="h-5 w-5 mr-2" />
-              Call Now
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-700 px-8 py-3 text-lg font-semibold rounded-full">
-              <ArrowRight className="h-5 w-5 mr-2" />
-              View Services
-            </Button>
-          </div>
-          
-          <div className="mt-8 text-sm opacity-80">
-            📧 nimble.needle.tailoring@gmail.com<br />
-            📍 Preston: (343) 588-1300 | Riverside: (343) 588-3182
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+        {/* Main Footer Content */}
+        <div className="py-16 border-b border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-4 gap-12">
+              {/* Company Branding */}
+              <div className="lg:col-span-1">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/10 backdrop-blur-sm p-2">
+                    <Image
+                      src="/logo.png"
+                      alt="Nimble Needle Tailoring - Ottawa's premier clothing alterations and tailoring service logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-2xl font-bold font-playfair">Nimble Needle</span>
+                </div>
+                <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
+                  Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
+                </p>
+                
+                {/* Social Media */}
+                <div className="flex space-x-3">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2">
+                    <Facebook className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2">
+                    <Instagram className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Preston Location */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Downtown Ottawa - Preston</h3>
+                <div className="space-y-4 text-gray-300 font-montserrat">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">141 Preston St</p>
+                      <p>Ottawa, ON K1R 7P4</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
+                    <a href="tel:3435881300" className="hover:text-pink-400 transition-colors font-medium">
+                      (343) 588-1300
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p>Tue-Sat: 9am-9pm</p>
+                      <p>Sun-Mon: 10am-7pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Riverside Location */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">New Location - Riverside</h3>
+                <div className="space-y-4 text-gray-300 font-montserrat">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">3681 Riverside Dr</p>
+                      <p>Ottawa, ON K1V 1H7</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
+                    <a href="tel:3435883182" className="hover:text-pink-400 transition-colors font-medium">
+                      (343) 588-3182
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p>Tue-Sat: 9am-9pm</p>
+                      <p>Sun-Mon: 10am-7pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Services & Contact */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
+                <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
+                  <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
+                  <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
+                  <li><a href="/zipper-repair" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
+                  <li><a href="/wedding-dress-alterations" className="hover:text-pink-400 transition-colors">Wedding Dress Alterations</a></li>
+                  <li><a href="/services" className="hover:text-pink-400 transition-colors">Hemming Services</a></li>
+                </ul>
+
+                {/* Email Contact */}
+                <div className="bg-gray-800/50 rounded-xl p-4 border border-gray-700">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Mail className="h-5 w-5 text-pink-400" />
+                    <span className="font-semibold text-pink-400">Email Us</span>
+                  </div>
+                  <a 
+                    href="mailto:nimble.needle.tailoring@gmail.com" 
+                    className="text-gray-300 hover:text-pink-400 transition-colors break-all"
+                  >
+                    nimble.needle.tailoring@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* Bottom Bar */}
+        <div className="py-6 bg-gray-900/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="text-gray-400 text-sm font-montserrat">
+                Copyright © 2025 - Nimble Needle Tailoring
+              </div>
+              <div className="flex items-center space-x-6 text-sm text-gray-400 font-montserrat">
+                <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-semibold">
+                  Walk-ins Welcome
+                </span>
+                <a href="/privacy-policy" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
+                <a href="/terms-of-service" className="hover:text-pink-400 transition-colors">Terms of Service</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
