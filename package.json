@@ -10,6 +10,7 @@
     "scrape:website": "node scripts/scrape-website.js",
     "scrape:reviews": "node scripts/scrape-google-reviews.js",
     "scrape:reviews-enhanced": "node scripts/scrape-google-reviews-enhanced.js",
+    "scrape:blog": "node scripts/scrape-blog-posts.js",
     "find-place-id": "node scripts/find-place-id.js",
     "extract:media": "node scripts/extract-wordpress-media.js",
     "generate:sitemap": "node scripts/generate-sitemap.js",

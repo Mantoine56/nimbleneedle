@@ -12,8 +12,27 @@ async function generateSitemap() {
     { url: '/wedding-dress-alterations', priority: '0.8', changefreq: 'weekly' },
     { url: '/zipper-repair', priority: '0.8', changefreq: 'weekly' },
     { url: '/about', priority: '0.7', changefreq: 'monthly' },
-    { url: '/contact-us', priority: '0.7', changefreq: 'monthly' }
+    { url: '/contact-us', priority: '0.7', changefreq: 'monthly' },
+    { url: '/blog', priority: '0.8', changefreq: 'weekly' }
   ];
+
+  // Add blog post URLs - hardcoded for now since we can't import TS module
+  const blogSlugs = [
+    'how-to-care-for-your-altered-garments',
+    'wedding-dress-alterations-timeline',
+    'sustainable-fashion-through-alterations',
+    'perfect-suit-fit-guide',
+    'zipper-repair-prevention-tips',
+    'seasonal-wardrobe-refresh'
+  ];
+
+  blogSlugs.forEach(slug => {
+    pages.push({
+      url: `/blog/${slug}`,
+      priority: '0.6',
+      changefreq: 'monthly'
+    });
+  });
 
   // Generate XML sitemap
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';

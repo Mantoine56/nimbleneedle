@@ -10,11 +10,12 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  className?: string;
 }
 
-export default function Breadcrumb({ items }: BreadcrumbProps) {
+export default function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="bg-gray-50 py-3 px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Breadcrumb" className={className || "bg-gray-50 py-3 px-4 sm:px-6 lg:px-8"}>
       <div className="max-w-7xl mx-auto">
         <ol className="flex items-center space-x-2 text-sm">
           <li>
