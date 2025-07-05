@@ -14,6 +14,7 @@ import { testimonials, services, features, locations, detailedReviews } from '@/
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
   const servicesRef = useRef<HTMLElement>(null);
   const promiseRef = useRef<HTMLElement>(null);
   const craftsmanRef = useRef<HTMLElement>(null);
@@ -28,18 +29,33 @@ export default function Home() {
   const [isReviewsVisible, setIsReviewsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+    let timer: NodeJS.Timeout;
+    
+    if (isCarouselVisible) {
+      timer = setInterval(() => {
+        setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      }, 4000);
+    }
+    
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [isCarouselVisible]);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -54,11 +70,16 @@ export default function Home() {
               setIsPromiseVisible(true);
             } else if (entry.target === craftsmanRef.current) {
               setIsCraftsmanVisible(true);
-
             } else if (entry.target === locationRef.current) {
               setIsLocationVisible(true);
             } else if (entry.target === reviewsRef.current) {
               setIsReviewsVisible(true);
+            } else if (entry.target === reviewsRef.current) {
+              setIsCarouselVisible(true);
+            }
+          } else {
+            if (entry.target === reviewsRef.current) {
+              setIsCarouselVisible(false);
             }
           }
         });

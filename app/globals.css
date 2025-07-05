@@ -93,11 +93,20 @@
   .optimized-animation {
     will-change: transform;
     transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   
   .gpu-accelerated {
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+  
+  /* Reduce layout thrashing */
+  .scroll-optimized {
+    will-change: transform;
+    contain: layout style paint;
   }
   
   /* Reduce motion for better accessibility and performance */

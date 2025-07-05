@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,22 +13,54 @@ interface HeroSectionProps {
 
 export default function HeroSection({ scrollY }: HeroSectionProps) {
   const [currentHeroReview, setCurrentHeroReview] = useState(0);
+  const [isHeroCarouselVisible, setIsHeroCarouselVisible] = useState(true);
+  const heroCarouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const heroTimer = setInterval(() => {
-      setCurrentHeroReview((prev) => (prev + 1) % heroReviews.length);
-    }, 3000);
-    return () => clearInterval(heroTimer);
+    let heroTimer: NodeJS.Timeout;
+    
+    if (isHeroCarouselVisible) {
+      heroTimer = setInterval(() => {
+        setCurrentHeroReview((prev) => (prev + 1) % heroReviews.length);
+      }, 3000);
+    }
+    
+    return () => {
+      if (heroTimer) clearInterval(heroTimer);
+    };
+  }, [isHeroCarouselVisible]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === heroCarouselRef.current) {
+            setIsHeroCarouselVisible(entry.isIntersecting);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroCarouselRef.current) {
+      observer.observe(heroCarouselRef.current);
+    }
+
+    return () => {
+      if (heroCarouselRef.current) {
+        observer.unobserve(heroCarouselRef.current);
+      }
+    };
   }, []);
 
   return (
-    <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden scroll-optimized">
       {/* Background Image with Parallax - GPU Accelerated */}
       <div 
-        className="hero-background absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-75 ease-out"
+        className="hero-background absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 will-change-transform"
         style={{
           backgroundImage: "url('/image.webp')",
-          transform: `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.05)`
+          transform: `translate3d(0, ${Math.round(scrollY * 0.5)}px, 0) scale(1.05)`
         }}
       ></div>
       
@@ -89,9 +121,9 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
 
           {/* Right Column - Google Reviews Carousel */}
           <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-sm">
+            <div ref={heroCarouselRef} className="w-full max-w-sm">
               {/* Google Reviews Header */}
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 mb-4 border border-white/20">
+              <div className="bg-white/20 rounded-2xl p-6 mb-4 border border-white/30">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
                     <span className="text-blue-600 font-bold text-sm">G</span>
@@ -123,7 +155,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
                         : 'translate-y-full opacity-0'
                     }`}
                   >
-                    <Card className="bg-white/10 backdrop-blur-xl border border-white/20 h-full">
+                    <Card className="bg-white/15 border border-white/30 h-full">
                       <CardContent className="p-6 h-full flex flex-col justify-between">
                         <div>
                           <div className="flex items-center space-x-3 mb-4">

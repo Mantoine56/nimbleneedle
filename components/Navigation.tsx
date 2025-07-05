@@ -62,7 +62,7 @@ export default function Navigation() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'backdrop-blur-xl bg-white/30 border-b border-gray-200/50 shadow-lg' 
+          ? 'backdrop-blur-md bg-white/80 border-b border-gray-200/50 shadow-lg' 
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,9 +149,9 @@ export default function Navigation() {
                   <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200"></div>
                   
                   {/* Dropdown Content */}
-                  <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
                     {/* Header */}
-                    <div className="bg-white/20 backdrop-blur-xl border-b border-white/30 px-6 py-4">
+                    <div className="bg-white/90 border-b border-gray-200 px-6 py-4">
                       <h3 className="text-gray-900 font-semibold font-playfair text-lg">Our Services</h3>
                       <p className="text-gray-700 text-sm">Expert tailoring and alterations in Ottawa</p>
                     </div>
@@ -252,9 +252,9 @@ export default function Navigation() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={closeMobileMenu}>
+        <div className="md:hidden fixed inset-0 z-40 bg-black/50" onClick={closeMobileMenu}>
           <div 
-            className="absolute top-20 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/20 shadow-2xl"
+            className="absolute top-20 left-0 right-0 bg-white/98 border-b border-gray-200/50 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="max-w-7xl mx-auto px-4 py-6">
