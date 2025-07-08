@@ -1,107 +1,118 @@
 "use client";
 
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Zap, 
-  Star, 
-  Phone, 
-  MapPin, 
-  Clock,
-  CheckCircle,
-  ArrowRight,
-  Wrench,
-  Shield,
-  Sparkles,
-  AlertCircle
-} from 'lucide-react';
+import { Check, Phone, MapPin, Star, Mail, Calendar, Award, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
+import Footer from '@/components/Footer';
+import { locations, detailedReviews } from '@/lib/data';
 
-const zipperTypes = [
-  {
-    type: "Clothing Zippers",
-    items: [
-      { name: "Jacket zippers", description: "Outerwear, leather jackets, windbreakers", price: "From $25" },
-      { name: "Dress zippers", description: "Back zippers, side zippers, invisible zippers", price: "From $20" },
-      { name: "Pants zippers", description: "Jeans, trousers, shorts", price: "From $18" },
-      { name: "Boot zippers", description: "Ankle boots, knee-high boots", price: "From $30" }
-    ]
-  },
-  {
-    type: "Bags & Accessories",
-    items: [
-      { name: "Purse zippers", description: "Handbags, clutches, wallets", price: "From $22" },
-      { name: "Backpack zippers", description: "School bags, hiking packs, laptop bags", price: "From $25" },
-      { name: "Makeup bag zippers", description: "Cosmetic cases, toiletry bags", price: "From $15" },
-      { name: "Gym bag zippers", description: "Sports bags, duffel bags", price: "From $28" }
-    ]
-  },
-  {
-    type: "Luggage & Travel",
-    items: [
-      { name: "Suitcase zippers", description: "Rolling luggage, hard cases, soft cases", price: "From $35" },
-      { name: "Carry-on zippers", description: "Travel bags, overnight bags", price: "From $30" },
-      { name: "Garment bag zippers", description: "Suit carriers, dress bags", price: "From $32" },
-      { name: "Travel accessory zippers", description: "Packing cubes, shoe bags", price: "From $18" }
-    ]
-  }
+const serviceFeatures = [
+  "Quick and efficient zipper repair services",
+  "Walk-in service - no appointment needed", 
+  "Professional technicians with years of experience",
+  "Wide range of zipper types and sizes available",
+  "Competitive pricing with quality guarantee",
+  "Same-day service for most repairs"
 ];
 
-const repairProcess = [
-  {
-    step: "1",
-    title: "Assessment",
-    description: "We examine your zipper to determine if repair or replacement is needed.",
-    icon: AlertCircle
-  },
-  {
-    step: "2", 
-    title: "Quote",
-    description: "Clear, upfront pricing with no hidden costs. Most repairs same-day.",
-    icon: Clock
-  },
-  {
-    step: "3",
-    title: "Expert Repair",
-    description: "Professional replacement with quality zippers that last.",
-    icon: Wrench
-  },
-  {
-    step: "4",
-    title: "Quality Check",
-    description: "Every repair is tested to ensure smooth, reliable operation.",
-    icon: Shield
-  }
+const zipperSigns = [
+  "The zipper separates after closing",
+  "The pull tab is loose, stuck, or missing",
+  "The zipper gets caught in the fabric",
+  "Teeth are broken, misaligned, or missing",
+  "Difficulty closing or opening the zipper smoothly"
 ];
 
-const commonIssues = [
+const repairableItems = [
+  "Dresses and skirts",
+  "Pants, jeans, and trousers", 
+  "Jackets, coats, and outerwear",
+  "Uniforms and coveralls",
+  "Jumpsuits and formalwear",
+  "Bags and fabric pouches"
+];
+
+const professionalReasons = [
+  "Proper consultation that matches the garment's original design",
+  "Careful removal and stitching without damaging the fabric",
+  "Access to durable replacement zippers for the long term",
+  "Repairs completed using both industrial machines and hand-finishing methods"
+];
+
+const serviceOptions = [
   {
-    issue: "Stuck zipper",
-    solution: "Professional lubrication and realignment",
-    urgency: "Same-day fix"
+    icon: CheckCircle,
+    title: "Quality Assurance",
+    description: "Every zipper repair comes with our satisfaction guarantee and quality workmanship."
   },
   {
-    issue: "Broken zipper pull",
-    solution: "Replacement pull or slider installation", 
-    urgency: "15-30 minutes"
+    icon: Clock, 
+    title: "Fast Turnaround",
+    description: "Most zipper repairs completed same-day. Walk-ins welcome for immediate service."
   },
   {
-    issue: "Separated zipper teeth",
-    solution: "Complete zipper replacement with matching color",
-    urgency: "Same-day service"
-  },
-  {
-    issue: "Zipper won't close",
-    solution: "Slider replacement or track realignment",
-    urgency: "Quick repair"
+    icon: Award,
+    title: "Expert Craftsmanship", 
+    description: "Professional repair techniques ensure your zippers work smoothly for years to come."
   }
 ];
 
 export default function ZipperRepairPage() {
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
+  const [isCallPopupOpen, setIsCallPopupOpen] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const callPopupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === heroRef.current) {
+              setIsHeroVisible(true);
+            } else if (entry.target === servicesRef.current) {
+              setIsServicesVisible(true);
+            } else if (entry.target === testimonialsRef.current) {
+              setIsTestimonialsVisible(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    if (servicesRef.current) observer.observe(servicesRef.current);
+    if (testimonialsRef.current) observer.observe(testimonialsRef.current);
+
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
+    };
+  }, []);
+
+  // Handle click outside for popup
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (callPopupRef.current && !callPopupRef.current.contains(event.target as Node)) {
+        setIsCallPopupOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const breadcrumbItems = [
     { label: 'Services', href: '/services' },
     { label: 'Zipper Repair', current: true }
@@ -114,290 +125,355 @@ export default function ZipperRepairPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-yellow-50 to-orange-50 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="bg-orange-100 text-orange-700 border-orange-200 px-4 py-2 text-sm font-medium mb-6">
-                <Zap className="h-4 w-4 mr-2" />
-                Expert Zipper Repair
-              </Badge>
-              
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
-                ZIPPER REPAIR<br />
-                <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-                  SERVICES
-                </span><br />
-                OTTAWA
-              </h1>
-              
-              <p className="text-xl text-gray-600 mb-8 font-montserrat">
-                Fast, reliable zipper repair and replacement for all types of clothing, bags, and luggage. Same-day service available for most repairs.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-3 text-lg font-semibold rounded-full">
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call (343) 588-1300
-                </Button>
-                <Button variant="outline" className="border-orange-500 text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg font-semibold rounded-full">
-                  <Clock className="h-5 w-5 mr-2" />
-                  Same-Day Service
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-orange-600">15min</div>
-                  <div className="text-sm text-gray-600">Fastest Repairs</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-orange-600">All</div>
-                  <div className="text-sm text-gray-600">Zipper Types</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-orange-600">100%</div>
-                  <div className="text-sm text-gray-600">Satisfaction</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <Image
-                src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
-                alt="Professional zipper repair service at Nimble Needle Ottawa showing precision craftsmanship"
-                width={600}
-                height={500}
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-orange-500 text-white p-4 rounded-xl shadow-lg">
-                <div className="text-center">
-                  <div className="text-lg font-bold">Same Day</div>
-                  <div className="text-sm">Service Available</div>
-                </div>
-              </div>
-            </div>
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              ZIPPER REPAIR
+            </h1>
           </div>
         </div>
       </section>
 
-      {/* Common Issues */}
-      <section className="py-20 bg-white">
+      {/* Main Content Section */}
+      <section 
+        ref={heroRef}
+        className="py-20 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Common Zipper Problems We Fix
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't throw away that favorite jacket or bag! Most zipper problems can be fixed quickly and affordably.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {commonIssues.map((item, index) => (
-              <Card key={index} className="border border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Wrench className="h-6 w-6 text-orange-600" />
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 font-playfair">
-                    {item.issue}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm mb-3">{item.solution}</p>
-                  
-                  <Badge className="bg-green-100 text-green-700 text-xs">
-                    {item.urgency}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services & Pricing */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Zipper Repair Services & Pricing
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Professional zipper repair for all types of items. Clear pricing with no surprises.
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            {zipperTypes.map((category, index) => (
-              <div key={index}>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-playfair flex items-center">
-                  <Sparkles className="h-6 w-6 text-orange-500 mr-3" />
-                  {category.type}
-                </h3>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  {category.items.map((item, idx) => (
-                    <Card key={idx} className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-semibold text-gray-900">{item.name}</h4>
-                          <span className="text-lg font-bold text-orange-600">{item.price}</span>
-                        </div>
-                        <p className="text-gray-600 text-sm mb-4">{item.description}</p>
-                        <div className="flex items-center text-sm text-green-600">
-                          <CheckCircle className="h-4 w-4 mr-2" />
-                          Same-day service available
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Our Repair Process
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Fast, professional service from assessment to completion
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {repairProcess.map((step, index) => {
-              const IconComponent = step.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="relative mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
-                      <IconComponent className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      {step.step}
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 font-playfair">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 font-montserrat">
-                    {step.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Content */}
+            <div className={`transition-all duration-1000 ${
+              isHeroVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-8'
+            }`}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-                Why Choose Our<br />
-                Zipper Repair Service?
+                Walk-in Zipper Repair Services in Ottawa on Preston St. and Riverside Dr.
               </h2>
               
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-orange-600" />
+              <p className="text-lg text-gray-600 mb-8 font-montserrat">
+                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we provide prompt and timely zipper repair in Ottawa from our two walk-in locations: Preston Street and our new store on Riverside Drive. We handle zippers on a wide range of garments and accessories, using appropriate techniques to restore functionality without compromising quality or appearance. Our experienced professionals work efficiently.
+              </p>
+
+              <p className="text-lg text-gray-600 mb-8 font-montserrat">
+                Customers are welcome to walk in during business hours. No appointment or prior consultation is required.
+              </p>
+
+              {/* Service Features */}
+              <div className="space-y-4 mb-8">
+                {serviceFeatures.map((feature, index) => (
+                  <div 
+                    key={index}
+                    className={`flex items-center space-x-3 transition-all duration-1000 ${
+                      isHeroVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-4'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 150}ms`
+                    }}
+                  >
+                    <CheckCircle className="h-5 w-5 text-pink-500" />
+                    <span className="text-gray-700 font-montserrat">{feature}</span>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Fast Service</h3>
-                    <p className="text-gray-600">Most repairs completed same-day. Simple fixes often done while you wait.</p>
+                ))}
+              </div>
+
+              {/* Contact Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 relative">
+                <Button
+                  onClick={() => window.location.href = '/contact-us'}
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Clock className="h-5 w-5 mr-2" />
+                  Book an Appointment
+                </Button>
+                <Button 
+                  onClick={() => setIsCallPopupOpen(!isCallPopupOpen)}
+                  variant="outline" 
+                  className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Call Us
+                </Button>
+              </div>
+
+              {/* Call Popup */}
+              {isCallPopupOpen && (
+                <div 
+                  ref={callPopupRef}
+                  className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
+                >
+                  <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
+                    <h3 className="text-white font-semibold font-playfair text-lg">Call Nimble Needle</h3>
+                    <p className="text-white/80 text-sm">Choose your preferred location</p>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    {locations.map((location, index) => (
+                      <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
+                        <h4 className="font-semibold text-gray-900 font-montserrat mb-2">{location.name}</h4>
+                        <Button
+                          onClick={() => {
+                            window.open(`tel:${location.phone.replace(/[^\d]/g, '')}`);
+                            setIsCallPopupOpen(false);
+                          }}
+                          className="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm"
+                        >
+                          <Phone className="h-4 w-4 mr-2" />
+                          {location.phone}
+                        </Button>
+                      </div>
+                    ))}
                   </div>
                 </div>
+              )}
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Star className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">All Zipper Types</h3>
-                    <p className="text-gray-600">From delicate dress zippers to heavy-duty luggage zippers - we handle them all.</p>
-                  </div>
-                </div>
+              {/* Backdrop for popup */}
+              {isCallPopupOpen && (
+                <div 
+                  className="fixed inset-0 bg-black/50 z-[9998]"
+                  onClick={() => setIsCallPopupOpen(false)}
+                />
+              )}
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Materials</h3>
-                    <p className="text-gray-600">We use only high-quality replacement zippers that match your original.</p>
-                  </div>
-                </div>
+              <p className="text-sm text-gray-500 mt-4 font-montserrat">
+                Call to get your questions answered or visit our shop. No appointment necessary. Walk-ins welcome!
+              </p>
+            </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Satisfaction Guarantee</h3>
-                    <p className="text-gray-600">Every repair comes with our guarantee - if it doesn't work perfectly, we'll make it right.</p>
-                  </div>
+            {/* Right Side - Image */}
+            <div className={`transition-all duration-1000 delay-300 ${
+              isHeroVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-8'
+            }`}>
+              <div className="relative">
+                <Image
+                  src="/zipper.jpg"
+                  alt="Professional zipper repair services for all types of garments"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl shadow-2xl"
+                />
+                <div className="absolute -bottom-6 -right-6 bg-pink-500 rounded-2xl p-4 shadow-xl">
+                  <Award className="h-8 w-8 text-white" />
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="relative">
+      {/* Signs That Indicate Zipper Repair Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Signs That Indicate Zipper Repair Is Needed
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Zippers can wear out or malfunction with regular use. Common signs that your zipper may need professional attention include:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-1 gap-6 max-w-4xl mx-auto">
+            {zipperSigns.map((sign, index) => (
+              <div key={index} className="flex items-center space-x-4 bg-white p-6 rounded-xl shadow-lg">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-pink-600" />
+                  </div>
+                </div>
+                <p className="text-gray-700 font-montserrat">{sign}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            Ignoring these issues can damage the surrounding fabric or render clothing/items unusable. They'll repair and replace damaged zipper components properly, and it's likely to get your garment's zipper repaired in Ottawa.
+          </p>
+        </div>
+      </section>
+
+      {/* Garments and Items Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Garments and Items with Repairable Zippers
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our team works with a variety of clothing and accessories that require zipper servicing, including:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {repairableItems.map((item, index) => (
+              <div key={index} className="bg-pink-50 p-6 rounded-xl border border-pink-100">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-pink-600" />
+                  <span className="text-gray-800 font-semibold font-montserrat">{item}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            We stay up-to-date with tech carefully to determine whether repair or complete zipper replacement is required.
+          </p>
+        </div>
+      </section>
+
+      {/* Why Choose Professional Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Why Choose a Professional for Zipper Repair?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Fixing a trained zipper ensures that the garment is repaired with care and technical skill. At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we strive to provide:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {professionalReasons.map((reason, index) => (
+              <div key={index} className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                    <Check className="h-5 w-5 text-white" />
+                  </div>
+                </div>
+                <p className="text-gray-700 font-montserrat">{reason}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            Our team puts return garments in functional condition, paying attention to clean stitching and structural support. <span className="text-pink-600 font-semibold">Contact us</span> today to learn more about our services, including alterations to enhance the fit of your garments.
+          </p>
+        </div>
+      </section>
+
+      {/* Google Reviews Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <span className="text-lg font-semibold text-gray-900">EXCELLENT</span>
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <span className="text-lg font-semibold text-gray-900">819 reviews</span>
               <Image
-                src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
-                alt="Close-up of precision zipper repair work being performed at Nimble Needle Ottawa"
-                width={600}
-                height={400}
-                className="rounded-2xl shadow-2xl"
+                src="/logo.png"
+                alt="Google Reviews"
+                width={60}
+                height={20}
+                className="opacity-60"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-500 to-amber-500 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
-            Fix Your Broken Zipper Today!
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Don't let a broken zipper ruin your favorite item. Bring it to us for fast, professional repair.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold rounded-full">
-              <Phone className="h-5 w-5 mr-2" />
-              Call (343) 588-1300
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 px-8 py-3 text-lg font-semibold rounded-full">
-              <ArrowRight className="h-5 w-5 mr-2" />
-              View All Services
-            </Button>
-          </div>
-          
-          <div className="mt-8 text-sm opacity-80">
-            📧 nimble.needle.tailoring@gmail.com | Walk-ins welcome - No appointment needed!
+      {/* Service Options */}
+      <section 
+        ref={servicesRef}
+        className="py-20 bg-white"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {serviceOptions.map((option, index) => (
+              <div
+                key={index}
+                className={`text-center transition-all duration-1000 ${
+                  isServicesVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: `${index * 200}ms`
+                }}
+              >
+                <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                  <CardContent className="p-8">
+                    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <option.icon className="h-8 w-8 text-gray-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
+                      {option.title}
+                    </h3>
+                    <p className="text-gray-600 font-montserrat">
+                      {option.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Customer Testimonials */}
+      <section 
+        ref={testimonialsRef}
+        className="py-20 bg-gray-50"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {detailedReviews.slice(0, 4).map((review, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-1000 ${
+                  isTestimonialsVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: `${index * 150}ms`
+                }}
+              >
+                <Card className="h-full bg-white border-0 rounded-2xl shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <Image
+                        src={review.avatar}
+                        alt={review.name}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 text-sm">{review.name}</h4>
+                        <div className="flex">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="h-3 w-3 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {review.text.substring(0, 120)}...
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

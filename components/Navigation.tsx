@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Scissors, Heart, Zap, Settings } from 'lucide-react';
+import { Menu, X, ChevronDown, Scissors, Heart, Zap, Settings, Shirt, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import LocationSelector from './LocationSelector';
 
@@ -53,13 +53,25 @@ export default function Navigation() {
       description: 'Professional tailoring and alterations'
     },
     { 
+      name: 'Custom and Retail Suits', 
+      href: '/custom-suits', 
+      icon: Shirt,
+      description: 'Tailored suits and formal wear'
+    },
+    { 
+      name: 'Dry Cleaning', 
+      href: '/dry-cleaning', 
+      icon: Sparkles,
+      description: 'Professional dry cleaning services'
+    },
+    { 
       name: 'Wedding Dress Alterations', 
       href: '/wedding-dress-alterations', 
       icon: Heart,
       description: 'Expert bridal gown fitting and alterations'
     },
     { 
-      name: 'Zipper Repair', 
+      name: 'Zipper Repair and Replacement', 
       href: '/zipper-repair', 
       icon: Zap,
       description: 'Quick and reliable zipper fixes'
@@ -151,33 +163,33 @@ export default function Navigation() {
                 </button>
                 
                 {/* Creative Dropdown Menu */}
-                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-96 transition-all duration-300 ${
+                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[600px] transition-all duration-300 ${
                   isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
                   {/* Dropdown Arrow */}
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200"></div>
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-pink-200"></div>
                   
                   {/* Dropdown Content */}
-                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-pink-200 overflow-hidden">
                     {/* Header */}
-                    <div className="bg-white/90 border-b border-gray-200 px-6 py-4">
+                    <div className="bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-200 px-6 py-4">
                       <h3 className="text-gray-900 font-semibold font-playfair text-lg">Our Services</h3>
                       <p className="text-gray-700 text-sm">Expert tailoring and alterations in Ottawa</p>
                     </div>
                     
                     {/* Service Grid */}
-                    <div className="p-4 grid grid-cols-2 gap-3">
+                    <div className="p-4 grid grid-cols-3 gap-3">
                       {servicePages.map((service, index) => {
                         const IconComponent = service.icon;
                         return (
                           <a
                             key={service.name}
                             href={service.href}
-                            className="group relative bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl hover:from-gray-100 hover:to-gray-50 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                            className="group relative bg-gradient-to-br from-pink-50/50 to-white p-4 rounded-xl hover:from-pink-100 hover:to-pink-50 border border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                           >
                             {/* Service Icon */}
-                            <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 group-hover:from-gray-800 group-hover:to-gray-900 rounded-lg mb-3 transition-all duration-300">
-                              <IconComponent className="h-5 w-5 text-gray-600 group-hover:text-white" />
+                            <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-pink-100 to-pink-200 group-hover:from-pink-500 group-hover:to-pink-600 rounded-lg mb-3 transition-all duration-300">
+                              <IconComponent className="h-5 w-5 text-pink-600 group-hover:text-white" />
                             </div>
                             
                             {/* Service Info */}
@@ -191,17 +203,17 @@ export default function Navigation() {
                             </div>
                             
                             {/* Hover Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-gray-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-pink-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           </a>
                         );
                       })}
                     </div>
                     
                     {/* Footer CTA */}
-                    <div className="border-t border-gray-200 p-4 bg-gray-50/50">
+                    <div className="border-t border-pink-200 p-4 bg-gradient-to-r from-pink-50/50 to-rose-50/50">
                       <p className="text-center text-gray-600 text-sm">
                         Need something else? 
-                        <a href="/contact-us" className="text-gray-800 hover:text-gray-900 font-medium ml-1 transition-colors duration-200 underline decoration-gray-400 hover:decoration-gray-600">
+                        <a href="/contact-us" className="text-pink-600 hover:text-pink-700 font-medium ml-1 transition-colors duration-200 underline decoration-pink-400 hover:decoration-pink-600">
                           Contact us today
                         </a>
                       </p>
@@ -292,10 +304,10 @@ export default function Navigation() {
                         key={service.name}
                         href={service.href}
                         onClick={closeMobileMenu}
-                        className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-all duration-200 font-medium group"
+                        className="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-gray-900 rounded-lg transition-all duration-200 font-medium group"
                       >
-                        <div className="flex items-center justify-center w-8 h-8 bg-gray-100 group-hover:bg-gray-800 rounded-lg mr-3 transition-colors duration-200">
-                          <IconComponent className="h-4 w-4 text-gray-600 group-hover:text-white" />
+                        <div className="flex items-center justify-center w-8 h-8 bg-pink-100 group-hover:bg-pink-500 rounded-lg mr-3 transition-colors duration-200">
+                          <IconComponent className="h-4 w-4 text-pink-600 group-hover:text-white" />
                         </div>
                         <div>
                           <div className="font-medium">{service.name}</div>

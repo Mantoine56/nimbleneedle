@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
   Scissors, 
-  Shirt, 
   Heart, 
   Star, 
   Phone, 
@@ -14,85 +13,167 @@ import {
   Clock,
   CheckCircle,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Award,
+  Users,
+  Shield,
+  ThumbsUp
 } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
-import { Metadata } from 'next';
+import Footer from '@/components/Footer';
+import { detailedReviews } from '@/lib/data';
 
+// Services data to match the design in the image
 const services = [
   {
-    title: "Alterations and Repairs",
-    description: "Professional alterations for all types of clothing",
-    details: [
-      "Wedding dress alterations",
-      "Suit alterations", 
-      "Dress alterations",
-      "Pants hemming and adjustments",
-      "Shirt and blouse fitting",
-      "Jacket alterations"
-    ],
-    image: "/alterations.jpg",
-    link: "/clothing-alterations"
+    title: "Tailoring",
+    image: "/services/suits.webp",
+    link: "/tailoring"
   },
   {
-    title: "Custom and Retail Suits",
-    description: "Bespoke tailoring and custom clothing creation",
-    details: [
-      "Custom suits",
-      "Retail suit adjustments",
-      "Bridal wear fitting",
-      "Evening wear customization",
-      "Formal wear tailoring",
-      "Pattern adjustments"
-    ],
-    image: "/custom.jpg",
+    title: "Custom Suits and Retail Suits",
+    image: "/services/custom-art.webp",
     link: "/custom-suits"
   },
   {
+    title: "Clothing Alterations",
+    image: "/services/alterations.webp",
+    link: "/clothing-alterations"
+  },
+  {
+    title: "Dry Cleaning",
+    image: "/services/alterations.webp",
+    link: "/dry-cleaning"
+  },
+  {
+    title: "Prom Dress Alterations",
+    image: "/services/alterations.webp",
+    link: "/prom-dress-alterations"
+  },
+  {
+    title: "Wedding Dress Alterations",
+    image: "/services/alterations.webp",
+    link: "/wedding-dress-alterations"
+  },
+  {
+    title: "Seamstress Services",
+    image: "/services/alterations.webp",
+    link: "/seamstress-services"
+  },
+  {
+    title: "Suit Alterations",
+    image: "/services/suits.webp",
+    link: "/suit-alterations"
+  },
+  {
+    title: "Dress and Skirt Alterations",
+    image: "/services/alterations.webp",
+    link: "/dress-skirt-alterations"
+  },
+  {
+    title: "Pants Alterations",
+    image: "/services/alterations.webp",
+    link: "/pants-alterations"
+  },
+  {
+    title: "Jacket Alterations",
+    image: "/services/suits.webp",
+    link: "/jacket-alterations"
+  },
+  {
+    title: "Shirt Alterations",
+    image: "/services/alterations.webp",
+    link: "/shirt-alterations"
+  },
+  {
     title: "Zipper Repair",
-    description: "Expert zipper repair and replacement services",
-    details: [
-      "Zipper repair and replacement",
-      "Clothing repairs",
-      "Household textile repairs", 
-      "Seam repairs",
-      "Button replacement",
-      "Patch work"
-    ],
-    image: "/zipper.jpg",
+    image: "/services/zipper.webp",
     link: "/zipper-repair"
   }
 ];
 
-const specialtyServices = [
+const whyChooseUsPoints = [
   {
-    title: "Wedding Dress Alterations",
-    description: "Make your special day perfect with expert bridal alterations",
-    features: ["Multiple fittings included", "Rush services available", "Delicate fabric expertise", "Stress-free experience"],
-    price: "Starting at $150",
-    link: "/wedding-dress-alterations"
+    icon: Award,
+    title: "High Quality Work",
+    description: "Expert craftsmanship with over 15 years of experience"
   },
   {
-    title: "Business Suit Tailoring", 
-    description: "Professional suit alterations for the modern workplace",
-    features: ["Same-day service available", "Perfect fit guarantee", "All fabric types", "Competitive pricing"],
-    price: "Starting at $35",
-    link: "/suit-alterations"
+    icon: Clock,
+    title: "Trusted professionals",
+    description: "Reliable service you can count on"
   },
   {
-    title: "Formal Wear Specialists",
-    description: "Evening gowns, tuxedos, and special occasion wear",
-    features: ["Evening appointments", "Rush orders welcome", "Vintage restoration", "Designer experience"],
-    price: "Starting at $75",
-    link: "/formal-wear"
+    icon: Shield,
+    title: "Money Back Guarantee",
+    description: "100% satisfaction guaranteed or your money back"
+  },
+  {
+    icon: Users,
+    title: "Many 5-star Reviews",
+    description: "Hundreds of satisfied customers with excellent ratings"
+  },
+  {
+    icon: Heart,
+    title: "Family-run business",
+    description: "Personal attention and care that larger shops can't match"
+  },
+  {
+    icon: ThumbsUp,
+    title: "Same-day/Express Service",
+    description: "Quick turnaround when you need it most"
   }
 ];
 
 export default function ServicesPage() {
-  const [selectedService, setSelectedService] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(services.length).fill(false));
+  const [isWhyChooseUsVisible, setIsWhyChooseUsVisible] = useState(false);
+  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const whyChooseUsRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = cardRefs.current.findIndex(ref => ref === entry.target);
+            if (index !== -1) {
+              setVisibleCards(prev => {
+                const newState = [...prev];
+                newState[index] = true;
+                return newState;
+              });
+            } else if (entry.target === whyChooseUsRef.current) {
+              setIsWhyChooseUsVisible(true);
+            } else if (entry.target === testimonialsRef.current) {
+              setIsTestimonialsVisible(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    if (whyChooseUsRef.current) observer.observe(whyChooseUsRef.current);
+    if (testimonialsRef.current) observer.observe(testimonialsRef.current);
+
+    return () => {
+      cardRefs.current.forEach(ref => {
+        if (ref) observer.unobserve(ref);
+      });
+      if (whyChooseUsRef.current) observer.unobserve(whyChooseUsRef.current);
+      if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
+    };
+  }, []);
 
   const breadcrumbItems = [
     { label: 'Services', current: true }
@@ -113,214 +194,217 @@ export default function ServicesPage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-4 py-2 text-sm font-medium mb-6">
-              ⭐ Ottawa&apos;s Premier Tailoring Services
-            </Badge>
-            
+          <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
-              OUR TAILORING<br />
-              <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
-                SERVICES
-              </span>
+              SERVICES
             </h1>
             
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 font-montserrat">
-              Professional clothing alterations, custom tailoring, and repair services in Ottawa. 
-              No appointment needed - walk-ins welcome at both Preston and Riverside locations.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full">
-                <Phone className="h-5 w-5 mr-2" />
-                Call (343) 588-1300
-              </Button>
-              <Button variant="outline" className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full">
-                <MapPin className="h-5 w-5 mr-2" />
-                Find Us
-              </Button>
+            <div className="space-y-4 text-gray-700 text-lg md:text-xl leading-relaxed font-montserrat mb-8">
+              <p className="text-2xl md:text-3xl font-semibold">
+                We can handle all your alterations, tailoring, and seamstress needs
+              </p>
+              
+              <p className="text-lg text-pink-600 font-medium">
+                Featured Services
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Services Section */}
+      {/* Services Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Complete Tailoring Solutions
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We handle all fabrics and styles with expert craftsmanship and quick turnaround times
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card
+              <div
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 rounded-2xl overflow-hidden border-0 bg-white/10 backdrop-blur-xl"
+                ref={el => cardRefs.current[index] = el}
+                className={`transition-all duration-1000 ${
+                  visibleCards[index] 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: `${index * 100}ms`
+                }}
               >
-                <CardContent className="p-0">
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={`${service.title} - Nimble Needle Ottawa`}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      priority={index === 0}
-                    />
-                    {/* Overlay for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500 group-hover:from-pink-700/80 group-hover:via-pink-500/40"></div>
-                    {/* Centered title text */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <h3 className="text-2xl md:text-3xl font-bold font-playfair text-white text-center drop-shadow-lg px-4">
+                <Card 
+                  className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 rounded-2xl overflow-hidden border-0 bg-white shadow-lg cursor-pointer"
+                  onClick={() => window.location.href = service.link}
+                >
+                  <CardContent className="p-0">
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={`${service.title} - Nimble Needle Ottawa`}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-all duration-500 group-hover:from-pink-700/60 group-hover:via-pink-500/20"></div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 text-center font-montserrat group-hover:text-pink-600 transition-colors">
                         {service.title}
                       </h3>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Specialty Services */}
-      <section className="py-20 bg-gray-50">
+      {/* Why Choose Us Section */}
+      <section 
+        ref={whyChooseUsRef}
+        className="py-20 bg-gray-50"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Specialty Services
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Specialized tailoring for life&apos;s most important moments
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {specialtyServices.map((service, index) => (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    <Sparkles className="h-6 w-6 text-pink-500 mr-2" />
-                    <Badge className="bg-pink-100 text-pink-700 text-xs">Specialty</Badge>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 font-playfair">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6">{service.description}</p>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-700">
-                        <Star className="h-4 w-4 text-yellow-400 mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-pink-600">{service.price}</span>
-                    <Button 
-                      className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
-                      onClick={() => window.location.href = service.link}
-                    >
-                      Get Quote
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-                Why Choose Nimble Needle?
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Why Choose Us Points */}
+            <div className={`transition-all duration-1000 ${
+              isWhyChooseUsVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-8'
+            }`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-playfair">
+                Why choose us?
               </h2>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-pink-600" />
+                {whyChooseUsPoints.map((point, index) => (
+                  <div 
+                    key={index}
+                    className={`flex items-start space-x-4 transition-all duration-1000 ${
+                      isWhyChooseUsVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-4'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 150}ms`
+                    }}
+                  >
+                    <div className="bg-pink-100 p-3 rounded-full flex-shrink-0">
+                      <point.icon className="h-6 w-6 text-pink-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 font-montserrat">
+                        {point.title}
+                      </h3>
+                      <p className="text-gray-600 font-montserrat">
+                        {point.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Appointment Needed</h3>
-                    <p className="text-gray-600">Walk-ins welcome at both locations. We respect your time and provide quick, efficient service.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Heart className="h-6 w-6 text-pink-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Family-Run Business</h3>
-                    <p className="text-gray-600">Personal attention and care that only comes from a family business with years of experience.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-pink-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Fixed, Clear Pricing</h3>
-                    <p className="text-gray-600">Transparent pricing with no hidden fees. You'll know exactly what you're paying before we start.</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="relative">
-              <Image
-                src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
-                alt="Professional tailor working on clothing alterations at Nimble Needle Ottawa"
-                width={600}
-                height={400}
-                className="rounded-2xl shadow-2xl"
-              />
+            {/* Right Side - Image */}
+            <div className={`transition-all duration-1000 delay-300 ${
+              isWhyChooseUsVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-8'
+            }`}>
+              <div className="relative">
+                <Image
+                  src="/services/custom-art.webp"
+                  alt="Professional seamstress working on clothing alterations at Nimble Needle"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl shadow-2xl"
+                />
+                <div className="absolute -bottom-6 -right-6 bg-pink-500 rounded-2xl p-4 shadow-xl">
+                  <Scissors className="h-8 w-8 text-white" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-pink-500 to-pink-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
-            Ready to Experience Expert Tailoring?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Visit us at either of our convenient Ottawa locations. No appointment necessary!
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-pink-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold rounded-full">
-              <Phone className="h-5 w-5 mr-2" />
-              Call Now
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-pink-600 px-8 py-3 text-lg font-semibold rounded-full">
-              <MapPin className="h-5 w-5 mr-2" />
-              Get Directions
-            </Button>
+      {/* Customer Testimonials */}
+      <section 
+        ref={testimonialsRef}
+        className="py-20 bg-white"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transition-all duration-1000 ${
+            isTestimonialsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              See what our customers are saying
+            </h2>
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
+              <span className="text-gray-500">• 500+ Reviews</span>
+            </div>
           </div>
-          
-          <div className="mt-8 text-sm opacity-80">
-            📧 nimble.needle.tailoring@gmail.com | 📞 (343) 588-1300
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {detailedReviews.map((review, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-1000 ${
+                  isTestimonialsVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
+                style={{
+                  transitionDelay: `${index * 200}ms`
+                }}
+              >
+                <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 rounded-2xl">
+                  <CardContent className="p-8 h-full flex flex-col">
+                    <div className="flex mb-4">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    
+                    <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
+                      &quot;{review.text}&quot;
+                    </p>
+                    
+                    <div className="mb-4">
+                      <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-3 py-1">
+                        {review.service}
+                      </Badge>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
+                      <Image
+                        src={review.avatar}
+                        alt={review.name}
+                        width={48}
+                        height={48}
+                        className="rounded-full border-2 border-gray-200"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{review.name}</h4>
+                        <p className="text-sm text-gray-500">{review.date}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+
+
+      <Footer />
     </div>
   );
-}
