@@ -79,7 +79,7 @@ export default function LocationSelector() {
         <div className="absolute right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden z-50 animate-in slide-in-from-top-2 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-            <h3 className="text-white font-semibold font-playfair text-lg">Visit Nimble Needle</h3>
+            <h3 className="text-white font-semibold font-league-spartan text-lg">Visit Nimble Needle</h3>
             <p className="text-white/80 text-sm">Call us or get directions • Walk-ins welcome!</p>
           </div>
 

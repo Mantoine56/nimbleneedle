@@ -87,7 +87,7 @@ export default function BlogPage() {
           <div className="absolute inset-0 bg-black/10" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold mb-4 sm:mb-6 animate-fade-in">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-league-spartan font-bold mb-4 sm:mb-6 animate-fade-in">
                 The Nimble Needle Blog
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 font-light animate-fade-in animation-delay-200">
@@ -131,7 +131,7 @@ export default function BlogPage() {
                   <div className="mb-6 sm:mb-8">
                     <div className="flex items-center mb-4 sm:mb-6">
                       <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-pink-600" />
-                      <h2 className="text-xl sm:text-2xl font-playfair font-bold text-gray-900">Categories</h2>
+                      <h2 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900">Categories</h2>
                     </div>
                     <ul className="space-y-2 sm:space-y-3">
                       <li>
@@ -170,7 +170,7 @@ export default function BlogPage() {
                   <div>
                     <div className="flex items-center mb-4 sm:mb-6">
                       <Tag className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-pink-600" />
-                      <h2 className="text-xl sm:text-2xl font-playfair font-bold text-gray-900">Popular Tags</h2>
+                      <h2 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900">Popular Tags</h2>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {tags.slice(0, 10).map(tag => (
@@ -254,7 +254,7 @@ export default function BlogPage() {
                       
                       <div className="p-4 sm:p-6">
                         <Link href={`/blog/${post.slug}`}>
-                          <h3 className="text-lg sm:text-xl lg:text-2xl font-playfair font-bold mb-2 sm:mb-3 hover:text-pink-600 transition-colors duration-300 line-clamp-2">
+                          <h3 className="text-lg sm:text-xl lg:text-2xl font-league-spartan font-bold mb-2 sm:mb-3 hover:text-pink-600 transition-colors duration-300 line-clamp-2">
                             {post.title}
                           </h3>
                         </Link>
@@ -311,7 +311,7 @@ export default function BlogPage() {
                   <div className="text-center py-12 sm:py-16">
                     <div className="max-w-md mx-auto">
                       <Search className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-playfair font-bold text-gray-900 mb-2">No articles found</h3>
+                      <h3 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900 mb-2">No articles found</h3>
                       <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                         We couldn't find any articles matching your search criteria. Try adjusting your filters or search terms.
                       </p>

@@ -20,7 +20,7 @@ export default function Footer() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-2xl font-bold font-playfair">Nimble Needle</span>
+                <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                 Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
@@ -39,7 +39,7 @@ export default function Footer() {
 
             {/* Preston Location */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Downtown Ottawa - Preston</h3>
+              <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Downtown Ottawa - Preston</h3>
               <div className="space-y-4 text-gray-300 font-montserrat">
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -68,7 +68,7 @@ export default function Footer() {
 
             {/* Riverside Location */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">New Location - Riverside</h3>
+              <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">New Location - Riverside</h3>
               <div className="space-y-4 text-gray-300 font-montserrat">
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -97,7 +97,7 @@ export default function Footer() {
 
             {/* Services & Contact */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
+              <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Services</h3>
               <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
                 <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
                 <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>

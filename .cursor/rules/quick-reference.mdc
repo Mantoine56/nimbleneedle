@@ -90,7 +90,7 @@ useEffect(() => {
 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
 
 /* Responsive Typography */
-text-4xl md:text-5xl lg:text-6xl font-bold font-playfair
+text-4xl md:text-5xl lg:text-6xl font-bold font-league-spartan
 
 /* Button Styles */
 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700

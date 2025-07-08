@@ -170,7 +170,7 @@ export default function ClothingAlterationsPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               CLOTHING ALTERATIONS
             </h1>
           </div>
@@ -190,7 +190,7 @@ export default function ClothingAlterationsPage() {
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-8'
             }`}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
                 Professional Clothing Alterations in Ottawa
               </h2>
               
@@ -248,7 +248,7 @@ export default function ClothingAlterationsPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-playfair text-lg">Call Nimble Needle</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Call Nimble Needle</h3>
                     <p className="text-white/80 text-sm">Choose your preferred location</p>
                   </div>
                   <div className="p-4 space-y-3">
@@ -311,7 +311,7 @@ export default function ClothingAlterationsPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Our Alteration Services
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -346,7 +346,7 @@ export default function ClothingAlterationsPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Common Alterations We Perform
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -373,7 +373,7 @@ export default function ClothingAlterationsPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               We Work with All Fabric Types
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">

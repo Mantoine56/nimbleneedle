@@ -120,7 +120,7 @@ export default function TailoringPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               TAILORING
             </h1>
           </div>
@@ -140,7 +140,7 @@ export default function TailoringPage() {
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-8'
             }`}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
                 Looking for a tailor to get a perfect fit?
               </h2>
               
@@ -195,7 +195,7 @@ export default function TailoringPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-playfair text-lg">Call Nimble Needle</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Call Nimble Needle</h3>
                     <p className="text-white/80 text-sm">Choose your preferred location</p>
                   </div>
                   <div className="p-4 space-y-3">

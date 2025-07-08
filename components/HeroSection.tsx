@@ -79,7 +79,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
             </div>
             
             {/* Critical LCP Element - Optimized */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white font-playfair optimized-animation">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white font-league-spartan optimized-animation">
               EXPERT TAILORING &<br />
               CLOTHING ALTERATIONS<br />
               IN OTTAWA<br />

@@ -27,7 +27,7 @@ bg-gradient-to-r from-black/70 via-black/50 to-black/30
 
 ### Font Configuration
 From **[app/layout.tsx](mdc:app/layout.tsx)**:
-- **Playfair Display**: `font-playfair` - Headings and elegant display text
+- **League Spartan**: `font-league-spartan` - Headings and elegant display text
 - **Montserrat**: `font-montserrat` - Body text (default)
 - **Poppins**: `font-poppins` - UI elements and labels
 

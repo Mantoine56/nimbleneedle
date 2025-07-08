@@ -195,7 +195,7 @@ export default function ServicesPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               SERVICES
             </h1>
             
@@ -270,7 +270,7 @@ export default function ServicesPage() {
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-8'
             }`}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-playfair">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-league-spartan">
                 Why choose us?
               </h2>
               
@@ -337,7 +337,7 @@ export default function ServicesPage() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               See what our customers are saying
             </h2>
             <div className="flex items-center justify-center space-x-2 mb-4">

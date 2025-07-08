@@ -129,7 +129,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 
                 {/* Title */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4 sm:mb-6 leading-tight animate-fade-in animation-delay-200">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-league-spartan font-bold text-white mb-4 sm:mb-6 leading-tight animate-fade-in animation-delay-200">
                   {post.title}
                 </h1>
                 
@@ -171,7 +171,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                     
                     {/* Author Info */}
                     <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-gray-200/50 backdrop-blur-sm">
-                      <h3 className="text-lg sm:text-xl font-playfair font-bold text-gray-900 mb-3 sm:mb-4">About the Author</h3>
+                      <h3 className="text-lg sm:text-xl font-league-spartan font-bold text-gray-900 mb-3 sm:mb-4">About the Author</h3>
                       <div className="flex items-start space-x-3 sm:space-x-4">
                         {post.author.avatar && (
                           <Image
@@ -220,7 +220,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                     <div className="p-6 sm:p-8">
                       <div 
                         className="prose prose-base sm:prose-lg max-w-none
-                          prose-headings:font-playfair prose-headings:text-gray-900
+                          prose-headings:font-league-spartan prose-headings:text-gray-900
                           prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-8 prose-h1:mb-6
                           prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-8 sm:prose-h2:mt-12 prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:text-gray-800 prose-h2:border-b prose-h2:border-pink-200 prose-h2:pb-3
                           prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-6 sm:prose-h3:mt-8 prose-h3:mb-3 sm:prose-h3:mb-4 prose-h3:text-gray-800
@@ -244,7 +244,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
                     {/* Tags Section */}
                     <div className="p-6 sm:p-8 border-t border-gray-200/50 bg-gray-50/50">
-                      <h3 className="text-xl sm:text-2xl font-playfair font-bold text-gray-900 mb-4 sm:mb-6">Tags</h3>
+                      <h3 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900 mb-4 sm:mb-6">Tags</h3>
                       <div className="flex flex-wrap gap-2 sm:gap-3">
                         {post.tags.map(tag => (
                           <Link
@@ -262,7 +262,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   {/* Related Posts */}
                   {relatedPosts.length > 0 && (
                     <div className="mt-12 sm:mt-16">
-                      <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-gray-900 mb-6 sm:mb-8 text-center">
+                      <h2 className="text-3xl sm:text-4xl font-league-spartan font-bold text-gray-900 mb-6 sm:mb-8 text-center">
                         Related Articles
                       </h2>
                       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -283,7 +283,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
                             <div className="p-4 sm:p-6">
-                              <h3 className="font-playfair font-bold text-lg sm:text-xl text-gray-900 mb-2 sm:mb-3 group-hover:text-pink-600 transition-colors duration-300 line-clamp-2">
+                              <h3 className="font-league-spartan font-bold text-lg sm:text-xl text-gray-900 mb-2 sm:mb-3 group-hover:text-pink-600 transition-colors duration-300 line-clamp-2">
                                 {relatedPost.title}
                               </h3>
                               <div className="flex items-center text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">

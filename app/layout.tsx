@@ -1,12 +1,12 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Playfair_Display, Montserrat, Poppins } from 'next/font/google';
+import { League_Spartan, Montserrat, Poppins } from 'next/font/google';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 
-const playfairDisplay = Playfair_Display({ 
+const leagueSpartan = League_Spartan({ 
   subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-playfair',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-league-spartan',
   display: 'swap',
   preload: true
 });
@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfairDisplay.variable} ${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${leagueSpartan.variable} ${montserrat.variable} ${poppins.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

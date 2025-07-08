@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'playfair': ['var(--font-playfair)', 'serif'],
+        'league-spartan': ['var(--font-league-spartan)', 'sans-serif'],
         'montserrat': ['var(--font-montserrat)', 'sans-serif'],
         'poppins': ['var(--font-poppins)', 'sans-serif'],
       },

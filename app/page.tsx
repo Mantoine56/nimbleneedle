@@ -147,7 +147,7 @@ export default function Home() {
               </span>
               <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-playfair">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-league-spartan">
               EXPERIENCE OUR HASSLE-<br />
               FREE CLOTHING SERVICES
             </h2>
@@ -188,7 +188,7 @@ export default function Home() {
                     
                     {/* Floating Number Badge */}
                     <div className="absolute top-4 left-4 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">
-                      <span className="text-lg font-bold font-playfair text-gray-800 group-hover:text-white">
+                      <span className="text-lg font-bold font-league-spartan text-gray-800 group-hover:text-white">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
@@ -197,7 +197,7 @@ export default function Home() {
                   {/* Content Section */}
                   <div className="p-8 relative">
                     {/* Service Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight font-playfair group-hover:text-gray-800 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight font-league-spartan group-hover:text-gray-800 transition-colors duration-300">
                       {service.title}
                     </h3>
                     
@@ -301,7 +301,7 @@ export default function Home() {
                 : 'opacity-0 translate-x-12'
             }`}>
               <div className="max-w-xl">
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-playfair">
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-league-spartan">
                   OUR<br />
                   PROMISE
                 </h2>
@@ -346,7 +346,7 @@ export default function Home() {
                     CRAFT
                   </span>
                 </div>
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-playfair">
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-league-spartan">
                   THE<br />
                   CRAFTSMAN<br />
                   SHIP
@@ -405,7 +405,7 @@ export default function Home() {
               </span>
               <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               EXPERIENCE THE<br />
               NIMBLE NEEDLE<br />
               DIFFERENCE
@@ -434,7 +434,7 @@ export default function Home() {
                       </div>
                       
                       {/* Title */}
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4 font-league-spartan">
                         {feature.title}
                       </h3>
                       
@@ -686,7 +686,7 @@ export default function Home() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold font-league-spartan text-gray-900 mb-4">
               Latest from Our Blog
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">

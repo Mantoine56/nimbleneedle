@@ -215,7 +215,7 @@ export default function ContactPage() {
                 Two Convenient Ottawa Locations
               </Badge>
               
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
                 CONTACT<br />
                 <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
                   NIMBLE NEEDLE
@@ -266,7 +266,7 @@ export default function ContactPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-playfair text-lg">Get Directions</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Get Directions</h3>
                     <p className="text-white/80 text-sm">Choose your destination</p>
                   </div>
                   <div className="p-4 space-y-4">
@@ -316,7 +316,7 @@ export default function ContactPage() {
               <Card className="shadow-2xl border-0 bg-white rounded-2xl overflow-hidden">
                 <CardContent className="p-8">
                   <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 font-playfair">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 font-league-spartan">
                       Send us a message
                     </h3>
                     <p className="text-gray-600">
@@ -471,7 +471,7 @@ export default function ContactPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Get In Touch
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -489,7 +489,7 @@ export default function ContactPage() {
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3 font-playfair">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3 font-league-spartan">
                       {method.method}
                     </h3>
                     
@@ -517,7 +517,7 @@ export default function ContactPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Our Two Ottawa Locations
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -543,7 +543,7 @@ export default function ContactPage() {
                 
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900 font-playfair">
+                    <h3 className="text-2xl font-bold text-gray-900 font-league-spartan">
                       {location.name}
                     </h3>
                     <Badge className="bg-pink-100 text-pink-700">
@@ -620,7 +620,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
                 A Family Tradition in Tailoring
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed font-montserrat">
@@ -672,7 +672,7 @@ export default function ContactPage() {
 
             {/* Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
                 Our Tailoring Services
               </h2>
               <p className="text-lg text-gray-700 mb-6 font-montserrat">
@@ -720,7 +720,7 @@ export default function ContactPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-gray-600">
@@ -732,7 +732,7 @@ export default function ContactPage() {
             {faqItems.map((faq, index) => (
               <Card key={index} className="border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-xl">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3 font-playfair">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3 font-league-spartan">
                     {faq.question}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
@@ -762,7 +762,7 @@ export default function ContactPage() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-2xl font-bold font-playfair">Nimble Needle</span>
+                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
                 </div>
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
@@ -781,7 +781,7 @@ export default function ContactPage() {
 
               {/* Preston Location */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Downtown Ottawa - Preston</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Downtown Ottawa - Preston</h3>
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -810,7 +810,7 @@ export default function ContactPage() {
 
               {/* Riverside Location */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">New Location - Riverside</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">New Location - Riverside</h3>
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -839,7 +839,7 @@ export default function ContactPage() {
 
               {/* Services & Contact */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Services</h3>
                 <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
                   <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
                   <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>

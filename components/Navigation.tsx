@@ -104,7 +104,7 @@ export default function Navigation() {
                   className="object-contain"
                 />
               </div>
-              <span className={`text-2xl font-bold tracking-tight font-playfair transition-colors duration-500 ${
+              <span className={`text-2xl font-bold tracking-tight font-montserrat transition-colors duration-500 ${
                 isLightBackground || isScrolled 
                   ? 'text-gray-900 group-hover:text-pink-600' 
                   : 'text-white drop-shadow-lg group-hover:text-pink-200'
@@ -174,7 +174,7 @@ export default function Navigation() {
                   <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-pink-200 overflow-hidden">
                     {/* Header */}
                     <div className="bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-200 px-6 py-4">
-                      <h3 className="text-gray-900 font-semibold font-playfair text-lg">Our Services</h3>
+                      <h3 className="text-gray-900 font-semibold font-league-spartan text-lg">Our Services</h3>
                       <p className="text-gray-700 text-sm">Expert tailoring and alterations in Ottawa</p>
                     </div>
                     

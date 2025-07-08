@@ -35,7 +35,7 @@ export default function BlogPostClient({ postUrl, postTitle }: BlogPostClientPro
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200/50 backdrop-blur-sm">
       <div className="flex items-center mb-6">
         <Share2 className="w-5 h-5 mr-2 text-pink-600" />
-        <h3 className="text-xl font-playfair font-bold text-gray-900">Share This Post</h3>
+        <h3 className="text-xl font-league-spartan font-bold text-gray-900">Share This Post</h3>
       </div>
       
       <div className="space-y-3">

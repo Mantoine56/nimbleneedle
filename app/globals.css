@@ -172,7 +172,7 @@
   }
   
   /* Optimize font rendering */
-  .font-playfair {
+  .font-league-spartan {
     font-display: swap;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

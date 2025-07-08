@@ -201,7 +201,7 @@ export default function AboutPage() {
                 Family-Run Business Since 2008
               </Badge>
               
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
                 ABOUT<br />
                 <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
                   NIMBLE NEEDLE
@@ -282,7 +282,7 @@ export default function AboutPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-playfair text-lg">Call Nimble Needle</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Call Nimble Needle</h3>
                     <p className="text-white/80 text-sm">Choose your preferred location</p>
                   </div>
                   <div className="p-4 space-y-3">
@@ -312,7 +312,7 @@ export default function AboutPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-playfair text-lg">Visit Nimble Needle</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Visit Nimble Needle</h3>
                     <p className="text-white/80 text-sm">Get directions to our locations</p>
                   </div>
                   <div className="p-4 space-y-4">
@@ -391,7 +391,7 @@ export default function AboutPage() {
               </div>
               
               <div className="mt-8 text-center">
-                <h3 className="text-2xl font-bold text-gray-900 font-playfair mb-2">Riber Baabo</h3>
+                <h3 className="text-2xl font-bold text-gray-900 font-league-spartan mb-2">Riber Baabo</h3>
                 <p className="text-pink-600 font-semibold">Master tailor with over 15 years experience</p>
               </div>
             </div>
@@ -417,7 +417,7 @@ export default function AboutPage() {
               </span>
               <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               WHAT OUR CUSTOMERS<br />
               ARE SAYING
             </h2>
@@ -527,7 +527,7 @@ export default function AboutPage() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-2xl font-bold font-playfair">Nimble Needle</span>
+                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
                 </div>
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
@@ -546,7 +546,7 @@ export default function AboutPage() {
 
               {/* Preston Location */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Downtown Ottawa - Preston</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Downtown Ottawa - Preston</h3>
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -575,7 +575,7 @@ export default function AboutPage() {
 
               {/* Riverside Location */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">New Location - Riverside</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">New Location - Riverside</h3>
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
@@ -604,7 +604,7 @@ export default function AboutPage() {
 
               {/* Services & Contact */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-playfair text-pink-400">Services</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Services</h3>
                 <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
                   <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
                   <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>

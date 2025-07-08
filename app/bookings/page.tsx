@@ -191,7 +191,7 @@ export default function BookingsPage() {
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
             }`}>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
                 Book Your Appointment
               </h1>
               
@@ -234,7 +234,7 @@ export default function BookingsPage() {
               <CardContent className="p-0">
                 <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-8 text-center">
                   <Calendar className="h-12 w-12 mx-auto mb-4" />
-                  <h2 className="text-3xl font-bold mb-2 font-playfair">
+                  <h2 className="text-3xl font-bold mb-2 font-league-spartan">
                     Schedule Your Appointment
                   </h2>
                   <p className="text-pink-100 text-lg">
@@ -295,7 +295,7 @@ export default function BookingsPage() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               What can we help you with?
             </h2>
             <p className="text-xl text-gray-600 font-montserrat">
@@ -322,7 +322,7 @@ export default function BookingsPage() {
                       <category.icon className="h-8 w-8 text-white" />
                     </div>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 font-playfair">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 font-league-spartan">
                       {category.title}
                     </h3>
                     
@@ -357,7 +357,7 @@ export default function BookingsPage() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               How It Works
             </h2>
             <p className="text-xl text-gray-600 font-montserrat">
@@ -390,7 +390,7 @@ export default function BookingsPage() {
                   )}
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4 font-playfair">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 font-league-spartan">
                   {step.title}
                 </h3>
                 
@@ -414,7 +414,7 @@ export default function BookingsPage() {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
               Why Book With Us?
             </h2>
             <p className="text-xl text-gray-600 font-montserrat">
@@ -440,7 +440,7 @@ export default function BookingsPage() {
                     <benefit.icon className="h-8 w-8 text-pink-600" />
                   </div>
                   
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 font-playfair">
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 font-league-spartan">
                     {benefit.title}
                   </h3>
                   
@@ -457,7 +457,7 @@ export default function BookingsPage() {
       {/* Emergency Contact CTA */}
       <section className="py-16 bg-gradient-to-r from-pink-500 to-pink-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4 font-playfair">
+          <h2 className="text-3xl font-bold text-white mb-4 font-league-spartan">
             Need urgent alterations?
           </h2>
           <p className="text-xl text-pink-100 mb-8 font-montserrat">

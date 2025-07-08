@@ -34,7 +34,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
       
       <div className="p-6">
         <Link href={`/blog/${post.slug}`}>
-          <h3 className="text-xl lg:text-2xl font-playfair font-bold mb-3 hover:text-pink-600 transition-colors duration-300 line-clamp-2">
+          <h3 className="text-xl lg:text-2xl font-league-spartan font-bold mb-3 hover:text-pink-600 transition-colors duration-300 line-clamp-2">
             {post.title}
           </h3>
         </Link>
