@@ -56,8 +56,8 @@ export default function LocationSelector() {
   };
 
   const handleBookAppointment = () => {
-    // Redirect to contact page or show info about walk-ins
-    window.open('mailto:nimble.needle.tailoring@gmail.com?subject=Tailoring Inquiry');
+    // Redirect to bookings page
+    window.location.href = '/bookings';
   };
 
   return (
@@ -141,7 +141,7 @@ export default function LocationSelector() {
               className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
             >
               <Calendar className="h-4 w-4 mr-2" />
-              Send Email Inquiry
+              Book Your Appointment
             </Button>
           </div>
         </div>

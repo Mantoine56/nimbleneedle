@@ -115,7 +115,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white mobile-safe">
       <Navigation />
       <SocialSidebar />
 
@@ -670,7 +670,7 @@ export default function Home() {
             </p>
             <Button 
               className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
-              onClick={() => window.location.href = '/contact-us'}
+              onClick={() => window.location.href = '/bookings'}
             >
               Book Your Appointment
             </Button>

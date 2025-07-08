@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { 
   Phone, 
   MapPin, 
@@ -120,6 +122,17 @@ const faqItems = [
 export default function ContactPage() {
   const [isDirectionsPopupOpen, setIsDirectionsPopupOpen] = useState(false);
   const directionsPopupRef = useRef<HTMLDivElement>(null);
+  
+  // Contact form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Handle click outside to close popups
   useEffect(() => {
@@ -133,12 +146,54 @@ export default function ContactPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call - replace with actual endpoint
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // For now, just show success message
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } catch (error) {
+      setSubmitStatus('error');
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const breadcrumbItems = [
     { label: 'Contact Us', current: true }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white mobile-safe">
       <Navigation />
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />
@@ -152,7 +207,7 @@ export default function ContactPage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Contact Information */}
             <div>
               <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-4 py-2 text-sm font-medium mb-6">
@@ -180,9 +235,17 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 relative">
-                <Button className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
+                <Button 
+                  onClick={() => {
+                    const form = document.getElementById('contact-form');
+                    if (form) {
+                      form.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+                >
                   <Calendar className="h-5 w-5 mr-2" />
-                  Book Appointment
+                  Send Message
                 </Button>
                 <Button 
                   onClick={() => {
@@ -248,17 +311,157 @@ export default function ContactPage() {
               )}
             </div>
 
-            {/* Contact Image */}
-            <div className="relative">
-              <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/craftsmanship-image.webp"
-                  alt="Professional tailor working on clothing alterations at Nimble Needle Tailoring in Ottawa"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+            {/* Contact Form */}
+            <div className="relative" id="contact-form">
+              <Card className="shadow-2xl border-0 bg-white rounded-2xl overflow-hidden">
+                <CardContent className="p-8">
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 font-playfair">
+                      Send us a message
+                    </h3>
+                    <p className="text-gray-600">
+                      Get a quote or ask about our services
+                    </p>
+                  </div>
+
+                  {/* Success Message */}
+                  {submitStatus === 'success' && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="flex items-center">
+                        <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                        <p className="text-green-800 font-medium">Message sent successfully! We'll get back to you soon.</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error Message */}
+                  {submitStatus === 'error' && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-red-800 font-medium">Something went wrong. Please try again.</p>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name */}
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Enter your full name"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Enter your email address"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                      />
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="(Optional) Your phone number"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+                      />
+                    </div>
+
+                    {/* Service Type */}
+                    <div>
+                      <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                        Service Needed
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors bg-white"
+                      >
+                        <option value="">Select a service (optional)</option>
+                        <option value="clothing-alterations">Clothing Alterations</option>
+                        <option value="wedding-dress">Wedding Dress Alterations</option>
+                        <option value="suit-alterations">Suit Alterations</option>
+                        <option value="custom-suits">Custom Suits</option>
+                        <option value="dry-cleaning">Dry Cleaning</option>
+                        <option value="zipper-repair">Zipper Repair</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                        Message *
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={4}
+                        placeholder="Describe your alteration needs or ask us a question..."
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors resize-none"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="h-5 w-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
+
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <p className="text-sm text-gray-500 text-center">
+                      Or contact us directly at{' '}
+                      <a href="mailto:nimble.needle.tailoring@gmail.com" className="text-pink-600 hover:text-pink-700 font-medium">
+                        nimble.needle.tailoring@gmail.com
+                      </a>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

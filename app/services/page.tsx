@@ -180,7 +180,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white mobile-safe">
       <Navigation />
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />
@@ -215,7 +215,7 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -244,8 +244,8 @@ export default function ServicesPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-all duration-500 group-hover:from-pink-700/60 group-hover:via-pink-500/20"></div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 text-center font-montserrat group-hover:text-pink-600 transition-colors">
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 text-center font-montserrat group-hover:text-pink-600 transition-colors break-words-safe">
                         {service.title}
                       </h3>
                     </div>
@@ -263,7 +263,7 @@ export default function ServicesPage() {
         className="py-20 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Why Choose Us Points */}
             <div className={`transition-all duration-1000 ${
               isWhyChooseUsVisible 
@@ -351,7 +351,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {detailedReviews.map((review, index) => (
               <div
                 key={index}

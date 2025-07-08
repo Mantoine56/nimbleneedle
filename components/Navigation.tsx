@@ -36,7 +36,8 @@ export default function Navigation() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' },
+    { name: 'Bookings', href: '/bookings' }
   ];
 
   const servicePages = [
@@ -90,11 +91,11 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <div className="flex items-center space-x-3">
+            <a href="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
               <div className={`relative w-12 h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
                 isLightBackground || isScrolled 
-                  ? 'bg-gray-100' 
-                  : 'bg-white/25 backdrop-blur-sm'
+                  ? 'bg-gray-100 group-hover:bg-gray-200' 
+                  : 'bg-white/25 backdrop-blur-sm group-hover:bg-white/40'
               }`}>
                 <Image
                   src="/logo.png"
@@ -105,10 +106,10 @@ export default function Navigation() {
               </div>
               <span className={`text-2xl font-bold tracking-tight font-playfair transition-colors duration-500 ${
                 isLightBackground || isScrolled 
-                  ? 'text-gray-900' 
-                  : 'text-white drop-shadow-lg'
-              }`}>Nimble Needle</span>
-            </div>
+                  ? 'text-gray-900 group-hover:text-pink-600' 
+                  : 'text-white drop-shadow-lg group-hover:text-pink-200'
+              }`}>Nimble Needle Tailoring</span>
+            </a>
             
             {/* Desktop Navigation Menu */}
             <nav className="hidden md:flex items-center space-x-1">
@@ -163,7 +164,7 @@ export default function Navigation() {
                 </button>
                 
                 {/* Creative Dropdown Menu */}
-                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[600px] transition-all duration-300 ${
+                <div className={`navigation-dropdown absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[600px] transition-all duration-300 ${
                   isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
                   {/* Dropdown Arrow */}
@@ -250,10 +251,10 @@ export default function Navigation() {
               {/* Mobile Menu Button */}
               <Button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`md:hidden p-3 transition-all duration-500 ${
+                className={`md:hidden p-3 transition-all duration-500 shadow-lg ${
                   isLightBackground || isScrolled 
-                    ? 'bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200' 
-                    : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20'
+                    ? 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400' 
+                    : 'bg-white/90 backdrop-blur-sm border border-white/40 text-gray-800 hover:bg-white hover:border-white/60'
                 }`}
                 size="sm"
               >
@@ -275,7 +276,7 @@ export default function Navigation() {
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/50" onClick={closeMobileMenu}>
           <div 
-            className="absolute top-20 left-0 right-0 bg-white/98 border-b border-gray-200/50 shadow-2xl"
+            className="absolute top-20 left-0 right-0 bg-white backdrop-blur-xl border-b border-gray-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="max-w-7xl mx-auto px-4 py-6">
@@ -335,7 +336,10 @@ export default function Navigation() {
                 <div className="text-center">
                   <p className="text-gray-600 text-sm mb-3">Ready to get started?</p>
                   <Button 
-                    onClick={closeMobileMenu}
+                    onClick={() => {
+                      closeMobileMenu();
+                      window.location.href = '/bookings';
+                    }}
                     className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
                   >
                     Book Your Appointment

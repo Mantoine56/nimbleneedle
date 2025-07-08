@@ -179,7 +179,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white mobile-safe">
       <Navigation />
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />

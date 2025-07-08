@@ -172,7 +172,7 @@ export default function DressSkirtAlterationsPage() {
               {/* Contact Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 relative">
                 <Button
-                  onClick={() => window.location.href = '/contact-us'}
+                  onClick={() => window.location.href = '/bookings'}
                   className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
                 >
                   <Clock className="h-5 w-5 mr-2" />
