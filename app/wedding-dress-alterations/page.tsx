@@ -1,141 +1,123 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Heart, 
-  Star, 
-  Phone, 
-  MapPin, 
-  Clock,
-  CheckCircle,
-  ArrowRight,
-  Sparkles,
-  Crown,
-  Shield,
-  Users,
-  Calendar,
-  X
-} from 'lucide-react';
+import { Check, Phone, MapPin, Star, Mail, Calendar, Award, Clock, ArrowRight, CheckCircle, Crown, Heart, Sparkles, Shield } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
-import { testimonials, locations } from '@/lib/data';
+import Footer from '@/components/Footer';
+import { locations, detailedReviews } from '@/lib/data';
 
-const services = [
-  {
-    name: "Hem shortening",
-    description: "Professional hem adjustments for the perfect length",
-    icon: CheckCircle
-  },
-  {
-    name: "Bodice adjustment (taking in or letting out)",
-    description: "Precise fit adjustments for the bodice area",
-    icon: CheckCircle
-  },
-  {
-    name: "Strap, sleeve, or shoulder adjustments",
-    description: "Customized adjustments for comfort and style",
-    icon: CheckCircle
-  },
-  {
-    name: "Adding or removing cups",
-    description: "Bust support modifications for comfort",
-    icon: CheckCircle
-  },
-  {
-    name: "Bustle creation for the train",
-    description: "Professional bustle installation",
-    icon: CheckCircle
-  },
-  {
-    name: "Zipper repair or full replacement if faulty",
-    description: "Complete zipper services and repairs",
-    icon: CheckCircle
-  }
+const serviceFeatures = [
+  "Professional wedding dress alterations and fittings",
+  "Walk-in service - no appointment needed", 
+  "Expert seamstresses with specialized bridal experience",
+  "Careful handling of delicate fabrics and embellishments",
+  "Comprehensive alteration services for perfect fit",
+  "Quick turnaround times for your special day"
 ];
 
-const benefits = [
-  {
-    name: "Preserve delicate materials such as lace, chiffon, or silk",
-    description: "Expert handling of delicate fabrics",
-    icon: Heart
-  },
-  {
-    name: "Apply precise stitching and hidden seams",
-    description: "Professional seamstress techniques",
-    icon: Sparkles
-  },
-  {
-    name: "Use proper tools for beadwork or embroidery adjustments",
-    description: "Specialized tools for detailed work",
-    icon: Crown
-  },
-  {
-    name: "Ensure a balanced and secure fit based on posture and body movement",
-    description: "Comprehensive fitting approach",
-    icon: Shield
-  }
+const commonAlterations = [
+  "Hem shortening for the perfect length",
+  "Bodice adjustments (taking in or letting out)",
+  "Strap, sleeve, or shoulder modifications",
+  "Adding or removing built-in cups for comfort",
+  "Bustle creation for train management",
+  "Zipper repair or complete replacement if needed"
 ];
 
-const keyFeatures = [
-  "Fast",
-  "Friendly", 
-  "Affordable",
-  "Reliable",
-  "Proudly Serving Ottawa"
+const fabricTypes = [
+  "Lace and delicate embroidered fabrics",
+  "Chiffon, tulle, and flowing materials", 
+  "Silk, satin, and luxurious fabrics",
+  "Beaded and sequined gowns",
+  "Vintage and heirloom dresses",
+  "Modern designer wedding gowns"
+];
+
+const professionalBenefits = [
+  "Preserve delicate materials like lace, chiffon, and silk with expert care",
+  "Apply precise stitching and hidden seams for flawless appearance",
+  "Use specialized tools for beadwork and embroidery adjustments",
+  "Ensure balanced and secure fit based on posture and body movement"
+];
+
+const serviceOptions = [
+  {
+    icon: Crown,
+    title: "Bridal Specialists",
+    description: "Specialized expertise in wedding dress alterations with attention to every detail."
+  },
+  {
+    icon: Clock, 
+    title: "Timely Service",
+    description: "Most alterations completed within 1-2 weeks. Rush service available for urgent needs."
+  },
+  {
+    icon: Heart,
+    title: "Personalized Care", 
+    description: "Individual attention and multiple fittings to ensure your dress fits perfectly."
+  }
 ];
 
 export default function WeddingDressAlterationsPage() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showCallPopup, setShowCallPopup] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
+  const [isCallPopupOpen, setIsCallPopupOpen] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const callPopupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true);
+            if (entry.target === heroRef.current) {
+              setIsHeroVisible(true);
+            } else if (entry.target === servicesRef.current) {
+              setIsServicesVisible(true);
+            } else if (entry.target === testimonialsRef.current) {
+              setIsTestimonialsVisible(true);
+            }
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
+    if (heroRef.current) observer.observe(heroRef.current);
+    if (servicesRef.current) observer.observe(servicesRef.current);
+    if (testimonialsRef.current) observer.observe(testimonialsRef.current);
 
-    return () => observer.disconnect();
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
+    };
+  }, []);
+
+  // Handle click outside for popup
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (callPopupRef.current && !callPopupRef.current.contains(event.target as Node)) {
+        setIsCallPopupOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const breadcrumbItems = [
     { label: 'Services', href: '/services' },
     { label: 'Wedding Dress Alterations', current: true }
   ];
-
-  const handleCallClick = () => {
-    setShowCallPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setShowCallPopup(false);
-  };
-
-  const handleLocationCall = (phoneNumber: string) => {
-    window.open(`tel:${phoneNumber}`, '_self');
-    setShowCallPopup(false);
-  };
-
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      setShowCallPopup(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -144,89 +126,146 @@ export default function WeddingDressAlterationsPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-pink-50 via-rose-50 to-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.6'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-6 py-3 text-base font-medium mb-8">
-              <Crown className="h-5 w-5 mr-2" />
-              ✨ Bridal Specialists ✨
-            </Badge>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-8 font-playfair">
-              Beautiful Wedding Dress<br />
-              <span className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 bg-clip-text text-transparent">
-                Alterations
-              </span><br />
-              in Ottawa on Preston St. and Riverside Dr.
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
+              WEDDING DRESS ALTERATIONS
             </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-10 font-montserrat leading-relaxed">
-              Offers wedding dress alterations in Ottawa at two walk-in locations. Preston Street and our Riverside area. Both are welcome to visit without their during business hours. Most alterations can be completed in 1-2 weeks.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-              <Button 
-                onClick={() => window.location.href = '/contact-us'}
-                className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25"
-              >
-                <Calendar className="h-5 w-5 mr-2" />
-                Book an Appointment
-              </Button>
-              <Button 
-                onClick={handleCallClick}
-                variant="outline" 
-                className="border-pink-500 text-pink-600 hover:bg-pink-50 px-10 py-4 text-lg font-semibold rounded-full"
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                Call Us
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {keyFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white/50 backdrop-blur-sm rounded-full px-6 py-3 border border-pink-100">
-                  <CheckCircle className="h-5 w-5 text-pink-500" />
-                  <span className="text-gray-700 font-medium">{feature}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
       {/* Main Content Section */}
-      <section ref={elementRef} className="py-20 relative">
+      <section 
+        ref={heroRef}
+        className="py-20 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-playfair">
-                  Our team works with a variety of <span className="text-pink-600">wedding gowns</span>, including those with lace, beading, structured bodices, and delicate fabrics.
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Our attentions aim to ensure the dress fits securely and comfortably for the ceremony and reception. Here&apos;s what we offer:
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  <span className="text-pink-600 font-semibold">Join the hundreds of our very satisfied customers.</span> Let our experienced, top-rated tailors get you the perfect look you&apos;re looking for today!
-                </p>
+            {/* Left Side - Content */}
+            <div className={`transition-all duration-1000 ${
+              isHeroVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-8'
+            }`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
+                Beautiful Wedding Dress Alterations in Ottawa on Preston St. and Riverside Dr.
+              </h2>
+              
+              <p className="text-lg text-gray-600 mb-8 font-montserrat">
+                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we specialize in wedding dress alterations in Ottawa from our two convenient walk-in locations: Preston Street and Riverside Drive. We understand that your wedding dress is one of the most important garments you'll ever wear, and we're dedicated to ensuring it fits you perfectly on your special day.
+              </p>
+
+              <p className="text-lg text-gray-600 mb-8 font-montserrat">
+                Our experienced seamstresses work with all types of wedding dresses, from vintage family heirlooms to modern designer gowns. Most alterations can be completed in 1-2 weeks, with rush service available when needed.
+              </p>
+
+              {/* Service Features */}
+              <div className="space-y-4 mb-8">
+                {serviceFeatures.map((feature, index) => (
+                  <div 
+                    key={index}
+                    className={`flex items-center space-x-3 transition-all duration-1000 ${
+                      isHeroVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-4'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 150}ms`
+                    }}
+                  >
+                    <CheckCircle className="h-5 w-5 text-pink-500" />
+                    <span className="text-gray-700 font-montserrat">{feature}</span>
+                  </div>
+                ))}
               </div>
+
+              {/* Contact Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 relative">
+                <Button
+                  onClick={() => window.location.href = '/contact-us'}
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Book an Appointment
+                </Button>
+                <Button 
+                  onClick={() => setIsCallPopupOpen(!isCallPopupOpen)}
+                  variant="outline" 
+                  className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Call Us
+                </Button>
+              </div>
+
+              {/* Call Popup */}
+              {isCallPopupOpen && (
+                <div 
+                  ref={callPopupRef}
+                  className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
+                >
+                  <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
+                    <h3 className="text-white font-semibold font-playfair text-lg">Call Nimble Needle</h3>
+                    <p className="text-white/80 text-sm">Choose your preferred location</p>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    {locations.map((location, index) => (
+                      <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
+                        <h4 className="font-semibold text-gray-900 font-montserrat mb-2">{location.name}</h4>
+                        <Button
+                          onClick={() => {
+                            window.open(`tel:${location.phone.replace(/[^\d]/g, '')}`);
+                            setIsCallPopupOpen(false);
+                          }}
+                          className="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm"
+                        >
+                          <Phone className="h-4 w-4 mr-2" />
+                          {location.phone}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Backdrop for popup */}
+              {isCallPopupOpen && (
+                <div 
+                  className="fixed inset-0 bg-black/50 z-[9998]"
+                  onClick={() => setIsCallPopupOpen(false)}
+                />
+              )}
+
+              <p className="text-sm text-gray-500 mt-4 font-montserrat">
+                Call to schedule your fitting or visit our shop during business hours. Walk-ins welcome!
+              </p>
             </div>
 
-            <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            {/* Right Side - Image */}
+            <div className={`transition-all duration-1000 delay-300 ${
+              isHeroVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-8'
+            }`}>
+              <div className="relative">
                 <Image
                   src="/services/alterations.webp"
-                  alt="Wedding dress alterations"
+                  alt="Professional wedding dress alterations for the perfect fit"
                   width={600}
                   height={400}
-                  className="w-full h-auto object-cover"
+                  className="rounded-2xl shadow-2xl"
                 />
+                <div className="absolute -bottom-6 -right-6 bg-pink-500 rounded-2xl p-4 shadow-xl">
+                  <Crown className="h-8 w-8 text-white" />
+                </div>
               </div>
             </div>
           </div>
@@ -236,271 +275,206 @@ export default function WeddingDressAlterationsPage() {
       {/* Common Wedding Dress Alterations Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-              Common Wedding Dress Alterations
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Common Wedding Dress Alterations We Provide
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Bridal gown alterations are handled with precision to maintain the original design and comfort of the dress.
+              Our skilled seamstresses can handle a wide range of wedding dress alterations to ensure your gown fits perfectly:
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Services include:</h3>
-              {services.map((service, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm">
-                  <service.icon className="h-6 w-6 text-pink-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">{service.name}</h4>
-                    <p className="text-gray-600 text-sm">{service.description}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-1 gap-6 max-w-4xl mx-auto">
+            {commonAlterations.map((alteration, index) => (
+              <div key={index} className="flex items-center space-x-4 bg-white p-6 rounded-xl shadow-lg">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-pink-600" />
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="space-y-6">
-              <p className="text-gray-700 leading-relaxed">
-                Each wedding dress alteration in Ottawa is done after a fitting session during which the dress is pinned and prepared. We typically include an initial fitting, a secondary fitting if needed, and a final fitting to confirm measurements.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Our team works with a variety of wedding gowns, including those with lace, beading, structured bodices, and delicate fabrics. Our attentions aim to ensure the dress fits securely and comfortably for the ceremony and reception.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Here is what we offer beyond dresses: <a href="/custom-suits" className="text-pink-600 font-semibold hover:underline">custom embroidery</a> services.
-              </p>
-            </div>
+                <p className="text-gray-700 font-montserrat">{alteration}</p>
+              </div>
+            ))}
           </div>
+
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            Each alteration is carefully planned and executed to maintain the integrity and beauty of your wedding dress while ensuring a perfect fit.
+          </p>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20">
+      {/* Fabric Types Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-              Benefits of Hiring a Professional for Bridal Alterations
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Wedding Dress Fabrics We Work With
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Professional tailoring helps maintain the structure, fabric integrity, and design of the dress. Our team aim to offer high-quality wedding dress alteration services to Ottawa. Moving professional like us offers benefits, such as:
+              Our experienced team works with all types of wedding dress fabrics and materials:
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-white rounded-lg shadow-sm border border-gray-100">
-                <benefit.icon className="h-6 w-6 text-pink-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">{benefit.name}</h4>
-                  <p className="text-gray-600">{benefit.description}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {fabricTypes.map((fabric, index) => (
+              <div key={index} className="bg-pink-50 p-6 rounded-xl border border-pink-100">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-pink-600" />
+                  <span className="text-gray-800 font-semibold font-montserrat">{fabric}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
-              Work is undertaken using hand-stitched alterations and natural hand-finishing techniques, depending on garment needs.
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            We use specialized techniques and tools appropriate for each fabric type to ensure the best possible results.
+          </p>
+        </div>
+      </section>
+
+      {/* Benefits of Professional Alterations Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
+              Benefits of Hiring a Professional for Wedding Dress Alterations
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Professional wedding dress alterations ensure your gown is handled with the expertise and care it deserves. At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we provide:
             </p>
           </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {professionalBenefits.map((benefit, index) => (
+              <div key={index} className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                    <Check className="h-5 w-5 text-white" />
+                  </div>
+                </div>
+                <p className="text-gray-700 font-montserrat">{benefit}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+            Trust our skilled seamstresses to make your wedding dress fit like it was made just for you. <span className="text-pink-600 font-semibold">Contact us</span> today to schedule your fitting consultation.
+          </p>
         </div>
       </section>
 
       {/* Google Reviews Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <span className="text-lg font-semibold text-gray-900">EXCELLENT</span>
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <span className="text-2xl font-bold text-gray-900">EXCELLENT</span>
+              <span className="text-lg font-semibold text-gray-900">819 reviews</span>
+              <Image
+                src="/logo.png"
+                alt="Google Reviews"
+                width={60}
+                height={20}
+                className="opacity-60"
+              />
             </div>
-            <p className="text-lg text-gray-600">
-              <span className="font-semibold">959 reviews</span> on <span className="font-semibold text-blue-600">Google</span>
-            </p>
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-              Testimonials
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Feedback from past clients highlights our team's commitment to precise tailoring and considerate service at both Ottawa locations.
-            </p>
-          </div>
-
+      {/* Service Options */}
+      <section 
+        ref={servicesRef}
+        className="py-20 bg-white"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Users className="h-8 w-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">I Have Questions</h3>
-                <p className="text-gray-600">
-                  Not sure where to start or what changes would be best? Our friendly staff can provide options for you!
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Heart className="h-8 w-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">I Need It Done Right</h3>
-                <p className="text-gray-600">
-                  Our professionals work with all fabric and styles. We can get the result you're looking for with our front pricing.
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Clock className="h-8 w-8 text-gray-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">I Have an Urgent Need</h3>
-                <p className="text-gray-600">
-                  Talk to us. We are always happy for many customers and will do our best to help you!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6 mt-16">
-            {testimonials.slice(0, 4).map((testimonial, index) => (
-              <Card key={index} className="bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
-                      <span className="text-pink-600 font-semibold text-sm">
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                      </span>
+            {serviceOptions.map((option, index) => (
+              <div
+                key={index}
+                className={`text-center transition-all duration-1000 ${
+                  isServicesVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: `${index * 200}ms`
+                }}
+              >
+                <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                  <CardContent className="p-8">
+                    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <option.icon className="h-8 w-8 text-gray-600" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-3 w-3 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                                     <p className="text-gray-600 text-sm leading-relaxed">{testimonial.text}</p>
-                </CardContent>
-              </Card>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
+                      {option.title}
+                    </h3>
+                    <p className="text-gray-600 font-montserrat">
+                      {option.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* Customer Testimonials */}
+      <section 
+        ref={testimonialsRef}
+        className="py-20 bg-gray-50"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-6">
-                <Image
-                  src="/logo.png"
-                  alt="Nimble Needle Logo"
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <span className="text-xl font-bold">NIMBLE NEEDLE<br />TAILORING</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Your one-stop shop for any tailoring and clothing alterations in Ottawa
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Downtown Ottawa – Preston Street</h4>
-              <div className="space-y-2 text-gray-400">
-                <p>Business Hours:</p>
-                <p>Mon – Fri: 7am – 4pm</p>
-                <p>Sat: 8am – 4pm</p>
-                <p>Sun: Closed</p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Riverside Ottawa – Riverside Dr.</h4>
-              <div className="space-y-2 text-gray-400">
-                <p>Business Hours:</p>
-                <p>Mon – Fri: 7am – 4pm</p>
-                <p>Sat: 8am – 4pm</p>
-                <p>Sun: Closed</p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <div className="space-y-2 text-gray-400">
-                <p>Call: (343) 588-1300</p>
-                <p>Email: nimble.needle.tailoring@gmail.com</p>
-                <div className="flex gap-4 mt-4">
-                  <a href="#" className="text-gray-400 hover:text-pink-500">
-                    <span className="sr-only">Facebook</span>
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-pink-500">
-                    <span className="sr-only">Instagram</span>
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.621 5.367 11.988 11.988 11.988s11.988-5.367 11.988-11.988C24.005 5.367 18.638.001 12.017.001zM8.449 16.988c-2.35 0-4.252-1.902-4.252-4.252s1.902-4.252 4.252-4.252 4.252 1.902 4.252 4.252-1.902 4.252-4.252 4.252zm7.519 0c-2.35 0-4.252-1.902-4.252-4.252s1.902-4.252 4.252-4.252 4.252 1.902 4.252 4.252-1.902 4.252-4.252 4.252z"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; 2024 - Nimble Needle Tailoring</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Call Popup */}
-      {showCallPopup && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={handleBackdropClick}
-        >
-          <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full mx-4">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-900">Choose Location</h3>
-              <button 
-                onClick={handleClosePopup}
-                className="text-gray-500 hover:text-gray-700"
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {detailedReviews.slice(0, 4).map((review, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-1000 ${
+                  isTestimonialsVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: `${index * 150}ms`
+                }}
               >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            
-            <div className="space-y-4">
-              {locations.map((location, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">{location.name}</h4>
-                  <p className="text-gray-600 text-sm mb-3">{location.address}</p>
-                  <Button
-                    onClick={() => handleLocationCall(location.phone)}
-                    className="w-full bg-pink-600 hover:bg-pink-700 text-white"
-                  >
-                    <Phone className="h-4 w-4 mr-2" />
-                    Call {location.phone}
-                  </Button>
-                </div>
-              ))}
-            </div>
+                <Card className="h-full bg-white border-0 rounded-2xl shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <Image
+                        src={review.avatar}
+                        alt={review.name}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 text-sm">{review.name}</h4>
+                        <div className="flex">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="h-3 w-3 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {review.text.substring(0, 120)}...
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </section>
+
+      <Footer />
     </div>
   );
 }
