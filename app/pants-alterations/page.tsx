@@ -1,104 +1,54 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, Phone, MapPin, Star, Mail, Calendar, Award, Clock, ArrowRight, CheckCircle } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Phone, 
+  MapPin, 
+  Clock,
+  CheckCircle,
+  Star,
+  HelpCircle,
+  Diamond,
+  Zap,
+  Award
+} from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
-import { locations, detailedReviews } from '@/lib/data';
+import { detailedReviews, locations } from '@/lib/data';
 
 const serviceFeatures = [
-  "Professional clothing alterations for all garment types",
-  "Expert tailoring with 15+ years of experience",
-  "Quick turnaround times - most alterations completed within days",
-  "Walk-in service available - no appointment necessary",
-  "Competitive pricing with satisfaction guarantee",
-  "Specialized in formal wear, casual wear, and special occasion garments"
-];
-
-const alterationTypes = [
-  {
-    title: "Wedding Dress Alterations",
-    description: "Perfect fit for your special day with expert bridal alterations",
-    link: "/wedding-dress-alterations"
-  },
-  {
-    title: "Suit Alterations", 
-    description: "Professional suit fitting for business and formal occasions",
-    link: "/suit-alterations"
-  },
-  {
-    title: "Dress & Skirt Alterations",
-    description: "Expert alterations for dresses and skirts of all styles",
-    link: "/dress-skirt-alterations"
-  },
-  {
-    title: "Pants Alterations",
-    description: "Perfect hemming and fitting for all types of pants",
-    link: "/pants-alterations"
-  },
-  {
-    title: "Jacket Alterations",
-    description: "Professional jacket fitting and adjustments",
-    link: "/jacket-alterations"
-  },
-  {
-    title: "Shirt Alterations",
-    description: "Expert shirt tailoring for the perfect fit",
-    link: "/shirt-alterations"
-  }
-];
-
-const commonAlterations = [
-  "Hemming pants, dresses, and skirts",
-  "Taking in or letting out waistlines",
-  "Sleeve length adjustments",
-  "Shoulder and bust adjustments",
-  "Zipper repairs and replacements",
-  "Button and fastener adjustments",
-  "Lining repairs and replacements",
-  "Formal wear and evening gown alterations"
-];
-
-const fabricTypes = [
-  {
-    category: "Delicate Fabrics",
-    items: ["Silk", "Chiffon", "Lace", "Satin", "Tulle", "Organza"]
-  },
-  {
-    category: "Formal Fabrics", 
-    items: ["Wool", "Cashmere", "Tweed", "Velvet", "Brocade", "Taffeta"]
-  },
-  {
-    category: "Everyday Fabrics",
-    items: ["Cotton", "Denim", "Polyester", "Rayon", "Linen", "Jersey"]
-  }
+  "Hemming & Length Adjustments",
+  "Waist Alterations", 
+  "Professional Fit",
+  "All Pant Styles",
+  "Proudly Serving Ottawa"
 ];
 
 const serviceOptions = [
   {
-    icon: CheckCircle,
-    title: "Quality Craftsmanship",
-    description: "Expert alterations with attention to detail and professional finishing techniques."
+    icon: HelpCircle,
+    title: "I have questions",
+    description: "Not sure about the right fit for your pants? Our experts can assess and recommend the perfect alterations!"
   },
   {
-    icon: Clock, 
-    title: "Fast Service",
-    description: "Most alterations completed within 3-5 business days with rush service available."
+    icon: Diamond,
+    title: "I need it done right",
+    description: "We specialize in pants alterations with precision tailoring for the perfect length and fit."
   },
   {
-    icon: Award,
-    title: "Satisfaction Guaranteed", 
-    description: "We stand behind our work with a satisfaction guarantee on all alterations."
+    icon: Zap,
+    title: "I have an urgent need",
+    description: "Need your pants hemmed quickly? We offer same-day and rush services for urgent alterations!"
   }
 ];
 
-export default function ClothingAlterationsPage() {
+export default function PantsAlterationsPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isServicesVisible, setIsServicesVisible] = useState(false);
   const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
@@ -151,7 +101,7 @@ export default function ClothingAlterationsPage() {
 
   const breadcrumbItems = [
     { label: 'Services', href: '/services' },
-    { label: 'Clothing Alterations', current: true }
+    { label: 'Pants Alterations', current: true }
   ];
 
   return (
@@ -171,7 +121,7 @@ export default function ClothingAlterationsPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-playfair">
-              CLOTHING ALTERATIONS
+              PANTS ALTERATIONS
             </h1>
           </div>
         </div>
@@ -191,15 +141,12 @@ export default function ClothingAlterationsPage() {
                 : 'opacity-0 -translate-x-8'
             }`}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-playfair">
-                Professional Clothing Alterations in Ottawa
+                Looking for pants alterations to get a perfect fit?
               </h2>
               
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we provide expert clothing alterations for all types of garments. Our experienced tailors handle everything from simple hemming to complex formal wear alterations, ensuring your clothes fit perfectly and look their best.
-              </p>
-
-              <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                Whether you need alterations for everyday wear, business attire, or special occasions, our skilled team delivers quality workmanship with attention to detail. We work with all fabric types and garment styles.
+                Get the perfect length and fit for all your pants. From hemming to waist adjustments, 
+                our skilled tailors ensure your pants look great and feel comfortable.
               </p>
 
               {/* Service Features */}
@@ -292,8 +239,8 @@ export default function ClothingAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/alterations.jpg"
-                  alt="Professional clothing alterations and tailoring services"
+                  src="/services/alterations.webp"
+                  alt="Professional pants alterations and hemming services"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-2xl"
@@ -307,103 +254,7 @@ export default function ClothingAlterationsPage() {
         </div>
       </section>
 
-      {/* Alteration Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Our Alteration Services
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We specialize in a wide range of clothing alterations to ensure your garments fit perfectly and look their best.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {alterationTypes.map((service, index) => (
-              <Link key={index} href={service.link} className="group">
-                <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-pink-600 group-hover:text-pink-700 mb-3 font-montserrat">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 font-montserrat mb-4">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center text-pink-600 group-hover:text-pink-700">
-                      <span className="text-sm font-medium">Learn More</span>
-                      <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Common Alterations Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              Common Alterations We Perform
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From simple adjustments to complex alterations, our experienced tailors handle all types of garment modifications.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {commonAlterations.map((alteration, index) => (
-              <div key={index} className="flex items-center space-x-4 bg-pink-50 p-6 rounded-xl border border-pink-100">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                    <CheckCircle className="h-5 w-5 text-pink-600" />
-                  </div>
-                </div>
-                <span className="text-gray-800 font-semibold font-montserrat">{alteration}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Fabric Types Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">
-              We Work with All Fabric Types
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our experienced tailors are skilled in working with all types of fabrics, from delicate silks to heavy wools.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {fabricTypes.map((category, index) => (
-              <Card key={index} className="border-2 border-gray-200 rounded-2xl">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
-                    {category.category}
-                  </h3>
-                  <div className="space-y-2">
-                    {category.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-pink-500" />
-                        <span className="text-gray-700 font-montserrat">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-            {/* Google Reviews Section */}
+      {/* Google Reviews Section */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -517,4 +368,4 @@ export default function ClothingAlterationsPage() {
       <Footer />
     </div>
   );
-}
+} 
