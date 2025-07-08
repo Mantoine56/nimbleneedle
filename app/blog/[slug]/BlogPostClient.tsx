@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Share2, Facebook, Twitter, Linkedin, Copy, Check } from 'lucide-react';
 
 interface BlogPostClientProps {
   postUrl: string;
@@ -32,36 +32,60 @@ export default function BlogPostClient({ postUrl, postTitle }: BlogPostClientPro
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 observe-fade">
-      <h3 className="font-playfair font-bold mb-4">Share This Post</h3>
-      <div className="space-y-2">
+    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200/50 backdrop-blur-sm">
+      <div className="flex items-center mb-6">
+        <Share2 className="w-5 h-5 mr-2 text-pink-600" />
+        <h3 className="text-xl font-playfair font-bold text-gray-900">Share This Post</h3>
+      </div>
+      
+      <div className="space-y-3">
+        {/* Facebook */}
         <button
           onClick={() => shareOnSocial('facebook')}
-          className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
         >
-          <Facebook className="w-4 h-4" />
-          Facebook
+          <Facebook className="w-5 h-5" />
+          <span>Share on Facebook</span>
         </button>
+        
+        {/* Twitter */}
         <button
           onClick={() => shareOnSocial('twitter')}
-          className="w-full flex items-center justify-center gap-2 bg-sky-500 text-white py-2 rounded hover:bg-sky-600 transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-sky-500 hover:bg-sky-600 text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
         >
-          <Twitter className="w-4 h-4" />
-          Twitter
+          <Twitter className="w-5 h-5" />
+          <span>Share on Twitter</span>
         </button>
+        
+        {/* LinkedIn */}
         <button
           onClick={() => shareOnSocial('linkedin')}
-          className="w-full flex items-center justify-center gap-2 bg-blue-700 text-white py-2 rounded hover:bg-blue-800 transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
         >
-          <Linkedin className="w-4 h-4" />
-          LinkedIn
+          <Linkedin className="w-5 h-5" />
+          <span>Share on LinkedIn</span>
         </button>
+        
+        {/* Copy Link */}
         <button
           onClick={copyToClipboard}
-          className="w-full flex items-center justify-center gap-2 bg-gray-600 text-white py-2 rounded hover:bg-gray-700 transition-colors"
+          className={`w-full flex items-center justify-center gap-3 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
+            copied 
+              ? 'bg-green-600 hover:bg-green-700 text-white' 
+              : 'bg-gray-600 hover:bg-gray-700 text-white'
+          }`}
         >
-          <Share2 className="w-4 h-4" />
-          {copied ? 'Copied!' : 'Copy Link'}
+          {copied ? (
+            <>
+              <Check className="w-5 h-5" />
+              <span>Link Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-5 h-5" />
+              <span>Copy Link</span>
+            </>
+          )}
         </button>
       </div>
     </div>
