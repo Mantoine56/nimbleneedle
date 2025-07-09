@@ -239,7 +239,7 @@ export default function DressSkirtAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/Dress Alterations.jpeg"
                   alt="Professional dress and skirt alterations for the perfect fit"
                   width={600}
                   height={400}

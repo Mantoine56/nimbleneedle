@@ -257,7 +257,7 @@ export default function WeddingDressAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/WeddingDress Alterations.jpeg"
                   alt="Professional wedding dress alterations for the perfect fit"
                   width={600}
                   height={400}

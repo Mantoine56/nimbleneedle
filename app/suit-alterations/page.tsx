@@ -239,7 +239,7 @@ export default function SuitAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/suits.webp"
+                  src="/services/Suit Alterations.jpeg"
                   alt="Professional suit alterations for the perfect business fit"
                   width={600}
                   height={400}

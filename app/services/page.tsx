@@ -24,76 +24,7 @@ import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
-import { detailedReviews } from '@/lib/data';
-
-// Services data to match the design in the image
-const services = [
-  {
-    title: "Tailoring",
-    image: "/services/suits.webp",
-    link: "/tailoring"
-  },
-  {
-    title: "Custom Suits and Retail Suits",
-    image: "/services/custom-art.webp",
-    link: "/custom-suits"
-  },
-  {
-    title: "Clothing Alterations",
-    image: "/services/alterations.webp",
-    link: "/clothing-alterations"
-  },
-  {
-    title: "Dry Cleaning",
-    image: "/services/alterations.webp",
-    link: "/dry-cleaning"
-  },
-  {
-    title: "Prom Dress Alterations",
-    image: "/services/alterations.webp",
-    link: "/prom-dress-alterations"
-  },
-  {
-    title: "Wedding Dress Alterations",
-    image: "/services/alterations.webp",
-    link: "/wedding-dress-alterations"
-  },
-  {
-    title: "Seamstress Services",
-    image: "/services/alterations.webp",
-    link: "/seamstress-services"
-  },
-  {
-    title: "Suit Alterations",
-    image: "/services/suits.webp",
-    link: "/suit-alterations"
-  },
-  {
-    title: "Dress and Skirt Alterations",
-    image: "/services/alterations.webp",
-    link: "/dress-skirt-alterations"
-  },
-  {
-    title: "Pants Alterations",
-    image: "/services/alterations.webp",
-    link: "/pants-alterations"
-  },
-  {
-    title: "Jacket Alterations",
-    image: "/services/suits.webp",
-    link: "/jacket-alterations"
-  },
-  {
-    title: "Shirt Alterations",
-    image: "/services/alterations.webp",
-    link: "/shirt-alterations"
-  },
-  {
-    title: "Zipper Repair",
-    image: "/services/zipper.webp",
-    link: "/zipper-repair"
-  }
-];
+import { detailedReviews, allServices } from '@/lib/data';
 
 const whyChooseUsPoints = [
   {
@@ -129,7 +60,7 @@ const whyChooseUsPoints = [
 ];
 
 export default function ServicesPage() {
-  const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(services.length).fill(false));
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(allServices.length).fill(false));
   const [isWhyChooseUsVisible, setIsWhyChooseUsVisible] = useState(false);
   const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -216,7 +147,7 @@ export default function ServicesPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {services.map((service, index) => (
+            {allServices.map((service, index) => (
               <div
                 key={index}
                 ref={el => cardRefs.current[index] = el}

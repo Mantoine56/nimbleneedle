@@ -103,7 +103,7 @@ export default function Footer() {
                 <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
                 <li><a href="/zipper-repair" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
                 <li><a href="/wedding-dress-alterations" className="hover:text-pink-400 transition-colors">Wedding Dress Alterations</a></li>
-                <li><a href="/services" className="hover:text-pink-400 transition-colors">Hemming Services</a></li>
+                <li><a href="/services" className="hover:text-pink-400 transition-colors">All Services</a></li>
               </ul>
 
               {/* Email Contact */}

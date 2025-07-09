@@ -239,7 +239,7 @@ export default function SeamstressServicesPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/custom-art.webp"
+                  src="/services/Seamstress service.jpeg"
                   alt="Professional seamstress services and clothing alterations"
                   width={600}
                   height={400}

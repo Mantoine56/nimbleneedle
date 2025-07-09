@@ -239,7 +239,7 @@ export default function ShirtAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/Shirt Alterations.jpeg"
                   alt="Professional shirt alterations for dress shirts and blouses"
                   width={600}
                   height={400}

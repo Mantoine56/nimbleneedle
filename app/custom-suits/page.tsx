@@ -239,7 +239,7 @@ export default function CustomSuitsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/custom-art.webp"
+                  src="/services/Custom and retail suits.jpeg"
                   alt="Professional custom suit tailoring and retail suit adjustments"
                   width={600}
                   height={400}

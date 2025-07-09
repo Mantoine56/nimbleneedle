@@ -637,8 +637,8 @@ export default function ContactPage() {
             <div className="relative">
               <div className="relative w-full h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/wordpress-media/original/dress-black.jpg"
-                  alt="Beautiful black dress alterations by Nimble Needle Tailoring - expert wedding and formal wear services"
+                  src="/services/A Family Tradition in Tailoring.jpeg"
+                  alt="A family tradition in tailoring - expert craftsmanship at Nimble Needle Tailoring"
                   fill
                   className="object-cover"
                 />
@@ -662,8 +662,8 @@ export default function ContactPage() {
             <div className="relative">
               <div className="relative w-full h-96 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/wordpress-media/original/img_9047.jpeg"
-                  alt="Professional button and detail work at Nimble Needle Tailoring - precision craftsmanship"
+                  src="/services/Our Tailoring Services.jpg"
+                  alt="Our tailoring services - professional craftsmanship at Nimble Needle Tailoring"
                   fill
                   className="object-cover"
                 />

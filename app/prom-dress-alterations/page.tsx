@@ -239,7 +239,7 @@ export default function PromDressAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/PromDress Alterations.jpeg"
                   alt="Professional prom dress alterations for the perfect fit"
                   width={600}
                   height={400}

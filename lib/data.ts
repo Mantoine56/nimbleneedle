@@ -69,22 +69,117 @@ export const services = [
   {
     title: "ALTERATIONS AND REPAIRS",
     subtitle: "Wedding Dresses, Jackets, Suits, Pants, Shirts, Dresses, Skirts, Fitting Bridalwear and Eveningwear, Patching and Repairing Household Textiles",
-    image: "/alterations.jpg",
+    image: "/services/Clothing Alterations.jpeg",
     delay: 0
   },
   {
     title: "CUSTOM AND RETAIL SUITS",
     subtitle: "We have a selection of retail suits or we can create a custom one for you",
-    image: "/custom.jpg",
+    image: "/services/Custom and retail suits.jpeg",
     delay: 200
   },
   {
     title: "ZIPPER REPAIR",
     subtitle: "Clothing Zippers, Suitcase Zippers",
-    image: "/zipper.jpg",
+    image: "/services/zipper.webp",
     delay: 400
   }
-  ];
+];
+
+// Comprehensive services list for all services page
+export const allServices = [
+  {
+    title: "TAILORING",
+    subtitle: "Traditional tailoring services",
+    image: "/services/Tailoring.jpg",
+    link: "/tailoring",
+    delay: 0
+  },
+  {
+    title: "CUSTOM MADE AND RETAIL SUITS",
+    subtitle: "Bespoke suits and retail suit selection",
+    image: "/services/Custom and retail suits.jpeg",
+    link: "/custom-suits",
+    delay: 100
+  },
+  {
+    title: "DRY CLEANING",
+    subtitle: "Professional dry cleaning services",
+    image: "/services/Dry Cleaning.jpg",
+    link: "/dry-cleaning",
+    delay: 200
+  },
+  {
+    title: "CLOTHING ALTERATIONS",
+    subtitle: "Professional alterations for all types of clothing",
+    image: "/services/Clothing Alterations.jpeg",
+    link: "/clothing-alterations",
+    delay: 300
+  },
+  {
+    title: "PROM DRESS ALTERATIONS",
+    subtitle: "Look stunning for your prom night",
+    image: "/services/PromDress Alterations.jpeg",
+    link: "/prom-dress-alterations",
+    delay: 400
+  },
+  {
+    title: "WEDDING DRESS ALTERATIONS",
+    subtitle: "Expert alterations for your special day",
+    image: "/services/WeddingDress Alterations.jpeg",
+    link: "/wedding-dress-alterations",
+    delay: 500
+  },
+  {
+    title: "SEAMSTRESS SERVICES",
+    subtitle: "Comprehensive sewing and repair services",
+    image: "/services/Seamstress service.jpeg",
+    link: "/seamstress-services",
+    delay: 600
+  },
+  {
+    title: "SUIT ALTERATIONS",
+    subtitle: "Perfect fit for business and formal suits",
+    image: "/services/Suit Alterations.jpeg",
+    link: "/suit-alterations",
+    delay: 700
+  },
+  {
+    title: "DRESS AND SKIRT ALTERATIONS",
+    subtitle: "Perfect fit for dresses and skirts",
+    image: "/services/Dress Alterations.jpeg",
+    link: "/dress-skirt-alterations",
+    delay: 800
+  },
+  {
+    title: "PANTS ALTERATIONS",
+    subtitle: "Hemming, waist adjustments, and more",
+    image: "/services/Pants Alterations.jpeg",
+    link: "/pants-alterations",
+    delay: 900
+  },
+  {
+    title: "JACKET ALTERATIONS",
+    subtitle: "Professional jacket fitting and alterations",
+    image: "/services/Jacket Alterations.jpeg",
+    link: "/jacket-alterations",
+    delay: 1000
+  },
+  {
+    title: "SHIRT ALTERATIONS",
+    subtitle: "Tailored fit for dress and casual shirts",
+    image: "/services/Shirt Alterations.jpeg",
+    link: "/shirt-alterations",
+    delay: 1100
+  },
+  {
+    title: "ZIPPER REPAIR AND REPLACEMENT",
+    subtitle: "Fix broken zippers on clothing and accessories",
+    image: "/services/zipper.webp",
+    link: "/zipper-repair",
+    delay: 1200
+  }
+];
 
 export const features = [
   {

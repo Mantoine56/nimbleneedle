@@ -239,7 +239,7 @@ export default function TailoringPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/custom-art.webp"
+                  src="/services/Tailoring.jpg"
                   alt="Professional tailor working on custom suit alterations"
                   width={600}
                   height={400}

@@ -239,7 +239,7 @@ export default function DryCleaningPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/Dry Cleaning.jpg"
                   alt="Professional dry cleaning services for delicate garments"
                   width={600}
                   height={400}

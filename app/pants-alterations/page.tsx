@@ -239,7 +239,7 @@ export default function PantsAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/alterations.webp"
+                  src="/services/Pants Alterations.jpeg"
                   alt="Professional pants alterations and hemming services"
                   width={600}
                   height={400}

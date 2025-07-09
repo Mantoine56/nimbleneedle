@@ -292,7 +292,7 @@ export default function ClothingAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/alterations.jpg"
+                  src="/services/Clothing Alterations.jpeg"
                   alt="Professional clothing alterations and tailoring services"
                   width={600}
                   height={400}

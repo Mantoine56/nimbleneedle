@@ -239,7 +239,7 @@ export default function JacketAlterationsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/suits.webp"
+                  src="/services/Jacket Alterations.jpeg"
                   alt="Professional jacket alterations for blazers and formal wear"
                   width={600}
                   height={400}
