@@ -509,6 +509,7 @@ export default function Home() {
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                         className="absolute inset-0"
+                        title={`Google Maps location for ${location.name}`}
                       ></iframe>
                       {/* Overlay for styling */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>

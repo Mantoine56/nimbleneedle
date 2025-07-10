@@ -200,6 +200,8 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
                         ? 'bg-pink-500 w-6' 
                         : 'bg-white/30 hover:bg-white/50'
                     }`}
+                    aria-label={`Go to review ${index + 1} of ${heroReviews.length}`}
+                    aria-pressed={index === currentHeroReview}
                   />
                 ))}
               </div>

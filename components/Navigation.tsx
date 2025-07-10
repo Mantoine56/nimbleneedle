@@ -262,6 +262,8 @@ export default function Navigation() {
                     : 'bg-white/90 backdrop-blur-sm border border-white/40 text-gray-800 hover:bg-white hover:border-white/60'
                 }`}
                 size="sm"
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? (
                   <X className="h-5 w-5" />

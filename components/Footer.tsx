@@ -28,10 +28,10 @@ export default function Footer() {
               
               {/* Social Media */}
               <div className="flex space-x-3">
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2">
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2" aria-label="Follow us on Facebook">
                   <Facebook className="h-4 w-4" />
                 </Button>
-                <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2">
+                <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2" aria-label="Follow us on Instagram">
                   <Instagram className="h-4 w-4" />
                 </Button>
               </div>
