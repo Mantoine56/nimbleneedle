@@ -480,7 +480,7 @@ export default function AboutPage() {
                         className="rounded-full border-2 border-gray-200"
                       />
                       <div>
-                        <h4 className="font-semibold text-gray-900">{review.name}</h4>
+                        <p className="font-semibold text-gray-900">{review.name}</p>
                         <p className="text-sm text-gray-500">{review.date}</p>
                       </div>
                     </div>
@@ -535,10 +535,10 @@ export default function AboutPage() {
                 
                 {/* Social Media */}
                 <div className="flex space-x-3">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2" aria-label="Follow us on Facebook">
                     <Facebook className="h-4 w-4" />
                   </Button>
-                  <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2">
+                  <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2" aria-label="Follow us on Instagram">
                     <Instagram className="h-4 w-4" />
                   </Button>
                 </div>

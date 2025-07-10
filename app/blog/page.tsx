@@ -46,29 +46,63 @@ export default function BlogPage() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Nimble Needle Blog',
-    description: 'Expert tailoring tips, fashion insights, and professional advice from master tailors',
+    '@id': 'https://nimbleneedle.ca/blog',
+    name: 'Nimble Needle Tailoring Blog',
+    description: 'Expert tips, insights, and advice on clothing alterations, tailoring, and garment care from Ottawa\'s premier tailoring service.',
     url: 'https://nimbleneedle.ca/blog',
     publisher: {
       '@type': 'Organization',
-      name: 'Nimble Needle',
+      name: 'Nimble Needle Tailoring',
       logo: {
         '@type': 'ImageObject',
         url: 'https://nimbleneedle.ca/logo.png',
       },
     },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://nimbleneedle.ca/blog'
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Clothing Alterations and Tailoring'
+    },
+    inLanguage: 'en-CA',
     blogPost: allPosts.map(post => ({
       '@type': 'BlogPosting',
+      '@id': `https://nimbleneedle.ca/blog/${post.slug}`,
       headline: post.title,
       description: post.excerpt,
       datePublished: post.date,
       author: {
         '@type': 'Person',
         name: post.author.name,
+        jobTitle: post.author.role
       },
       url: `https://nimbleneedle.ca/blog/${post.slug}`,
-      image: post.featuredImage,
+      image: `https://nimbleneedle.ca${post.featuredImage}`,
+      keywords: post.tags,
+      articleSection: post.category
     })),
+  };
+
+  // Generate breadcrumb structured data
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nimbleneedle.ca'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://nimbleneedle.ca/blog'
+      }
+    ]
   };
 
   return (
@@ -76,6 +110,10 @@ export default function BlogPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -297,8 +335,9 @@ export default function BlogPage() {
                           <Link 
                             href={`/blog/${post.slug}`}
                             className="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
+                            aria-label={`Read more about ${post.title}`}
                           >
-                            Read More
+                            Read Full Article
                           </Link>
                         </div>
                       </div>

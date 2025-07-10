@@ -509,6 +509,7 @@ export default function Home() {
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                         className="absolute inset-0"
+                        title={`Google Maps location for ${location.name}`}
                       ></iframe>
                       {/* Overlay for styling */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
@@ -649,7 +650,7 @@ export default function Home() {
                         className="rounded-full border-2 border-gray-200"
                       />
                       <div>
-                        <h4 className="font-semibold text-gray-900">{review.name}</h4>
+                        <p className="font-semibold text-gray-900">{review.name}</p>
                         <p className="text-sm text-gray-500">{review.date}</p>
                       </div>
                     </div>

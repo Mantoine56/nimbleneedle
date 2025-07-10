@@ -34,6 +34,7 @@ export default function Footer() {
                   size="sm" 
                   className="bg-blue-600 hover:bg-blue-700 text-white p-2"
                   onClick={() => window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank')}
+                  aria-label="Follow us on Facebook"
                 >
                   <Facebook className="h-4 w-4" />
                 </Button>
@@ -41,6 +42,7 @@ export default function Footer() {
                   size="sm" 
                   className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2"
                   onClick={() => window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank')}
+                  aria-label="Follow us on Instagram"
                 >
                   <Instagram className="h-4 w-4" />
                 </Button>
