@@ -6,10 +6,10 @@ export default function SocialSidebar() {
   const handleSocialClick = (platform: string) => {
     switch (platform) {
       case 'facebook':
-        window.open('https://facebook.com/nimbleneedletailoring', '_blank');
+        window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank');
         break;
       case 'instagram':
-        window.open('https://instagram.com/nimbleneedletailoring', '_blank');
+        window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank');
         break;
       case 'whatsapp':
         window.open('https://wa.me/13435881300', '_blank');

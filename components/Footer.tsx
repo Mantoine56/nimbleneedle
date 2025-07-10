@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Clock, Mail, Facebook, Instagram } from 'lucide-react';
 import Image from 'next/image';
@@ -8,7 +10,7 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="py-16 border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-4 gap-12">
+          <div className="grid lg:grid-cols-4 gap-8">
             {/* Company Branding */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
@@ -28,10 +30,18 @@ export default function Footer() {
               
               {/* Social Media */}
               <div className="flex space-x-3">
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white p-2">
+                <Button 
+                  size="sm" 
+                  className="bg-blue-600 hover:bg-blue-700 text-white p-2"
+                  onClick={() => window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank')}
+                >
                   <Facebook className="h-4 w-4" />
                 </Button>
-                <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2">
+                <Button 
+                  size="sm" 
+                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2"
+                  onClick={() => window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank')}
+                >
                   <Instagram className="h-4 w-4" />
                 </Button>
               </div>
@@ -98,7 +108,7 @@ export default function Footer() {
             {/* Services & Contact */}
             <div>
               <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Services</h3>
-              <ul className="space-y-3 text-gray-300 font-montserrat mb-8">
+              <ul className="space-y-3 text-gray-300 font-montserrat mb-6">
                 <li><a href="/clothing-alterations" className="hover:text-pink-400 transition-colors">Alterations & Repairs</a></li>
                 <li><a href="/services" className="hover:text-pink-400 transition-colors">Custom & Retail Suits</a></li>
                 <li><a href="/zipper-repair" className="hover:text-pink-400 transition-colors">Zipper Repair</a></li>
@@ -114,7 +124,7 @@ export default function Footer() {
                 </div>
                 <a 
                   href="mailto:nimble.needle.tailoring@gmail.com" 
-                  className="text-gray-300 hover:text-pink-400 transition-colors break-all"
+                  className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                 >
                   nimble.needle.tailoring@gmail.com
                 </a>

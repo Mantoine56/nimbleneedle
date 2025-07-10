@@ -385,7 +385,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     category: "Wedding",
     tags: ["wedding dress", "alterations", "bridal", "fitting", "consultation"],
-    featuredImage: "/services/wedding-dress.webp",
+    featuredImage: "/services/WeddingDress Alterations.jpeg",
     published: true
   },
   {
