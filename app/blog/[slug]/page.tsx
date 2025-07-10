@@ -17,13 +17,14 @@ export function generateStaticParams() {
 }
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = getBlogPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
   
   if (!post) {
     return {
@@ -62,8 +63,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
   
   if (!post) {
     notFound();
@@ -75,8 +77,8 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    '@id': `https://nimbleneedle.ca/blog/${post.slug}`,
-    url: `https://nimbleneedle.ca/blog/${post.slug}`,
+    '@id': `https://nimbleneedle.ca/blog/${slug}`,
+    url: `https://nimbleneedle.ca/blog/${slug}`,
     name: post.title,
     headline: post.title,
     description: post.excerpt,
@@ -99,7 +101,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://nimbleneedle.ca/blog/${post.slug}`
+      '@id': `https://nimbleneedle.ca/blog/${slug}`
     },
     wordCount: post.content.split(' ').length,
     timeRequired: post.readTime,
@@ -145,7 +147,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://nimbleneedle.ca/blog/${post.slug}`
+        item: `https://nimbleneedle.ca/blog/${slug}`
       }
     ]
   };
