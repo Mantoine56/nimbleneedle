@@ -240,12 +240,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                             className="rounded-full shadow-md sm:w-[60px] sm:h-[60px]"
                           />
                         )}
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-base sm:text-lg">{post.author.name}</h4>
-                          {post.author.role && (
-                            <p className="text-pink-600 font-medium text-sm sm:text-base">{post.author.role}</p>
-                          )}
-                        </div>
+                                                  <div>
+                            <p className="font-semibold text-gray-900 text-base sm:text-lg">{post.author.name}</p>
+                            {post.author.role && (
+                              <p className="text-pink-600 font-medium text-sm sm:text-base">{post.author.role}</p>
+                            )}
+                          </div>
                       </div>
                     </div>
 

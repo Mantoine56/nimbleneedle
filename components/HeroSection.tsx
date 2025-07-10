@@ -190,19 +190,23 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
               </div>
 
               {/* Review Indicators */}
-              <div className="flex justify-center space-x-2 mt-4">
+              <div className="flex justify-center space-x-1 mt-4">
                 {heroReviews.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentHeroReview(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 optimized-animation ${
-                      index === currentHeroReview 
-                        ? 'bg-pink-500 w-6' 
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
+                    className="p-3 rounded-full transition-all duration-300 optimized-animation hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent"
                     aria-label={`Go to review ${index + 1} of ${heroReviews.length}`}
                     aria-pressed={index === currentHeroReview}
-                  />
+                  >
+                    <div
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentHeroReview 
+                          ? 'bg-pink-500 w-6' 
+                          : 'bg-white/30 hover:bg-white/50'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
