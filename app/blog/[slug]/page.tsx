@@ -75,25 +75,79 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `https://nimbleneedle.ca/blog/${post.slug}`,
+    url: `https://nimbleneedle.ca/blog/${post.slug}`,
+    name: post.title,
     headline: post.title,
     description: post.excerpt,
-    image: post.featuredImage,
+    image: `https://nimbleneedle.ca${post.featuredImage}`,
     datePublished: post.date,
+    dateModified: post.date,
     author: {
       '@type': 'Person',
       name: post.author.name,
+      jobTitle: post.author.role,
+      image: post.author.avatar ? `https://nimbleneedle.ca${post.author.avatar}` : undefined
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Nimble Needle',
+      name: 'Nimble Needle Tailoring',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nimbleneedle.ca/logo.png',
-      },
+        url: 'https://nimbleneedle.ca/logo.png'
+      }
     },
-    keywords: post.tags.join(', '),
-    articleSection: post.category,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://nimbleneedle.ca/blog/${post.slug}`
+    },
     wordCount: post.content.split(' ').length,
+    timeRequired: post.readTime,
+    keywords: post.tags,
+    articleSection: post.category,
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': 'https://nimbleneedle.ca/blog',
+      name: 'Nimble Needle Tailoring Blog'
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Clothing Alterations and Tailoring'
+    },
+    mentions: [
+      {
+        '@type': 'Organization',
+        name: 'Nimble Needle Tailoring',
+        url: 'https://nimbleneedle.ca'
+      }
+    ],
+    inLanguage: 'en-CA'
+  };
+
+  // Generate breadcrumb structured data
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nimbleneedle.ca'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://nimbleneedle.ca/blog'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://nimbleneedle.ca/blog/${post.slug}`
+      }
+    ]
   };
 
   return (
@@ -101,6 +155,10 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
