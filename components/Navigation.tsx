@@ -91,8 +91,8 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <a href="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
-              <div className={`relative w-12 h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
+            <a href="/" className="flex items-center space-x-2 sm:space-x-3 group transition-all duration-300 hover:scale-105">
+              <div className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
                 isLightBackground || isScrolled 
                   ? 'bg-gray-100 group-hover:bg-gray-200' 
                   : 'bg-white/25 backdrop-blur-sm group-hover:bg-white/40'
@@ -104,11 +104,16 @@ export default function Navigation() {
                   className="object-contain"
                 />
               </div>
-              <span className={`text-2xl font-bold tracking-tight font-montserrat transition-colors duration-500 ${
-                isLightBackground || isScrolled 
-                  ? 'text-gray-900 group-hover:text-pink-600' 
-                  : 'text-white drop-shadow-lg group-hover:text-pink-200'
-              }`}>Nimble Needle Tailoring</span>
+              <div className="flex flex-col sm:block">
+                <span className={`text-lg sm:text-2xl font-bold tracking-tight font-montserrat transition-colors duration-500 leading-tight ${
+                  isLightBackground || isScrolled 
+                    ? 'text-gray-900 group-hover:text-pink-600' 
+                    : 'text-white drop-shadow-lg group-hover:text-pink-200'
+                }`}>
+                  <span className="block sm:inline">Nimble Needle</span>
+                  <span className="block sm:inline sm:ml-1">Tailoring</span>
+                </span>
+              </div>
             </a>
             
             {/* Desktop Navigation Menu */}
