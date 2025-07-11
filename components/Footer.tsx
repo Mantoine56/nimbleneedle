@@ -125,10 +125,10 @@ export default function Footer() {
                   <span className="font-semibold text-pink-400">Email Us</span>
                 </div>
                 <a 
-                  href="mailto:nimble.needle.tailoring@gmail.com" 
+                  href="mailto:info@nimbleneedle.ca" 
                   className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                 >
-                  nimble.needle.tailoring@gmail.com
+                  info@nimbleneedle.ca
                 </a>
               </div>
             </div>

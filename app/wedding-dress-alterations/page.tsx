@@ -9,7 +9,8 @@ import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
-import { locations, detailedReviews } from '@/lib/data';
+import GoogleReviewsSection from '@/components/GoogleReviewsSection';
+import { locations } from '@/lib/data';
 
 const serviceFeatures = [
   "Professional wedding dress alterations and fittings",
@@ -66,11 +67,9 @@ const serviceOptions = [
 export default function WeddingDressAlterationsPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isServicesVisible, setIsServicesVisible] = useState(false);
-  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
   const [isCallPopupOpen, setIsCallPopupOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
   const callPopupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,8 +81,6 @@ export default function WeddingDressAlterationsPage() {
               setIsHeroVisible(true);
             } else if (entry.target === servicesRef.current) {
               setIsServicesVisible(true);
-            } else if (entry.target === testimonialsRef.current) {
-              setIsTestimonialsVisible(true);
             }
           }
         });
@@ -93,12 +90,10 @@ export default function WeddingDressAlterationsPage() {
 
     if (heroRef.current) observer.observe(heroRef.current);
     if (servicesRef.current) observer.observe(servicesRef.current);
-    if (testimonialsRef.current) observer.observe(testimonialsRef.current);
 
     return () => {
       if (heroRef.current) observer.unobserve(heroRef.current);
       if (servicesRef.current) observer.unobserve(servicesRef.current);
-      if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
     };
   }, []);
 
@@ -425,54 +420,11 @@ export default function WeddingDressAlterationsPage() {
         </div>
       </section>
 
-      {/* Customer Testimonials */}
-      <section 
-        ref={testimonialsRef}
-        className="py-20 bg-gray-50"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {detailedReviews.slice(0, 4).map((review, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  isTestimonialsVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
-                }`}
-                style={{
-                  transitionDelay: `${index * 150}ms`
-                }}
-              >
-                <Card className="h-full bg-white border-0 rounded-2xl shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <Image
-                        src={review.avatar}
-                        alt={review.name}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 text-sm">{review.name}</h4>
-                        <div className="flex">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="h-3 w-3 text-yellow-400 fill-current" />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {review.text.substring(0, 120)}...
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Google Reviews Section */}
+      <GoogleReviewsSection 
+        ctaText="Book an Appointment"
+        ctaLink="/bookings"
+      />
 
       <Footer />
     </div>

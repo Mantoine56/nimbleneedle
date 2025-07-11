@@ -1,6 +1,6 @@
 "use client";
 
-import { Facebook, Instagram, MessageCircle, Phone } from 'lucide-react';
+import { Facebook, Instagram, Phone } from 'lucide-react';
 
 export default function SocialSidebar() {
   const handleSocialClick = (platform: string) => {
@@ -10,9 +10,6 @@ export default function SocialSidebar() {
         break;
       case 'instagram':
         window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank');
-        break;
-      case 'whatsapp':
-        window.open('https://wa.me/13435881300', '_blank');
         break;
       case 'call':
         window.open('tel:3435881300');
@@ -39,15 +36,6 @@ export default function SocialSidebar() {
           aria-label="Instagram"
         >
           <Instagram className="h-4 w-4" />
-        </button>
-
-        {/* WhatsApp */}
-        <button
-          onClick={() => handleSocialClick('whatsapp')}
-          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-pink-600 hover:bg-white/60 rounded-md transition-all duration-200 group"
-          aria-label="WhatsApp"
-        >
-          <MessageCircle className="h-4 w-4" />
         </button>
 
         {/* Call Button */}

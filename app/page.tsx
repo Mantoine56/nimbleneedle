@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import HeroSection from '@/components/HeroSection';
-import { testimonials, services, features, locations, detailedReviews } from '@/lib/data';
+import { testimonials, services, features, locations } from '@/lib/data';
 import { getAllBlogPosts } from '@/lib/blog-data';
 import BlogCard from '@/components/BlogCard';
 import Footer from '@/components/Footer';
@@ -33,6 +33,68 @@ export default function Home() {
   const [isLocationVisible, setIsLocationVisible] = useState(false);
   const [isReviewsVisible, setIsReviewsVisible] = useState(false);
   const [isBlogVisible, setIsBlogVisible] = useState(false);
+
+  // Google Reviews State Management
+  const [heroReviews, setHeroReviews] = useState<any[]>([]);
+  const [detailedReviews, setDetailedReviews] = useState<any[]>([]);
+  const [businessInfo, setBusinessInfo] = useState<any>(null);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [reviewsError, setReviewsError] = useState<string | null>(null);
+
+  // Carousel State Management
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+  const [reviewsPerPage, setReviewsPerPage] = useState(3);
+
+  // Responsive reviews per page detection
+  useEffect(() => {
+    const updateReviewsPerPage = () => {
+      if (window.innerWidth < 768) {
+        setReviewsPerPage(1); // Mobile: 1 review
+      } else if (window.innerWidth < 1024) {
+        setReviewsPerPage(2); // Tablet: 2 reviews
+      } else {
+        setReviewsPerPage(3); // Desktop: 3 reviews
+      }
+    };
+
+    updateReviewsPerPage();
+    window.addEventListener('resize', updateReviewsPerPage);
+    return () => window.removeEventListener('resize', updateReviewsPerPage);
+  }, []);
+
+  // Reset currentReviewIndex when reviewsPerPage changes
+  useEffect(() => {
+    setCurrentReviewIndex(0);
+  }, [reviewsPerPage]);
+
+  // Fetch Google Reviews on component mount
+  useEffect(() => {
+    async function fetchGoogleReviews() {
+      try {
+        setReviewsLoading(true);
+        setReviewsError(null);
+        
+        const response = await fetch('/api/reviews');
+        const data = await response.json();
+        
+        if (data.success) {
+          setHeroReviews(data.heroReviews || []);
+          setDetailedReviews(data.detailedReviews || []);
+          setBusinessInfo(data.businessInfo || null);
+        } else {
+          console.error('Failed to fetch reviews:', data.error);
+          setReviewsError(data.error || 'Failed to fetch reviews');
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        setReviewsError('Failed to fetch reviews');
+      } finally {
+        setReviewsLoading(false);
+      }
+    }
+
+    fetchGoogleReviews();
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -114,13 +176,31 @@ export default function Home() {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // Carousel navigation functions
+  const nextReviews = () => {
+    const maxIndex = Math.max(0, detailedReviews.length - reviewsPerPage);
+    setCurrentReviewIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
+  const prevReviews = () => {
+    setCurrentReviewIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  // Responsive reviews per page
+
+
   return (
     <div className="min-h-screen bg-white mobile-safe">
       <Navigation />
       <SocialSidebar />
 
       {/* Optimized Hero Section Component */}
-      <HeroSection scrollY={scrollY} />
+      <HeroSection 
+        scrollY={scrollY} 
+        heroReviews={heroReviews}
+        businessInfo={businessInfo}
+        reviewsLoading={reviewsLoading}
+      />
 
       {/* Enhanced Services Section */}
       <section 
@@ -575,11 +655,11 @@ export default function Home() {
       {/* Reviews Section */}
       <section 
         ref={reviewsRef}
-        className="relative py-16 md:py-20 bg-gray-50 overflow-hidden"
+        className="py-34 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
+          <div className={`text-center mb-16 transition-all duration-1000 ${
             isReviewsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -590,7 +670,7 @@ export default function Home() {
               </span>
               <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
               WHAT OUR CLIENTS<br />
               SAY ABOUT US
             </h2>
@@ -600,73 +680,137 @@ export default function Home() {
                   <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
-              <span className="text-gray-500">• 500+ Reviews</span>
+              {businessInfo ? (
+                <>
+                  <span className="text-xl font-semibold text-gray-700 ml-2">
+                    {businessInfo.rating}/5
+                  </span>
+                  <span className="text-gray-500">• {businessInfo.totalReviews}+ Reviews</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
+                  <span className="text-gray-500">• 918+ Reviews</span>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Reviews Grid */}
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            {detailedReviews.map((review, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  isReviewsVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
+          {/* Reviews Carousel */}
+          <div className="relative mb-8">
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevReviews}
+              disabled={currentReviewIndex === 0}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${
+                currentReviewIndex === 0 
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                  : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
+              }`}
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="h-6 w-6 mx-auto" />
+            </button>
+            
+            <button
+              onClick={nextReviews}
+              disabled={currentReviewIndex >= detailedReviews.length - reviewsPerPage}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${
+                currentReviewIndex >= detailedReviews.length - reviewsPerPage
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
+              }`}
+              aria-label="Next reviews"
+            >
+              <ChevronRight className="h-6 w-6 mx-auto" />
+            </button>
+
+            {/* Reviews Container */}
+            <div className="overflow-hidden mx-14 py-12">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out gap-6"
                 style={{
-                  transitionDelay: `${index * 200}ms`
+                  transform: `translateX(-${currentReviewIndex * (100 / reviewsPerPage)}%)`
                 }}
               >
-                <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 rounded-2xl">
-                  <CardContent className="p-8 h-full flex flex-col">
-                    {/* Rating Stars */}
-                    <div className="flex mb-4">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    
-                    {/* Review Text */}
-                    <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
-                      &quot;{review.text}&quot;
-                    </p>
-                    
-                    {/* Service Badge */}
-                    <div className="mb-4">
-                      <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-3 py-1">
-                        {review.service}
-                      </Badge>
-                    </div>
-                    
-                    {/* Reviewer Info */}
-                    <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
-                      <Image
-                        src={review.avatar}
-                        alt={review.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full border-2 border-gray-200"
-                      />
-                      <div>
-                        <p className="font-semibold text-gray-900">{review.name}</p>
-                        <p className="text-sm text-gray-500">{review.date}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                {detailedReviews.map((review, index) => (
+                  <div
+                    key={index}
+                    className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-1000 ${
+                      isReviewsVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-12'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`
+                    }}
+                  >
+                    <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 rounded-xl">
+                      <CardContent className="p-6 h-full flex flex-col">
+                        {/* Rating Stars */}
+                        <div className="flex mb-4">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        
+                        {/* Review Text */}
+                        <div className="mb-4 flex-grow">
+                          <p className="text-gray-700 leading-relaxed text-sm line-clamp-6">
+                            &quot;{review.text}&quot;
+                          </p>
+                        </div>
+                        
+                        {/* Service Badge */}
+                        <div className="mb-4">
+                          <Badge className="bg-pink-50 text-pink-700 border-pink-200 px-2 py-1 text-xs">
+                            {review.service}
+                          </Badge>
+                        </div>
+                        
+                        {/* Reviewer Info */}
+                        <div className="flex items-center space-x-3 pt-3 border-t border-gray-100">
+                          <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+                            <span className="text-pink-600 font-semibold text-sm">
+                              {review.name.charAt(0)}
+                            </span>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-gray-900 text-sm">{review.name}</p>
+                            <p className="text-xs text-gray-500">{review.date}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center mt-12 space-x-2">
+              {Array.from({ length: Math.max(1, detailedReviews.length - reviewsPerPage + 1) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentReviewIndex(Math.min(index, detailedReviews.length - reviewsPerPage))}
+                  className={`transition-all duration-300 ${
+                    currentReviewIndex === index
+                      ? 'w-8 h-2 bg-pink-500 rounded-full'
+                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400 rounded-full'
+                  }`}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Call to Action */}
-          <div className={`text-center transition-all duration-1000 delay-600 ${
+          <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${
             isReviewsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600 mb-8">
               Ready to experience our exceptional service?
             </p>
             <Button 

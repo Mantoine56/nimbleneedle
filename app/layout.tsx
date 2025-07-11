@@ -32,12 +32,32 @@ export const metadata: Metadata = {
   keywords: 'Ottawa tailoring, clothing alterations, dress alterations, wedding dress alterations, suit alterations, zipper repair, Preston Street, Riverside Drive',
   authors: [{ name: 'Nimble Needle Tailoring' }],
   robots: 'index, follow',
+  // Favicon configuration using the logo
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: '16x16', type: 'image/png' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: {
+      url: '/logo.png',
+      sizes: '180x180',
+      type: 'image/png',
+    },
+    shortcut: '/logo.png',
+  },
   openGraph: {
     title: 'Nimble Needle - Professional Tailoring Services',
     description: 'Expert tailoring & clothing alterations in Ottawa. No appointment needed! Family-run business serving Preston & Riverside.',
     type: 'website',
     url: 'https://nimbleneedle.ca',
     siteName: 'Nimble Needle Tailoring',
+    images: [{
+      url: '/logo.png',
+      width: 1200,
+      height: 630,
+      alt: 'Nimble Needle Tailoring Logo',
+    }],
   },
 };
 
@@ -65,7 +85,7 @@ export default function RootLayout({
               "description": "Expert tailoring & clothing alterations in Ottawa. No appointment needed! Family-run business serving Preston & Riverside.",
               "url": "https://nimbleneedle.ca",
               "telephone": "(343) 588-1300",
-              "email": "nimble.needle.tailoring@gmail.com",
+              "email": "info@nimbleneedle.ca",
               "priceRange": "$$",
               "currenciesAccepted": "CAD",
               "paymentAccepted": "Cash, Credit Card",

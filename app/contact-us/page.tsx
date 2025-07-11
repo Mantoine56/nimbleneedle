@@ -77,7 +77,7 @@ const contactMethods = [
   {
     method: "Email",
     icon: Mail,
-    primary: "nimble.needle.tailoring@gmail.com",
+    primary: "info@nimbleneedle.ca",
     secondary: "",
     description: "Send us your questions or photos",
     available: "24/7 - We reply within 24 hours"
@@ -161,24 +161,43 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // For now, just show success message
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
+      // Send form data to API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success - show success message
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        // API returned an error
+        console.error('Form submission error:', data.error);
+        setSubmitStatus('error');
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      }
     } catch (error) {
+      // Network or other error
+      console.error('Form submission failed:', error);
       setSubmitStatus('error');
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -455,8 +474,8 @@ export default function ContactPage() {
                   <div className="mt-6 pt-6 border-t border-gray-200">
                     <p className="text-sm text-gray-500 text-center">
                       Or contact us directly at{' '}
-                      <a href="mailto:nimble.needle.tailoring@gmail.com" className="text-pink-600 hover:text-pink-700 font-medium">
-                        nimble.needle.tailoring@gmail.com
+                      <a href="mailto:info@nimbleneedle.ca" className="text-pink-600 hover:text-pink-700 font-medium">
+                        info@nimbleneedle.ca
                       </a>
                     </p>
                   </div>
@@ -866,10 +885,10 @@ export default function ContactPage() {
                     <span className="font-semibold text-pink-400">Email Us</span>
                   </div>
                   <a 
-                    href="mailto:nimble.needle.tailoring@gmail.com" 
+                    href="mailto:info@nimbleneedle.ca" 
                     className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                   >
-                    nimble.needle.tailoring@gmail.com
+                    info@nimbleneedle.ca
                   </a>
                 </div>
               </div>

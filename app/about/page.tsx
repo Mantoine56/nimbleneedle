@@ -25,7 +25,8 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
-import { detailedReviews, locations } from '@/lib/data';
+import GoogleReviewsSection from '@/components/GoogleReviewsSection';
+import { locations } from '@/lib/data';
 
 const teamValues = [
   {
@@ -102,12 +103,10 @@ const services = [
 export default function AboutPage() {
   const [visibleMilestones, setVisibleMilestones] = useState<boolean[]>(new Array(milestones.length).fill(false));
   const [isTimelineEndVisible, setIsTimelineEndVisible] = useState(false);
-  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
   const [isLocationPopupOpen, setIsLocationPopupOpen] = useState(false);
   const [isCallPopupOpen, setIsCallPopupOpen] = useState(false);
   const milestoneRefs = useRef<(HTMLDivElement | null)[]>([]);
   const timelineEndRef = useRef<HTMLDivElement>(null);
-  const reviewsRef = useRef<HTMLDivElement>(null);
   const locationPopupRef = useRef<HTMLDivElement>(null);
   const callPopupRef = useRef<HTMLDivElement>(null);
 
@@ -125,8 +124,6 @@ export default function AboutPage() {
               });
             } else if (entry.target === timelineEndRef.current) {
               setIsTimelineEndVisible(true);
-            } else if (entry.target === reviewsRef.current) {
-              setIsReviewsVisible(true);
             }
           }
         });
@@ -142,19 +139,12 @@ export default function AboutPage() {
       observer.observe(timelineEndRef.current);
     }
 
-    if (reviewsRef.current) {
-      observer.observe(reviewsRef.current);
-    }
-
     return () => {
       milestoneRefs.current.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
       if (timelineEndRef.current) {
         observer.unobserve(timelineEndRef.current);
-      }
-      if (reviewsRef.current) {
-        observer.unobserve(reviewsRef.current);
       }
     };
   }, []);
@@ -399,116 +389,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Customer Reviews Section */}
-      <section 
-        ref={reviewsRef}
-        className="relative py-20 bg-gray-50 overflow-hidden"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className={`text-center mb-16 transition-all duration-1000 ${
-            isReviewsVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}>
-            <div className="mb-4">
-              <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
-                CUSTOMER REVIEWS
-              </span>
-              <div className="w-16 h-0.5 bg-pink-500 mx-auto mt-2"></div>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
-              WHAT OUR CUSTOMERS<br />
-              ARE SAYING
-            </h2>
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
-              <span className="text-gray-500">• 500+ Reviews</span>
-            </div>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied customers have to say about our services.
-            </p>
-          </div>
-
-          {/* Reviews Grid */}
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            {detailedReviews.map((review, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  isReviewsVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
-                style={{
-                  transitionDelay: `${index * 200}ms`
-                }}
-              >
-                <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 rounded-2xl">
-                  <CardContent className="p-8 h-full flex flex-col">
-                    {/* Rating Stars */}
-                    <div className="flex mb-4">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    
-                    {/* Review Text */}
-                    <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
-                      &quot;{review.text}&quot;
-                    </p>
-                    
-                    {/* Service Badge */}
-                    <div className="mb-4">
-                      <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-3 py-1">
-                        {review.service}
-                      </Badge>
-                    </div>
-                    
-                    {/* Reviewer Info */}
-                    <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
-                      <Image
-                        src={review.avatar}
-                        alt={review.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full border-2 border-gray-200"
-                      />
-                      <div>
-                        <p className="font-semibold text-gray-900">{review.name}</p>
-                        <p className="text-sm text-gray-500">{review.date}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className={`text-center transition-all duration-1000 delay-600 ${
-            isReviewsVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}>
-            <p className="text-lg text-gray-600 mb-6">
-              Ready to experience our exceptional service?
-            </p>
-            <Button 
-              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
-              onClick={() => window.location.href = '/contact-us'}
-            >
-              <Phone className="h-5 w-5 mr-2" />
-              Contact Us Today
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Google Reviews Section */}
+      <GoogleReviewsSection 
+        title="WHAT OUR CUSTOMERS ARE SAYING"
+        subtitle="CUSTOMER REVIEWS"
+        className="bg-gray-50"
+        ctaText="Contact Us Today"
+        ctaLink="/contact-us"
+      />
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -630,10 +518,10 @@ export default function AboutPage() {
                     <span className="font-semibold text-pink-400">Email Us</span>
                   </div>
                   <a 
-                    href="mailto:nimble.needle.tailoring@gmail.com" 
+                    href="mailto:info@nimbleneedle.ca" 
                     className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                   >
-                    nimble.needle.tailoring@gmail.com
+                    info@nimbleneedle.ca
                   </a>
                 </div>
               </div>

@@ -114,6 +114,20 @@
     overflow: hidden;
   }
   
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
   /* Performance optimizations */
   .optimized-animation {
     will-change: transform;
@@ -191,5 +205,42 @@
     will-change: transform;
     backface-visibility: hidden;
     transform: translateZ(0);
+  }
+
+  /* Scrollable review text in hero section */
+  .scrollable-review-text {
+    /* Firefox scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  
+  .scrollable-review-text::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .scrollable-review-text::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollable-review-text::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+  
+  .scrollable-review-text::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .scrollable-review-text::-webkit-scrollbar-thumb:active {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Ensure proper scrolling behavior */
+  .scrollable-review-text {
+    scroll-behavior: smooth;
+    overflow-y: auto; /* Only show when needed */
+    overflow-x: hidden;
+    word-wrap: break-word;
+    line-height: 1.5;
   }
 }

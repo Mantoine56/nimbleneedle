@@ -20,7 +20,7 @@
 ### **📝 CONTENT TO ADD/UPDATE**
 
 #### **Business Information**
-- ✅ **Add Email**: `nimble.needle.tailoring@gmail.com` 
+- ✅ **Add Email**: `info@nimbleneedle.ca` 
 - ✅ **Add Tagline**: "Friendly, Expert Tailoring"
 - ✅ **Emphasize**: "No appointment needed"
 - ✅ **Add**: "Family-run business" 
@@ -224,7 +224,7 @@ We are proud to be an Ottawa company that delivers top-quality services to our c
 - Tue-Sat: 9am - 9pm
 
 ### General Information
-**Email:** nimble.needle.tailoring@gmail.com
+**Email:** info@nimbleneedle.ca
 
 ## No Appointment Needed!
 Walk-ins welcome at both locations
