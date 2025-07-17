@@ -81,7 +81,7 @@ export const services = [
   {
     title: "ZIPPER REPAIR",
     subtitle: "Clothing Zippers, Suitcase Zippers",
-    image: "/services/zipper.webp",
+    image: "/services/zipper repair.jpg",
     delay: 400
   }
 ];
@@ -175,7 +175,7 @@ export const allServices = [
   {
     title: "ZIPPER REPAIR AND REPLACEMENT",
     subtitle: "Fix broken zippers on clothing and accessories",
-    image: "/services/zipper.webp",
+    image: "/services/zipper repair.jpg",
     link: "/zipper-repair",
     delay: 1200
   }

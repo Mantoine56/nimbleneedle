@@ -13,7 +13,10 @@ import {
   HelpCircle,
   Diamond,
   Zap,
-  Award
+  Award,
+  Calendar,
+  Shirt,
+  Sparkles
 } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
@@ -23,30 +26,60 @@ import Footer from '@/components/Footer';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection';
 import { locations } from '@/lib/data';
 
-const serviceFeatures = [
-  "Professional Dry Cleaning",
-  "Delicate Fabric Care", 
-  "Stain Removal",
-  "Eco-Friendly Solutions",
-  "Proudly Serving Ottawa"
+const mainFeatures = [
+  "Safe and gentle cleaning for all fabric types",
+  "No appointment necessary — walk in anytime", 
+  "Experienced team familiar with delicate and designer items",
+  "Full garment inspection and pre-spotting included",
+  "On-time service with a quality satisfaction guarantee",
+  "Competitive pricing and eco-friendly solvents"
 ];
 
-const serviceOptions = [
+const cleaningSigns = [
   {
-    icon: HelpCircle,
-    title: "I have questions",
-    description: "Not sure about fabric care or stain removal? Our experts can advise on the best cleaning method for your garments!"
+    title: "Persistent stains that don't wash out",
+    description: "Stubborn stains require professional treatment"
   },
   {
-    icon: Diamond,
-    title: "I need it done right",
-    description: "We use professional-grade equipment and eco-friendly solvents to ensure your clothes are cleaned to perfection."
+    title: "Delicate fabric that can't go in the machine",
+    description: "Silk, cashmere, wool need special care"
   },
   {
-    icon: Zap,
-    title: "I have an urgent need",
-    description: "Need clean clothes for a special event? We offer same-day and express cleaning services!"
+    title: "Fabrics that shrink, lose color, or lose shape in water",
+    description: "Protect your investment with proper cleaning"
+  },
+  {
+    title: "Clothes that have a strong odor or musty smell",
+    description: "Professional cleaning eliminates deep-set odors"
+  },
+  {
+    title: "Items with special finishes, beading, or embroidery",
+    description: "Delicate details require expert handling"
   }
+];
+
+const garmentTypes = [
+  { category: "Clothing", items: [
+    "Shirts & Blouses",
+    "Pants & Shorts", 
+    "Dresses (casual, silk, evening gowns, and wedding dresses)",
+    "Suits, Jackets & Coats (including Canada Goose & wool coats)",
+    "Scarves, Shawls & Ties",
+    "Skirts (pleated, silk, fancy)",
+    "Lab Coats, Dishdashas, and Uniforms"
+  ]},
+  { category: "Household Items", items: [
+    "Comforters, Blankets, and Sleeping Bags",
+    "Curtains, Tablecloths, and Aprons"
+  ]}
+];
+
+const whyChooseFeatures = [
+  "Fabric-safe cleaning methods",
+  "Detailed inspection and spot cleaning",
+  "Eco-friendly and non-toxic solvents", 
+  "Same-day or next-day service available",
+  "Trusted by clients across Ottawa"
 ];
 
 export default function DryCleaningPage() {
@@ -116,8 +149,11 @@ export default function DryCleaningPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
-              DRY CLEANING
+              DRY CLEANING SERVICES
             </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-montserrat">
+              Professional Dry Cleaning Services in Ottawa on Preston St. and Riverside Dr.
+            </p>
           </div>
         </div>
       </section>
@@ -136,17 +172,20 @@ export default function DryCleaningPage() {
                 : 'opacity-0 -translate-x-8'
             }`}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
-                Looking for dry cleaning services to keep your clothes perfect?
+                Expert Dry Cleaning for All Your Garments
               </h2>
               
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                Trust our professional dry cleaning experts to handle your delicate garments with care. 
-                We use eco-friendly solutions and state-of-the-art equipment to ensure your clothes look their best.
+                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we offer expert dry cleaning services at our two Ottawa locations—Preston Street and our new store on Riverside Drive. Whether it's everyday wear, delicate fabrics, or specialty items, our team uses proven techniques and professional-grade equipment to clean and refresh garments without damaging their quality.
               </p>
 
-              {/* Service Features */}
+              <p className="text-lg text-pink-600 font-semibold mb-8 font-montserrat">
+                Walk-ins are welcome during business hours. No appointment or prior consultation is required.
+              </p>
+
+              {/* Main Features */}
               <div className="space-y-4 mb-8">
-                {serviceFeatures.map((feature, index) => (
+                {mainFeatures.map((feature, index) => (
                   <div 
                     key={index}
                     className={`flex items-center space-x-3 transition-all duration-1000 ${
@@ -170,7 +209,7 @@ export default function DryCleaningPage() {
                   onClick={() => window.location.href = '/bookings'}
                   className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
                 >
-                  <Clock className="h-5 w-5 mr-2" />
+                  <Calendar className="h-5 w-5 mr-2" />
                   Book an Appointment
                 </Button>
                 <Button 
@@ -222,7 +261,7 @@ export default function DryCleaningPage() {
               )}
 
               <p className="text-sm text-gray-500 mt-4 font-montserrat">
-                Call to get your questions answered or visit our shop. No appointment necessary. Walk-ins welcome!
+                Call or visit us in person at either of our two Ottawa locations.
               </p>
             </div>
 
@@ -235,13 +274,13 @@ export default function DryCleaningPage() {
               <div className="relative">
                 <Image
                   src="/services/Dry Cleaning.jpg"
-                  alt="Professional dry cleaning services for delicate garments"
+                  alt="Professional dry cleaning services for delicate garments at Nimble Needle Tailoring"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-2xl"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-pink-500 rounded-2xl p-4 shadow-xl">
-                  <Award className="h-8 w-8 text-white" />
+                  <Sparkles className="h-8 w-8 text-white" />
                 </div>
               </div>
             </div>
@@ -249,41 +288,106 @@ export default function DryCleaningPage() {
         </div>
       </section>
 
-      {/* Google Reviews Section */}
-      <section className="py-12 bg-gray-50">
+      {/* Signs Your Garment Needs Professional Dry Cleaning */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <span className="text-lg font-semibold text-gray-900">EXCELLENT</span>
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <span className="text-lg font-semibold text-gray-900">819 reviews</span>
-              <Image
-                src="/logo.png"
-                alt="Google Reviews"
-                width={60}
-                height={20}
-                className="opacity-60"
-              />
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
+              Signs Your Garment Needs Professional Dry Cleaning
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto font-montserrat">
+              Some garments require more than a simple wash. Signs you should bring your item in for dry cleaning:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cleaningSigns.map((sign, index) => (
+              <Card key={index} className="border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-white text-sm font-bold">!</span>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2 font-montserrat">
+                        {sign.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm font-montserrat">
+                        {sign.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-lg text-gray-700 font-montserrat">
+              We'll treat stains, protect fabric, and restore your garment to its original look.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Service Options */}
+      {/* Garments and Items We Clean */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
+              Garments and Household Items We Dry Clean
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto font-montserrat">
+              We handle a wide range of garments, accessories, and household items with care and precision, including:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {garmentTypes.map((category, categoryIndex) => (
+              <div key={categoryIndex}>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-league-spartan text-center">
+                  {category.category}
+                </h3>
+                <div className="space-y-4">
+                  {category.items.map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <Shirt className="h-5 w-5 text-pink-500" />
+                      <span className="text-gray-700 font-montserrat">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-lg text-gray-700 font-montserrat">
+              We also offer expert care for silk, linen, wool, and other specialty fabrics.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
       <section 
         ref={servicesRef}
-        className="py-20 bg-white"
+        className="py-20 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {serviceOptions.map((option, index) => (
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
+              Why Choose Us for Dry Cleaning?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto font-montserrat mb-8">
+              Bringing your clothes to a professional cleaner protects their quality, extends their life, and helps you look your best.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {whyChooseFeatures.map((feature, index) => (
               <div
                 key={index}
-                className={`text-center transition-all duration-1000 ${
+                className={`flex items-center space-x-3 transition-all duration-1000 ${
                   isServicesVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
@@ -292,21 +396,74 @@ export default function DryCleaningPage() {
                   transitionDelay: `${index * 200}ms`
                 }}
               >
-                <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
-                  <CardContent className="p-8">
-                    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <option.icon className="h-8 w-8 text-gray-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
-                      {option.title}
-                    </h3>
-                    <p className="text-gray-600 font-montserrat">
-                      {option.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <CheckCircle className="h-6 w-6 text-pink-500" />
+                <span className="text-gray-700 font-montserrat text-lg">{feature}</span>
               </div>
             ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-lg text-gray-700 font-montserrat max-w-4xl mx-auto">
+              Our team takes pride in treating every garment like our own. From casual wear to formal attire, we clean with care and return your items fresh, pressed, and ready to wear.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Quality Features */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Quality Assurance */}
+            <div className="text-center">
+              <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                <CardContent className="p-8">
+                  <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="h-8 w-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
+                    Quality Assurance
+                  </h3>
+                  <p className="text-gray-600 font-montserrat">
+                    Every dry cleaning service comes with our satisfaction guarantee and quality workmanship.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Fast Turnaround */}
+            <div className="text-center">
+              <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                <CardContent className="p-8">
+                  <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Clock className="h-8 w-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
+                    Fast Turnaround
+                  </h3>
+                  <p className="text-gray-600 font-montserrat">
+                    Most dry cleaning completed same-day. Walk-ins welcome for immediate service.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Expert Craftsmanship */}
+            <div className="text-center">
+              <Card className="h-full border-2 border-gray-200 hover:border-pink-300 transition-all duration-300 rounded-2xl">
+                <CardContent className="p-8">
+                  <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Award className="h-8 w-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 font-montserrat">
+                    Expert Craftsmanship
+                  </h3>
+                  <p className="text-gray-600 font-montserrat">
+                    Professional cleaning techniques ensure your garments look fresh and pristine for years to come.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

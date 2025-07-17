@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     category: "Repair Tips",
     tags: ["zipper repair", "maintenance", "clothing care", "repairs"],
-    featuredImage: "/services/zipper.webp",
+    featuredImage: "/services/zipper repair.jpg",
     published: true
   },
   {

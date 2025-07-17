@@ -24,13 +24,14 @@ import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
-import { detailedReviews, allServices } from '@/lib/data';
+import GoogleReviewsSection from '@/components/GoogleReviewsSection';
+import { allServices } from '@/lib/data';
 
 const whyChooseUsPoints = [
   {
     icon: Award,
     title: "High Quality Work",
-    description: "Expert craftsmanship with over 15 years of experience"
+    description: "Expert craftsmanship with over 20 years of experience"
   },
   {
     icon: Clock,
@@ -62,10 +63,8 @@ const whyChooseUsPoints = [
 export default function ServicesPage() {
   const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(allServices.length).fill(false));
   const [isWhyChooseUsVisible, setIsWhyChooseUsVisible] = useState(false);
-  const [isTestimonialsVisible, setIsTestimonialsVisible] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const whyChooseUsRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,8 +80,6 @@ export default function ServicesPage() {
               });
             } else if (entry.target === whyChooseUsRef.current) {
               setIsWhyChooseUsVisible(true);
-            } else if (entry.target === testimonialsRef.current) {
-              setIsTestimonialsVisible(true);
             }
           }
         });
@@ -95,14 +92,12 @@ export default function ServicesPage() {
     });
 
     if (whyChooseUsRef.current) observer.observe(whyChooseUsRef.current);
-    if (testimonialsRef.current) observer.observe(testimonialsRef.current);
 
     return () => {
       cardRefs.current.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
       if (whyChooseUsRef.current) observer.unobserve(whyChooseUsRef.current);
-      if (testimonialsRef.current) observer.unobserve(testimonialsRef.current);
     };
   }, []);
 
@@ -257,82 +252,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Customer Testimonials */}
-      <section 
-        ref={testimonialsRef}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 transition-all duration-1000 ${
-            isTestimonialsVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-league-spartan">
-              See what our customers are saying
-            </h2>
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <span className="text-xl font-semibold text-gray-700 ml-2">4.9/5</span>
-              <span className="text-gray-500">• 500+ Reviews</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {detailedReviews.map((review, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  isTestimonialsVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
-                style={{
-                  transitionDelay: `${index * 200}ms`
-                }}
-              >
-                <Card className="h-full bg-white shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border-0 rounded-2xl">
-                  <CardContent className="p-8 h-full flex flex-col">
-                    <div className="flex mb-4">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    
-                    <p className="text-gray-700 leading-relaxed mb-6 flex-grow italic">
-                      &quot;{review.text}&quot;
-                    </p>
-                    
-                    <div className="mb-4">
-                      <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-3 py-1">
-                        {review.service}
-                      </Badge>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
-                      <Image
-                        src={review.avatar}
-                        alt={review.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full border-2 border-gray-200"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{review.name}</h4>
-                        <p className="text-sm text-gray-500">{review.date}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Google Reviews Section */}
+      <GoogleReviewsSection 
+        ctaText="Book an Appointment"
+        ctaLink="/bookings"
+      />
 
 
 

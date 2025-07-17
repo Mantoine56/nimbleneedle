@@ -22,7 +22,7 @@ export default function Footer() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
+                <span className="text-2xl font-bold font-league-spartan">Nimble Needle Tailoring</span>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                 Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!

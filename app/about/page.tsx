@@ -31,7 +31,7 @@ import { locations } from '@/lib/data';
 const teamValues = [
   {
     value: "Expert Craftsmanship",
-    description: "Over 15 years of experience in tailoring and alterations with meticulous attention to detail.",
+    description: "Over 20 years of experience in tailoring and alterations with meticulous attention to detail.",
     icon: Award
   },
   {
@@ -84,7 +84,7 @@ const milestones = [
   },
   {
     year: "2025",
-    title: "15+ Years Strong",
+    title: "20+ Years Strong",
     description: "Continuing our tradition of excellence with over 5,000 satisfied customers served."
   }
 ];
@@ -218,7 +218,7 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-800 mb-1">15+</div>
+                  <div className="text-3xl font-bold text-gray-800 mb-1">20+</div>
                   <div className="text-sm text-gray-600">Years Experience</div>
                 </div>
                 <div className="text-center">
@@ -259,8 +259,8 @@ export default function AboutPage() {
                     variant="outline" 
                     className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
                   >
-                    <MapPin className="h-5 w-5 mr-2" />
-                    Visit Our Locations
+                                      <MapPin className="h-5 w-5 mr-2" />
+                  Our Locations
                   </Button>
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default function AboutPage() {
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-league-spartan text-lg">Visit Nimble Needle</h3>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Our Locations</h3>
                     <p className="text-white/80 text-sm">Get directions to our locations</p>
                   </div>
                   <div className="p-4 space-y-4">
@@ -317,10 +317,13 @@ export default function AboutPage() {
                           <Phone className="h-3 w-3" />
                           {location.phone}
                         </p>
-                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
-                          <Clock className="h-3 w-3" />
-                          {location.hours.weekdays}
-                        </p>
+                        <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
+                          <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p>Tue-Sat: 9am-9pm</p>
+                            <p>Sun-Mon: 10am-7pm</p>
+                          </div>
+                        </div>
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => {
@@ -370,7 +373,7 @@ export default function AboutPage() {
               <div className="relative inline-block">
                 <Image
                   src="/wordpress-media/original/riber_photo.jpg"
-                  alt="Riber Baabo - Expert tailor with over 15 years experience at Nimble Needle Tailoring"
+                  alt="Riber Baabo - Expert tailor with over 20 years experience at Nimble Needle Tailoring"
                   width={500}
                   height={600}
                   className="rounded-2xl shadow-2xl mx-auto"
@@ -382,7 +385,7 @@ export default function AboutPage() {
               
               <div className="mt-8 text-center">
                 <h3 className="text-2xl font-bold text-gray-900 font-league-spartan mb-2">Riber Baabo</h3>
-                <p className="text-pink-600 font-semibold">Master tailor with over 15 years experience</p>
+                <p className="text-pink-600 font-semibold">Master tailor with over 20 years experience</p>
               </div>
             </div>
           </div>
@@ -415,7 +418,7 @@ export default function AboutPage() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
+                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle Tailoring</span>
                 </div>
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!

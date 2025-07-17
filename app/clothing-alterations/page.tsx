@@ -15,7 +15,7 @@ import { locations } from '@/lib/data';
 
 const serviceFeatures = [
   "Professional clothing alterations for all garment types",
-  "Expert tailoring with 15+ years of experience",
+  "Expert tailoring with 20+ years of experience",
   "Quick turnaround times - most alterations completed within days",
   "Walk-in service available - no appointment necessary",
   "Competitive pricing with satisfaction guarantee",

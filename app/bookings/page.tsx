@@ -30,7 +30,7 @@ const services = [
 
 // Simple features list
 const features = [
-  "15+ years of experience",
+  "20+ years of experience",
   "Two Ottawa locations",
   "Free consultations",
   "Same-day service available"

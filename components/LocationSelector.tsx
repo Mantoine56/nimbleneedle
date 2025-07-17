@@ -98,10 +98,13 @@ export default function LocationSelector() {
                       <Phone className="h-3 w-3" />
                       {location.phone}
                     </p>
-                    <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
-                      <Clock className="h-3 w-3" />
-                      {location.hours}
-                    </p>
+                    <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
+                      <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p>Tue-Sat: 9am-9pm</p>
+                        <p>Sun-Mon: 10am-7pm</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -127,7 +130,7 @@ export default function LocationSelector() {
                     className="flex-1 border-gray-300 hover:bg-gray-100 text-gray-700 text-xs"
                   >
                     <MapPin className="h-3 w-3 mr-1" />
-                    Directions
+                    Our Locations
                   </Button>
                 </div>
               </div>

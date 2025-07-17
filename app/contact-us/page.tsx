@@ -120,8 +120,8 @@ const faqItems = [
 ];
 
 export default function ContactPage() {
-  const [isDirectionsPopupOpen, setIsDirectionsPopupOpen] = useState(false);
-  const directionsPopupRef = useRef<HTMLDivElement>(null);
+  const [isLocationPopupOpen, setIsLocationPopupOpen] = useState(false);
+  const locationPopupRef = useRef<HTMLDivElement>(null);
   
   // Contact form state
   const [formData, setFormData] = useState({
@@ -137,8 +137,8 @@ export default function ContactPage() {
   // Handle click outside to close popups
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (directionsPopupRef.current && !directionsPopupRef.current.contains(event.target as Node)) {
-        setIsDirectionsPopupOpen(false);
+      if (locationPopupRef.current && !locationPopupRef.current.contains(event.target as Node)) {
+        setIsLocationPopupOpen(false);
       }
     };
 
@@ -268,25 +268,25 @@ export default function ContactPage() {
                 </Button>
                 <Button 
                   onClick={() => {
-                    setIsDirectionsPopupOpen(!isDirectionsPopupOpen);
+                    setIsLocationPopupOpen(!isLocationPopupOpen);
                   }}
                   variant="outline" 
                   className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
                 >
-                  <NavigationIcon className="h-5 w-5 mr-2" />
-                  Directions
+                  <MapPin className="h-5 w-5 mr-2" />
+                  Our Locations
                 </Button>
               </div>
 
-              {/* Directions Popup */}
-              {isDirectionsPopupOpen && (
+              {/* Location Popup - Fixed positioning */}
+              {isLocationPopupOpen && (
                 <div 
-                  ref={directionsPopupRef}
+                  ref={locationPopupRef}
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
                   <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
-                    <h3 className="text-white font-semibold font-league-spartan text-lg">Get Directions</h3>
-                    <p className="text-white/80 text-sm">Choose your destination</p>
+                    <h3 className="text-white font-semibold font-league-spartan text-lg">Our Locations</h3>
+                    <p className="text-white/80 text-sm">Get directions to our locations</p>
                   </div>
                   <div className="p-4 space-y-4">
                     {locations.map((location, index) => (
@@ -300,32 +300,50 @@ export default function ContactPage() {
                           <Phone className="h-3 w-3" />
                           {location.phone}
                         </p>
-                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
-                          <Clock className="h-3 w-3" />
-                          {location.hours.weekdays}
-                        </p>
-                        <Button
-                          onClick={() => {
-                            const address = encodeURIComponent(location.address);
-                            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
-                            setIsDirectionsPopupOpen(false);
-                          }}
-                          className="w-full bg-pink-500 hover:bg-pink-600 text-white text-sm mt-3"
-                        >
-                          <NavigationIcon className="h-3 w-3 mr-1" />
-                          Get Directions
-                        </Button>
+                        <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
+                          <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p>Tue-Sat: 9am-9pm</p>
+                            <p>Sun-Mon: 10am-7pm</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 mt-3">
+                          <Button
+                            onClick={() => {
+                              const address = encodeURIComponent(location.address);
+                              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                              setIsLocationPopupOpen(false);
+                            }}
+                            size="sm"
+                            className="flex-1 bg-green-500 hover:bg-green-600 text-white text-xs"
+                          >
+                            <MapPin className="h-3 w-3 mr-1" />
+                            Directions
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              window.open(`tel:${location.phone.replace(/[^\d]/g, '')}`);
+                              setIsLocationPopupOpen(false);
+                            }}
+                            size="sm"
+                            variant="outline"
+                            className="flex-1 border-gray-300 hover:bg-gray-100 text-gray-700 text-xs"
+                          >
+                            <Phone className="h-3 w-3 mr-1" />
+                            Call
+                          </Button>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Backdrop for directions popup */}
-              {isDirectionsPopupOpen && (
+              {/* Backdrop for popup */}
+              {isLocationPopupOpen && (
                 <div 
                   className="fixed inset-0 bg-black/50 z-[9998]"
-                  onClick={() => setIsDirectionsPopupOpen(false)}
+                  onClick={() => setIsLocationPopupOpen(false)}
                 />
               )}
             </div>
@@ -782,7 +800,7 @@ export default function ContactPage() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle</span>
+                  <span className="text-2xl font-bold font-league-spartan">Nimble Needle Tailoring</span>
                 </div>
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
