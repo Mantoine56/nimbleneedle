@@ -193,7 +193,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-montserrat">
+      <body className="font-montserrat" suppressHydrationWarning={true}>
         <GoogleAnalytics />
         {children}
       </body>
