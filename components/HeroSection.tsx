@@ -46,7 +46,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
         }}
       >
         <Image
-          src="/image.webp"
+          src="/NimbleHomeHero.jpg"
           alt="Nimble Needle Tailoring Workshop - Expert clothing alterations and tailoring services in Ottawa"
           fill
           priority={true}
@@ -118,7 +118,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           </div>
 
           {/* Right Column - Google Reviews */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-center lg:pr-16">
             <div ref={heroCarouselRef} className="w-full max-w-sm">
               {/* Google Reviews Header */}
               <div className="bg-white/20 rounded-2xl p-6 mb-4 border border-white/30">
