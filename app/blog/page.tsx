@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, Tag, User, Search, Filter, X } from 'lucide-react';
+import { Calendar, Clock, Tag, Search, Filter, X } from 'lucide-react';
 import { getAllBlogPosts, getAllCategories, getAllTags } from '@/lib/blog-data';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
@@ -73,11 +73,7 @@ export default function BlogPage() {
       headline: post.title,
       description: post.excerpt,
       datePublished: post.date,
-      author: {
-        '@type': 'Person',
-        name: post.author.name,
-        jobTitle: post.author.role
-      },
+
       url: `https://nimbleneedle.ca/blog/${post.slug}`,
       image: `https://nimbleneedle.ca${post.featuredImage}`,
       keywords: post.tags,
@@ -314,27 +310,10 @@ export default function BlogPage() {
                           <span>{post.readTime}</span>
                         </div>
                         
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            {post.author.avatar && (
-                              <Image
-                                src={post.author.avatar}
-                                alt={post.author.name}
-                                width={28}
-                                height={28}
-                                className="rounded-full mr-2 sm:mr-3 shadow-md sm:w-8 sm:h-8"
-                              />
-                            )}
-                            <div>
-                              <p className="text-xs sm:text-sm font-medium text-gray-900">{post.author.name}</p>
-                              {post.author.role && (
-                                <p className="text-xs text-pink-600">{post.author.role}</p>
-                              )}
-                            </div>
-                          </div>
+                        <div className="flex justify-end">
                           <Link 
                             href={`/blog/${post.slug}`}
-                            className="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
+                            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white rounded-lg font-medium text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg"
                             aria-label={`Read more about ${post.title}`}
                           >
                             Read Full Article

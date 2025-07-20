@@ -4,7 +4,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  author: {
+  author?: {
     name: string;
     role?: string;
     avatar?: string;
@@ -21,136 +21,400 @@ export const blogPosts: BlogPost[] = [
   {
     id: "1",
     slug: "how-to-care-for-your-altered-garments",
-    title: "How to Care for Your Altered Garments",
-    excerpt: "Learn the best practices for maintaining your professionally altered clothing to ensure they last longer and always look their best.",
+    title: "Complete Guide: How to Care for Your Professionally Altered Clothing in Ottawa",
+    excerpt: "Protect your tailoring investment with expert garment care tips from Ottawa's premier tailors. Learn professional maintenance techniques to keep your altered clothes looking perfect for years.",
     content: `
-      <p>Having your clothes professionally altered is an investment in your wardrobe. To ensure your altered garments maintain their perfect fit and quality, proper care is essential. Here are our expert tips for caring for your altered clothing.</p>
+      <p>Professional clothing alterations are a significant investment in your wardrobe, especially in Ottawa's climate where seasonal changes can affect fabric care. Proper maintenance of your tailored garments ensures they retain their perfect fit, quality, and appearance for years to come. As Ottawa's leading tailoring experts, we've compiled comprehensive care guidelines to help you protect your investment.</p>
 
-      <h2>1. Follow Care Labels Carefully</h2>
-      <p>After alterations, the care requirements for your garment may change. Always check the care label and follow the instructions precisely. If you're unsure, ask your tailor for specific care recommendations.</p>
-
-      <h2>2. Proper Storage is Key</h2>
-      <p>Store your altered garments properly to maintain their shape:</p>
+      <h2>Understanding Your Altered Garments</h2>
+      <p>After professional alterations in Ottawa, your clothing has been specifically tailored to your body measurements and preferences. This means the care requirements may differ from the original garment, particularly for:</p>
       <ul>
-        <li>Use padded hangers for suits and jackets</li>
-        <li>Fold knits carefully to prevent stretching</li>
-        <li>Keep garments in breathable garment bags</li>
-        <li>Ensure adequate space between items to prevent wrinkles</li>
+        <li>Wedding dress alterations with added bustles or embellishments</li>
+        <li>Suit alterations with adjusted seams and hems</li>
+        <li>Formal dress alterations with custom fitting</li>
+        <li>Coat and jacket alterations for Ottawa's seasonal weather</li>
       </ul>
 
-      <h2>3. Handle with Care</h2>
-      <p>Be mindful of altered areas when wearing and removing garments. Newly hemmed areas, taken-in seams, and adjusted buttons need gentle handling to maintain their integrity.</p>
+      <h2>Essential Care Guidelines for Altered Clothing</h2>
+      
+      <h3>1. Follow Updated Care Instructions</h3>
+      <p>Professional alterations can change how a garment should be cleaned and maintained. Always consult with your Ottawa tailor about specific care instructions for your altered pieces. At Nimble Needle, we provide detailed care cards with every alteration service.</p>
 
-      <h2>4. Regular Maintenance</h2>
-      <p>Schedule regular check-ups for your most worn altered pieces. Small adjustments can prevent larger issues and keep your clothes fitting perfectly for years to come.</p>
+      <h3>2. Proper Storage Techniques</h3>
+      <p>Ottawa's humidity variations require careful storage strategies:</p>
+      <ul>
+        <li><strong>Suits and Blazers:</strong> Use cedar or padded hangers to maintain shoulder shape</li>
+        <li><strong>Formal Dresses:</strong> Store flat or on specialized dress forms for structured pieces</li>
+        <li><strong>Knit Items:</strong> Fold carefully to prevent stretching of altered seams</li>
+        <li><strong>Seasonal Items:</strong> Use breathable garment bags to protect from Ottawa's seasonal dust</li>
+        <li><strong>Wedding Gowns:</strong> Professional preservation services available for long-term storage</li>
+      </ul>
 
-      <h2>5. Professional Cleaning</h2>
-      <p>For dry-clean-only items, choose a reputable cleaner and inform them about any alterations. This ensures they take extra care around adjusted areas.</p>
+      <h3>3. Gentle Handling of Altered Areas</h3>
+      <p>Pay special attention to areas that have been professionally altered:</p>
+      <ul>
+        <li>Be gentle when putting on garments with adjusted armholes or necklines</li>
+        <li>Avoid excessive stretching of newly hemmed areas</li>
+        <li>Handle buttons and closures carefully if they've been repositioned</li>
+        <li>Be mindful of taken-in seams when sitting or moving</li>
+      </ul>
 
-      <p>At Nimble Needle, we're always here to help maintain your altered garments. Don't hesitate to bring items back for touch-ups or advice on care and maintenance.</p>
+      <h3>4. Regular Professional Maintenance</h3>
+      <p>Schedule maintenance appointments with your Ottawa tailor every 6-12 months for frequently worn altered pieces. This proactive approach helps:</p>
+      <ul>
+        <li>Identify minor issues before they become major problems</li>
+        <li>Maintain perfect fit as your body naturally changes</li>
+        <li>Address wear patterns specific to your lifestyle</li>
+        <li>Extend the life of your investment significantly</li>
+      </ul>
+
+      <h3>5. Choosing the Right Dry Cleaner in Ottawa</h3>
+      <p>Not all dry cleaners understand altered garments. When selecting cleaning services:</p>
+      <ul>
+        <li>Choose experienced cleaners familiar with tailored clothing</li>
+        <li>Inform them about specific alterations made to your garments</li>
+        <li>Point out delicate areas that need special attention</li>
+        <li>Consider eco-friendly cleaning options to protect fabric integrity</li>
+      </ul>
+
+      <h2>Seasonal Care Considerations for Ottawa</h2>
+      <p>Ottawa's distinct seasons require adjusted care routines:</p>
+
+      <h3>Winter Care</h3>
+      <ul>
+        <li>Allow garments to dry completely before storing to prevent mildew</li>
+        <li>Use moisture absorbers in closets during humid winter months</li>
+        <li>Brush wool coats regularly to maintain texture</li>
+      </ul>
+
+      <h3>Summer Care</h3>
+      <ul>
+        <li>Increase ventilation in storage areas</li>
+        <li>Clean garments promptly after wearing in summer heat</li>
+        <li>Use cedar blocks to deter insects attracted to natural fibers</li>
+      </ul>
+
+      <h2>Common Mistakes to Avoid</h2>
+      <ul>
+        <li>Using wire hangers that can distort carefully shaped shoulders</li>
+        <li>Overcrowding closets, which can wrinkle altered garments</li>
+        <li>Ignoring small issues that can compromise the entire alteration</li>
+        <li>Using stain removal products without testing on altered areas first</li>
+      </ul>
+
+      <h2>Emergency Care Tips</h2>
+      <p>For unexpected issues with your altered garments:</p>
+      <ul>
+        <li>Contact your tailor immediately for loose buttons or minor tears</li>
+        <li>Avoid DIY repairs that could compromise professional work</li>
+        <li>Keep business cards of recommended cleaning services</li>
+        <li>Take photos of any damage for insurance purposes</li>
+      </ul>
+
+      <h2>Your Ottawa Tailoring Partner</h2>
+      <p>At Nimble Needle Tailoring, serving Ottawa's Preston Street and Riverside Drive communities, we're committed to helping you maintain your clothing investments. Our master tailors provide ongoing support and maintenance services to ensure your altered garments look impeccable for years.</p>
+
+      <p>Located conveniently at 141 Preston Street and 3681 Riverside Dr in Ottawa, we offer complimentary care consultations for all our alteration clients. Visit us for touch-ups, maintenance advice, or emergency repairs. Our multilingual team serves customers in English, Arabic, and Kurdish, seven days a week.</p>
+
+      <p><strong>Contact Nimble Needle today to schedule your garment care consultation and protect your tailoring investment.</strong></p>
     `,
-    author: {
-      name: "Riber Baabo",
-      role: "Master Tailor",
-      avatar: "/testimonials/sarah.webp"
-    },
-    date: "2025-06-15",
-    readTime: "5 min read",
-    category: "Care Tips",
-    tags: ["garment care", "alterations", "maintenance", "clothing tips"],
+    date: "2025-01-15",
+    readTime: "8 min read",
+    category: "Garment Care",
+    tags: ["garment care", "clothing alterations Ottawa", "tailoring maintenance", "professional clothing care", "altered clothing storage", "Ottawa tailor"],
     featuredImage: "/services/alterations.webp",
     published: true
   },
   {
     id: "2",
     slug: "wedding-dress-alterations-timeline",
-    title: "Wedding Dress Alterations: Your Complete Timeline Guide",
-    excerpt: "Planning your wedding dress alterations? Here's everything you need to know about timing your fittings for the perfect fit on your big day.",
+    title: "Ottawa Wedding Dress Alterations Timeline: Complete Guide for Perfect Bridal Fittings",
+    excerpt: "Essential timeline guide for wedding dress alterations in Ottawa. Expert advice on scheduling fittings, choosing the right tailor, and ensuring your dream dress fits perfectly on your special day.",
     content: `
-      <p>Your wedding dress is one of the most important garments you'll ever wear, and ensuring it fits perfectly is crucial for your confidence and comfort on your special day. Here's our comprehensive timeline guide for wedding dress alterations.</p>
+      <p>Your wedding dress represents one of life's most significant fashion investments, and achieving the perfect fit is essential for confidence and comfort on your special day. For Ottawa brides, understanding the proper timeline for wedding dress alterations ensures your gown will be flawless when you walk down the aisle. As Ottawa's premier bridal alteration specialists, we've guided thousands of brides through this important process.</p>
 
-      <h2>3-4 Months Before the Wedding</h2>
-      <p>Schedule your first fitting. This gives ample time for any major alterations needed, such as:</p>
+      <h2>The Importance of Professional Wedding Dress Alterations in Ottawa</h2>
+      <p>Ottawa's wedding season brings unique considerations for bridal alterations. Whether you're planning a summer ceremony at the Château Laurier or a winter celebration at the Museum of Nature, your dress must accommodate the venue, weather, and your specific measurements. Professional alterations transform an off-the-rack gown into a custom-fitted masterpiece that moves with you throughout your celebration.</p>
+
+      <h2>Complete Wedding Dress Alteration Timeline</h2>
+
+      <h3>4-6 Months Before Your Wedding: Initial Planning</h3>
+      <p>Begin researching Ottawa wedding dress alteration specialists and book consultations. Consider these factors when choosing your tailor:</p>
       <ul>
-        <li>Taking in or letting out the bodice</li>
-        <li>Adjusting the length</li>
-        <li>Adding or removing sleeves</li>
-        <li>Customizing the neckline</li>
+        <li><strong>Experience with bridal alterations:</strong> Look for specialists with extensive wedding dress experience</li>
+        <li><strong>Portfolio review:</strong> Ask to see before/after photos of similar dress styles</li>
+        <li><strong>Timeline accommodation:</strong> Ensure they can work within your wedding schedule</li>
+        <li><strong>Location convenience:</strong> Choose someone accessible from your Ottawa location</li>
+        <li><strong>Price transparency:</strong> Request detailed quotes for all potential alterations</li>
       </ul>
 
-      <h2>6-8 Weeks Before the Wedding</h2>
-      <p>Your second fitting should focus on fine-tuning the alterations. At this point, major changes should be complete, and we'll work on perfecting the fit.</p>
-
-      <h2>2-3 Weeks Before the Wedding</h2>
-      <p>The final fitting ensures everything is perfect. Bring your wedding shoes and undergarments you'll wear on the day for the most accurate fit.</p>
-
-      <h2>Important Tips</h2>
+      <h3>3-4 Months Before: First Fitting and Major Alterations</h3>
+      <p>Schedule your initial fitting to assess major alteration needs. This appointment typically involves:</p>
       <ul>
-        <li>Maintain a stable weight between fittings</li>
-        <li>Bring the exact shoes and undergarments you'll wear</li>
-        <li>Consider the bustle for your reception</li>
-        <li>Don't wait until the last minute - good alterations take time</li>
+        <li><strong>Bodice adjustments:</strong> Taking in or letting out for perfect bust, waist, and hip fit</li>
+        <li><strong>Length modifications:</strong> Hemming for your exact height and shoe choice</li>
+        <li><strong>Neckline changes:</strong> Adjusting décolletage for comfort and style preferences</li>
+        <li><strong>Sleeve alterations:</strong> Modifying length, style, or adding/removing sleeves entirely</li>
+        <li><strong>Structural changes:</strong> Adding built-in bras, corsetry, or support systems</li>
+        <li><strong>Train adjustments:</strong> Perfecting length and bustle placement for ceremony and reception</li>
       </ul>
 
-      <h2>What to Expect at Nimble Needle</h2>
-      <p>Our experienced bridal alteration specialists understand the importance of your wedding dress. We provide personalized attention, expert craftsmanship, and work within your timeline to ensure your dress is absolutely perfect for your big day.</p>
+      <h3>8-10 Weeks Before: Progress Fitting</h3>
+      <p>This crucial appointment allows you to see major alterations in progress and make necessary adjustments:</p>
+      <ul>
+        <li>Review the fit of completed major alterations</li>
+        <li>Discuss minor adjustments needed</li>
+        <li>Try on with proper undergarments and shoes</li>
+        <li>Plan bustle style for reception dancing</li>
+        <li>Schedule final fitting date</li>
+      </ul>
 
-      <p>Contact us early to secure your spot in our bridal alterations schedule. We're here to make your dress dreams come true!</p>
+      <h3>2-3 Weeks Before: Final Fitting</h3>
+      <p>Your final fitting is the most important appointment before your wedding day:</p>
+      <ul>
+        <li><strong>Complete ensemble trial:</strong> Wear your exact wedding day undergarments, shoes, and accessories</li>
+        <li><strong>Movement testing:</strong> Sit, walk, and dance to ensure comfort</li>
+        <li><strong>Final adjustments:</strong> Last-minute tweaks for absolute perfection</li>
+        <li><strong>Bustle lesson:</strong> Learn how to bustle your train for the reception</li>
+        <li><strong>Care instructions:</strong> Receive specific care guidelines until your wedding</li>
+      </ul>
+
+      <h3>1 Week Before: Emergency Only</h3>
+      <p>Only emergency alterations should occur this close to your wedding. Focus on:</p>
+      <ul>
+        <li>Hanging your dress properly to prevent wrinkles</li>
+        <li>Avoiding weight fluctuations</li>
+        <li>Keeping emergency contact information for your tailor</li>
+      </ul>
+
+      <h2>Special Considerations for Ottawa Weddings</h2>
+
+      <h3>Seasonal Factors</h3>
+      <ul>
+        <li><strong>Summer Weddings:</strong> Consider ventilation, sweat-resistant undergarments, and breathable fabrics</li>
+        <li><strong>Winter Weddings:</strong> Plan for layering, coat considerations, and indoor/outdoor transitions</li>
+        <li><strong>Spring/Fall:</strong> Prepare for variable weather and venue temperature changes</li>
+      </ul>
+
+      <h3>Popular Ottawa Wedding Venues</h3>
+      <p>Dress alterations may need venue-specific considerations:</p>
+      <ul>
+        <li><strong>Outdoor venues:</strong> Hemming for grass/uneven surfaces</li>
+        <li><strong>Historic locations:</strong> Narrow doorways and staircases</li>
+        <li><strong>Hotel ballrooms:</strong> Dancing comfort and movement ease</li>
+        <li><strong>Churches:</strong> Modesty requirements and aisle navigation</li>
+      </ul>
+
+      <h2>Essential Tips for Ottawa Brides</h2>
+
+      <h3>Weight Management</h3>
+      <ul>
+        <li>Maintain consistent weight between fittings</li>
+        <li>Schedule fittings for the same time of day</li>
+        <li>Avoid dramatic diet changes close to your wedding</li>
+        <li>Communicate any intentional weight loss goals early</li>
+      </ul>
+
+      <h3>Communication with Your Tailor</h3>
+      <ul>
+        <li>Share venue photos and wedding timeline details</li>
+        <li>Discuss comfort priorities (dancing vs. photos)</li>
+        <li>Ask about preservation recommendations</li>
+        <li>Understand the alteration process and limitations</li>
+      </ul>
+
+      <h3>Budget Planning</h3>
+      <p>Wedding dress alterations in Ottawa typically range from $200-800, depending on complexity:</p>
+      <ul>
+        <li><strong>Basic alterations:</strong> $200-400 (hemming, simple bodice adjustments)</li>
+        <li><strong>Moderate alterations:</strong> $400-600 (multiple adjustments, bustle addition)</li>
+        <li><strong>Complex alterations:</strong> $600-800+ (major structural changes, bead work)</li>
+      </ul>
+
+      <h2>Red Flags: When to Find a Different Tailor</h2>
+      <ul>
+        <li>Unwillingness to provide detailed quotes</li>
+        <li>Lack of bridal alteration portfolio</li>
+        <li>Rushed timelines or pressure tactics</li>
+        <li>Poor communication or missed appointments</li>
+        <li>No insurance or business credentials</li>
+      </ul>
+
+      <h2>Why Choose Nimble Needle for Ottawa Wedding Dress Alterations</h2>
+      <p>Located in the heart of Ottawa at 141 Preston Street and 3681 Riverside Dr, Nimble Needle has been Ottawa's trusted bridal alteration specialist for over two decades. Our master tailors understand the unique needs of Ottawa brides and provide:</p>
+
+      <ul>
+        <li><strong>Specialized bridal experience:</strong> Thousands of wedding dresses altered with precision</li>
+        <li><strong>Flexible scheduling:</strong> Evening and weekend appointments available</li>
+        <li><strong>Multilingual service:</strong> Consultations in English, Arabic, and Kurdish</li>
+        <li><strong>Comprehensive services:</strong> From simple hems to complex reconstructions</li>
+        <li><strong>Emergency support:</strong> Last-minute assistance when needed</li>
+        <li><strong>Preservation services:</strong> Professional dress cleaning and storage</li>
+      </ul>
+
+      <h2>Book Your Ottawa Wedding Dress Consultation</h2>
+      <p>Don't leave your dream dress to chance. Contact Nimble Needle today to schedule your bridal alteration consultation. Our experienced team will ensure your wedding dress fits perfectly, allowing you to focus on celebrating your special day with confidence.</p>
+
+      <p><strong>Call us today or visit our Preston Street or Riverside Drive locations to begin your bridal alteration journey. Your perfect fit awaits!</strong></p>
     `,
-    author: {
-      name: "Sarah Johnson",
-      role: "Bridal Specialist",
-      avatar: "/testimonials/sarah-m.webp"
-    },
-    date: "2025-06-01",
-    readTime: "7 min read",
-    category: "Wedding",
-    tags: ["wedding dress", "bridal alterations", "timeline", "wedding planning"],
-    featuredImage: "/image.webp",
+    date: "2025-01-10",
+    readTime: "12 min read",
+    category: "Bridal Services",
+    tags: ["wedding dress alterations Ottawa", "bridal alterations", "wedding dress timeline", "Ottawa wedding", "bridal fitting guide", "wedding dress tailor Ottawa"],
+    featuredImage: "/services/WeddingDress Alterations.jpeg",
     published: true
   },
   {
     id: "3",
     slug: "sustainable-fashion-through-alterations",
-    title: "Sustainable Fashion: How Alterations Can Transform Your Wardrobe",
-    excerpt: "Discover how professional alterations can help you create a more sustainable wardrobe while saving money and reducing fashion waste.",
+    title: "Sustainable Fashion in Ottawa: Transform Your Wardrobe Through Professional Clothing Alterations",
+    excerpt: "Discover how Ottawa's eco-conscious residents are embracing sustainable fashion through professional clothing alterations. Save money, reduce waste, and create unique styles with expert tailoring services.",
     content: `
-      <p>In an era of fast fashion and disposable clothing, alterations offer a sustainable alternative that benefits both your wallet and the environment. Here's how professional tailoring can transform your approach to fashion.</p>
+      <p>As Ottawa increasingly embraces environmental consciousness, more residents are discovering sustainable fashion through professional clothing alterations. Rather than contributing to fast fashion's environmental impact, savvy Ottawa consumers are transforming their wardrobes through expert tailoring services. This sustainable approach not only benefits the environment but also creates unique, perfectly fitted garments that reflect personal style while supporting local businesses.</p>
 
-      <h2>The Environmental Impact</h2>
-      <p>The fashion industry is one of the world's largest polluters. By altering and maintaining existing garments instead of buying new ones, you're directly contributing to reducing fashion waste and environmental impact.</p>
+      <h2>The Environmental Crisis of Fast Fashion</h2>
+      <p>The fashion industry ranks as the world's second-largest polluter, contributing significantly to water pollution, textile waste, and carbon emissions. In Canada alone, we discard over 500 million pounds of clothing annually. Ottawa residents can make a meaningful environmental impact by choosing clothing alterations over constant purchasing:</p>
 
-      <h2>Reviving Vintage and Thrifted Finds</h2>
-      <p>Found a beautiful vintage piece that's not quite your size? Professional alterations can transform thrift store treasures into perfectly fitted, unique additions to your wardrobe. This approach combines sustainability with individual style.</p>
-
-      <h2>Quality Over Quantity</h2>
-      <p>Investing in fewer, higher-quality pieces that are tailored to fit you perfectly is more sustainable than constantly buying ill-fitting fast fashion. Well-fitted clothes look better, feel better, and last longer.</p>
-
-      <h2>Common Sustainable Alterations</h2>
       <ul>
-        <li>Resizing garments after weight changes instead of buying new</li>
-        <li>Updating outdated styles to current trends</li>
-        <li>Repairing damaged items to extend their life</li>
-        <li>Converting garments (e.g., long dresses to midi length)</li>
+        <li><strong>Reduced textile waste:</strong> Extending garment life by just 9 months reduces environmental impact by 30%</li>
+        <li><strong>Lower water consumption:</strong> Producing one new cotton t-shirt requires 2,700 liters of water</li>
+        <li><strong>Decreased carbon footprint:</strong> Shipping and manufacturing new clothes creates substantial emissions</li>
+        <li><strong>Reduced chemical pollution:</strong> Textile dyeing and processing contaminate water supplies globally</li>
       </ul>
 
-      <h2>The Cost-Benefit Analysis</h2>
-      <p>While alterations require an upfront investment, they're often far more economical than replacing garments. A $50 alteration can save a $200 dress or transform a $20 thrift find into a designer-looking piece.</p>
+      <h2>Sustainable Fashion Solutions Through Ottawa Alterations</h2>
 
-      <h2>Our Commitment to Sustainability</h2>
-      <p>At Nimble Needle, we're passionate about sustainable fashion. We encourage our clients to think creatively about their existing wardrobes and offer consultations on how alterations can breathe new life into forgotten garments.</p>
+      <h3>Reviving Vintage and Thrifted Treasures</h3>
+      <p>Ottawa's thriving vintage and thrift scene provides endless opportunities for sustainable fashion. The city's numerous vintage shops, from Hintonburg to the Glebe, offer unique pieces that can be transformed through professional alterations:</p>
 
-      <p>Join us in making fashion more sustainable, one alteration at a time. Bring in your clothes for a consultation and discover the transformation possibilities!</p>
+      <ul>
+        <li><strong>Perfect vintage fits:</strong> Alter vintage pieces to modern sizing and preferences</li>
+        <li><strong>Update classic styles:</strong> Modernize outdated silhouettes while preserving vintage charm</li>
+        <li><strong>Repair and restore:</strong> Fix minor damage to extend the life of quality vintage items</li>
+        <li><strong>Combine pieces:</strong> Create unique garments by combining elements from multiple vintage finds</li>
+      </ul>
+
+      <h3>Quality Over Quantity Investment Strategy</h3>
+      <p>Ottawa professionals are discovering that investing in fewer, higher-quality pieces with professional tailoring creates more sustainable wardrobes:</p>
+
+      <ul>
+        <li><strong>Cost-per-wear analysis:</strong> Well-altered quality garments offer better long-term value</li>
+        <li><strong>Timeless style:</strong> Classic pieces with perfect fit never go out of fashion</li>
+        <li><strong>Professional appearance:</strong> Tailored clothing enhances career prospects and confidence</li>
+        <li><strong>Emotional attachment:</strong> Custom-fitted clothes become wardrobe favorites worn for years</li>
+      </ul>
+
+      <h2>Popular Sustainable Alteration Services in Ottawa</h2>
+
+      <h3>Size Adjustments and Body Changes</h3>
+      <p>Life brings natural body changes, and professional alterations accommodate these shifts sustainably:</p>
+      <ul>
+        <li><strong>Weight fluctuation adjustments:</strong> Take in or let out garments rather than replacing them</li>
+        <li><strong>Maternity modifications:</strong> Adapt existing clothes for pregnancy and post-pregnancy bodies</li>
+        <li><strong>Age-appropriate updates:</strong> Modify garments to suit changing lifestyle needs</li>
+        <li><strong>Seasonal adjustments:</strong> Adapt clothes for Ottawa's varying seasonal requirements</li>
+      </ul>
+
+      <h3>Style Modernization</h3>
+      <p>Transform outdated garments into contemporary fashion statements:</p>
+      <ul>
+        <li><strong>Hemline updates:</strong> Adjust skirts and dresses to current style preferences</li>
+        <li><strong>Silhouette changes:</strong> Modify fits from loose to fitted or vice versa</li>
+        <li><strong>Neckline adjustments:</strong> Update décolletage to modern standards</li>
+        <li><strong>Sleeve modifications:</strong> Change sleeve lengths or styles to current trends</li>
+      </ul>
+
+      <h3>Upcycling and Creative Transformations</h3>
+      <p>Creative alterations can completely reinvent existing garments:</p>
+      <ul>
+        <li><strong>Dress to separates:</strong> Convert dresses into tops and skirts for versatility</li>
+        <li><strong>Pants to shorts:</strong> Transform long pants into custom-length shorts or capris</li>
+        <li><strong>Formal to casual:</strong> Modify formal wear for everyday use</li>
+        <li><strong>Seasonal conversions:</strong> Add or remove sleeves, linings, and layers</li>
+      </ul>
+
+      <h2>Ottawa's Sustainable Fashion Community</h2>
+
+      <h3>Local Thrift and Vintage Shopping</h3>
+      <p>Ottawa offers numerous sustainable shopping options perfect for alteration projects:</p>
+      <ul>
+        <li><strong>Salvation Army locations</strong> throughout Ottawa for affordable base pieces</li>
+        <li><strong>Value Village stores</strong> with extensive selection for alteration projects</li>
+        <li><strong>Local vintage boutiques</strong> in Hintonburg, Westboro, and the Glebe</li>
+        <li><strong>Community clothing swaps</strong> organized throughout the year</li>
+      </ul>
+
+      <h3>Environmental Benefits for Ottawa</h3>
+      <p>Choosing alterations over new purchases benefits Ottawa's environment specifically:</p>
+      <ul>
+        <li><strong>Reduced landfill burden:</strong> Less textile waste in Ottawa's waste management system</li>
+        <li><strong>Lower transportation emissions:</strong> Fewer shipping trucks bringing new clothes to stores</li>
+        <li><strong>Support for local economy:</strong> Money stays in Ottawa's business community</li>
+        <li><strong>Preservation of resources:</strong> Ottawa River watershed protection through reduced manufacturing</li>
+      </ul>
+
+      <h2>Cost Analysis: Alterations vs. New Purchases</h2>
+      
+      <h3>Real Ottawa Examples</h3>
+      <ul>
+        <li><strong>Suit tailoring:</strong> $150 alteration vs. $800 new suit = 81% savings</li>
+        <li><strong>Dress modification:</strong> $40 alteration vs. $120 new dress = 67% savings</li>
+        <li><strong>Vintage coat update:</strong> $60 vintage + $80 alterations vs. $400 new = 65% savings</li>
+        <li><strong>Pant hemming:</strong> $15 alteration vs. $60 new pants = 75% savings</li>
+      </ul>
+
+      <h3>Long-term Wardrobe Investment</h3>
+      <p>Professional alterations create lasting value through:</p>
+      <ul>
+        <li><strong>Increased wear frequency:</strong> Better-fitting clothes get worn more often</li>
+        <li><strong>Extended garment life:</strong> Quality alterations add years to clothing lifespan</li>
+        <li><strong>Improved satisfaction:</strong> Custom fit increases emotional attachment to clothes</li>
+        <li><strong>Reduced shopping impulses:</strong> Satisfaction with existing wardrobe reduces urge to purchase</li>
+      </ul>
+
+      <h2>Nimble Needle's Commitment to Ottawa's Sustainable Fashion Future</h2>
+      <p>Located at 141 Preston Street and 3681 Riverside Dr, Nimble Needle proudly supports Ottawa's sustainable fashion movement through:</p>
+
+      <ul>
+        <li><strong>Eco-conscious practices:</strong> Minimal waste production and responsible fabric disposal</li>
+        <li><strong>Community education:</strong> Teaching customers about sustainable fashion choices</li>
+        <li><strong>Quality craftsmanship:</strong> Alterations designed to last for years of wear</li>
+        <li><strong>Consultation services:</strong> Expert advice on which pieces are worth altering</li>
+        <li><strong>Vintage expertise:</strong> Specialized knowledge in working with older, delicate fabrics</li>
+        <li><strong>Local partnerships:</strong> Collaborations with Ottawa vintage shops and sustainable fashion advocates</li>
+      </ul>
+
+      <h2>Getting Started with Sustainable Fashion in Ottawa</h2>
+      
+      <h3>Wardrobe Assessment</h3>
+      <p>Begin your sustainable fashion journey with a professional consultation:</p>
+      <ul>
+        <li>Evaluate existing pieces for alteration potential</li>
+        <li>Identify gaps that can be filled through thrifting and alteration</li>
+        <li>Plan strategic alterations for maximum wardrobe impact</li>
+        <li>Set sustainable fashion goals and budget</li>
+      </ul>
+
+      <h3>Seasonal Alteration Planning</h3>
+      <p>Ottawa's distinct seasons provide natural opportunities for sustainable wardrobe updates:</p>
+      <ul>
+        <li><strong>Spring:</strong> Lighten winter coats and update hem lengths</li>
+        <li><strong>Summer:</strong> Convert long sleeves to short and adjust fits for comfort</li>
+        <li><strong>Fall:</strong> Prepare clothes for layering and add warmth features</li>
+        <li><strong>Winter:</strong> Modify pieces for indoor/outdoor temperature changes</li>
+      </ul>
+
+      <h2>Join Ottawa's Sustainable Fashion Movement</h2>
+      <p>Ready to transform your approach to fashion while supporting Ottawa's environmental goals? Visit Nimble Needle for a sustainable fashion consultation. Our experienced team will help you discover the hidden potential in your existing wardrobe while creating a more sustainable, cost-effective, and uniquely personal style.</p>
+
+      <p>Together, we can reduce fashion waste, support local businesses, and create a more sustainable Ottawa, one alteration at a time. Contact us today to begin your sustainable fashion journey!</p>
+
+      <p><strong>Schedule your sustainable fashion consultation at our Preston Street or Riverside Drive locations today. Let's make Ottawa more sustainable, one perfectly altered garment at a time.</strong></p>
     `,
-    author: {
-      name: "Michael Chen",
-      role: "Sustainability Advocate",
-      avatar: "/testimonials/michael.webp"
-    },
-    date: "2025-05-20",
-    readTime: "6 min read",
-    category: "Sustainability",
-    tags: ["sustainable fashion", "eco-friendly", "vintage clothing", "upcycling"],
+    date: "2025-01-08",
+    readTime: "15 min read",
+    category: "Sustainable Fashion",
+    tags: ["sustainable fashion Ottawa", "eco-friendly clothing", "vintage clothing alterations", "upcycling Ottawa", "clothing alterations Ottawa", "sustainable wardrobe"],
     featuredImage: "/promise-image.webp",
     published: true
   },

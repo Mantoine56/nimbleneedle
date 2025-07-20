@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, Tag, User, ChevronLeft, Share2 } from 'lucide-react';
+import { Calendar, Clock, Tag, ChevronLeft, Share2 } from 'lucide-react';
 import { getBlogPostBySlug, getRelatedPosts, getAllBlogPosts } from '@/lib/blog-data';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
@@ -37,13 +37,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     title: `${post.title} | Nimble Needle Blog`,
     description: post.excerpt,
     keywords: post.tags.join(', '),
-    authors: [{ name: post.author.name }],
+
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
-      authors: [post.author.name],
+
       tags: post.tags,
       images: [
         {
@@ -85,12 +85,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     image: `https://nimbleneedle.ca${post.featuredImage}`,
     datePublished: post.date,
     dateModified: post.date,
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      jobTitle: post.author.role,
-      image: post.author.avatar ? `https://nimbleneedle.ca${post.author.avatar}` : undefined
-    },
+
     publisher: {
       '@type': 'Organization',
       name: 'Nimble Needle Tailoring',
@@ -209,10 +204,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                     <span className="text-xs sm:text-base">{post.readTime}</span>
                   </div>
-                  <div className="flex items-center">
-                    <User className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                    <span className="text-xs sm:text-base">By {post.author.name}</span>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -229,27 +221,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <aside className="lg:col-span-1 order-2 lg:order-1">
                   <div className="sticky top-24 space-y-6 sm:space-y-8">
                     
-                    {/* Author Info */}
-                    <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-gray-200/50 backdrop-blur-sm">
-                      <h3 className="text-lg sm:text-xl font-league-spartan font-bold text-gray-900 mb-3 sm:mb-4">About the Author</h3>
-                      <div className="flex items-start space-x-3 sm:space-x-4">
-                        {post.author.avatar && (
-                          <Image
-                            src={post.author.avatar}
-                            alt={post.author.name}
-                            width={50}
-                            height={50}
-                            className="rounded-full shadow-md sm:w-[60px] sm:h-[60px]"
-                          />
-                        )}
-                                                  <div>
-                            <p className="font-semibold text-gray-900 text-base sm:text-lg">{post.author.name}</p>
-                            {post.author.role && (
-                              <p className="text-pink-600 font-medium text-sm sm:text-base">{post.author.role}</p>
-                            )}
-                          </div>
-                      </div>
-                    </div>
+
 
                     {/* Share Buttons */}
                     <BlogPostClient postUrl={`https://nimbleneedle.ca/blog/${post.slug}`} postTitle={post.title} />
@@ -257,10 +229,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     {/* Back to Blog */}
                     <Link
                       href="/blog"
-                      className="flex items-center justify-center bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      className="block bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white p-6 sm:p-8 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-xl hover:shadow-2xl text-center border border-pink-400"
                     >
-                      <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                      Back to Blog
+                      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2" />
+                      <div className="font-bold">Back to Blog</div>
+                      <div className="text-sm opacity-90 mt-1">Discover more articles</div>
                     </Link>
                   </div>
                 </aside>
@@ -270,34 +243,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 backdrop-blur-sm">
                     
                     {/* Content Header */}
-                    <div className="p-6 sm:p-8 border-b border-gray-200/50">
-                      <p className="text-lg sm:text-xl text-gray-600 leading-relaxed font-light">
-                        {post.excerpt}
-                      </p>
+                    <div className="p-8 sm:p-12 border-b border-gray-200/50 bg-gradient-to-r from-gray-50/30 to-white">
+                      <div className="max-w-none">
+                        {/* Article Lead/Excerpt */}
+                        <p className="text-xl sm:text-2xl xl:text-3xl text-gray-700 leading-relaxed font-light italic mb-6 
+                                     border-l-4 border-pink-500 pl-6 bg-pink-50/30 rounded-r-lg py-4">
+                          {post.excerpt}
+                        </p>
+                        
+                        {/* Reading indicators */}
+                        <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
+                          <div className="flex items-center gap-4">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              {post.readTime}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              {new Date(post.date).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                              })}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium">
+                              {post.category}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     
                     {/* Main Content */}
-                    <div className="p-6 sm:p-8">
+                    <div className="p-8 sm:p-12">
                       <div 
-                        className="prose prose-base sm:prose-lg max-w-none
-                          prose-headings:font-league-spartan prose-headings:text-gray-900
-                          prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-8 prose-h1:mb-6
-                          prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-8 sm:prose-h2:mt-12 prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:text-gray-800 prose-h2:border-b prose-h2:border-pink-200 prose-h2:pb-3
-                          prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-6 sm:prose-h3:mt-8 prose-h3:mb-3 sm:prose-h3:mb-4 prose-h3:text-gray-800
-                          prose-h4:text-lg sm:prose-h4:text-xl prose-h4:font-semibold prose-h4:mt-6 prose-h4:mb-3 prose-h4:text-gray-800
-                          prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4 sm:prose-p:mb-6 prose-p:text-base sm:prose-p:text-lg
-                          prose-a:text-pink-600 prose-a:no-underline prose-a:font-medium hover:prose-a:text-pink-700 hover:prose-a:underline
-                          prose-strong:text-gray-900 prose-strong:font-semibold
-                          prose-em:text-gray-800 prose-em:font-medium
-                          prose-ul:my-4 sm:prose-ul:my-6 prose-ul:space-y-2
-                          prose-ol:my-4 sm:prose-ol:my-6 prose-ol:space-y-2
-                          prose-li:text-gray-700 prose-li:leading-relaxed prose-li:text-base sm:prose-li:text-lg
-                          prose-li:marker:text-pink-600
-                          prose-blockquote:border-l-4 prose-blockquote:border-pink-500 prose-blockquote:bg-pink-50 prose-blockquote:p-4 sm:prose-blockquote:p-6 prose-blockquote:rounded-r-lg prose-blockquote:my-6 sm:prose-blockquote:my-8
-                          prose-blockquote:text-gray-800 prose-blockquote:font-medium prose-blockquote:text-base sm:prose-blockquote:text-lg
-                          prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-pink-600 prose-code:font-medium prose-code:text-sm sm:prose-code:text-base
-                          prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 sm:prose-pre:p-6 prose-pre:rounded-lg prose-pre:my-6 prose-pre:text-sm sm:prose-pre:text-base
-                          prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6 sm:prose-img:my-8"
+                        className="blog-content max-w-none"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                       />
                     </div>

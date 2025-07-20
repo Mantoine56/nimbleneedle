@@ -31,10 +31,10 @@ export default function BlogPostClient({ postUrl, postTitle }: BlogPostClientPro
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200/50 backdrop-blur-sm">
-      <div className="flex items-center mb-6">
-        <Share2 className="w-5 h-5 mr-2 text-pink-600" />
-        <h3 className="text-xl font-league-spartan font-bold text-gray-900">Follow Us</h3>
+    <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 border border-gray-200/50 backdrop-blur-sm">
+      <div className="flex items-center mb-6 border-b border-gray-100 pb-3">
+        <Share2 className="w-6 h-6 mr-3 text-pink-600" />
+        <h3 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900">Follow Us</h3>
       </div>
       
       <div className="space-y-3">
