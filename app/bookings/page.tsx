@@ -209,33 +209,62 @@ export default function BookingsPage() {
                 <h2 className="text-xl font-bold text-gray-900 font-league-spartan">
                   Booking Progress
                 </h2>
-                <div className="flex items-center space-x-4">
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold ${
-                    currentStep >= 1 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
-                  }`}>
-                    1
+                
+                {/* Stepper with proper alignment */}
+                <div className="relative">
+                  <div className="flex items-center justify-between">
+                    {/* Step 1 */}
+                    <div className="flex flex-col items-center space-y-2 flex-1">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-semibold transition-all duration-300 ${
+                        currentStep >= 1 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
+                      }`}>
+                        1
+                      </div>
+                      <span className={`text-xs font-medium text-center transition-colors duration-300 ${
+                        currentStep >= 1 ? 'text-pink-600' : 'text-gray-500'
+                      }`}>
+                        Location
+                      </span>
+                    </div>
+                    
+                    {/* Connector Line 1 */}
+                    <div className={`h-1 w-12 mx-2 rounded transition-colors duration-300 ${
+                      currentStep >= 2 ? 'bg-pink-500' : 'bg-gray-200'
+                    }`} />
+                    
+                    {/* Step 2 */}
+                    <div className="flex flex-col items-center space-y-2 flex-1">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-semibold transition-all duration-300 ${
+                        currentStep >= 2 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
+                      }`}>
+                        2
+                      </div>
+                      <span className={`text-xs font-medium text-center transition-colors duration-300 ${
+                        currentStep >= 2 ? 'text-pink-600' : 'text-gray-500'
+                      }`}>
+                        Service
+                      </span>
+                    </div>
+                    
+                    {/* Connector Line 2 */}
+                    <div className={`h-1 w-12 mx-2 rounded transition-colors duration-300 ${
+                      currentStep >= 3 ? 'bg-pink-500' : 'bg-gray-200'
+                    }`} />
+                    
+                    {/* Step 3 */}
+                    <div className="flex flex-col items-center space-y-2 flex-1">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-semibold transition-all duration-300 ${
+                        currentStep >= 3 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
+                      }`}>
+                        3
+                      </div>
+                      <span className={`text-xs font-medium text-center transition-colors duration-300 ${
+                        currentStep >= 3 ? 'text-pink-600' : 'text-gray-500'
+                      }`}>
+                        Booking
+                      </span>
+                    </div>
                   </div>
-                  <div className={`h-1 w-16 rounded ${
-                    currentStep >= 2 ? 'bg-pink-500' : 'bg-gray-200'
-                  }`} />
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold ${
-                    currentStep >= 2 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
-                  }`}>
-                    2
-                  </div>
-                  <div className={`h-1 w-16 rounded ${
-                    currentStep >= 3 ? 'bg-pink-500' : 'bg-gray-200'
-                  }`} />
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold ${
-                    currentStep >= 3 ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-600'
-                  }`}>
-                    3
-                  </div>
-                </div>
-                <div className="flex justify-between text-sm text-gray-600 font-montserrat">
-                  <span>Location</span>
-                  <span>Service</span>
-                  <span>Booking</span>
                 </div>
               </div>
 
