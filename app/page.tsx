@@ -628,8 +628,7 @@ export default function Home() {
                       <div className="mt-6 flex space-x-3">
                         <Button 
                           onClick={() => {
-                            const address = encodeURIComponent(location.address);
-                            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                            window.open(location.directions, '_blank');
                           }}
                           className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
                           Get Directions

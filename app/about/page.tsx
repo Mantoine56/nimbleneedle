@@ -185,7 +185,7 @@ export default function AboutPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Company Information */}
-            <div>
+            <div className="order-2 lg:order-1">
               <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-4 py-2 text-sm font-medium mb-6">
                 <Heart className="h-4 w-4 mr-2" />
                 Family-Run Business Since 2008
@@ -327,8 +327,11 @@ export default function AboutPage() {
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => {
-                              const address = encodeURIComponent(location.address);
-                              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                              // Use the business name in the search to get to the actual business page
+                              const businessSearch = location.name.includes('Preston') 
+                                ? 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa'
+                                : 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
+                              window.open(businessSearch, '_blank');
                               setIsLocationPopupOpen(false);
                             }}
                             size="sm"
@@ -369,7 +372,7 @@ export default function AboutPage() {
             </div>
 
             {/* Parliament Hill Image */}
-            <div className="text-center lg:text-left">
+            <div className="order-1 lg:order-2 text-center lg:text-left">
               <div className="relative inline-block">
                 <Image
                   src="/parliament-hill.jpg"
