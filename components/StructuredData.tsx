@@ -18,9 +18,9 @@ export default function BlogPostStructuredData({ post }: StructuredDataProps) {
     "dateModified": post.date,
     "author": {
       "@type": "Person",
-      "name": post.author.name,
-      "jobTitle": post.author.role,
-      "image": post.author.avatar ? `https://nimbleneedle.ca${post.author.avatar}` : undefined
+      "name": post.author?.name || "Nimble Needle Team",
+      "jobTitle": post.author?.role || "Expert Tailors",
+      "image": post.author?.avatar ? `https://nimbleneedle.ca${post.author.avatar}` : undefined
     },
     "publisher": {
       "@type": "Organization",

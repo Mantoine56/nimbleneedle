@@ -58,21 +58,33 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
         
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            {post.author.avatar && (
-              <Image
-                src={post.author.avatar}
-                alt={post.author.name}
-                width={32}
-                height={32}
-                className="rounded-full mr-3 shadow-md"
-              />
+            {/* Only render author info if author exists */}
+            {post.author && (
+              <>
+                {post.author.avatar && (
+                  <Image
+                    src={post.author.avatar}
+                    alt={post.author.name}
+                    width={32}
+                    height={32}
+                    className="rounded-full mr-3 shadow-md"
+                  />
+                )}
+                <div>
+                  <p className="text-sm font-medium text-gray-900">{post.author.name}</p>
+                  {post.author.role && (
+                    <p className="text-xs text-pink-600">{post.author.role}</p>
+                  )}
+                </div>
+              </>
             )}
-            <div>
-              <p className="text-sm font-medium text-gray-900">{post.author.name}</p>
-              {post.author.role && (
-                <p className="text-xs text-pink-600">{post.author.role}</p>
-              )}
-            </div>
+            {/* If no author, show a default message or leave empty */}
+            {!post.author && (
+              <div>
+                <p className="text-sm font-medium text-gray-900">Nimble Needle Team</p>
+                <p className="text-xs text-pink-600">Expert Tailors</p>
+              </div>
+            )}
           </div>
           <Link 
             href={`/blog/${post.slug}`}
