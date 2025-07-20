@@ -251,8 +251,8 @@ export default function ZipperRepairPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/zipper repair.jpg"
-                  alt="Professional zipper repair services for all types of garments"
+                                  src="/Zipper2.webp"
+                alt="Professional zipper repair services for all types of garments"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-2xl"

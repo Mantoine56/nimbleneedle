@@ -174,7 +174,7 @@ export default function AboutPage() {
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero Section with Riber Baabo */}
+      {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -368,12 +368,12 @@ export default function AboutPage() {
               )}
             </div>
 
-            {/* Riber's Photo */}
+            {/* Parliament Hill Image */}
             <div className="text-center lg:text-left">
               <div className="relative inline-block">
                 <Image
-                  src="/wordpress-media/original/riber_photo.jpg"
-                  alt="Riber Baabo - Expert tailor with over 20 years experience at Nimble Needle Tailoring"
+                  src="/parliament-hill.jpg"
+                  alt="Parliament Hill Ottawa - Home of Canada's Capital where Nimble Needle Tailoring serves the community"
                   width={500}
                   height={600}
                   className="rounded-2xl shadow-2xl mx-auto"
@@ -381,11 +381,6 @@ export default function AboutPage() {
                 <div className="absolute -bottom-4 -right-4 bg-pink-500 rounded-2xl p-4 shadow-xl">
                   <Scissors className="h-8 w-8 text-white" />
                 </div>
-              </div>
-              
-              <div className="mt-8 text-center">
-                <h3 className="text-2xl font-bold text-gray-900 font-league-spartan mb-2">Riber Baabo</h3>
-                <p className="text-pink-600 font-semibold">Master tailor with over 20 years experience</p>
               </div>
             </div>
           </div>
