@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { League_Spartan, Montserrat, Poppins } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const leagueSpartan = League_Spartan({ 
@@ -195,6 +196,8 @@ export default function RootLayout({
       </head>
       <body className="font-montserrat" suppressHydrationWarning={true}>
         <GoogleAnalytics />
+        {/* Vercel Web Analytics - tracks page views and user interactions */}
+        <Analytics />
         {children}
       </body>
     </html>
