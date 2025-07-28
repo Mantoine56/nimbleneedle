@@ -234,7 +234,7 @@ export default function CustomSuitsPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/Custom and retail suits.jpeg"
+                  src="/services/customsuit.avif"
                   alt="Professional custom suit tailoring and retail suit adjustments"
                   width={600}
                   height={400}

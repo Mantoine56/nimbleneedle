@@ -273,8 +273,8 @@ export default function DryCleaningPage() {
             }`}>
               <div className="relative">
                 <Image
-                  src="/services/Dry Cleaning.jpg"
-                  alt="Professional dry cleaning services for delicate garments at Nimble Needle Tailoring"
+                                  src="/services/washing.avif"
+                alt="Professional dry cleaning services for delicate garments at Nimble Needle Tailoring"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-2xl"

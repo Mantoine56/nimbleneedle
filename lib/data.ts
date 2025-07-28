@@ -75,7 +75,7 @@ export const services = [
   {
     title: "CUSTOM AND RETAIL SUITS",
     subtitle: "We have a selection of retail suits or we can create a custom one for you",
-    image: "/services/Custom and retail suits.jpeg",
+    image: "/services/customsuit.avif",
     delay: 200
   },
   {
@@ -98,14 +98,14 @@ export const allServices = [
   {
     title: "CUSTOM MADE AND RETAIL SUITS",
     subtitle: "Bespoke suits and retail suit selection",
-    image: "/services/Custom and retail suits.jpeg",
+    image: "/services/customsuit.avif",
     link: "/custom-suits",
     delay: 100
   },
   {
     title: "DRY CLEANING",
     subtitle: "Professional dry cleaning services",
-    image: "/services/Dry Cleaning.jpg",
+    image: "/services/washing.avif",
     link: "/dry-cleaning",
     delay: 200
   },
