@@ -24,7 +24,7 @@ const locations: Location[] = [
   },
   {
     id: 'riverside',
-    name: 'New Location - Riverside', 
+    name: 'Riverside & Uplands', 
     address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
     phone: '(343) 588-3182',
     mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa',
@@ -121,7 +121,7 @@ export default function LocationSelector() {
                     className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-xs transition-all duration-200"
                   >
                     <Phone className="h-3 w-3 mr-1" />
-                    Call Now
+                    {location.phone}
                   </Button>
                   <Button
                     onClick={() => handleDirections(location.mapUrl)}

@@ -53,7 +53,7 @@ const locations = {
     ]
   },
   riverside: {
-    name: 'Riverside Dr (Riverside)',
+    name: 'Riverside & Uplands',
     address: '3681 Riverside Dr, Ottawa',
     phone: '(343) 588-3182',
     phoneNumber: '3435883182',
@@ -450,21 +450,34 @@ export default function BookingsPage() {
             <p className="text-xl text-gray-600 font-montserrat">
               Call us directly for rush orders and same-day service
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Button 
-                className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
-                onClick={() => window.open('tel:3435881300', '_self')}
-              >
-                <span>Call Preston Location</span>
-                <ExternalLink className="h-5 w-5" />
-              </Button>
-              <Button 
-                className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
-                onClick={() => window.open('tel:3435883182', '_self')}
-              >
-                <span>Call Riverside Location</span>
-                <ExternalLink className="h-5 w-5" />
-              </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
+              {/* Preston Location */}
+              <div className="text-center space-y-3">
+                <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg font-semibold text-sm">
+                  Call Preston Location
+                </div>
+                <Button 
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-6 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
+                  onClick={() => window.open('tel:3435881300', '_self')}
+                >
+                  <Phone className="h-5 w-5" />
+                  <span>(343) 588-1300</span>
+                </Button>
+              </div>
+              
+              {/* Riverside Location */}
+              <div className="text-center space-y-3">
+                <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg font-semibold text-sm">
+                  Call Riverside & Uplands
+                </div>
+                <Button 
+                  className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-6 py-3 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
+                  onClick={() => window.open('tel:3435883182', '_self')}
+                >
+                  <Phone className="h-5 w-5" />
+                  <span>(343) 588-3182</span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

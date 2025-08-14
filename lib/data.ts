@@ -217,7 +217,7 @@ export const locations = [
     delay: 0
   },
   {
-    name: "New Location - Riverside",
+    name: "Riverside & Uplands",
     address: "3681 Riverside Dr, Ottawa, ON K1V 1H7",
     phone: "(343) 588-3182",
     hours: {

@@ -46,7 +46,7 @@ const locations = [
     directions: "https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa"
   },
   {
-    name: "New Location - Riverside",
+    name: "Riverside & Uplands",
     address: "3681 Riverside Dr", 
     city: "Ottawa, ON K1V 1H7",
     phone: "(343) 588-3182",
@@ -329,7 +329,7 @@ export default function ContactPage() {
                             className="flex-1 border-gray-300 hover:bg-gray-100 text-gray-700 text-xs"
                           >
                             <Phone className="h-3 w-3 mr-1" />
-                            Call
+                            {location.phone}
                           </Button>
                         </div>
                       </div>
@@ -530,9 +530,40 @@ export default function ContactPage() {
                     </h3>
                     
                     <div className="mb-4">
-                      <p className="text-lg font-semibold text-pink-600 mb-1">{method.primary}</p>
-                      {method.secondary && (
-                        <p className="text-lg font-semibold text-pink-600">{method.secondary}</p>
+                      {method.method === "Phone" ? (
+                        <>
+                          <a 
+                            href="tel:3435881300"
+                            className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block mb-1 cursor-pointer"
+                            aria-label="Call Preston Street location"
+                          >
+                            {method.primary}
+                          </a>
+                          {method.secondary && (
+                            <a 
+                              href="tel:3435883182"
+                              className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block cursor-pointer"
+                              aria-label="Call Riverside Drive location"
+                            >
+                              {method.secondary}
+                            </a>
+                          )}
+                        </>
+                      ) : method.method === "Email" ? (
+                        <a 
+                          href="mailto:info@nimbleneedle.ca"
+                          className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block mb-1 cursor-pointer"
+                          aria-label="Send us an email"
+                        >
+                          {method.primary}
+                        </a>
+                      ) : (
+                        <>
+                          <p className="text-lg font-semibold text-pink-600 mb-1">{method.primary}</p>
+                          {method.secondary && (
+                            <p className="text-lg font-semibold text-pink-600">{method.secondary}</p>
+                          )}
+                        </>
                       )}
                     </div>
                     
@@ -857,7 +888,7 @@ export default function ContactPage() {
 
               {/* Riverside Location */}
               <div>
-                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">New Location - Riverside</h3>
+                <h3 className="text-lg font-semibold mb-6 font-league-spartan text-pink-400">Riverside & Uplands</h3>
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />

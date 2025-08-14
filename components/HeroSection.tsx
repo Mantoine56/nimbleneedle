@@ -67,13 +67,24 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
             <div className="mb-8">
-              <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium">
-                {businessInfo ? (
-                  `⭐ ${businessInfo.rating}/5 Rating • ${businessInfo.totalReviews}+ Reviews`
-                ) : (
-                  reviewsLoading ? '⭐ Loading Reviews...' : '⭐ 4.9/5 Rating • 500+ Reviews'
-                )}
-              </Badge>
+              <button
+                onClick={() => {
+                  // Direct link to Google search with reviews panel opened
+                  // Using the same working URL as the main Google Reviews section
+                  const googleReviewsUrl = 'https://www.google.com/search?q=Nimble+Needle+Tailoring+Ottawa+reviews#lrd=0x4cce09edd30388c9:0x8df3e1739cca8606,1,,,,';
+                  window.open(googleReviewsUrl, '_blank', 'noopener,noreferrer');
+                }}
+                className="bg-white/20 text-white border border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium rounded-full hover:bg-white/30 hover:border-white/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent cursor-pointer group"
+                aria-label="View our Google Reviews"
+              >
+                <span className="group-hover:text-white/90 transition-colors duration-300">
+                  {businessInfo ? (
+                    `⭐ ${businessInfo.rating}/5 Rating • ${businessInfo.totalReviews}+ Reviews`
+                  ) : (
+                    reviewsLoading ? '⭐ Loading Reviews...' : '⭐ 4.9/5 Rating • 953+ Reviews'
+                  )}
+                </span>
+              </button>
             </div>
             
             {/* Critical LCP Element - Optimized */}
@@ -120,33 +131,51 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           {/* Right Column - Google Reviews */}
           <div className="flex justify-center lg:justify-center lg:pr-16">
             <div ref={heroCarouselRef} className="w-full max-w-sm">
-              {/* Google Reviews Header */}
-              <div className="bg-white/20 rounded-2xl p-6 mb-4 border border-white/30">
+              {/* Google Reviews Header - Now Clickable */}
+              <button
+                onClick={() => {
+                  // Direct link to Google search with reviews panel opened
+                  // Using the correct coordinates that actually work for Nimble Needle Tailoring
+                  const googleReviewsUrl = 'https://www.google.com/search?q=Nimble+Needle+Tailoring+Ottawa+reviews#lrd=0x4cce09edd30388c9:0x8df3e1739cca8606,1,,,,';
+                  window.open(googleReviewsUrl, '_blank', 'noopener,noreferrer');
+                }}
+                className="w-full bg-white/20 rounded-2xl p-6 mb-4 border border-white/30 hover:bg-white/30 hover:border-white/40 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent cursor-pointer group"
+                aria-label="View our Google Reviews"
+              >
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center group-hover:bg-blue-50 transition-colors duration-300">
                     <span className="text-blue-600 font-bold text-sm">G</span>
                   </div>
-                  <div>
-                    <h3 className="text-white font-semibold">Google Reviews</h3>
+                  <div className="text-left">
+                    <h3 className="text-white font-semibold group-hover:text-white/90 transition-colors duration-300">Google Reviews</h3>
                     <div className="flex items-center space-x-1">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star key={i} className="h-4 w-4 text-yellow-400 fill-current group-hover:text-yellow-300 transition-colors duration-300" />
                         ))}
                       </div>
                       {businessInfo ? (
-                        <span className="text-white/80 text-sm ml-2">
+                        <span className="text-white/80 text-sm ml-2 group-hover:text-white/90 transition-colors duration-300">
                           {businessInfo.rating} • {businessInfo.totalReviews}+ reviews
                         </span>
                       ) : (
-                        <span className="text-white/80 text-sm ml-2">
+                        <span className="text-white/80 text-sm ml-2 group-hover:text-white/90 transition-colors duration-300">
                           {reviewsLoading ? 'Loading...' : '4.9 • 500+ reviews'}
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
+                {/* Click indicator */}
+                <div className="flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
+                  <span className="text-white/60 text-xs flex items-center gap-1">
+                    Click to view all reviews
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
 
               {/* Review Display Area */}
               <div className="h-64">
