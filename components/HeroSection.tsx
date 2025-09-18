@@ -14,6 +14,11 @@ interface HeroSectionProps {
   reviewsLoading?: boolean;
 }
 
+const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=5b71cfa89013eb9f&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3Ovb0eQnh8JkM1wzOUZpmDpMbUY5JnpXSyYwcBtr4A3QetmHVNVUidASvlHk4NQwDr1sQG--ShVP4sspK4lRhbeB7--idtvgbAFkIbgrzqXhDS7ZQ%3D%3D&q=Nimble+Needle+Tailoring+Reviews&sa=X&ved=2ahUKEwih17vsstuPAxX6v4kEHcDHBmIQ0bkNegQINRAE&biw=1920&bih=919&dpr=1';
+const RIVERSIDE_DIRECTIONS_URL = 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
+const RIVERSIDE_PHONE_DISPLAY = '(343) 588-3182';
+const RIVERSIDE_PHONE_TEL = '+13435883182';
+
 export default function HeroSection({ scrollY, heroReviews = [], businessInfo = null, reviewsLoading = false }: HeroSectionProps) {
   const [currentHeroReview, setCurrentHeroReview] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -63,16 +68,39 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-6 lg:hidden">
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="h-9 px-5 sm:px-6 rounded-full border-white/40 text-white hover:text-white bg-white/10 hover:bg-white/20 w-full sm:w-auto justify-center backdrop-blur"
+              >
+                <a
+                  href={RIVERSIDE_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  New Riverside location now open
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="sm"
+                className="h-9 px-5 sm:px-6 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold rounded-full w-full sm:w-auto justify-center shadow-lg shadow-pink-500/30"
+              >
+                <a href={`tel:${RIVERSIDE_PHONE_TEL}`} aria-label="Call our Riverside location">
+                  Call {RIVERSIDE_PHONE_DISPLAY}
+                </a>
+              </Button>
+            </div>
             <div className="mb-8">
               <button
                 onClick={() => {
-                  // Direct link to Google search with reviews panel opened
-                  // Using the same working URL as the main Google Reviews section
-                  const googleReviewsUrl = 'https://www.google.com/search?q=Nimble+Needle+Tailoring+Ottawa+reviews#lrd=0x4cce09edd30388c9:0x8df3e1739cca8606,1,,,,';
-                  window.open(googleReviewsUrl, '_blank', 'noopener,noreferrer');
+                  // Open Google reviews using client-provided search link
+                  window.open(GOOGLE_REVIEWS_URL, '_blank', 'noopener,noreferrer');
                 }}
                 className="bg-white/20 text-white border border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium rounded-full hover:bg-white/30 hover:border-white/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent cursor-pointer group"
                 aria-label="View our Google Reviews"
@@ -129,15 +157,39 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           </div>
 
           {/* Right Column - Google Reviews */}
-          <div className="flex justify-center lg:justify-center lg:pr-16">
+          <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:pr-16 lg:mt-0">
+            <div className="hidden lg:flex items-center gap-3">
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="h-9 px-6 rounded-full border-white/40 text-white hover:text-white bg-white/10 hover:bg-white/20 justify-center backdrop-blur"
+              >
+                <a
+                  href={RIVERSIDE_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  New Riverside location now open
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="sm"
+                className="h-9 px-6 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold rounded-full justify-center shadow-lg shadow-pink-500/30"
+              >
+                <a href={`tel:${RIVERSIDE_PHONE_TEL}`} aria-label="Call our Riverside location">
+                  Call {RIVERSIDE_PHONE_DISPLAY}
+                </a>
+              </Button>
+            </div>
+
             <div ref={heroCarouselRef} className="w-full max-w-sm">
               {/* Google Reviews Header - Now Clickable */}
               <button
                 onClick={() => {
-                  // Direct link to Google search with reviews panel opened
-                  // Using the correct coordinates that actually work for Nimble Needle Tailoring
-                  const googleReviewsUrl = 'https://www.google.com/search?q=Nimble+Needle+Tailoring+Ottawa+reviews#lrd=0x4cce09edd30388c9:0x8df3e1739cca8606,1,,,,';
-                  window.open(googleReviewsUrl, '_blank', 'noopener,noreferrer');
+                  // Open Google reviews using client-provided search link
+                  window.open(GOOGLE_REVIEWS_URL, '_blank', 'noopener,noreferrer');
                 }}
                 className="w-full bg-white/20 rounded-2xl p-6 mb-4 border border-white/30 hover:bg-white/30 hover:border-white/40 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent cursor-pointer group"
                 aria-label="View our Google Reviews"

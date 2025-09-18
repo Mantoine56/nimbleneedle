@@ -15,19 +15,19 @@ interface Location {
 
 const locations: Location[] = [
   {
+    id: 'riverside',
+    name: 'Riverside & Uplands',
+    address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
+    phone: '(343) 588-3182',
+    mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa',
+    hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
+  },
+  {
     id: 'preston',
     name: 'Downtown Ottawa - Preston',
     address: '141 Preston St, Ottawa, ON K1R 7P4',
     phone: '(343) 588-1300',
     mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa',
-    hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
-  },
-  {
-    id: 'riverside',
-    name: 'Riverside & Uplands', 
-    address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
-    phone: '(343) 588-3182',
-    mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa',
     hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
   }
 ];
