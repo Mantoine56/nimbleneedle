@@ -602,12 +602,17 @@ export default function Home() {
                       </h3>
                       
                       <div className="space-y-4">
-                        <div className="flex items-start space-x-3">
+                        <button
+                          type="button"
+                          onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                          className="flex items-start space-x-3 text-left group"
+                          aria-label={`Open Google Maps directions for ${location.name}`}
+                        >
                           <MapPin className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
-                          <div>
-                            <p className="text-gray-700 font-medium">{location.address}</p>
-                          </div>
-                        </div>
+                          <span className="text-gray-700 font-medium underline decoration-dotted underline-offset-4 group-hover:text-pink-600 transition-colors">
+                            {location.address}
+                          </span>
+                        </button>
                         
                         <div className="flex items-start space-x-3">
                           <Phone className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />

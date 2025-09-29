@@ -449,10 +449,16 @@ export default function AboutPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    <div>
+                    {/* Link the Preston location to Google Maps so visitors can get directions instantly. */}
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block hover:text-pink-400 transition-colors"
+                    >
                       <p className="font-medium">141 Preston St</p>
                       <p>Ottawa, ON K1R 7P4</p>
-                    </div>
+                    </a>
                   </div>
                   
                   <div className="flex items-center space-x-3">
@@ -478,10 +484,16 @@ export default function AboutPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    <div>
+                    {/* Provide a directions link for the Riverside location to keep the footer consistent. */}
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block hover:text-pink-400 transition-colors"
+                    >
                       <p className="font-medium">3681 Riverside Dr</p>
                       <p>Ottawa, ON K1V 1H7</p>
-                    </div>
+                    </a>
                   </div>
                   
                   <div className="flex items-center space-x-3">

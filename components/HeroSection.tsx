@@ -71,7 +71,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-6 lg:hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-6">
               <Button
                 asChild
                 size="sm"
@@ -95,24 +95,6 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                   Call {RIVERSIDE_PHONE_DISPLAY}
                 </a>
               </Button>
-            </div>
-            <div className="mb-8">
-              <button
-                onClick={() => {
-                  // Open Google reviews using client-provided search link
-                  window.open(GOOGLE_REVIEWS_URL, '_blank', 'noopener,noreferrer');
-                }}
-                className="bg-white/20 text-white border border-white/30 backdrop-blur-sm px-4 py-2 text-sm font-medium rounded-full hover:bg-white/30 hover:border-white/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-transparent cursor-pointer group"
-                aria-label="View our Google Reviews"
-              >
-                <span className="group-hover:text-white/90 transition-colors duration-300">
-                  {businessInfo ? (
-                    `⭐ ${businessInfo.rating}/5 Rating • ${businessInfo.totalReviews}+ Reviews`
-                  ) : (
-                    reviewsLoading ? '⭐ Loading Reviews...' : '⭐ 4.9/5 Rating • 953+ Reviews'
-                  )}
-                </span>
-              </button>
             </div>
             
             {/* Critical LCP Element - Optimized */}
@@ -158,31 +140,6 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
 
           {/* Right Column - Google Reviews */}
           <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:pr-16 lg:mt-0">
-            <div className="hidden lg:flex items-center gap-3">
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="h-9 px-6 rounded-full border-white/40 text-white hover:text-white bg-white/10 hover:bg-white/20 justify-center backdrop-blur"
-              >
-                <a
-                  href={RIVERSIDE_DIRECTIONS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  New Riverside location now open
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="sm"
-                className="h-9 px-6 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold rounded-full justify-center shadow-lg shadow-pink-500/30"
-              >
-                <a href={`tel:${RIVERSIDE_PHONE_TEL}`} aria-label="Call our Riverside location">
-                  Call {RIVERSIDE_PHONE_DISPLAY}
-                </a>
-              </Button>
-            </div>
 
             <div ref={heroCarouselRef} className="w-full max-w-sm">
               {/* Google Reviews Header - Now Clickable */}

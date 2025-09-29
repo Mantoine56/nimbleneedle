@@ -25,9 +25,11 @@ import Footer from '@/components/Footer';
 const locations = {
   preston: {
     name: 'Preston St (Downtown)',
-    address: '141 Preston St, Ottawa',
+    address: '141 Preston St, Ottawa, ON K1R 7P4',
     phone: '(343) 588-1300',
     phoneNumber: '3435881300',
+    // Prebuild a Google Maps directions link to keep address taps consistent everywhere.
+    directions: 'https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4',
     services: [
       {
         name: 'Suit Fitting',
@@ -54,9 +56,10 @@ const locations = {
   },
   riverside: {
     name: 'Riverside & Uplands',
-    address: '3681 Riverside Dr, Ottawa',
+    address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
     phone: '(343) 588-3182',
     phoneNumber: '3435883182',
+    directions: 'https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7',
     services: [
       {
         name: 'Suit Fitting',
@@ -345,6 +348,7 @@ export default function BookingsPage() {
                               <h3 className="text-xl font-bold text-gray-900 font-league-spartan">
                                 {location.name}
                               </h3>
+                              {/* Keep address static here to avoid accidental navigation while selecting a location. */}
                               <div className="flex items-center space-x-2 text-gray-600">
                                 <MapPin className="h-4 w-4" />
                                 <span className="font-montserrat">{location.address}</span>

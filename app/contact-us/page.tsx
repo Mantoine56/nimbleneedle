@@ -248,9 +248,7 @@ export default function ContactPage() {
                   No appointment necessary - walk-ins are always welcome!
                 </p>
                 
-                <p className="font-semibold text-pink-600">
-                  We serve customers in English, Arabic, and Kurdish.
-                </p>
+                {/* Removed multilingual service line at user request to declutter the hero copy. */}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 relative">
@@ -289,13 +287,17 @@ export default function ContactPage() {
                     <p className="text-white/80 text-sm">Get directions to our locations</p>
                   </div>
                   <div className="p-4 space-y-4">
-                    {locations.map((location, index) => (
-                      <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
+                {locations.map((location, index) => (
+                  <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
                         <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
-                        <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
-                          <MapPin className="h-3 w-3" />
-                          {location.address}
-                        </p>
+                    <button
+                      type="button"
+                      onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                      className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      {location.address}
+                    </button>
                         <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
                           <Phone className="h-3 w-3" />
                           {location.phone}
@@ -620,13 +622,22 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="space-y-4 mb-6">
-                    <div className="flex items-start space-x-3">
+                    <button
+                      type="button"
+                      onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                      className="flex items-start space-x-3 text-left text-pink-600 hover:text-pink-700 font-semibold transition-colors"
+                      aria-label={`Open Google Maps directions for ${location.name}`}
+                    >
+                      {/* Ensure the location address is clickable for quick map access. */}
                       <MapPin className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-gray-700 font-medium">{location.address}</p>
-                        <p className="text-gray-600">{location.city}</p>
-                      </div>
-                    </div>
+                      <span className="text-left">
+                        <span className="text-gray-700 font-medium underline decoration-dotted underline-offset-4">
+                          {location.address}
+                        </span>
+                        <br />
+                        <span className="text-gray-600 font-normal">{location.city}</span>
+                      </span>
+                    </button>
                     
                     <div className="flex items-center space-x-3">
                       <Phone className="h-5 w-5 text-pink-500 flex-shrink-0" />
@@ -863,10 +874,15 @@ export default function ContactPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    <div>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block hover:text-pink-400 transition-colors"
+                    >
                       <p className="font-medium">141 Preston St</p>
                       <p>Ottawa, ON K1R 7P4</p>
-                    </div>
+                    </a>
                   </div>
                   
                   <div className="flex items-center space-x-3">
@@ -892,10 +908,15 @@ export default function ContactPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    <div>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block hover:text-pink-400 transition-colors"
+                    >
                       <p className="font-medium">3681 Riverside Dr</p>
                       <p>Ottawa, ON K1V 1H7</p>
-                    </div>
+                    </a>
                   </div>
                   
                   <div className="flex items-center space-x-3">

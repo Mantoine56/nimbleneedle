@@ -19,7 +19,8 @@ const locations: Location[] = [
     name: 'Riverside & Uplands',
     address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
     phone: '(343) 588-3182',
-    mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa',
+    // Google Maps directions link so users can navigate without extra clicks.
+    mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7',
     hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
   },
   {
@@ -27,7 +28,8 @@ const locations: Location[] = [
     name: 'Downtown Ottawa - Preston',
     address: '141 Preston St, Ottawa, ON K1R 7P4',
     phone: '(343) 588-1300',
-    mapUrl: 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa',
+    // Same direct directions link for the Preston location.
+    mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4',
     hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
   }
 ];
@@ -90,10 +92,15 @@ export default function LocationSelector() {
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
-                    <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => handleDirections(location.mapUrl)}
+                      className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
+                    >
+                      {/* Allow guests to click any listed address and jump straight to Google Maps directions. */}
                       <MapPin className="h-3 w-3" />
-                      {location.address}
-                    </p>
+                      <span>{location.address}</span>
+                    </button>
                     <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
                       <Phone className="h-3 w-3" />
                       {location.phone}
