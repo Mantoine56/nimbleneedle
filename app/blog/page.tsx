@@ -272,7 +272,7 @@ export default function BlogPage() {
                         <div className="relative h-48 sm:h-56 overflow-hidden">
                           <Image
                             src={post.featuredImage}
-                            alt={post.title}
+                            alt={post.featuredImageAlt || post.title}
                             fill
                             className="object-cover transition-transform duration-500 hover:scale-110"
                           />

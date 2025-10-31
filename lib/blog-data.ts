@@ -14,6 +14,7 @@ export interface BlogPost {
   category: string;
   tags: string[];
   featuredImage: string;
+  featuredImageAlt?: string;
   published: boolean;
 }
 
@@ -695,11 +696,68 @@ export const blogPosts: BlogPost[] = [
     featuredImage: "/services/alterations.webp",
     published: true
   }
+  ,
+  {
+    id: "9",
+    slug: "most-common-suit-alterations",
+    title: "The Most Common Suit Alterations and Why They Make a Difference",
+    excerpt: "Learn the most impactful suit alterations—sleeves, waist, hems, and tapering—and why they transform fit, comfort, and style.",
+    content: `
+      <p>A well-fitted suit is more than just a fashion statement; it’s a reflection of confidence, professionalism, and attention to detail. Whether you're dressing for a wedding, a job interview, or a formal event in Ottawa, the fit of your suit can make or break your overall look. That’s where <strong>suit alteration</strong> comes in. Even the finest off-the-rack suits often need a few tweaks to achieve that perfect fit. Here are the most common suit alterations and why they matter.</p>
+
+      <h2>1. Jacket Sleeve Length Adjustment</h2>
+      <p>Ideally, your shirt cuff should peek out about half an inch from the jacket sleeve. If the sleeves are too long or too short, it throws off the balance of your entire outfit. Adjusting sleeve length is a relatively simple alteration that can dramatically improve your suit’s appearance.</p>
+
+      <h2>2. Taking In or Letting Out the Jacket</h2>
+      <p>The torso of a suit jacket should contour to your body without being too tight or too loose. If your jacket feels boxy or pulls across the chest, it may need to be taken in. Conversely, if it feels snug, letting it out slightly can restore comfort and mobility. This alteration helps create a flattering silhouette and ensures the jacket complements your frame.</p>
+
+      <h2>3. Pant Hemming</h2>
+      <p>Pant length is crucial for a polished look. Whether you prefer a full break, half break, or no break at all, hemming your suit pants ensures they fall cleanly over your shoes. Unhemmed or overly long pants can look sloppy, while pants that are too short can affect your overall look. Hemming is one of the most common and essential suit alterations.</p>
+
+      <h2>4. Tapering the Pant Legs</h2>
+      <p>Modern suit styles often favour a slimmer, more tailored leg. If your suit pants feel too wide or outdated, tapering the legs can give them a more contemporary and flattering shape. This alteration is especially popular among younger professionals and those looking for a sleek, streamlined look.</p>
+
+      <h2>5. Waist Adjustment on Pants</h2>
+      <p>Comfort and fit go hand in hand when it comes to suit pants. If your waistband feels too tight or too loose, a simple adjustment can make a world of difference. A properly fitted waist ensures your pants stay in place and look sharp throughout the day, whether you're sitting, standing, or moving around.</p>
+
+      <h2>Why These Alterations Matter</h2>
+      <ul>
+        <li><strong>Improved fit:</strong> A tailored suit hugs your body in all the right places, enhancing your natural shape and eliminating excess fabric.</li>
+        <li><strong>Enhanced comfort:</strong> Alterations ensure your suit moves with you—at the office, in meetings, or on the dance floor.</li>
+        <li><strong>Professional appearance:</strong> A well-fitted suit communicates attention to detail and professionalism.</li>
+        <li><strong>Modern style:</strong> Updates like tapering pant legs or slimming the jacket give older pieces a fresh, contemporary look.</li>
+        <li><strong>Longevity:</strong> Proper alterations prevent wear and tear from poor fit, extending the life of your garments.</li>
+        <li><strong>Confidence boost:</strong> Looking sharp helps you feel your best in formal and professional settings.</li>
+      </ul>
+
+      <h2>Ready to Elevate Your Suit Game?</h2>
+      <p>If you have a suit that doesn’t quite fit the way it should, don’t let it sit in your closet. At Nimble Needle Tailoring, we specialize in high-quality suit alterations for all fabrics and styles. Our expert tailors in Ottawa are here to help you achieve the perfect fit—whether it’s a minor tweak or a major transformation.</p>
+      <p><strong>Contact us today</strong> to schedule your consultation and experience the difference precision tailoring can make.</p>
+    `,
+    author: {
+      name: "Nimble Needle Team"
+    },
+    date: "2025-10-29",
+    readTime: "8 min read",
+    category: "Men's Fashion",
+    tags: [
+      "suit alterations",
+      "jacket sleeves",
+      "pant hemming",
+      "waist adjustment",
+      "Ottawa tailoring"
+    ],
+    featuredImage: "/services/suits.webp",
+    featuredImageAlt: "Male tailor taking client's measurements in atelier",
+    published: true
+  }
 ];
 
 // Helper functions for blog operations
 export function getAllBlogPosts(): BlogPost[] {
-  return blogPosts.filter(post => post.published);
+  return blogPosts
+    .filter(post => post.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

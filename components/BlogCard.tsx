@@ -18,7 +18,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
         <div className="relative h-56 overflow-hidden">
           <Image
             src={post.featuredImage}
-            alt={post.title}
+            alt={post.featuredImageAlt || post.title}
             fill
             className="object-cover transition-transform duration-500 hover:scale-110"
           />

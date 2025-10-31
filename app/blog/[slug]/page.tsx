@@ -166,7 +166,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="relative h-[60vh] min-h-[400px] sm:min-h-[500px] overflow-hidden">
           <Image
             src={post.featuredImage}
-            alt={post.title}
+            alt={post.featuredImageAlt || post.title}
             fill
             className="object-cover"
             priority
