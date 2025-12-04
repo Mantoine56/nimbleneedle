@@ -213,15 +213,17 @@ We are proud to be an Ottawa company that delivers top-quality services to our c
 **Address:** 141 Preston St, Ottawa, ON K1R 7P4
 **Phone:** (343) 588-1300
 **Hours:** 
-- Sun-Mon: 10am - 7pm
-- Tue-Sat: 9am - 9pm
+- Mon-Fri: 10am - 8pm
+- Saturday: 10am - 6pm
+- Sunday: 11am - 6pm
 
 ### New Location - Riverside  
 **Address:** 3681 Riverside Dr, Ottawa, ON K1V 1H7
 **Phone:** (343) 588-3182
 **Hours:**
-- Sun-Mon: 10am - 7pm  
-- Tue-Sat: 9am - 9pm
+- Mon-Fri: 10am - 8pm
+- Saturday: 10am - 6pm
+- Sunday: 11am - 6pm
 
 ### General Information
 **Email:** info@nimbleneedle.ca

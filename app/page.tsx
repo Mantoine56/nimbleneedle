@@ -625,6 +625,7 @@ export default function Home() {
                           <Clock className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                           <div>
                             <p className="text-gray-700 font-medium">{location.hours.weekdays}</p>
+                            <p className="text-gray-700">{location.hours.saturday}</p>
                             <p className="text-gray-700">{location.hours.sunday}</p>
                           </div>
                         </div>

@@ -21,7 +21,7 @@ const locations: Location[] = [
     phone: '(343) 588-3182',
     // Google Maps directions link so users can navigate without extra clicks.
     mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7',
-    hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
+    hours: 'Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm'
   },
   {
     id: 'preston',
@@ -30,7 +30,7 @@ const locations: Location[] = [
     phone: '(343) 588-1300',
     // Same direct directions link for the Preston location.
     mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4',
-    hours: 'Sun-Mon: 10am-7pm • Tue-Sat: 9am-9pm'
+    hours: 'Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm'
   }
 ];
 
@@ -108,8 +108,9 @@ export default function LocationSelector() {
                     <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                       <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p>Tue-Sat: 9am-9pm</p>
-                        <p>Sun-Mon: 10am-7pm</p>
+                        <p>Mon-Fri: 10am-8pm</p>
+                        <p>Saturday: 10am-6pm</p>
+                        <p>Sunday: 11am-6pm</p>
                       </div>
                     </div>
                   </div>

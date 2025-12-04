@@ -149,7 +149,7 @@ Timestamp: ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })
               <p style="margin: 5px 0; color: #374151;">📞 (343) 588-3182</p>
             </div>
             
-            <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> Tue-Sat: 9am-9pm • Sun-Mon: 10am-7pm</p>
+            <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm</p>
             
             <p style="color: #374151; line-height: 1.6; margin-top: 20px;">Walk-ins are always welcome at both locations!</p>
             

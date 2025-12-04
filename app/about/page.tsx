@@ -320,8 +320,9 @@ export default function AboutPage() {
                         <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                           <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p>Tue-Sat: 9am-9pm</p>
-                            <p>Sun-Mon: 10am-7pm</p>
+                            <p>Mon-Fri: 10am-8pm</p>
+                            <p>Saturday: 10am-6pm</p>
+                            <p>Sunday: 11am-6pm</p>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3">
@@ -471,8 +472,9 @@ export default function AboutPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Tue-Sat: 9am-9pm</p>
-                      <p>Sun-Mon: 10am-7pm</p>
+                      <p>Mon-Fri: 10am-8pm</p>
+                      <p>Saturday: 10am-6pm</p>
+                      <p>Sunday: 11am-6pm</p>
                     </div>
                   </div>
                 </div>
@@ -506,8 +508,9 @@ export default function AboutPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Tue-Sat: 9am-9pm</p>
-                      <p>Sun-Mon: 10am-7pm</p>
+                      <p>Mon-Fri: 10am-8pm</p>
+                      <p>Saturday: 10am-6pm</p>
+                      <p>Sunday: 11am-6pm</p>
                     </div>
                   </div>
                 </div>

@@ -142,8 +142,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
               ],
               "openingHours": [
-                "Tu-Sa 09:00-21:00",
-                "Su-Mo 10:00-19:00"
+                "Mo-Fr 10:00-20:00",
+                "Sa 10:00-18:00",
+                "Su 11:00-18:00"
               ],
               "sameAs": [
                 "https://www.facebook.com/nimbleneedle",
