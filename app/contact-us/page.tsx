@@ -26,6 +26,13 @@ import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import { useState, useEffect, useRef } from 'react';
 
+declare global {
+  // Turnstile runtime injected by Cloudflare; typed as any for simplicity.
+  interface Window {
+    turnstile?: any;
+  }
+}
+
 const locations = [
   {
     name: "Downtown Ottawa - Preston",
@@ -122,6 +129,7 @@ const faqItems = [
 export default function ContactPage() {
   const [isLocationPopupOpen, setIsLocationPopupOpen] = useState(false);
   const locationPopupRef = useRef<HTMLDivElement>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
   
   // Contact form state
   const [formData, setFormData] = useState({
@@ -131,8 +139,13 @@ export default function ContactPage() {
     service: '',
     message: ''
   });
+  const [honeypot, setHoneypot] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const [clientError, setClientError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formStartTime] = useState(() => Date.now());
 
   // Handle click outside to close popups
   useEffect(() => {
@@ -146,6 +159,53 @@ export default function ContactPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Load Turnstile script and render widget once (keeps UX light).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.turnstile) {
+      setTurnstileReady(true);
+      return;
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>('script[data-turnstile]');
+    if (existingScript) {
+      existingScript.addEventListener('load', () => setTurnstileReady(true));
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    script.dataset.turnstile = '1';
+    script.onload = () => setTurnstileReady(true);
+    document.body.appendChild(script);
+  }, []);
+
+  // Render Turnstile widget when script is ready.
+  useEffect(() => {
+    if (!turnstileReady || !turnstileContainerRef.current || !window.turnstile) return;
+
+    // Clear any previous widget to avoid duplicates on re-render.
+    turnstileContainerRef.current.innerHTML = '';
+
+    window.turnstile.render(turnstileContainerRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '',
+      theme: 'light',
+      callback: (token: string) => {
+        setTurnstileToken(token);
+        setClientError(null);
+      },
+      'error-callback': () => {
+        setTurnstileToken('');
+        setClientError('Verification failed. Please retry.');
+      },
+      'timeout-callback': () => {
+        setTurnstileToken('');
+      },
+    });
+  }, [turnstileReady]);
+
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -158,6 +218,25 @@ export default function ContactPage() {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setClientError(null);
+
+    // Basic client-side guards to fail fast before hitting the API.
+    if (honeypot) {
+      setClientError('Something went wrong. Please try again.');
+      return;
+    }
+
+    if (!turnstileToken) {
+      setClientError('Please complete the verification before sending.');
+      return;
+    }
+
+    const elapsedMs = Date.now() - formStartTime;
+    if (elapsedMs < 1500) {
+      setClientError('Please take a moment before submitting.');
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -167,7 +246,12 @@ export default function ContactPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+          honeypot,
+          elapsedMs,
+        }),
       });
 
       const data = await response.json();
@@ -182,6 +266,8 @@ export default function ContactPage() {
           service: '',
           message: ''
         });
+        setHoneypot('');
+        setTurnstileToken('');
         
         // Reset success message after 5 seconds
         setTimeout(() => {
@@ -191,16 +277,20 @@ export default function ContactPage() {
         // API returned an error
         console.error('Form submission error:', data.error);
         setSubmitStatus('error');
+        setClientError(data.error || 'Something went wrong. Please try again.');
         setTimeout(() => {
           setSubmitStatus('idle');
+          setClientError(null);
         }, 5000);
       }
     } catch (error) {
       // Network or other error
       console.error('Form submission failed:', error);
       setSubmitStatus('error');
+      setClientError('Something went wrong. Please try again.');
       setTimeout(() => {
         setSubmitStatus('idle');
+        setClientError(null);
       }, 5000);
     } finally {
       setIsSubmitting(false);
@@ -380,7 +470,28 @@ export default function ContactPage() {
                     </div>
                   )}
 
+                  {/* Client-side Guard Message */}
+                  {clientError && (
+                    <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                      <p className="text-amber-900 font-medium">{clientError}</p>
+                    </div>
+                  )}
+
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot field to catch simple bots */}
+                    <div className="hidden">
+                      <label htmlFor="company" className="sr-only">Company</label>
+                      <input
+                        id="company"
+                        name="company"
+                        type="text"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
                     {/* Name */}
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -471,10 +582,19 @@ export default function ContactPage() {
                       />
                     </div>
 
+                    {/* Turnstile verification container */}
+                    <div>
+                      <div
+                        ref={turnstileContainerRef}
+                        className="flex justify-center"
+                        aria-label="Cloudflare Turnstile verification"
+                      />
+                    </div>
+
                     {/* Submit Button */}
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !turnstileToken}
                       className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white py-3 px-6 rounded-lg font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                       {isSubmitting ? (
