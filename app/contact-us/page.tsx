@@ -458,7 +458,7 @@ export default function ContactPage() {
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                       <div className="flex items-center">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                        <p className="text-green-800 font-medium">Message sent successfully! We'll get back to you soon.</p>
+                        <p className="text-green-800 font-medium">Message sent successfully! We&#39;ll get back to you soon.</p>
                       </div>
                     </div>
                   )}
@@ -711,7 +711,7 @@ export default function ContactPage() {
               Our Two Ottawa Locations
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose the location that's most convenient for you
+              Choose the location that&#39;s most convenient for you
             </p>
           </div>
 
@@ -901,7 +901,7 @@ export default function ContactPage() {
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span><strong className="text-pink-600">General garment alterations</strong> for men's, women's, and children's clothing</span>
+                  <span><strong className="text-pink-600">General garment alterations</strong> for men&#39;s, women&#39;s, and children&#39;s clothing</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>

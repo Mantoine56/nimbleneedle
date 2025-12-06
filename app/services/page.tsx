@@ -87,17 +87,21 @@ export default function ServicesPage() {
       { threshold: 0.1 }
     );
 
-    cardRefs.current.forEach(ref => {
+    // Cache observed elements so cleanup uses the same instances
+    const cardsToObserve = [...cardRefs.current];
+    const whyChooseUsElement = whyChooseUsRef.current;
+
+    cardsToObserve.forEach(ref => {
       if (ref) observer.observe(ref);
     });
 
-    if (whyChooseUsRef.current) observer.observe(whyChooseUsRef.current);
+    if (whyChooseUsElement) observer.observe(whyChooseUsElement);
 
     return () => {
-      cardRefs.current.forEach(ref => {
+      cardsToObserve.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
-      if (whyChooseUsRef.current) observer.unobserve(whyChooseUsRef.current);
+      if (whyChooseUsElement) observer.unobserve(whyChooseUsElement);
     };
   }, []);
 
@@ -145,7 +149,10 @@ export default function ServicesPage() {
             {allServices.map((service, index) => (
               <div
                 key={index}
-                ref={el => cardRefs.current[index] = el}
+                ref={(el) => {
+                  // Store each card element so the intersection observer can animate visibility
+                  cardRefs.current[index] = el;
+                }}
                 className={`transition-all duration-1000 ${
                   visibleCards[index] 
                     ? 'opacity-100 translate-y-0' 

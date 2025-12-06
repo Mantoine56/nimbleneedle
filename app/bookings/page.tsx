@@ -114,13 +114,16 @@ export default function BookingsPage() {
       { threshold: 0.1 }
     );
 
-    if (mainRef.current) {
-      observer.observe(mainRef.current);
+    // Cache the observed element so cleanup matches the same node
+    const mainElement = mainRef.current;
+
+    if (mainElement) {
+      observer.observe(mainElement);
     }
 
     return () => {
-      if (mainRef.current) {
-        observer.unobserve(mainRef.current);
+      if (mainElement) {
+        observer.unobserve(mainElement);
       }
     };
   }, []);

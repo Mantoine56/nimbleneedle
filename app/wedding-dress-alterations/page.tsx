@@ -88,12 +88,16 @@ export default function WeddingDressAlterationsPage() {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (servicesRef.current) observer.observe(servicesRef.current);
+    // Cache current elements so cleanup uses stable references
+    const heroElement = heroRef.current;
+    const servicesElement = servicesRef.current;
+
+    if (heroElement) observer.observe(heroElement);
+    if (servicesElement) observer.observe(servicesElement);
 
     return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current);
-      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (heroElement) observer.unobserve(heroElement);
+      if (servicesElement) observer.unobserve(servicesElement);
     };
   }, []);
 
@@ -155,7 +159,7 @@ export default function WeddingDressAlterationsPage() {
               </h2>
               
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we specialize in wedding dress alterations in Ottawa from our two convenient walk-in locations: Preston Street and Riverside Drive. We understand that your wedding dress is one of the most important garments you'll ever wear, and we're dedicated to ensuring it fits you perfectly on your special day.
+                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we specialize in wedding dress alterations in Ottawa from our two convenient walk-in locations: Preston Street and Riverside Drive. We understand that your wedding dress is one of the most important garments you&#39;ll ever wear, and we&#39;re dedicated to ensuring it fits you perfectly on your special day.
               </p>
 
               <p className="text-lg text-gray-600 mb-8 font-montserrat">

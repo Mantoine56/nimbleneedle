@@ -106,12 +106,16 @@ export default function DryCleaningPage() {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (servicesRef.current) observer.observe(servicesRef.current);
+    // Cache current elements so cleanup uses stable references
+    const heroElement = heroRef.current;
+    const servicesElement = servicesRef.current;
+
+    if (heroElement) observer.observe(heroElement);
+    if (servicesElement) observer.observe(servicesElement);
 
     return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current);
-      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (heroElement) observer.unobserve(heroElement);
+      if (servicesElement) observer.unobserve(servicesElement);
     };
   }, []);
 
@@ -176,7 +180,7 @@ export default function DryCleaningPage() {
               </h2>
               
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we offer expert dry cleaning services at our two Ottawa locations—Preston Street and our new store on Riverside Drive. Whether it's everyday wear, delicate fabrics, or specialty items, our team uses proven techniques and professional-grade equipment to clean and refresh garments without damaging their quality.
+                At <span className="text-pink-600 font-semibold">Nimble Needle Tailoring</span>, we offer expert dry cleaning services at our two Ottawa locations—Preston Street and our new store on Riverside Drive. Whether it&#39;s everyday wear, delicate fabrics, or specialty items, our team uses proven techniques and professional-grade equipment to clean and refresh garments without damaging their quality.
               </p>
 
               <p className="text-lg text-pink-600 font-semibold mb-8 font-montserrat">
@@ -324,7 +328,7 @@ export default function DryCleaningPage() {
 
           <div className="text-center mt-12">
             <p className="text-lg text-gray-700 font-montserrat">
-              We'll treat stains, protect fabric, and restore your garment to its original look.
+              We&#39;ll treat stains, protect fabric, and restore your garment to its original look.
             </p>
           </div>
         </div>

@@ -131,20 +131,24 @@ export default function AboutPage() {
       { threshold: 0.2 }
     );
 
-    milestoneRefs.current.forEach(ref => {
+    // Cache current nodes so cleanup unobserves the same elements
+    const observedMilestones = [...milestoneRefs.current];
+    const timelineEndElement = timelineEndRef.current;
+
+    observedMilestones.forEach(ref => {
       if (ref) observer.observe(ref);
     });
 
-    if (timelineEndRef.current) {
-      observer.observe(timelineEndRef.current);
+    if (timelineEndElement) {
+      observer.observe(timelineEndElement);
     }
 
     return () => {
-      milestoneRefs.current.forEach(ref => {
+      observedMilestones.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
-      if (timelineEndRef.current) {
-        observer.unobserve(timelineEndRef.current);
+      if (timelineEndElement) {
+        observer.unobserve(timelineEndElement);
       }
     };
   }, []);

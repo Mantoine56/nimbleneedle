@@ -246,7 +246,7 @@ export default function BlogPage() {
                         )}
                         {searchTerm && (
                           <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm font-medium">
-                            Search: "{searchTerm}"
+                            Search: &quot;{searchTerm}&quot;
                           </span>
                         )}
                       </div>
@@ -331,7 +331,7 @@ export default function BlogPage() {
                       <Search className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-4" />
                       <h3 className="text-xl sm:text-2xl font-league-spartan font-bold text-gray-900 mb-2">No articles found</h3>
                       <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-                        We couldn't find any articles matching your search criteria. Try adjusting your filters or search terms.
+                        We couldn&#39;t find any articles matching your search criteria. Try adjusting your filters or search terms.
                       </p>
                       <button
                         onClick={clearFilters}

@@ -87,12 +87,16 @@ export default function ZipperRepairPage() {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (servicesRef.current) observer.observe(servicesRef.current);
+    // Cache current elements so cleanup uses stable references
+    const heroElement = heroRef.current;
+    const servicesElement = servicesRef.current;
+
+    if (heroElement) observer.observe(heroElement);
+    if (servicesElement) observer.observe(servicesElement);
 
     return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current);
-      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (heroElement) observer.unobserve(heroElement);
+      if (servicesElement) observer.unobserve(servicesElement);
     };
   }, []);
 
@@ -292,7 +296,7 @@ export default function ZipperRepairPage() {
           </div>
 
           <p className="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
-            Ignoring these issues can damage the surrounding fabric or render clothing/items unusable. They'll repair and replace damaged zipper components properly, and it's likely to get your garment's zipper repaired in Ottawa.
+            Ignoring these issues can damage the surrounding fabric or render clothing/items unusable. They&#39;ll repair and replace damaged zipper components properly, and it&#39;s likely to get your garment&#39;s zipper repaired in Ottawa.
           </p>
         </div>
       </section>

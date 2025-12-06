@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown, Scissors, Heart, Zap, Settings, Shirt, Sparkles } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import LocationSelector from './LocationSelector';
 
 export default function Navigation() {
@@ -91,7 +92,7 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <a href="/" className="flex items-center space-x-2 sm:space-x-3 group transition-all duration-300 hover:scale-105">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group transition-all duration-300 hover:scale-105">
               <div className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
                 isLightBackground || isScrolled 
                   ? 'bg-gray-100 group-hover:bg-gray-200' 
@@ -114,7 +115,7 @@ export default function Navigation() {
                   <span className="block sm:inline sm:ml-1">Tailoring</span>
                 </span>
               </div>
-            </a>
+            </Link>
             
             {/* Desktop Navigation Menu */}
             <nav className="hidden md:flex items-center space-x-1">

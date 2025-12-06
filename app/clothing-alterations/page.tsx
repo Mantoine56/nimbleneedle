@@ -123,12 +123,16 @@ export default function ClothingAlterationsPage() {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (servicesRef.current) observer.observe(servicesRef.current);
+    // Cache current elements so cleanup uses stable references
+    const heroElement = heroRef.current;
+    const servicesElement = servicesRef.current;
+
+    if (heroElement) observer.observe(heroElement);
+    if (servicesElement) observer.observe(servicesElement);
 
     return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current);
-      if (servicesRef.current) observer.unobserve(servicesRef.current);
+      if (heroElement) observer.unobserve(heroElement);
+      if (servicesElement) observer.unobserve(servicesElement);
     };
   }, []);
 
