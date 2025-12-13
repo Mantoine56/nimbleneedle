@@ -27,11 +27,11 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
   // Auto-advance reviews
   useEffect(() => {
     if (!isAutoPlay || heroReviews.length <= 1) return;
-    
+
     const timer = setInterval(() => {
       setCurrentHeroReview((prev) => (prev + 1) % heroReviews.length);
     }, 4000);
-    
+
     return () => clearInterval(timer);
   }, [heroReviews.length, isAutoPlay]);
 
@@ -44,14 +44,14 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
   return (
     <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Optimized Background Image with Parallax - LCP Optimized */}
-      <div 
+      <div
         className="absolute inset-0 scale-105"
         style={{
           transform: `translate3d(0, ${Math.round(scrollY * 0.5)}px, 0) scale(1.05)`
         }}
       >
         <Image
-          src="/NimbleHomeHero.jpg"
+          src="/nimble_needle_hero_light.png"
           alt="Nimble Needle Tailoring Workshop - Expert clothing alterations and tailoring services in Ottawa"
           fill
           priority={true}
@@ -62,10 +62,10 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
       </div>
-      
+
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
-      
+
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
@@ -96,7 +96,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                 </a>
               </Button>
             </div>
-            
+
             {/* Critical LCP Element - Optimized */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white font-league-spartan">
               EXPERT TAILORING &<br />
@@ -106,17 +106,32 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                 NIMBLE NEEDLE
               </span>
             </h1>
-            
+
             <h2 className="text-xl md:text-2xl mb-6 text-white/95 leading-relaxed font-medium font-montserrat">
               Friendly, Expert Tailoring
             </h2>
             <p className="text-base md:text-lg mb-8 text-white/90 leading-relaxed font-light">
               Your one-stop shop for all your tailoring, seamstress, and clothing alteration needs in Ottawa! No appointment needed.
             </p>
-            
+
+            <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 max-w-lg">
+              <p className="text-white/95 text-sm md:text-base font-medium mb-3">
+                We sell ready to wear suits and custom made suits through Riber&apos;s Suits store.
+              </p>
+              <a
+                href="https://riberssuits.ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-pink-300 hover:text-pink-200 font-bold transition-colors group tracking-wide text-sm"
+              >
+                VISIT RIBER&apos;S SUITS
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => window.location.href = '/bookings'}
                 className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 px-8 py-4 text-base font-semibold"
               >
@@ -125,8 +140,8 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                   <span className="inline-block">📅</span>
                 </span>
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => window.location.href = '/services'}
                 className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300 px-8 py-4 text-base font-semibold"
               >
@@ -198,43 +213,43 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                 ) : heroReviews.length > 0 ? (
                   <Card className="bg-white/15 border border-white/30 h-full">
                     <CardContent className="p-6 h-full flex flex-col">
-                       {/* Review Header */}
-                       <div className="flex items-center justify-between mb-4">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/20 flex items-center justify-center">
-                             <User className="h-6 w-6 text-white/70" />
-                           </div>
-                           <div>
-                             <h4 className="text-white font-semibold text-sm">
-                               {heroReviews[currentHeroReview]?.name || 'Customer'}
-                             </h4>
-                             <p className="text-white/60 text-xs">
-                               {heroReviews[currentHeroReview]?.timeAgo || 'Recent'}
-                             </p>
-                           </div>
-                         </div>
-                         
-                         {/* Rating Stars - Moved to the right */}
-                         <div className="flex">
-                           {[...Array(heroReviews[currentHeroReview]?.rating || 5)].map((_, i) => (
-                             <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                           ))}
-                         </div>
-                       </div>
-                       
-                       {/* Scrollable Review Text */}
-                       <div className="flex-1 min-h-0 mb-4">
-                         <div 
-                           className="h-32 overflow-y-auto pr-2 scrollable-review-text bg-white/5 rounded-lg p-3"
-                           onMouseEnter={handleUserInteraction}
-                           onTouchStart={handleUserInteraction}
-                         >
-                           <p className="text-white/90 text-sm leading-relaxed">
-                             {heroReviews[currentHeroReview]?.text || 'Great service!'}
-                           </p>
-                         </div>
-                       </div>
-                      
+                      {/* Review Header */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/20 flex items-center justify-center">
+                            <User className="h-6 w-6 text-white/70" />
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold text-sm">
+                              {heroReviews[currentHeroReview]?.name || 'Customer'}
+                            </h4>
+                            <p className="text-white/60 text-xs">
+                              {heroReviews[currentHeroReview]?.timeAgo || 'Recent'}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Rating Stars - Moved to the right */}
+                        <div className="flex">
+                          {[...Array(heroReviews[currentHeroReview]?.rating || 5)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Scrollable Review Text */}
+                      <div className="flex-1 min-h-0 mb-4">
+                        <div
+                          className="h-32 overflow-y-auto pr-2 scrollable-review-text bg-white/5 rounded-lg p-3"
+                          onMouseEnter={handleUserInteraction}
+                          onTouchStart={handleUserInteraction}
+                        >
+                          <p className="text-white/90 text-sm leading-relaxed">
+                            {heroReviews[currentHeroReview]?.text || 'Great service!'}
+                          </p>
+                        </div>
+                      </div>
+
                       {/* Review Footer */}
                       <div className="flex items-center justify-between pt-4 border-t border-white/10">
                         <span className="text-white/60 text-xs">Posted on Google</span>
@@ -270,11 +285,10 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
                       aria-pressed={index === currentHeroReview}
                     >
                       <div
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentHeroReview 
-                            ? 'bg-pink-500 w-6' 
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentHeroReview
+                            ? 'bg-pink-500 w-6'
                             : 'bg-white/30 hover:bg-white/50'
-                        }`}
+                          }`}
                       />
                     </button>
                   ))}

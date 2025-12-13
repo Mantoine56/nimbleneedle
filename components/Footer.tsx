@@ -27,19 +27,19 @@ export default function Footer() {
               <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                 Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
               </p>
-              
+
               {/* Social Media */}
               <div className="flex space-x-3">
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   className="bg-blue-600 hover:bg-blue-700 text-white p-2"
                   onClick={() => window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank')}
                   aria-label="Follow us on Facebook"
                 >
                   <Facebook className="h-4 w-4" />
                 </Button>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2"
                   onClick={() => window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank')}
                   aria-label="Follow us on Instagram"
@@ -57,7 +57,7 @@ export default function Footer() {
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   {/* Make the Preston address open Google Maps directions in a new tab so guests can navigate quickly. */}
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4"
+                    href="https://www.google.com/maps/search/?api=1&query=Nimble+Needle+Tailoring+141+Preston+St+Ottawa"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group block hover:text-pink-400 transition-colors"
@@ -66,18 +66,19 @@ export default function Footer() {
                     <p>Ottawa, ON K1R 7P4</p>
                   </a>
                 </div>
-                
+
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                   <a href="tel:3435881300" className="hover:text-pink-400 transition-colors font-medium">
                     (343) 588-1300
                   </a>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p>Mon-Fri: 10am-8pm</p>
+                    <p>Monday: 10am-6pm</p>
+                    <p>Tue-Fri: 10am-8pm</p>
                     <p>Saturday: 10am-6pm</p>
                     <p>Sunday: 11am-6pm</p>
                   </div>
@@ -93,7 +94,7 @@ export default function Footer() {
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   {/* Link the Riverside address straight to Google Maps driving directions for the new location. */}
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7"
+                    href="https://www.google.com/maps/search/?api=1&query=Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group block hover:text-pink-400 transition-colors"
@@ -102,18 +103,19 @@ export default function Footer() {
                     <p>Ottawa, ON K1V 1H7</p>
                   </a>
                 </div>
-                
+
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                   <a href="tel:3435883182" className="hover:text-pink-400 transition-colors font-medium">
                     (343) 588-3182
                   </a>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p>Mon-Fri: 10am-8pm</p>
+                    <p>Monday: 10am-6pm</p>
+                    <p>Tue-Fri: 10am-8pm</p>
                     <p>Saturday: 10am-6pm</p>
                     <p>Sunday: 11am-6pm</p>
                   </div>
@@ -138,8 +140,8 @@ export default function Footer() {
                   <Mail className="h-5 w-5 text-pink-400" />
                   <span className="font-semibold text-pink-400">Email Us</span>
                 </div>
-                <a 
-                  href="mailto:info@nimbleneedle.ca" 
+                <a
+                  href="mailto:info@nimbleneedle.ca"
                   className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                 >
                   info@nimbleneedle.ca

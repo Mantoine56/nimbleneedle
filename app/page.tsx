@@ -73,10 +73,10 @@ export default function Home() {
       try {
         setReviewsLoading(true);
         setReviewsError(null);
-        
+
         const response = await fetch('/api/reviews');
         const data = await response.json();
-        
+
         if (data.success) {
           setHeroReviews(data.heroReviews || []);
           setDetailedReviews(data.detailedReviews || []);
@@ -98,13 +98,13 @@ export default function Home() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    
+
     if (isCarouselVisible) {
       timer = setInterval(() => {
         setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
       }, 4000);
     }
-    
+
     return () => {
       if (timer) clearInterval(timer);
     };
@@ -112,7 +112,7 @@ export default function Home() {
 
   useEffect(() => {
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -122,7 +122,7 @@ export default function Home() {
         ticking = true;
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -195,15 +195,15 @@ export default function Home() {
       <SocialSidebar />
 
       {/* Optimized Hero Section Component */}
-      <HeroSection 
-        scrollY={scrollY} 
+      <HeroSection
+        scrollY={scrollY}
         heroReviews={heroReviews}
         businessInfo={businessInfo}
         reviewsLoading={reviewsLoading}
       />
 
       {/* Enhanced Services Section */}
-      <section 
+      <section
         ref={servicesRef}
         className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
@@ -216,11 +216,10 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
-            isServicesVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isServicesVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
+            }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
                 SERVICES
@@ -235,24 +234,23 @@ export default function Home() {
               We handle all fabrics and styles
             </p>
           </div>
-          
+
           {/* Service Cards Grid - Completely Rebuilt */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group transition-all duration-1000 ${
-                  isServicesVisible 
-                    ? 'opacity-100 translate-y-0' 
+                className={`group transition-all duration-1000 ${isServicesVisible
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-12'
-                }`}
+                  }`}
                 style={{
                   transitionDelay: `${service.delay}ms`
                 }}
               >
                 {/* Modern Service Card Design */}
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-4 group h-full border border-gray-100">
-                  
+
                   {/* Top Image Section */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -262,10 +260,10 @@ export default function Home() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                     />
-                    
+
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                    
+
                     {/* Floating Number Badge */}
                     <div className="absolute top-4 left-4 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">
                       <span className="text-lg font-bold font-league-spartan text-gray-800 group-hover:text-white">
@@ -280,7 +278,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight font-league-spartan group-hover:text-gray-800 transition-colors duration-300">
                       {service.title}
                     </h3>
-                    
+
                     {/* Service Description */}
                     <p className="text-gray-600 leading-relaxed text-sm mb-6 font-montserrat line-clamp-3 group-hover:text-gray-700 transition-colors duration-300">
                       {service.subtitle}
@@ -289,17 +287,17 @@ export default function Home() {
                     {/* Action Area */}
                     <div className="flex items-center justify-between">
                       {/* Learn More Link */}
-                      <button 
+                      <button
                         onClick={() => {
                           const serviceLinks = ['/clothing-alterations', '/services', '/zipper-repair'];
                           window.location.href = serviceLinks[index] || '/services';
                         }}
                         className="group/btn inline-flex items-center text-pink-600 hover:text-pink-700 font-semibold text-sm transition-all duration-300 transform group-hover:translate-x-1">
                         <span className="font-montserrat">Learn More</span>
-                        <svg 
-                          className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" 
-                          fill="none" 
-                          stroke="currentColor" 
+                        <svg
+                          className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -326,12 +324,11 @@ export default function Home() {
           </div>
 
           {/* Call to Action */}
-          <div className={`text-center transition-all duration-1000 delay-600 ${
-            isServicesVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center transition-all duration-1000 delay-600 ${isServicesVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
-            <Button 
+            }`}>
+            <Button
               className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
               onClick={() => window.location.href = '/services'}
             >
@@ -342,7 +339,7 @@ export default function Home() {
       </section>
 
       {/* Our Promise Section */}
-      <section 
+      <section
         ref={promiseRef}
         className="relative py-16 md:py-20 bg-gray-50 overflow-hidden"
       >
@@ -356,11 +353,10 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Image Column */}
-            <div className={`relative transition-all duration-1000 ${
-              isPromiseVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`relative transition-all duration-1000 ${isPromiseVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 -translate-x-12'
-            }`}>
+              }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src="/promise-image.webp"
@@ -375,11 +371,10 @@ export default function Home() {
             </div>
 
             {/* Content Column */}
-            <div className={`transition-all duration-1000 delay-300 ${
-              isPromiseVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`transition-all duration-1000 delay-300 ${isPromiseVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-12'
-            }`}>
+              }`}>
               <div className="max-w-xl">
                 <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-league-spartan">
                   OUR<br />
@@ -388,7 +383,7 @@ export default function Home() {
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
                   We are proud to be an Ottawa company that delivers top-quality services to our clients. Our family-run business can meet your needs for clothing alterations, repairs and custom sewing for clothing and other textiles. With high-quality work, quick turnaround times, and friendly service, we&apos;ve earned the trust of hundreds of highly satisfied customers.
                 </p>
-                <Button 
+                <Button
                   className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
                   onClick={() => window.location.href = '/about'}
                 >
@@ -401,7 +396,7 @@ export default function Home() {
       </section>
 
       {/* The Craftsman Ship Section */}
-      <section 
+      <section
         ref={craftsmanRef}
         className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
@@ -415,11 +410,10 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Content Column */}
-            <div className={`order-2 lg:order-1 transition-all duration-1000 ${
-              isCraftsmanVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`order-2 lg:order-1 transition-all duration-1000 ${isCraftsmanVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 -translate-x-12'
-            }`}>
+              }`}>
               <div className="max-w-xl">
                 <div className="mb-6">
                   <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase font-montserrat">
@@ -434,7 +428,7 @@ export default function Home() {
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed font-montserrat">
                   At our tailoring studio, we pride ourselves on delivering high-quality craftsmanship with quick turnaround times, all while providing friendly, personalized service. No appointment needed - we offer fixed, clear pricing and handle all fabrics and styles. Our commitment to excellence has earned us the trust and satisfaction of countless happy customers.
                 </p>
-                <Button 
+                <Button
                   onClick={() => window.location.href = '/about'}
                   className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105">
                   LEARN MORE
@@ -443,11 +437,10 @@ export default function Home() {
             </div>
 
             {/* Image Column */}
-            <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${
-              isCraftsmanVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${isCraftsmanVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-12'
-            }`}>
+              }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src="/craftsmanship-image.webp"
@@ -468,7 +461,7 @@ export default function Home() {
       <section className="relative py-16 md:py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -512,17 +505,17 @@ export default function Home() {
                           <IconComponent className="h-10 w-10 text-white" />
                         </div>
                       </div>
-                      
+
                       {/* Title */}
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 font-league-spartan">
                         {feature.title}
                       </h3>
-                      
+
                       {/* Description */}
                       <p className="text-gray-600 leading-relaxed text-base font-montserrat">
                         {feature.description}
                       </p>
-                      
+
                       {/* Decorative Element */}
                       <div className="mt-6 w-12 h-0.5 bg-gradient-to-r from-pink-400 to-pink-600 mx-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </CardContent>
@@ -535,17 +528,16 @@ export default function Home() {
       </section>
 
       {/* Locations Section */}
-      <section 
+      <section
         ref={locationRef}
         className="relative py-16 md:py-20 bg-white overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
-            isLocationVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isLocationVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
+            }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
                 LOCATIONS
@@ -558,7 +550,7 @@ export default function Home() {
               OTTAWA LOCATIONS
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                                We&apos;re here to serve you better with two locations across Ottawa
+              We&apos;re here to serve you better with two locations across Ottawa
             </p>
           </div>
 
@@ -567,11 +559,10 @@ export default function Home() {
             {locations.map((location, index) => (
               <div
                 key={index}
-                className={`transition-all duration-1000 ${
-                  isLocationVisible 
-                    ? 'opacity-100 translate-y-0' 
+                className={`transition-all duration-1000 ${isLocationVisible
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-12'
-                }`}
+                  }`}
                 style={{
                   transitionDelay: `${location.delay}ms`
                 }}
@@ -594,13 +585,13 @@ export default function Home() {
                       {/* Overlay for styling */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
                     </div>
-                    
+
                     {/* Location Details */}
                     <div className="p-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-6">
                         {location.name}
                       </h3>
-                      
+
                       <div className="space-y-4">
                         <button
                           type="button"
@@ -613,35 +604,36 @@ export default function Home() {
                             {location.address}
                           </span>
                         </button>
-                        
+
                         <div className="flex items-start space-x-3">
                           <Phone className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                           <div>
                             <p className="text-gray-700 font-medium">{location.phone}</p>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-start space-x-3">
                           <Clock className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                           <div>
+                            <p className="text-gray-700 font-medium">{location.hours.monday}</p>
                             <p className="text-gray-700 font-medium">{location.hours.weekdays}</p>
                             <p className="text-gray-700">{location.hours.saturday}</p>
                             <p className="text-gray-700">{location.hours.sunday}</p>
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="mt-6 flex space-x-3">
-                        <Button 
+                        <Button
                           onClick={() => {
                             window.open(location.directions, '_blank');
                           }}
                           className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
                           Get Directions
                         </Button>
-                        <Button 
+                        <Button
                           onClick={() => window.location.href = `tel:${location.phone.replace(/[^0-9]/g, '')}`}
-                          variant="outline" 
+                          variant="outline"
                           className="border-pink-500 text-pink-600 hover:bg-pink-50 flex-1">
                           <Phone className="h-4 w-4 mr-2" />
                           Call Now
@@ -657,17 +649,16 @@ export default function Home() {
       </section>
 
       {/* Reviews Section */}
-      <section 
+      <section
         ref={reviewsRef}
         className="py-34 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-16 transition-all duration-1000 ${
-            isReviewsVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center mb-16 transition-all duration-1000 ${isReviewsVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
+            }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
                 TESTIMONIALS
@@ -706,24 +697,22 @@ export default function Home() {
             <button
               onClick={prevReviews}
               disabled={currentReviewIndex === 0}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${
-                currentReviewIndex === 0 
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${currentReviewIndex === 0
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
-              }`}
+                }`}
               aria-label="Previous reviews"
             >
               <ChevronLeft className="h-6 w-6 mx-auto" />
             </button>
-            
+
             <button
               onClick={nextReviews}
               disabled={currentReviewIndex >= detailedReviews.length - reviewsPerPage}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${
-                currentReviewIndex >= detailedReviews.length - reviewsPerPage
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${currentReviewIndex >= detailedReviews.length - reviewsPerPage
                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
-              }`}
+                }`}
               aria-label="Next reviews"
             >
               <ChevronRight className="h-6 w-6 mx-auto" />
@@ -731,7 +720,7 @@ export default function Home() {
 
             {/* Reviews Container */}
             <div className="overflow-hidden mx-14 py-12">
-              <div 
+              <div
                 className="flex transition-transform duration-500 ease-in-out gap-6"
                 style={{
                   transform: `translateX(-${currentReviewIndex * (100 / reviewsPerPage)}%)`
@@ -740,11 +729,10 @@ export default function Home() {
                 {detailedReviews.map((review, index) => (
                   <div
                     key={index}
-                    className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-1000 ${
-                      isReviewsVisible 
-                        ? 'opacity-100 translate-y-0' 
+                    className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-1000 ${isReviewsVisible
+                        ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-12'
-                    }`}
+                      }`}
                     style={{
                       transitionDelay: `${index * 100}ms`
                     }}
@@ -757,21 +745,21 @@ export default function Home() {
                             <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
                           ))}
                         </div>
-                        
+
                         {/* Review Text */}
                         <div className="mb-4 flex-grow">
                           <p className="text-gray-700 leading-relaxed text-sm line-clamp-6">
                             &quot;{review.text}&quot;
                           </p>
                         </div>
-                        
+
                         {/* Service Badge */}
                         <div className="mb-4">
                           <Badge className="bg-pink-50 text-pink-700 border-pink-200 px-2 py-1 text-xs">
                             {review.service}
                           </Badge>
                         </div>
-                        
+
                         {/* Reviewer Info */}
                         <div className="flex items-center space-x-3 pt-3 border-t border-gray-100">
                           <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
@@ -797,11 +785,10 @@ export default function Home() {
                 <button
                   key={index}
                   onClick={() => setCurrentReviewIndex(Math.min(index, detailedReviews.length - reviewsPerPage))}
-                  className={`transition-all duration-300 ${
-                    currentReviewIndex === index
+                  className={`transition-all duration-300 ${currentReviewIndex === index
                       ? 'w-8 h-2 bg-pink-500 rounded-full'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400 rounded-full'
-                  }`}
+                    }`}
                   aria-label={`Go to review ${index + 1}`}
                 />
               ))}
@@ -809,15 +796,14 @@ export default function Home() {
           </div>
 
           {/* Call to Action */}
-          <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${
-            isReviewsVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${isReviewsVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
+            }`}>
             <p className="text-lg text-gray-600 mb-8">
               Ready to experience our exceptional service?
             </p>
-            <Button 
+            <Button
               className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
               onClick={() => window.location.href = '/bookings'}
             >
@@ -830,11 +816,10 @@ export default function Home() {
       {/* Blog Section */}
       <section ref={blogRef} className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-12 transition-all duration-1000 ${
-            isBlogVisible 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`text-center mb-12 transition-all duration-1000 ${isBlogVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}>
+            }`}>
             <h2 className="text-4xl md:text-5xl font-bold font-league-spartan text-gray-900 mb-4">
               Latest from Our Blog
             </h2>
@@ -850,7 +835,7 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button 
+            <Button
               className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               onClick={() => window.location.href = '/blog'}
             >
