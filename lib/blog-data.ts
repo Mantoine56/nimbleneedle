@@ -750,6 +750,67 @@ export const blogPosts: BlogPost[] = [
     featuredImage: "/services/suits.webp",
     featuredImageAlt: "Male tailor taking client's measurements in atelier",
     published: true
+  },
+  {
+    id: "10",
+    slug: "wedding-dress-alterations-complete-guide-ottawa-brides",
+    title: "Wedding Dress Alterations: A Complete Guide for Ottawa Brides",
+    excerpt: "Your wedding dress is more than just a garment; it's a symbol of one of the most important days of your life. Before you book your appointment for wedding dress alterations, here are essential things to keep in mind.",
+    content: `
+      <p>Your wedding dress is more than just a garment; it is a symbol of one of the most important days of your life. For many brides in Ottawa, finding the perfect dress is only the first step. Alterations are often necessary to ensure the gown fits flawlessly and reflects your personal style. Before you book your appointment for <a href="/wedding-dress-alterations">wedding dress alterations</a>, here are some essential things to keep in mind.</p>
+
+      <h2>Start Early</h2>
+      <p>Timing is everything when it comes to alterations. Most bridal experts recommend scheduling your first fitting at least two to three months before your wedding day. This allows <a href="/blog/wedding-dress-alterations-timeline">enough time for multiple fittings</a> and adjustments without feeling rushed. If you wait until the last minute, you risk limited availability and added stress.</p>
+
+      <h2>Choose a Skilled Professional</h2>
+      <p>Not all seamstresses specialize in bridal gowns. Wedding dresses often feature delicate fabrics, intricate lace, and detailed beadwork that require expert handling. Look for a professional who has experience with bridal alterations and check reviews or ask for recommendations from local bridal shops in Ottawa. A skilled tailor will ensure your dress looks perfect from every angle.</p>
+
+      <h2>Understand the Costs</h2>
+      <p>Alteration costs vary depending on the complexity of the work. Simple adjustments like hemming or tightening straps are usually affordable, but major changes such as resizing the bodice or adding custom details can increase the price significantly. Request a quote in advance so you can plan your budget effectively. Remember, investing in proper alterations is worth it for a flawless fit.</p>
+
+      <h2>Bring the Right Accessories</h2>
+      <p>Your wedding shoes and undergarments play a big role in how your dress fits. Always bring them to your fittings. The heel height affects the hemline, and the right bra or shapewear ensures the bodice fits as intended. Without these items, your seamstress may not be able to achieve the perfect fit.</p>
+
+      <h2>Be Clear About Your Vision</h2>
+      <p>If you want to make design changes such as adding sleeves, adjusting the neckline, or incorporating a bustle, communicate your ideas clearly. Bring reference photos if possible. A good tailor can guide you on what's feasible without compromising the integrity of the dress. Keep in mind that some fabrics and designs have limitations.</p>
+
+      <h2>Plan for Comfort and Movement</h2>
+      <p>Your wedding day will be full of movement, including walking, dancing, sitting, and hugging loved ones. During fittings, practise these motions to ensure your dress feels comfortable. If the gown feels restrictive, ask about adjustments that allow more flexibility without altering the overall look.</p>
+
+      <h2>Factor in Weight Changes</h2>
+      <p>If you anticipate any weight changes before the wedding, let your seamstress know. They can schedule fittings closer to the date or make allowances for adjustments. This helps avoid last-minute surprises and ensures your dress fits perfectly on the big day.</p>
+
+      <h2>Don't Forget the Bustle</h2>
+      <p>If your dress has a long train, a bustle is essential for the reception. It allows you to move freely without tripping or damaging the fabric. Discuss bustle options during your fittings so you're prepared when it's time to dance.</p>
+
+      <h2>Schedule Multiple Fittings</h2>
+      <p>Most brides need at least two to three fittings. The <a href="/blog/what-to-expect-at-your-wedding-dress-alteration-appointment">first appointment</a> addresses major adjustments, while subsequent visits fine-tune the details. Don't rush this process because each fitting brings your dress closer to perfection.</p>
+
+      <h2>Trust the Process</h2>
+      <p>Alterations can feel overwhelming, but they're an important part of making your wedding dress truly yours. Trust your seamstress, ask questions, and stay involved in the process. With the right planning and communication, your gown will fit like a dream.</p>
+
+      <h2>Making Your Dream Dress a Reality</h2>
+      <p>Wedding dress alterations are an investment in your comfort and confidence. By starting early, choosing an experienced professional, and planning ahead, you'll ensure your gown looks and feels perfect on your special day. If you're in Ottawa and looking for expert bridal alterations, <a href="/">Nimble Needle Tailoring</a> is here to help. <a href="/about">Our team</a> specializes in delicate fabrics and intricate designs, making sure every bride walks down the aisle in a dress that fits flawlessly.</p>
+
+      <p><strong>Ready to perfect your wedding dress?</strong> <a href="/bookings">Book your appointment</a> with Nimble Needle Tailoring today!</p>
+    `,
+    author: {
+      name: "Nimble Needle Team"
+    },
+    date: "2025-12-23",
+    readTime: "5 min read",
+    category: "Bridal Services",
+    tags: [
+      "wedding dress alterations",
+      "bridal alterations",
+      "Ottawa wedding",
+      "wedding dress fitting",
+      "bridal gown alterations",
+      "Ottawa tailor"
+    ],
+    featuredImage: "/services/wedding-dress-alterations-guide.jpeg",
+    featuredImageAlt: "Designer with needle altering the top of a strapless wedding dress on a mannequin",
+    published: true
   }
 ];
 
