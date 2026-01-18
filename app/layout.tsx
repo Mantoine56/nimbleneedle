@@ -4,7 +4,7 @@ import { League_Spartan, Montserrat, Poppins } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 
-const leagueSpartan = League_Spartan({ 
+const leagueSpartan = League_Spartan({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-league-spartan',
@@ -12,14 +12,14 @@ const leagueSpartan = League_Spartan({
   preload: true
 });
 
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-montserrat',
   display: 'swap'
 });
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-poppins',
@@ -68,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${leagueSpartan.variable} ${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${leagueSpartan.variable} ${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         {/* Google Tag Manager - Yellow Pages Campaign Tracking */}
         <script
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
-        
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
@@ -210,15 +210,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body className="font-montserrat" suppressHydrationWarning={true}>
         {/* Google Tag Manager (noscript) - Yellow Pages Campaign Tracking */}
         <noscript>
-          <iframe 
+          <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5GPGZRT6"
-            height="0" 
-            width="0" 
-            style={{display:'none',visibility:'hidden'}}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        
+
         <GoogleAnalytics />
         {/* Vercel Web Analytics - tracks page views and user interactions */}
         <Analytics />
