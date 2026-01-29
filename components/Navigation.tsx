@@ -42,39 +42,51 @@ export default function Navigation() {
   ];
 
   const servicePages = [
-    { 
-      name: 'All Services', 
-      href: '/services', 
+    {
+      name: 'All Services',
+      href: '/services',
       icon: Settings,
       description: 'Browse our complete service offerings'
     },
-    { 
-      name: 'Clothing Alterations', 
-      href: '/clothing-alterations', 
+    {
+      name: 'Clothing Alterations',
+      href: '/clothing-alterations',
       icon: Scissors,
       description: 'Professional tailoring and alterations'
     },
-    { 
-      name: 'Custom and Retail Suits', 
-      href: '/custom-suits', 
+    {
+      name: 'Custom and Retail Suits',
+      href: '/custom-suits',
       icon: Shirt,
       description: 'Tailored suits and formal wear'
     },
-    { 
-      name: 'Dry Cleaning', 
-      href: '/dry-cleaning', 
+    {
+      name: 'Dry Cleaning',
+      href: '/dry-cleaning',
       icon: Sparkles,
       description: 'Professional dry cleaning services'
     },
-    { 
-      name: 'Wedding Dress Alterations', 
-      href: '/wedding-dress-alterations', 
+    {
+      name: 'Wedding Dress Alterations',
+      href: '/wedding-dress-alterations',
       icon: Heart,
       description: 'Expert bridal gown fitting and alterations'
     },
-    { 
-      name: 'Zipper Repair and Replacement', 
-      href: '/zipper-repair', 
+    {
+      name: 'Prom Dress Alterations',
+      href: '/prom-dress-alterations',
+      icon: Heart,
+      description: 'Look stunning on your special prom night'
+    },
+    {
+      name: 'Dress & Skirt Alterations',
+      href: '/dress-skirt-alterations',
+      icon: Scissors,
+      description: 'Perfect fit for dresses, skirts & bridesmaids'
+    },
+    {
+      name: 'Zipper Repair and Replacement',
+      href: '/zipper-repair',
       icon: Zap,
       description: 'Quick and reliable zipper fixes'
     }
@@ -85,19 +97,18 @@ export default function Navigation() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         // Use light background if not on homepage or if scrolled
         isLightBackground || isScrolled
-          ? 'backdrop-blur-xl bg-white/95 border-b border-gray-200/50 shadow-lg' 
+          ? 'backdrop-blur-xl bg-white/95 border-b border-gray-200/50 shadow-lg'
           : 'bg-transparent'
-      }`}>
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            
+
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group transition-all duration-300 hover:scale-105">
-              <div className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${
-                isLightBackground || isScrolled 
-                  ? 'bg-gray-100 group-hover:bg-gray-200' 
+              <div className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden p-1 shadow-lg transition-all duration-500 ${isLightBackground || isScrolled
+                  ? 'bg-gray-100 group-hover:bg-gray-200'
                   : 'bg-white/25 backdrop-blur-sm group-hover:bg-white/40'
-              }`}>
+                }`}>
                 <Image
                   src="/logo.png"
                   alt="Nimble Needle Tailoring - Expert clothing alterations and tailoring services in Ottawa"
@@ -106,17 +117,16 @@ export default function Navigation() {
                 />
               </div>
               <div className="flex flex-col sm:block">
-                <span className={`text-lg sm:text-2xl font-bold tracking-tight font-montserrat transition-colors duration-500 leading-tight ${
-                  isLightBackground || isScrolled 
-                    ? 'text-gray-900 group-hover:text-pink-600' 
+                <span className={`text-lg sm:text-2xl font-bold tracking-tight font-montserrat transition-colors duration-500 leading-tight ${isLightBackground || isScrolled
+                    ? 'text-gray-900 group-hover:text-pink-600'
                     : 'text-white drop-shadow-lg group-hover:text-pink-200'
-                }`}>
+                  }`}>
                   <span className="block sm:inline">Nimble Needle</span>
                   <span className="block sm:inline sm:ml-1">Tailoring</span>
                 </span>
               </div>
             </Link>
-            
+
             {/* Desktop Navigation Menu */}
             <nav className="hidden md:flex items-center space-x-1">
               {/* Home and About Links */}
@@ -124,58 +134,53 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
-                    isLightBackground || isScrolled 
-                      ? 'text-gray-700 hover:text-gray-900' 
+                  className={`relative group px-6 py-3 transition-all duration-300 font-medium ${isLightBackground || isScrolled
+                      ? 'text-gray-700 hover:text-gray-900'
                       : 'text-white/90 hover:text-white drop-shadow-md'
-                  }`}
+                    }`}
                 >
                   <span className="relative z-10">{item.name}</span>
-                  
+
                   {/* Hover Effect - Animated Underline */}
                   <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
-                  
+
                   {/* Hover Effect - Subtle Glow */}
-                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                    isLightBackground || isScrolled 
-                      ? 'bg-gray-100/50' 
+                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${isLightBackground || isScrolled
+                      ? 'bg-gray-100/50'
                       : 'bg-white/10'
-                  }`}></div>
+                    }`}></div>
                 </a>
               ))}
-              
+
               {/* Services Dropdown */}
-              <div 
+              <div
                 className="relative group"
                 onMouseEnter={() => setIsServicesDropdownOpen(true)}
                 onMouseLeave={() => setIsServicesDropdownOpen(false)}
               >
-                <button className={`relative group px-6 py-3 transition-all duration-300 font-medium flex items-center ${
-                  isLightBackground || isScrolled 
-                    ? 'text-gray-700 hover:text-gray-900' 
+                <button className={`relative group px-6 py-3 transition-all duration-300 font-medium flex items-center ${isLightBackground || isScrolled
+                    ? 'text-gray-700 hover:text-gray-900'
                     : 'text-white/90 hover:text-white drop-shadow-md'
-                }`}>
+                  }`}>
                   <span className="relative z-10">Services</span>
                   <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
-                  
+
                   {/* Hover Effect - Animated Underline */}
                   <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
-                  
+
                   {/* Hover Effect - Subtle Glow */}
-                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                    isLightBackground || isScrolled 
-                      ? 'bg-gray-100/50' 
+                  <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${isLightBackground || isScrolled
+                      ? 'bg-gray-100/50'
                       : 'bg-white/10'
-                  }`}></div>
+                    }`}></div>
                 </button>
-                
+
                 {/* Creative Dropdown Menu */}
-                <div className={`navigation-dropdown absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[600px] transition-all duration-300 ${
-                  isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                }`}>
+                <div className={`navigation-dropdown absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[600px] transition-all duration-300 ${isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
                   {/* Dropdown Arrow */}
                   <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-pink-200"></div>
-                  
+
                   {/* Dropdown Content */}
                   <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-pink-200 overflow-hidden">
                     {/* Header */}
@@ -183,7 +188,7 @@ export default function Navigation() {
                       <h3 className="text-gray-900 font-semibold font-league-spartan text-lg">Our Services</h3>
                       <p className="text-gray-700 text-sm">Expert tailoring and alterations in Ottawa</p>
                     </div>
-                    
+
                     {/* Service Grid */}
                     <div className="p-4 grid grid-cols-3 gap-3">
                       {servicePages.map((service, index) => {
@@ -198,7 +203,7 @@ export default function Navigation() {
                             <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-pink-100 to-pink-200 group-hover:from-pink-500 group-hover:to-pink-600 rounded-lg mb-3 transition-all duration-300">
                               <IconComponent className="h-5 w-5 text-pink-600 group-hover:text-white" />
                             </div>
-                            
+
                             {/* Service Info */}
                             <div>
                               <h4 className="font-semibold text-gray-900 group-hover:text-gray-800 text-sm mb-1 transition-colors duration-200">
@@ -208,18 +213,18 @@ export default function Navigation() {
                                 {service.description}
                               </p>
                             </div>
-                            
+
                             {/* Hover Effect */}
                             <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-pink-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           </a>
                         );
                       })}
                     </div>
-                    
+
                     {/* Footer CTA */}
                     <div className="border-t border-pink-200 p-4 bg-gradient-to-r from-pink-50/50 to-rose-50/50">
                       <p className="text-center text-gray-600 text-sm">
-                        Need something else? 
+                        Need something else?
                         <a href="/contact-us" className="text-pink-600 hover:text-pink-700 font-medium ml-1 transition-colors duration-200 underline decoration-pink-400 hover:decoration-pink-600">
                           Contact us today
                         </a>
@@ -228,27 +233,25 @@ export default function Navigation() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Contact Link */}
               <a
                 href="/contact-us"
-                className={`relative group px-6 py-3 transition-all duration-300 font-medium ${
-                  isLightBackground || isScrolled 
-                    ? 'text-gray-700 hover:text-gray-900' 
+                className={`relative group px-6 py-3 transition-all duration-300 font-medium ${isLightBackground || isScrolled
+                    ? 'text-gray-700 hover:text-gray-900'
                     : 'text-white/90 hover:text-white drop-shadow-md'
-                }`}
+                  }`}
               >
                 <span className="relative z-10">Contact</span>
-                
+
                 {/* Hover Effect - Animated Underline */}
                 <div className="absolute bottom-0 left-1/2 h-0.5 w-0 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300 ease-out"></div>
-                
+
                 {/* Hover Effect - Subtle Glow */}
-                <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                  isLightBackground || isScrolled 
-                    ? 'bg-gray-100/50' 
+                <div className={`absolute inset-0 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${isLightBackground || isScrolled
+                    ? 'bg-gray-100/50'
                     : 'bg-white/10'
-                }`}></div>
+                  }`}></div>
               </a>
             </nav>
 
@@ -257,11 +260,10 @@ export default function Navigation() {
               {/* Mobile Menu Button */}
               <Button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`md:hidden p-3 transition-all duration-500 shadow-lg ${
-                  isLightBackground || isScrolled 
-                    ? 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400' 
+                className={`md:hidden p-3 transition-all duration-500 shadow-lg ${isLightBackground || isScrolled
+                    ? 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
                     : 'bg-white/90 backdrop-blur-sm border border-white/40 text-gray-800 hover:bg-white hover:border-white/60'
-                }`}
+                  }`}
                 size="sm"
                 aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={isMobileMenuOpen}
@@ -272,7 +274,7 @@ export default function Navigation() {
                   <Menu className="h-5 w-5" />
                 )}
               </Button>
-              
+
               {/* Location Selector */}
               <LocationSelector />
             </div>
@@ -283,7 +285,7 @@ export default function Navigation() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/50" onClick={closeMobileMenu}>
-          <div 
+          <div
             className="absolute top-20 left-0 right-0 bg-white backdrop-blur-xl border-b border-gray-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
@@ -300,7 +302,7 @@ export default function Navigation() {
                     {item.name}
                   </a>
                 ))}
-                
+
                 {/* Mobile Services Section */}
                 <div className="pt-4">
                   <div className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">
@@ -326,7 +328,7 @@ export default function Navigation() {
                     );
                   })}
                 </div>
-                
+
                 {/* Contact */}
                 <div className="pt-4">
                   <a
@@ -338,12 +340,12 @@ export default function Navigation() {
                   </a>
                 </div>
               </div>
-              
+
               {/* Mobile CTA */}
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <div className="text-center">
                   <p className="text-gray-600 text-sm mb-3">Ready to get started?</p>
-                  <Button 
+                  <Button
                     onClick={() => {
                       closeMobileMenu();
                       window.location.href = '/bookings';

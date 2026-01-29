@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Phone, 
-  MapPin, 
+import {
+  Phone,
+  MapPin,
   Clock,
   CheckCircle,
   Star,
@@ -25,8 +25,9 @@ import { locations } from '@/lib/data';
 
 const serviceFeatures = [
   "Perfect Fit for All Sizes",
-  "Hemming & Length Adjustments", 
+  "Hemming & Length Adjustments",
   "Waist & Hip Alterations",
+  "Bridesmaid Dress Alterations",
   "Delicate Fabric Care",
   "Proudly Serving Ottawa"
 ];
@@ -120,44 +121,42 @@ export default function DressSkirtAlterationsPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
-              DRESS & SKIRT<br />ALTERATIONS
+              DRESS, SKIRT &<br />BRIDESMAID ALTERATIONS
             </h1>
           </div>
         </div>
       </section>
 
       {/* Main Content Section */}
-      <section 
+      <section
         ref={heroRef}
         className="py-20 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Content */}
-            <div className={`transition-all duration-1000 ${
-              isHeroVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`transition-all duration-1000 ${isHeroVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 -translate-x-8'
-            }`}>
+              }`}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-league-spartan">
                 Looking for dress and skirt alterations to get a perfect fit?
               </h2>
-              
+
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                Get the perfect fit for your dresses and skirts. Whether it&#39;s hemming, taking in the waist, 
-                or adjusting the fit, our skilled seamstresses ensure your garments look and feel amazing.
+                Get the perfect fit for your dresses, skirts, and bridesmaid gowns. Whether it&#39;s hemming, taking in the waist,
+                or ensuring your entire bridal party looks flawless, our skilled seamstresses ensure your garments look and feel amazing.
               </p>
 
               {/* Service Features */}
               <div className="space-y-4 mb-8">
                 {serviceFeatures.map((feature, index) => (
-                  <div 
+                  <div
                     key={index}
-                    className={`flex items-center space-x-3 transition-all duration-1000 ${
-                      isHeroVisible 
-                        ? 'opacity-100 translate-y-0' 
+                    className={`flex items-center space-x-3 transition-all duration-1000 ${isHeroVisible
+                        ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-4'
-                    }`}
+                      }`}
                     style={{
                       transitionDelay: `${index * 150}ms`
                     }}
@@ -177,9 +176,9 @@ export default function DressSkirtAlterationsPage() {
                   <Clock className="h-5 w-5 mr-2" />
                   Book an Appointment
                 </Button>
-                <Button 
+                <Button
                   onClick={() => setIsCallPopupOpen(!isCallPopupOpen)}
-                  variant="outline" 
+                  variant="outline"
                   className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
                 >
                   <Phone className="h-5 w-5 mr-2" />
@@ -189,7 +188,7 @@ export default function DressSkirtAlterationsPage() {
 
               {/* Call Popup */}
               {isCallPopupOpen && (
-                <div 
+                <div
                   ref={callPopupRef}
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
@@ -219,7 +218,7 @@ export default function DressSkirtAlterationsPage() {
 
               {/* Backdrop for popup */}
               {isCallPopupOpen && (
-                <div 
+                <div
                   className="fixed inset-0 bg-black/50 z-[9998]"
                   onClick={() => setIsCallPopupOpen(false)}
                 />
@@ -231,11 +230,10 @@ export default function DressSkirtAlterationsPage() {
             </div>
 
             {/* Right Side - Image */}
-            <div className={`transition-all duration-1000 delay-300 ${
-              isHeroVisible 
-                ? 'opacity-100 translate-x-0' 
+            <div className={`transition-all duration-1000 delay-300 ${isHeroVisible
+                ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-8'
-            }`}>
+              }`}>
               <div className="relative">
                 <Image
                   src="/services/Dress Alterations.jpeg"
@@ -278,7 +276,7 @@ export default function DressSkirtAlterationsPage() {
       </section>
 
       {/* Service Options */}
-      <section 
+      <section
         ref={servicesRef}
         className="py-20 bg-white"
       >
@@ -287,11 +285,10 @@ export default function DressSkirtAlterationsPage() {
             {serviceOptions.map((option, index) => (
               <div
                 key={index}
-                className={`text-center transition-all duration-1000 ${
-                  isServicesVisible 
-                    ? 'opacity-100 translate-y-0' 
+                className={`text-center transition-all duration-1000 ${isServicesVisible
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
-                }`}
+                  }`}
                 style={{
                   transitionDelay: `${index * 200}ms`
                 }}
@@ -316,7 +313,7 @@ export default function DressSkirtAlterationsPage() {
       </section>
 
       {/* Google Reviews Section */}
-      <GoogleReviewsSection 
+      <GoogleReviewsSection
         ctaText="Book an Appointment"
         ctaLink="/bookings"
       />

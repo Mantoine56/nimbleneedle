@@ -5,9 +5,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  Phone, 
-  MapPin, 
+import {
+  Phone,
+  MapPin,
   Clock,
   Mail,
   Navigation as NavigationIcon,
@@ -37,7 +37,7 @@ const locations = [
   {
     name: "Downtown Ottawa - Preston",
     address: "141 Preston St",
-    city: "Ottawa, ON K1R 7P4", 
+    city: "Ottawa, ON K1R 7P4",
     phone: "(343) 588-1300",
     hours: {
       weekdays: "Mon-Fri: 10am-8pm",
@@ -54,11 +54,11 @@ const locations = [
   },
   {
     name: "Riverside & Uplands",
-    address: "3681 Riverside Dr", 
+    address: "3681 Riverside Dr",
     city: "Ottawa, ON K1V 1H7",
     phone: "(343) 588-3182",
     hours: {
-      weekdays: "Mon-Fri: 10am-8pm", 
+      weekdays: "Mon-Fri: 10am-8pm",
       weekend: "Saturday: 10am-6pm • Sunday: 11am-6pm"
     },
     features: [
@@ -77,7 +77,7 @@ const contactMethods = [
     method: "Phone",
     icon: Phone,
     primary: "(343) 588-1300 - Preston St",
-    secondary: "(343) 588-3182 - Riverside Dr", 
+    secondary: "(343) 588-3182 - Riverside Dr",
     description: "Call either location directly",
     available: "During business hours"
   },
@@ -117,6 +117,10 @@ const faqItems = [
     answer: "Yes! We provide fixed, clear pricing upfront with no hidden fees. You'll know exactly what you're paying before we begin."
   },
   {
+    question: "What is your 30-day guarantee?",
+    answer: "We stand behind our work. If you're not completely satisfied with your alterations, we'll make it right within 30 days at no extra cost. Your satisfaction is our priority."
+  },
+  {
     question: "Can you work on all types of fabric?",
     answer: "Absolutely! We handle all fabrics and styles, from delicate silk to heavy denim, vintage pieces to modern designs."
   },
@@ -130,7 +134,7 @@ export default function ContactPage() {
   const [isLocationPopupOpen, setIsLocationPopupOpen] = useState(false);
   const locationPopupRef = useRef<HTMLDivElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
-  
+
   // Contact form state
   const [formData, setFormData] = useState({
     name: '',
@@ -238,7 +242,7 @@ export default function ContactPage() {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       // Send form data to API endpoint
       const response = await fetch('/api/contact', {
@@ -268,7 +272,7 @@ export default function ContactPage() {
         });
         setHoneypot('');
         setTurnstileToken('');
-        
+
         // Reset success message after 5 seconds
         setTimeout(() => {
           setSubmitStatus('idle');
@@ -316,14 +320,14 @@ export default function ContactPage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Contact Information */}
             <div>
               <Badge className="bg-pink-100 text-pink-700 border-pink-200 px-4 py-2 text-sm font-medium mb-6">
                 <MapPin className="h-4 w-4 mr-2" />
                 Two Convenient Ottawa Locations
               </Badge>
-              
+
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
                 CONTACT<br />
                 <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
@@ -331,18 +335,18 @@ export default function ContactPage() {
                 </span><br />
                 TAILORING
               </h1>
-              
+
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed font-montserrat mb-8">
                 <p>
-                  Ready to experience expert tailoring? Visit us at either of our convenient Ottawa locations. 
+                  Ready to experience expert tailoring? Visit us at either of our convenient Ottawa locations.
                   No appointment necessary - walk-ins are always welcome!
                 </p>
-                
+
                 {/* Removed multilingual service line at user request to declutter the hero copy. */}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 relative">
-                <Button 
+                <Button
                   onClick={() => {
                     const form = document.getElementById('contact-form');
                     if (form) {
@@ -354,11 +358,11 @@ export default function ContactPage() {
                   <Calendar className="h-5 w-5 mr-2" />
                   Send Message
                 </Button>
-                <Button 
+                <Button
                   onClick={() => {
                     setIsLocationPopupOpen(!isLocationPopupOpen);
                   }}
-                  variant="outline" 
+                  variant="outline"
                   className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
                 >
                   <MapPin className="h-5 w-5 mr-2" />
@@ -368,7 +372,7 @@ export default function ContactPage() {
 
               {/* Location Popup - Fixed positioning */}
               {isLocationPopupOpen && (
-                <div 
+                <div
                   ref={locationPopupRef}
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
@@ -377,17 +381,17 @@ export default function ContactPage() {
                     <p className="text-white/80 text-sm">Get directions to our locations</p>
                   </div>
                   <div className="p-4 space-y-4">
-                {locations.map((location, index) => (
-                  <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
+                    {locations.map((location, index) => (
+                      <div key={index} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200">
                         <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
-                    <button
-                      type="button"
-                      onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
-                      className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
-                    >
-                      <MapPin className="h-3 w-3" />
-                      {location.address}
-                    </button>
+                        <button
+                          type="button"
+                          onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                          className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
+                        >
+                          <MapPin className="h-3 w-3" />
+                          {location.address}
+                        </button>
                         <p className="text-gray-600 text-sm flex items-center gap-1 mt-1">
                           <Phone className="h-3 w-3" />
                           {location.phone}
@@ -433,7 +437,7 @@ export default function ContactPage() {
 
               {/* Backdrop for popup */}
               {isLocationPopupOpen && (
-                <div 
+                <div
                   className="fixed inset-0 bg-black/50 z-[9998]"
                   onClick={() => setIsLocationPopupOpen(false)}
                 />
@@ -647,15 +651,15 @@ export default function ContactPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
-                    
+
                     <h3 className="text-2xl font-bold text-gray-900 mb-3 font-league-spartan">
                       {method.method}
                     </h3>
-                    
+
                     <div className="mb-4">
                       {method.method === "Phone" ? (
                         <>
-                          <a 
+                          <a
                             href="tel:3435881300"
                             className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block mb-1 cursor-pointer"
                             aria-label="Call Preston Street location"
@@ -663,7 +667,7 @@ export default function ContactPage() {
                             {method.primary}
                           </a>
                           {method.secondary && (
-                            <a 
+                            <a
                               href="tel:3435883182"
                               className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block cursor-pointer"
                               aria-label="Call Riverside Drive location"
@@ -673,7 +677,7 @@ export default function ContactPage() {
                           )}
                         </>
                       ) : method.method === "Email" ? (
-                        <a 
+                        <a
                           href="mailto:info@nimbleneedle.ca"
                           className="text-lg font-semibold text-pink-600 hover:text-pink-700 transition-colors duration-300 block mb-1 cursor-pointer"
                           aria-label="Send us an email"
@@ -689,9 +693,9 @@ export default function ContactPage() {
                         </>
                       )}
                     </div>
-                    
+
                     <p className="text-gray-600 mb-3">{method.description}</p>
-                    
+
                     <Badge className="bg-pink-100 text-pink-700 text-xs">
                       {method.available}
                     </Badge>
@@ -731,7 +735,7 @@ export default function ContactPage() {
                     title={`Google Maps location for ${location.name}`}
                   ></iframe>
                 </div>
-                
+
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-2xl font-bold text-gray-900 font-league-spartan">
@@ -741,7 +745,7 @@ export default function ContactPage() {
                       Walk-ins Welcome
                     </Badge>
                   </div>
-                  
+
                   <div className="space-y-4 mb-6">
                     <button
                       type="button"
@@ -759,17 +763,17 @@ export default function ContactPage() {
                         <span className="text-gray-600 font-normal">{location.city}</span>
                       </span>
                     </button>
-                    
+
                     <div className="flex items-center space-x-3">
                       <Phone className="h-5 w-5 text-pink-500 flex-shrink-0" />
-                      <a 
+                      <a
                         href={`tel:${location.phone.replace(/[^\d]/g, '')}`}
                         className="text-gray-700 hover:text-pink-600 transition-colors font-medium"
                       >
                         {location.phone}
                       </a>
                     </div>
-                    
+
                     <div className="flex items-start space-x-3">
                       <Clock className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
                       <div>
@@ -792,17 +796,17 @@ export default function ContactPage() {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="flex space-x-3">
-                    <Button 
+                    <Button
                       className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1"
                       onClick={() => window.open(location.directions, '_blank')}
                     >
                       <NavigationIcon className="h-4 w-4 mr-2" />
                       Get Directions
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="border-pink-500 text-pink-600 hover:bg-pink-50"
                       onClick={() => window.open(`tel:${location.phone.replace(/[^\d]/g, '')}`, '_self')}
                     >
@@ -826,11 +830,11 @@ export default function ContactPage() {
                 A Family Tradition in Tailoring
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed font-montserrat">
-                Nimble Needle Tailoring is a family-owned business built on a tradition of 
-                craftsmanship and attention to detail. Led by Riber Baabo, a tailor with 
-                over 20 years of experience, our team is dedicated to delivering precise 
-                and high-quality tailoring solutions. Our family values are reflected in the 
-                care and precision we bring to every garment, ensuring each client 
+                Nimble Needle Tailoring is a family-owned business built on a tradition of
+                craftsmanship and attention to detail. Led by Riber Baabo, a tailor with
+                over 20 years of experience, our team is dedicated to delivering precise
+                and high-quality tailoring solutions. Our family values are reflected in the
+                care and precision we bring to every garment, ensuring each client
                 receives personalized service and seamless alterations.
               </p>
             </div>
@@ -878,10 +882,10 @@ export default function ContactPage() {
                 Our Tailoring Services
               </h2>
               <p className="text-lg text-gray-700 mb-6 font-montserrat">
-                At Nimble Needle Tailoring, we provide a range of tailoring services, 
+                At Nimble Needle Tailoring, we provide a range of tailoring services,
                 including but not limited to:
               </p>
-              
+
               <ul className="space-y-4 text-gray-700 font-montserrat">
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -910,7 +914,7 @@ export default function ContactPage() {
               </ul>
 
               <p className="text-gray-700 mt-6 font-montserrat">
-                If you require a specific service that is not listed, please contact us, and 
+                If you require a specific service that is not listed, please contact us, and
                 our team will be happy to assist you.
               </p>
             </div>
@@ -969,20 +973,20 @@ export default function ContactPage() {
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
                 </p>
-                
+
                 {/* Social Media */}
                 <div className="flex space-x-3">
-                  <Button 
-                    size="sm" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white p-2" 
+                  <Button
+                    size="sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white p-2"
                     onClick={() => window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank')}
                     aria-label="Follow us on Facebook"
                   >
                     <Facebook className="h-4 w-4" />
                   </Button>
-                  <Button 
-                    size="sm" 
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2" 
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2"
                     onClick={() => window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank')}
                     aria-label="Follow us on Instagram"
                   >
@@ -1007,14 +1011,14 @@ export default function ContactPage() {
                       <p>Ottawa, ON K1R 7P4</p>
                     </a>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                     <a href="tel:3435881300" className="hover:text-pink-400 transition-colors font-medium">
                       (343) 588-1300
                     </a>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
@@ -1042,14 +1046,14 @@ export default function ContactPage() {
                       <p>Ottawa, ON K1V 1H7</p>
                     </a>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                     <a href="tel:3435883182" className="hover:text-pink-400 transition-colors font-medium">
                       (343) 588-3182
                     </a>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
@@ -1078,8 +1082,8 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5 text-pink-400" />
                     <span className="font-semibold text-pink-400">Email Us</span>
                   </div>
-                  <a 
-                    href="mailto:info@nimbleneedle.ca" 
+                  <a
+                    href="mailto:info@nimbleneedle.ca"
                     className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                   >
                     info@nimbleneedle.ca

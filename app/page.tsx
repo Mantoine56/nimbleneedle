@@ -217,8 +217,8 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isServicesVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
@@ -241,8 +241,8 @@ export default function Home() {
               <div
                 key={index}
                 className={`group transition-all duration-1000 ${isServicesVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-12'
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-12'
                   }`}
                 style={{
                   transitionDelay: `${service.delay}ms`
@@ -325,8 +325,8 @@ export default function Home() {
 
           {/* Call to Action */}
           <div className={`text-center transition-all duration-1000 delay-600 ${isServicesVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <Button
               className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-12 py-4 text-lg font-semibold rounded-full shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 transform hover:scale-105"
@@ -354,8 +354,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Image Column */}
             <div className={`relative transition-all duration-1000 ${isPromiseVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 -translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 -translate-x-12'
               }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
@@ -372,8 +372,8 @@ export default function Home() {
 
             {/* Content Column */}
             <div className={`transition-all duration-1000 delay-300 ${isPromiseVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 translate-x-12'
               }`}>
               <div className="max-w-xl">
                 <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight font-league-spartan">
@@ -411,8 +411,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Content Column */}
             <div className={`order-2 lg:order-1 transition-all duration-1000 ${isCraftsmanVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 -translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 -translate-x-12'
               }`}>
               <div className="max-w-xl">
                 <div className="mb-6">
@@ -438,8 +438,8 @@ export default function Home() {
 
             {/* Image Column */}
             <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${isCraftsmanVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 translate-x-12'
               }`}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
@@ -489,7 +489,7 @@ export default function Home() {
           </div>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -535,8 +535,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${isLocationVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
@@ -560,8 +560,8 @@ export default function Home() {
               <div
                 key={index}
                 className={`transition-all duration-1000 ${isLocationVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-12'
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-12'
                   }`}
                 style={{
                   transitionDelay: `${location.delay}ms`
@@ -656,8 +656,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className={`text-center mb-16 transition-all duration-1000 ${isReviewsVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <div className="mb-4">
               <span className="text-sm font-semibold text-gray-500 tracking-[0.2em] uppercase">
@@ -698,8 +698,8 @@ export default function Home() {
               onClick={prevReviews}
               disabled={currentReviewIndex === 0}
               className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${currentReviewIndex === 0
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
                 }`}
               aria-label="Previous reviews"
             >
@@ -710,8 +710,8 @@ export default function Home() {
               onClick={nextReviews}
               disabled={currentReviewIndex >= detailedReviews.length - reviewsPerPage}
               className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${currentReviewIndex >= detailedReviews.length - reviewsPerPage
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-white text-pink-600 hover:bg-pink-50 border-2 border-pink-100 hover:border-pink-200'
                 }`}
               aria-label="Next reviews"
             >
@@ -730,8 +730,8 @@ export default function Home() {
                   <div
                     key={index}
                     className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 transition-all duration-1000 ${isReviewsVisible
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-12'
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-12'
                       }`}
                     style={{
                       transitionDelay: `${index * 100}ms`
@@ -786,8 +786,8 @@ export default function Home() {
                   key={index}
                   onClick={() => setCurrentReviewIndex(Math.min(index, detailedReviews.length - reviewsPerPage))}
                   className={`transition-all duration-300 ${currentReviewIndex === index
-                      ? 'w-8 h-2 bg-pink-500 rounded-full'
-                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400 rounded-full'
+                    ? 'w-8 h-2 bg-pink-500 rounded-full'
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400 rounded-full'
                     }`}
                   aria-label={`Go to review ${index + 1}`}
                 />
@@ -797,8 +797,8 @@ export default function Home() {
 
           {/* Call to Action */}
           <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${isReviewsVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <p className="text-lg text-gray-600 mb-8">
               Ready to experience our exceptional service?
@@ -817,8 +817,8 @@ export default function Home() {
       <section ref={blogRef} className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-12 transition-all duration-1000 ${isBlogVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}>
             <h2 className="text-4xl md:text-5xl font-bold font-league-spartan text-gray-900 mb-4">
               Latest from Our Blog

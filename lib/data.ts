@@ -1,5 +1,5 @@
 // Data constants moved from page.tsx to reduce bundle size
-import { Heart, Shield, MessageCircle } from 'lucide-react';
+import { Heart, Shield, MessageCircle, Award } from 'lucide-react';
 
 export const testimonials = [
   {
@@ -199,6 +199,12 @@ export const features = [
     title: "TEXT NOTIFICATIONS",
     description: "Get notified by text as soon as your order is ready for pickup.",
     delay: 400
+  },
+  {
+    icon: Award,
+    title: "30-DAY GUARANTEE",
+    description: "Not completely satisfied with your alterations? We'll make it right within 30 days at no extra cost. Your satisfaction is our priority.",
+    delay: 600
   }
 ];
 
@@ -210,7 +216,7 @@ export const locations = [
     hours: {
       monday: "Monday: 10am-6pm",
       weekdays: "Tue-Fri: 10am-8pm",
-      saturday: "Saturday: 10am-6pm", 
+      saturday: "Saturday: 10am-6pm",
       sunday: "Sunday: 11am-6pm"
     },
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.4928542718835!2d-75.71163!3d45.4085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04e7311278bd%3A0x65c3031023e94dc7!2s141%20Preston%20St%2C%20Ottawa%2C%20ON%20K1R%207P4%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
