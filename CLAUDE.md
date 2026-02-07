@@ -130,6 +130,4 @@ The site is configured for static export (`output: 'export'`) with:
 - Vintage clothing restoration
 
 ### Hours
-- Mon-Fri: 10am-8pm
-- Saturday: 10am-6pm
-- Sunday: 11am-6pm
+- Mon-Sun: 9am-8pm

@@ -21,7 +21,7 @@ const locations: Location[] = [
     phone: '(343) 588-3182',
     // Google Maps directions link so users can navigate without extra clicks.
     mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7',
-    hours: 'Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm'
+    hours: 'Mon-Sun: 9am-8pm'
   },
   {
     id: 'preston',
@@ -30,7 +30,7 @@ const locations: Location[] = [
     phone: '(343) 588-1300',
     // Same direct directions link for the Preston location.
     mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4',
-    hours: 'Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm'
+    hours: 'Mon-Sun: 9am-8pm'
   }
 ];
 
@@ -65,7 +65,7 @@ export default function LocationSelector() {
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Main Button */}
-      <Button 
+      <Button
         onClick={() => setIsOpen(!isOpen)}
         className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 px-6 py-3 font-semibold transform hover:scale-105 overflow-hidden"
       >
@@ -108,14 +108,12 @@ export default function LocationSelector() {
                     <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                       <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p>Mon-Fri: 10am-8pm</p>
-                        <p>Saturday: 10am-6pm</p>
-                        <p>Sunday: 11am-6pm</p>
+                        <p>Mon-Sun: 9am-8pm</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Action Buttons */}
                 <div className="flex gap-2 mt-3">
                   <Button

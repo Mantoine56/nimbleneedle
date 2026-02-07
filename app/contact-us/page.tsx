@@ -40,8 +40,8 @@ const locations = [
     city: "Ottawa, ON K1R 7P4",
     phone: "(343) 588-1300",
     hours: {
-      weekdays: "Mon-Fri: 10am-8pm",
-      weekend: "Saturday: 10am-6pm • Sunday: 11am-6pm"
+      weekdays: "Mon-Sun: 9am-8pm",
+      weekend: ""
     },
     features: [
       "Walk-ins welcome",
@@ -58,8 +58,8 @@ const locations = [
     city: "Ottawa, ON K1V 1H7",
     phone: "(343) 588-3182",
     hours: {
-      weekdays: "Mon-Fri: 10am-8pm",
-      weekend: "Saturday: 10am-6pm • Sunday: 11am-6pm"
+      weekdays: "Mon-Sun: 9am-8pm",
+      weekend: ""
     },
     features: [
       "Walk-ins welcome",
@@ -399,9 +399,7 @@ export default function ContactPage() {
                         <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                           <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p>Mon-Fri: 10am-8pm</p>
-                            <p>Saturday: 10am-6pm</p>
-                            <p>Sunday: 11am-6pm</p>
+                            <p>Mon-Sun: 9am-8pm</p>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3">
@@ -778,7 +776,7 @@ export default function ContactPage() {
                       <Clock className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
                       <div>
                         <p className="text-gray-700">{location.hours.weekdays}</p>
-                        {location.hours.weekend.split(' • ').map((day, idx) => (
+                        {location.hours.weekend && location.hours.weekend.split(' • ').map((day, idx) => (
                           <p key={idx} className="text-gray-700">{day}</p>
                         ))}
                       </div>
@@ -1022,9 +1020,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Fri: 10am-8pm</p>
-                      <p>Saturday: 10am-6pm</p>
-                      <p>Sunday: 11am-6pm</p>
+                      <p>Mon-Sun: 9am-8pm</p>
                     </div>
                   </div>
                 </div>
@@ -1057,9 +1053,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Fri: 10am-8pm</p>
-                      <p>Saturday: 10am-6pm</p>
-                      <p>Sunday: 11am-6pm</p>
+                      <p>Mon-Sun: 9am-8pm</p>
                     </div>
                   </div>
                 </div>

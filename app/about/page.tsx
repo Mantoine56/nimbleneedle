@@ -4,11 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Heart, 
-  Star, 
-  Phone, 
-  MapPin, 
+import {
+  Heart,
+  Star,
+  Phone,
+  MapPin,
   Clock,
   Users,
   Award,
@@ -68,13 +68,13 @@ const milestones = [
     description: "Started our journey as a small family tailoring business with a commitment to quality and service."
   },
   {
-    year: "2015", 
+    year: "2015",
     title: "Preston Location Established",
     description: "Opened our first dedicated location on Preston Street, serving downtown Ottawa customers."
   },
   {
     year: "2020",
-    title: "Expanded Services", 
+    title: "Expanded Services",
     description: "Added specialized wedding dress alterations and formal wear services to meet growing demand."
   },
   {
@@ -91,7 +91,7 @@ const milestones = [
 
 const services = [
   "Wedding dress alterations",
-  "Suit and formal wear tailoring", 
+  "Suit and formal wear tailoring",
   "Casual clothing alterations",
   "Zipper repair and replacement",
   "Bridesmaid dress fitting",
@@ -194,7 +194,7 @@ export default function AboutPage() {
                 <Heart className="h-4 w-4 mr-2" />
                 Family-Run Business Since 2008
               </Badge>
-              
+
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
                 ABOUT<br />
                 <span className="bg-gradient-to-r from-pink-500 to-pink-600 bg-clip-text text-transparent">
@@ -202,19 +202,19 @@ export default function AboutPage() {
                 </span><br />
                 TAILORING
               </h1>
-              
+
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed font-montserrat mb-8">
                 <p>
-                  Nimble Needle Tailoring is a family-run business serving customers in Ottawa 
-                  and surrounding areas. We provide high-quality clothing alteration and tailoring 
+                  Nimble Needle Tailoring is a family-run business serving customers in Ottawa
+                  and surrounding areas. We provide high-quality clothing alteration and tailoring
                   services for all fabrics and clothing styles.
                 </p>
-                
+
                 <p>
-                  Our goal is to provide our customers the results they are looking for efficiently, 
+                  Our goal is to provide our customers the results they are looking for efficiently,
                   affordably, and worry-free. We are very proud to have so many satisfied customers!
                 </p>
-                
+
                 <p className="font-semibold text-pink-600">
                   Serving customers in English, Arabic, and Kurdish.
                 </p>
@@ -239,7 +239,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-4 relative">
                 {/* Call Us Popup Button */}
                 <div className="relative z-10">
-                  <Button 
+                  <Button
                     onClick={() => {
                       console.log('Call button clicked, current state:', isCallPopupOpen);
                       setIsCallPopupOpen(!isCallPopupOpen);
@@ -254,24 +254,24 @@ export default function AboutPage() {
 
                 {/* Visit Locations Popup Button */}
                 <div className="relative z-10">
-                  <Button 
+                  <Button
                     onClick={() => {
                       console.log('Location button clicked, current state:', isLocationPopupOpen);
                       setIsLocationPopupOpen(!isLocationPopupOpen);
                       setIsCallPopupOpen(false);
                     }}
-                    variant="outline" 
+                    variant="outline"
                     className="border-pink-500 text-pink-600 hover:bg-pink-50 px-8 py-3 text-lg font-semibold rounded-full"
                   >
-                                      <MapPin className="h-5 w-5 mr-2" />
-                  Our Locations
+                    <MapPin className="h-5 w-5 mr-2" />
+                    Our Locations
                   </Button>
                 </div>
               </div>
 
               {/* Call Popup - Fixed positioning */}
               {isCallPopupOpen && (
-                <div 
+                <div
                   ref={callPopupRef}
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
@@ -301,7 +301,7 @@ export default function AboutPage() {
 
               {/* Location Popup - Fixed positioning */}
               {isLocationPopupOpen && (
-                <div 
+                <div
                   ref={locationPopupRef}
                   className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden z-[9999]"
                 >
@@ -324,16 +324,14 @@ export default function AboutPage() {
                         <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                           <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p>Mon-Fri: 10am-8pm</p>
-                            <p>Saturday: 10am-6pm</p>
-                            <p>Sunday: 11am-6pm</p>
+                            <p>Mon-Sun: 9am-8pm</p>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => {
                               // Use the business name in the search to get to the actual business page
-                              const businessSearch = location.name.includes('Preston') 
+                              const businessSearch = location.name.includes('Preston')
                                 ? 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa'
                                 : 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
                               window.open(businessSearch, '_blank');
@@ -366,7 +364,7 @@ export default function AboutPage() {
 
               {/* Backdrop for popups */}
               {(isCallPopupOpen || isLocationPopupOpen) && (
-                <div 
+                <div
                   className="fixed inset-0 bg-black/50 z-[9998]"
                   onClick={() => {
                     setIsCallPopupOpen(false);
@@ -396,7 +394,7 @@ export default function AboutPage() {
       </section>
 
       {/* Google Reviews Section */}
-      <GoogleReviewsSection 
+      <GoogleReviewsSection
         title="WHAT OUR CUSTOMERS ARE SAYING"
         subtitle="CUSTOMER REVIEWS"
         className="bg-gray-50"
@@ -426,20 +424,20 @@ export default function AboutPage() {
                 <p className="text-gray-300 mb-6 leading-relaxed font-montserrat">
                   Your one-stop shop for all your tailoring and clothing alteration needs in Ottawa!
                 </p>
-                
+
                 {/* Social Media */}
                 <div className="flex space-x-3">
-                  <Button 
-                    size="sm" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white p-2" 
+                  <Button
+                    size="sm"
+                    className="bg-blue-600 hover:bg-blue-700 text-white p-2"
                     onClick={() => window.open('https://www.facebook.com/NimbleNeedleTailoring', '_blank')}
                     aria-label="Follow us on Facebook"
                   >
                     <Facebook className="h-4 w-4" />
                   </Button>
-                  <Button 
-                    size="sm" 
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2" 
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-2"
                     onClick={() => window.open('https://www.instagram.com/nimble.needle.tailoring', '_blank')}
                     aria-label="Follow us on Instagram"
                   >
@@ -465,20 +463,18 @@ export default function AboutPage() {
                       <p>Ottawa, ON K1R 7P4</p>
                     </a>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                     <a href="tel:3435881300" className="hover:text-pink-400 transition-colors font-medium">
                       (343) 588-1300
                     </a>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Fri: 10am-8pm</p>
-                      <p>Saturday: 10am-6pm</p>
-                      <p>Sunday: 11am-6pm</p>
+                      <p>Mon-Sun: 9am-8pm</p>
                     </div>
                   </div>
                 </div>
@@ -501,20 +497,18 @@ export default function AboutPage() {
                       <p>Ottawa, ON K1V 1H7</p>
                     </a>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-pink-400 flex-shrink-0" />
                     <a href="tel:3435883182" className="hover:text-pink-400 transition-colors font-medium">
                       (343) 588-3182
                     </a>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Fri: 10am-8pm</p>
-                      <p>Saturday: 10am-6pm</p>
-                      <p>Sunday: 11am-6pm</p>
+                      <p>Mon-Sun: 9am-8pm</p>
                     </div>
                   </div>
                 </div>
@@ -537,8 +531,8 @@ export default function AboutPage() {
                     <Mail className="h-5 w-5 text-pink-400" />
                     <span className="font-semibold text-pink-400">Email Us</span>
                   </div>
-                  <a 
-                    href="mailto:info@nimbleneedle.ca" 
+                  <a
+                    href="mailto:info@nimbleneedle.ca"
                     className="text-gray-300 hover:text-pink-400 transition-colors whitespace-nowrap block text-sm"
                   >
                     info@nimbleneedle.ca

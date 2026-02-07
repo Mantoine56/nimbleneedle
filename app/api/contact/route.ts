@@ -136,7 +136,7 @@ export async function POST(request: NextRequest) {
     // Prepare email content
     const serviceText = cleanService ? `Service Requested: ${cleanService}` : 'Service: Not specified';
     const phoneText = cleanPhone ? `Phone: ${cleanPhone}` : 'Phone: Not provided';
-    
+
     const emailContent = `
 New Contact Form Submission from Nimble Needle Website
 
@@ -244,7 +244,7 @@ Timestamp: ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })
                 <p style="margin: 5px 0; color: #374151;">📞 (343) 588-3182</p>
               </div>
               
-              <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> Mon-Fri: 10am-8pm • Saturday: 10am-6pm • Sunday: 11am-6pm</p>
+              <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> Mon-Sun: 9am-8pm</p>
               
               <p style="color: #374151; line-height: 1.6; margin-top: 20px;">Walk-ins are always welcome at both locations!</p>
               
@@ -264,7 +264,7 @@ Timestamp: ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })
     }
 
     return NextResponse.json(
-      { 
+      {
         message: 'Message sent successfully! We\'ll get back to you within 24 hours.',
         messageId: info.messageId
       },
@@ -273,9 +273,9 @@ Timestamp: ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })
 
   } catch (error: any) {
     console.error('❌ Contact form submission failed:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to send message. Please try again or contact us directly.',
         details: process.env.NODE_ENV === 'development' ? error.message : undefined
       },
@@ -291,9 +291,9 @@ export async function GET() {
   try {
     // Test email configuration
     await transporter.verify();
-    
+
     return NextResponse.json(
-      { 
+      {
         status: 'healthy',
         timestamp: new Date().toISOString(),
         emailConfigured: true
@@ -302,9 +302,9 @@ export async function GET() {
     );
   } catch (error: any) {
     console.error('❌ Email configuration test failed:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         status: 'error',
         timestamp: new Date().toISOString(),
         emailConfigured: false,
