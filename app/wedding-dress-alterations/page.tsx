@@ -10,6 +10,8 @@ import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection';
+import VideoBackground from '@/components/VideoBackground';
+import VideoShowcase from '@/components/VideoShowcase';
 import { locations } from '@/lib/data';
 
 const serviceFeatures = [
@@ -124,19 +126,26 @@ export default function WeddingDressAlterationsPage() {
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-pink-50 to-white overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}></div>
-        </div>
+      {/* Hero Section — cinematic video background */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <VideoBackground
+          mp4Src="/videos/wedding-1-hero.mp4"
+          webmSrc="/videos/wedding-1-hero.webm"
+          poster="/videos/wedding-1-poster.jpg"
+          overlayClassName="bg-gradient-to-b from-black/50 via-black/30 to-black/60"
+        />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 font-league-spartan">
-              WEDDING DRESS ALTERATIONS
+            <span className="inline-block text-sm font-semibold text-pink-300 tracking-[0.3em] uppercase mb-4 font-montserrat">
+              BRIDAL SPECIALISTS
+            </span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 font-league-spartan drop-shadow-lg">
+              WEDDING DRESS<br />ALTERATIONS
             </h1>
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-montserrat font-light">
+              Expert seamstresses dedicated to making your gown fit perfectly for your special day
+            </p>
           </div>
         </div>
       </section>
@@ -248,21 +257,20 @@ export default function WeddingDressAlterationsPage() {
               </p>
             </div>
 
-            {/* Right Side - Image */}
+            {/* Right Side — vertical wedding video showcase */}
             <div className={`transition-all duration-1000 delay-300 ${
               isHeroVisible 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 translate-x-8'
             }`}>
-              <div className="relative">
-                <Image
-                  src="/services/WeddingDress Alterations.jpeg"
-                  alt="Professional wedding dress alterations for the perfect fit"
-                  width={600}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
+              <div className="relative max-w-xs mx-auto lg:max-w-sm">
+                <VideoShowcase
+                  mp4Src="/videos/wedding-2-720p.mp4"
+                  webmSrc="/videos/wedding-2-720p.webm"
+                  poster="/videos/wedding-2-poster.jpg"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-pink-500 rounded-2xl p-4 shadow-xl">
+                {/* Floating badge accent */}
+                <div className="absolute -bottom-4 -right-4 bg-pink-500 rounded-2xl p-4 shadow-xl z-10">
                   <Crown className="h-8 w-8 text-white" />
                 </div>
               </div>

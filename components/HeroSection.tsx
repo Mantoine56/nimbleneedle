@@ -43,7 +43,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
 
   return (
     <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Optimized Background Image with Parallax - LCP Optimized */}
+      {/* Background Image with Parallax */}
       <div
         className="absolute inset-0 scale-105"
         style={{

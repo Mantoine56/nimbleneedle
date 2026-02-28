@@ -14,7 +14,8 @@
     "find-place-id": "node scripts/find-place-id.js",
     "extract:media": "node scripts/extract-wordpress-media.js",
     "generate:sitemap": "node scripts/generate-sitemap.js",
-    "postbuild": "npm run generate:sitemap"
+    "postbuild": "npm run generate:sitemap",
+    "video:optimize": "bash scripts/optimize-videos.sh"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

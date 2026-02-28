@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import HeroSection from '@/components/HeroSection';
+import VideoShowcase from '@/components/VideoShowcase';
 import { testimonials, services, features, locations } from '@/lib/data';
 import { getAllBlogPosts } from '@/lib/blog-data';
 import BlogCard from '@/components/BlogCard';
@@ -352,21 +353,18 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Image Column */}
+            {/* Video Column — tailoring video replaces static image */}
             <div className={`relative transition-all duration-1000 ${isPromiseVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}>
-              <div className="relative aspect-[4/3] w-full">
-                <Image
-                  src="/promise-image.webp"
-                  alt="Professional tailor working on clothing alterations at Nimble Needle Ottawa tailoring shop"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover rounded-3xl shadow-2xl"
+              <div className="max-w-sm mx-auto lg:max-w-none lg:w-80 xl:w-96">
+                <VideoShowcase
+                  // Use the trimmed loop variant to cut transfer size without lowering quality.
+                  mp4Src="/videos/tailoring-hero.mp4"
+                  webmSrc="/videos/tailoring-hero.webm"
+                  poster="/videos/tailoring-poster.jpg"
                 />
-                {/* Subtle Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
               </div>
             </div>
 
@@ -436,21 +434,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Image Column */}
+            {/* Video Column — vertical dress video replaces static image */}
             <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${isCraftsmanVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 translate-x-12'
               }`}>
-              <div className="relative aspect-[4/3] w-full">
-                <Image
-                  src="/craftsmanship-image.webp"
-                  alt="Master craftsman demonstrating expert tailoring techniques at Nimble Needle Ottawa"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover rounded-3xl shadow-2xl"
+              <div className="max-w-sm mx-auto lg:max-w-none lg:w-80 xl:w-96">
+                <VideoShowcase
+                  mp4Src="/videos/dress-720p.mp4"
+                  webmSrc="/videos/dress-720p.webm"
+                  poster="/videos/dress-poster.jpg"
                 />
-                {/* Subtle Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
               </div>
             </div>
           </div>

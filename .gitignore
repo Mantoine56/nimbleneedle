@@ -215,6 +215,9 @@ local.*
 *.key
 
 # Custom additions for this project
+# Raw source videos (too large for git — run `npm run video:optimize` to regenerate)
+videos/*.mov
+
 # Google Places API related
 google-places-cache/
 reviews-cache/
