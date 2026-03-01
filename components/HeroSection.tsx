@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Quote, User } from 'lucide-react';
+import GuaranteeBadge from '@/components/GuaranteeBadge';
 
 interface HeroSectionProps {
   scrollY: number;
@@ -153,8 +154,13 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
             </div>
           </div>
 
-          {/* Right Column - Google Reviews */}
+          {/* Right Column - Badge + Google Reviews */}
           <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:pr-16 lg:mt-0">
+
+            {/* Spinning guarantee seal — visible on load, no scroll needed */}
+            <div className="hidden lg:flex justify-end w-full max-w-sm">
+              <GuaranteeBadge />
+            </div>
 
             <div ref={heroCarouselRef} className="w-full max-w-sm">
               {/* Google Reviews Header - Now Clickable */}

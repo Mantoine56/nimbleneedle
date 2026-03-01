@@ -10,6 +10,7 @@ import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import HeroSection from '@/components/HeroSection';
 import VideoShowcase from '@/components/VideoShowcase';
+import GuaranteeSection from '@/components/GuaranteeSection';
 import { testimonials, services, features, locations } from '@/lib/data';
 import { getAllBlogPosts } from '@/lib/blog-data';
 import BlogCard from '@/components/BlogCard';
@@ -360,9 +361,9 @@ export default function Home() {
               }`}>
               <div className="max-w-sm mx-auto lg:max-w-none lg:w-80 xl:w-96">
                 <VideoShowcase
-                  // Use the trimmed loop variant to cut transfer size without lowering quality.
-                  mp4Src="/videos/tailoring-hero.mp4"
-                  webmSrc="/videos/tailoring-hero.webm"
+                  // Full-length video per client request — shows inside, sewing, and ironing.
+                  mp4Src="/videos/tailoring-720p.mp4"
+                  webmSrc="/videos/tailoring-720p.webm"
                   poster="/videos/tailoring-poster.jpg"
                 />
               </div>
@@ -392,6 +393,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Perfect Fit Guarantee — same terms as Riber's Suits, adapted for Nimble Needle */}
+      <GuaranteeSection />
 
       {/* The Craftsman Ship Section */}
       <section
