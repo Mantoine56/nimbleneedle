@@ -64,8 +64,8 @@ export default function GuaranteeSection() {
           }`}
         >
           <Image
-            src="/alterations.jpg"
-            alt="Professional tailor carefully adjusting a garment"
+            src="/guarantee.jpg"
+            alt="Close-up of sewing machine needle and presser foot"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
