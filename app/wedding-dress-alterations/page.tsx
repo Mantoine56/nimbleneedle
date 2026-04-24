@@ -10,8 +10,6 @@ import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import Footer from '@/components/Footer';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection';
-import VideoBackground from '@/components/VideoBackground';
-import VideoShowcase from '@/components/VideoShowcase';
 import { locations } from '@/lib/data';
 
 const serviceFeatures = [
@@ -126,14 +124,21 @@ export default function WeddingDressAlterationsPage() {
       <SocialSidebar />
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero Section — cinematic video background */}
+      {/* Hero Section — bridal alterations hero image */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <VideoBackground
-          mp4Src="/videos/wedding-1-hero.mp4"
-          webmSrc="/videos/wedding-1-hero.webm"
-          poster="/videos/wedding-1-poster.jpg"
-          overlayClassName="bg-gradient-to-b from-black/50 via-black/30 to-black/60"
-        />
+        {/* Full-bleed hero image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/services/wedding-dress-alterations-guide.jpeg"
+            alt="Expert seamstress carefully adjusting bridal gown details"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_30%]"
+          />
+          {/* Gradient overlay — same treatment as the previous video */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center">
@@ -257,18 +262,30 @@ export default function WeddingDressAlterationsPage() {
               </p>
             </div>
 
-            {/* Right Side — vertical wedding video showcase */}
+            {/* Right Side — wedding dress photo showcase */}
             <div className={`transition-all duration-1000 delay-300 ${
               isHeroVisible 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 translate-x-8'
             }`}>
               <div className="relative max-w-xs mx-auto lg:max-w-sm">
-                <VideoShowcase
-                  mp4Src="/videos/wedding-2-720p.mp4"
-                  webmSrc="/videos/wedding-2-720p.webm"
-                  poster="/videos/wedding-2-poster.jpg"
-                />
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  {/* Decorative top-left accent — subtle pink glow */}
+                  <div className="absolute -top-4 -left-4 w-24 h-24 bg-pink-500/20 rounded-full blur-2xl pointer-events-none" />
+                  {/* Decorative bottom-right accent */}
+                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-pink-400/15 rounded-full blur-3xl pointer-events-none" />
+                  <div className="relative aspect-[9/16] w-full bg-gray-100">
+                    <Image
+                      src="/services/WeddingDress Alterations.jpeg"
+                      alt="Wedding dress being carefully adjusted and buttoned for a perfect bridal fit"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 384px"
+                      className="object-cover"
+                    />
+                    {/* Subtle bottom gradient for visual polish */}
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  </div>
+                </div>
                 {/* Floating badge accent */}
                 <div className="absolute -bottom-4 -right-4 bg-pink-500 rounded-2xl p-4 shadow-xl z-10">
                   <Crown className="h-8 w-8 text-white" />

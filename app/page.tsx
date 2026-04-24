@@ -438,17 +438,29 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Video Column — vertical dress video replaces static image */}
+            {/* Image Column — craftsmanship photo */}
             <div className={`order-1 lg:order-2 relative transition-all duration-1000 delay-300 ${isCraftsmanVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 translate-x-12'
               }`}>
               <div className="max-w-sm mx-auto lg:max-w-none lg:w-80 xl:w-96">
-                <VideoShowcase
-                  mp4Src="/videos/dress-720p.mp4"
-                  webmSrc="/videos/dress-720p.webm"
-                  poster="/videos/dress-poster.jpg"
-                />
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  {/* Decorative top-left accent — subtle pink glow */}
+                  <div className="absolute -top-4 -left-4 w-24 h-24 bg-pink-500/20 rounded-full blur-2xl pointer-events-none" />
+                  {/* Decorative bottom-right accent */}
+                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-pink-400/15 rounded-full blur-3xl pointer-events-none" />
+                  <div className="relative aspect-[9/16] w-full bg-gray-100">
+                    <Image
+                      src="/craftsmanship-image.webp"
+                      alt="Expert seamstress carefully working on delicate fabric at Nimble Needle Tailoring"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 384px"
+                      className="object-cover"
+                    />
+                    {/* Subtle bottom gradient for visual polish */}
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
