@@ -354,17 +354,16 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Video Column — tailoring video replaces static image */}
+            {/* Video Column */}
             <div className={`relative transition-all duration-1000 ${isPromiseVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}>
               <div className="max-w-sm mx-auto lg:max-w-none lg:w-80 xl:w-96">
                 <VideoShowcase
-                  // Full-length video per client request — shows inside, sewing, and ironing.
-                  mp4Src="/videos/tailoring-720p.mp4"
-                  webmSrc="/videos/tailoring-720p.webm"
-                  poster="/videos/tailoring-poster.jpg"
+                  mp4Src="/campaigns/wedding-prom-2026/wedding-prom-homepage-720p.mp4"
+                  webmSrc="/campaigns/wedding-prom-2026/wedding-prom-homepage-720p.webm"
+                  poster="/campaigns/wedding-prom-2026/wedding-prom-homepage-poster.jpg"
                 />
               </div>
             </div>

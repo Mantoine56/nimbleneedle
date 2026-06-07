@@ -19,6 +19,7 @@ const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=5b71cfa89013eb
 const RIVERSIDE_DIRECTIONS_URL = 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
 const RIVERSIDE_PHONE_DISPLAY = '(343) 588-3182';
 const RIVERSIDE_PHONE_TEL = '+13435883182';
+const WEDDING_PROM_HERO_IMAGE = '/campaigns/wedding-prom-2026/bridal-gown-hero.jpg';
 
 export default function HeroSection({ scrollY, heroReviews = [], businessInfo = null, reviewsLoading = false }: HeroSectionProps) {
   const [currentHeroReview, setCurrentHeroReview] = useState(0);
@@ -52,15 +53,13 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
         }}
       >
         <Image
-          src="/nimble_needle_hero_light.png"
-          alt="Nimble Needle Tailoring Workshop - Expert clothing alterations and tailoring services in Ottawa"
+          src={WEDDING_PROM_HERO_IMAGE}
+          alt="Bride being fitted for wedding dress alterations at a tailoring studio"
           fill
           priority={true}
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[45%_center] md:object-[25%_center]"
           quality={85}
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
       </div>
 
@@ -109,23 +108,21 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
             </h1>
 
             <h2 className="text-xl md:text-2xl mb-6 text-white/95 leading-relaxed font-medium font-montserrat">
-              Friendly, Expert Tailoring
+              Wedding & Prom Season Is Here
             </h2>
             <p className="text-base md:text-lg mb-8 text-white/90 leading-relaxed font-light">
-              Your one-stop shop for all your tailoring, seamstress, and clothing alteration needs in Ottawa! No appointment needed.
+              Visit us for expert wedding dress, prom dress, and formalwear alterations in Ottawa. No appointment needed.
             </p>
 
             <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 max-w-lg">
               <p className="text-white/95 text-sm md:text-base font-medium mb-3">
-                We sell ready to wear suits and custom made suits through Riber&apos;s Suits store.
+                Expert wedding, prom, and formalwear alterations for your big day.
               </p>
               <a
-                href="https://riberssuits.ca"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/wedding-dress-alterations"
                 className="inline-flex items-center text-pink-300 hover:text-pink-200 font-bold transition-colors group tracking-wide text-sm"
               >
-                VISIT RIBER&apos;S SUITS
+                WEDDING DRESS ALTERATIONS
                 <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </div>

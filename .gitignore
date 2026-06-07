@@ -105,6 +105,9 @@ jspm_packages/
 /scraped-data/
 scraped-data/
 
+# Raw client media sources are kept locally after optimized public assets are generated
+/assets/client/
+
 # IDE and Editor files
 .vscode/
 .idea/
