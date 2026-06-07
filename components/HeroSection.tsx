@@ -16,7 +16,6 @@ interface HeroSectionProps {
 }
 
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=5b71cfa89013eb9f&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3Ovb0eQnh8JkM1wzOUZpmDpMbUY5JnpXSyYwcBtr4A3QetmHVNVUidASvlHk4NQwDr1sQG--ShVP4sspK4lRhbeB7--idtvgbAFkIbgrzqXhDS7ZQ%3D%3D&q=Nimble+Needle+Tailoring+Reviews&sa=X&ved=2ahUKEwih17vsstuPAxX6v4kEHcDHBmIQ0bkNegQINRAE&biw=1920&bih=919&dpr=1';
-const RIVERSIDE_DIRECTIONS_URL = 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
 const RIVERSIDE_PHONE_DISPLAY = '(343) 588-3182';
 const RIVERSIDE_PHONE_TEL = '+13435883182';
 const WEDDING_PROM_HERO_IMAGE = '/campaigns/wedding-prom-2026/bridal-gown-hero.jpg';
@@ -72,20 +71,6 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 lg:mb-5">
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="h-9 px-5 sm:px-6 rounded-full border-white/40 text-white hover:text-white bg-white/10 hover:bg-white/20 w-full sm:w-auto justify-center backdrop-blur"
-              >
-                <a
-                  href={RIVERSIDE_DIRECTIONS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  New Riverside location now open
-                </a>
-              </Button>
               <Button
                 asChild
                 size="sm"
