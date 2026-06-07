@@ -44,7 +44,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
   };
 
   return (
-    <section className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="hero-section relative min-h-[100svh] flex items-start justify-center overflow-hidden">
       {/* Background Image with Parallax */}
       <div
         className="absolute inset-0 scale-105"
@@ -67,11 +67,11 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 lg:pt-24 xl:pt-28 pb-8 lg:pb-6">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 lg:mb-5">
               <Button
                 asChild
                 size="sm"
@@ -98,7 +98,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
             </div>
 
             {/* Critical LCP Element - Optimized */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white font-league-spartan">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.35rem] xl:text-6xl font-bold leading-[0.98] lg:leading-[0.95] mb-4 lg:mb-5 text-white font-league-spartan">
               EXPERT TAILORING &<br />
               CLOTHING ALTERATIONS<br />
               IN OTTAWA<br />
@@ -107,14 +107,14 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
               </span>
             </h1>
 
-            <h2 className="text-xl md:text-2xl mb-6 text-white/95 leading-relaxed font-medium font-montserrat">
+            <h2 className="text-xl md:text-2xl mb-3 lg:mb-4 text-white/95 leading-relaxed font-medium font-montserrat">
               Wedding & Prom Season Is Here
             </h2>
-            <p className="text-base md:text-lg mb-8 text-white/90 leading-relaxed font-light">
+            <p className="text-base md:text-lg mb-5 lg:mb-6 text-white/90 leading-relaxed font-light">
               Visit us for expert wedding dress, prom dress, and formalwear alterations in Ottawa. No appointment needed.
             </p>
 
-            <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 max-w-lg">
+            <div className="mb-5 lg:mb-6 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 max-w-lg">
               <p className="text-white/95 text-sm md:text-base font-medium mb-3">
                 Expert wedding, prom, and formalwear alterations for your big day.
               </p>
@@ -152,7 +152,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
           </div>
 
           {/* Right Column - Badge + Google Reviews */}
-          <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:pr-16 lg:mt-0">
+          <div className="flex flex-col items-center lg:items-end gap-4 lg:gap-5 w-full lg:pr-16 lg:mt-0">
 
             {/* Spinning guarantee seal — visible on load, no scroll needed */}
             <div className="hidden lg:flex justify-end w-full max-w-sm">

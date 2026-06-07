@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, Tag, Search, Filter, X } from 'lucide-react';
 import { getAllBlogPosts, getAllCategories, getAllTags } from '@/lib/blog-data';
+import { formatLongDate } from '@/lib/date-utils';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Footer from '@/components/Footer';
@@ -300,11 +301,7 @@ export default function BlogPage() {
                         <div className="flex items-center text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                           <span className="mr-3 sm:mr-4">
-                            {new Date(post.date).toLocaleDateString('en-US', { 
-                              year: 'numeric', 
-                              month: 'long', 
-                              day: 'numeric' 
-                            })}
+                            {formatLongDate(post.date)}
                           </span>
                           <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                           <span>{post.readTime}</span>

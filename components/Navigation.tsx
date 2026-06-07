@@ -14,12 +14,23 @@ export default function Navigation() {
   const [isLightBackground, setIsLightBackground] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 50);
+      if (ticking) return;
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const nextIsScrolled = window.scrollY > 50;
+        setIsScrolled((previous) => (
+          previous === nextIsScrolled ? previous : nextIsScrolled
+        ));
+        ticking = false;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -94,7 +105,7 @@ export default function Navigation() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
         // Use light background if not on homepage or if scrolled
         isLightBackground || isScrolled
           ? 'backdrop-blur-xl bg-white/95 border-b border-gray-200/50 shadow-lg'
@@ -362,4 +373,4 @@ export default function Navigation() {
       )}
     </>
   );
-} 
+}

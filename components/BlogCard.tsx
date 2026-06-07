@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, Tag } from 'lucide-react';
 import { BlogPost } from '@/lib/blog-data';
+import { formatLongDate } from '@/lib/date-utils';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -46,11 +47,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
         <div className="flex items-center text-sm text-gray-500 mb-4">
           <Calendar className="w-4 h-4 mr-1" />
           <span className="mr-4">
-            {new Date(post.date).toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
+            {formatLongDate(post.date)}
           </span>
           <Clock className="w-4 h-4 mr-1" />
           <span>{post.readTime}</span>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, Tag, ChevronLeft, Share2 } from 'lucide-react';
 import { getBlogPostBySlug, getRelatedPosts, getAllBlogPosts } from '@/lib/blog-data';
+import { formatLongDate, formatShortDate } from '@/lib/date-utils';
 import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Footer from '@/components/Footer';
@@ -193,11 +194,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                     <span className="text-xs sm:text-base">
-                      {new Date(post.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
+                      {formatLongDate(post.date)}
                     </span>
                   </div>
                   <div className="flex items-center">
@@ -260,11 +257,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             </span>
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
-                              {new Date(post.date).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
-                              })}
+                              {formatLongDate(post.date)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -331,11 +324,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                               <div className="flex items-center text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
                                 <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                                 <span>
-                                  {new Date(relatedPost.date).toLocaleDateString('en-US', { 
-                                    year: 'numeric', 
-                                    month: 'short', 
-                                    day: 'numeric' 
-                                  })}
+                                  {formatShortDate(relatedPost.date)}
                                 </span>
                                 <span className="mx-2">•</span>
                                 <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />

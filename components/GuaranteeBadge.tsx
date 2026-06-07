@@ -11,12 +11,12 @@ import { ShieldCheck } from 'lucide-react';
  */
 export default function GuaranteeBadge() {
   return (
-    <div className="relative w-28 h-28 md:w-36 md:h-36 flex items-center justify-center">
+    <div className="relative w-28 h-28 md:w-36 md:h-36 flex items-center justify-center transform-gpu">
       {/* Semi-transparent backdrop circle */}
       <div className="absolute inset-0 rounded-full bg-black/60 backdrop-blur-sm border border-pink-500/20" />
 
       {/* Rotating text ring — uses Tailwind's custom spin-slow keyframe */}
-      <div className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] animate-spin-slow">
+      <div className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] animate-spin-slow transform-gpu will-change-transform">
         <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
           <path
             id="guaranteeTextPath"

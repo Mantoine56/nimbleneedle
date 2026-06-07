@@ -67,7 +67,7 @@ export default function LocationSelector() {
       {/* Main Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 px-6 py-3 font-semibold transform hover:scale-105 overflow-hidden"
+        className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-[background-color,box-shadow] duration-200 px-6 py-3 font-semibold overflow-hidden"
       >
         <span className="relative z-10 flex items-center gap-2">
           Call Us
