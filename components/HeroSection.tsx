@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Star, Quote, User } from 'lucide-react';
+import { ArrowRight, CalendarCheck, Star, Quote, User } from 'lucide-react';
 import GuaranteeBadge from '@/components/GuaranteeBadge';
 
 interface HeroSectionProps {
@@ -16,8 +15,6 @@ interface HeroSectionProps {
 }
 
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/search?sca_esv=5b71cfa89013eb9f&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3Ovb0eQnh8JkM1wzOUZpmDpMbUY5JnpXSyYwcBtr4A3QetmHVNVUidASvlHk4NQwDr1sQG--ShVP4sspK4lRhbeB7--idtvgbAFkIbgrzqXhDS7ZQ%3D%3D&q=Nimble+Needle+Tailoring+Reviews&sa=X&ved=2ahUKEwih17vsstuPAxX6v4kEHcDHBmIQ0bkNegQINRAE&biw=1920&bih=919&dpr=1';
-const RIVERSIDE_PHONE_DISPLAY = '(343) 588-3182';
-const RIVERSIDE_PHONE_TEL = '+13435883182';
 const WEDDING_PROM_HERO_IMAGE = '/campaigns/wedding-prom-2026/bridal-gown-hero.jpg';
 
 export default function HeroSection({ scrollY, heroReviews = [], businessInfo = null, reviewsLoading = false }: HeroSectionProps) {
@@ -70,18 +67,6 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* Left Column - Main Content */}
           <div className="max-w-2xl">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 lg:mb-5">
-              <Button
-                asChild
-                size="sm"
-                className="h-9 px-5 sm:px-6 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold rounded-full w-full sm:w-auto justify-center shadow-lg shadow-pink-500/30"
-              >
-                <a href={`tel:${RIVERSIDE_PHONE_TEL}`} aria-label="Call our Riverside location">
-                  Call {RIVERSIDE_PHONE_DISPLAY}
-                </a>
-              </Button>
-            </div>
-
             {/* Critical LCP Element - Optimized */}
             <h1 className="text-4xl md:text-5xl lg:text-[3.35rem] xl:text-6xl font-bold leading-[0.98] lg:leading-[0.95] mb-4 lg:mb-5 text-white font-league-spartan">
               EXPERT TAILORING &<br />
@@ -112,26 +97,26 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
               </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex w-full max-w-md flex-col items-start gap-3">
               <Button
+                asChild
                 size="lg"
-                onClick={() => window.location.href = '/bookings'}
-                className="group relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-0 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 px-8 py-4 text-base font-semibold"
+                className="group relative h-14 w-full overflow-hidden rounded-xl border-0 bg-gradient-to-r from-pink-500 to-pink-600 px-9 text-lg font-bold text-white shadow-2xl shadow-pink-500/35 ring-2 ring-white/20 transition-all duration-300 hover:from-pink-600 hover:to-pink-700 hover:shadow-pink-500/55 focus-visible:ring-pink-200 sm:w-auto sm:min-w-[21rem]"
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <a href="/bookings" className="relative z-10 flex items-center justify-center gap-2">
                   Book Your Appointment
-                  <span className="inline-block">📅</span>
-                </span>
+                  <CalendarCheck className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+                </a>
               </Button>
               <Button
+                asChild
                 size="lg"
-                onClick={() => window.location.href = '/services'}
-                className="group relative bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-300 px-8 py-4 text-base font-semibold"
+                className="group relative h-12 w-full rounded-xl border-2 border-white/30 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-gray-900 sm:w-auto sm:min-w-[21rem]"
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <a href="/services" className="relative z-10 flex items-center justify-center gap-2">
                   View Services
-                  <span className="inline-block">⚡</span>
-                </span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                </a>
               </Button>
             </div>
           </div>
