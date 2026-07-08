@@ -97,11 +97,11 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
               </a>
             </div>
 
-            <div className="flex w-full max-w-md flex-col items-start gap-3">
+            <div className="flex w-full max-w-2xl flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <Button
                 asChild
                 size="lg"
-                className="group relative h-14 w-full overflow-hidden rounded-xl border-0 bg-gradient-to-r from-pink-500 to-pink-600 px-9 text-lg font-bold text-white shadow-2xl shadow-pink-500/35 ring-2 ring-white/20 transition-all duration-300 hover:from-pink-600 hover:to-pink-700 hover:shadow-pink-500/55 focus-visible:ring-pink-200 sm:w-auto sm:min-w-[21rem]"
+                className="group relative h-14 w-full overflow-hidden rounded-xl border-0 bg-gradient-to-r from-pink-500 to-pink-600 px-8 text-lg font-bold text-white shadow-2xl shadow-pink-500/35 ring-2 ring-white/20 transition-all duration-300 hover:from-pink-600 hover:to-pink-700 hover:shadow-pink-500/55 focus-visible:ring-pink-200 sm:w-auto sm:min-w-[20rem]"
               >
                 <a href="/bookings" className="relative z-10 flex items-center justify-center gap-2">
                   Book Your Appointment
@@ -111,7 +111,7 @@ export default function HeroSection({ scrollY, heroReviews = [], businessInfo = 
               <Button
                 asChild
                 size="lg"
-                className="group relative h-12 w-full rounded-xl border-2 border-white/30 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-gray-900 sm:w-auto sm:min-w-[21rem]"
+                className="group relative h-12 w-full rounded-xl border-2 border-white/35 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-gray-900 sm:h-14 sm:w-auto sm:min-w-[12.5rem]"
               >
                 <a href="/services" className="relative z-10 flex items-center justify-center gap-2">
                   View Services
