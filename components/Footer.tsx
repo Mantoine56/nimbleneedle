@@ -1,8 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Clock, Mail, Facebook, Instagram } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, Facebook, Instagram, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import { GOOGLE_MAPS_HOURS_MESSAGE, LOCATION_LINKS } from '@/lib/location-links';
 
 export default function Footer() {
   return (
@@ -57,7 +58,7 @@ export default function Footer() {
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   {/* Make the Preston address open Google Maps directions in a new tab so guests can navigate quickly. */}
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Nimble+Needle+Tailoring+141+Preston+St+Ottawa"
+                    href={LOCATION_LINKS.preston.directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group block hover:text-pink-400 transition-colors"
@@ -77,7 +78,16 @@ export default function Footer() {
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p>Mon-Sun: 9am-8pm</p>
+                    <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                    <a
+                      href={LOCATION_LINKS.preston.hoursUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                    >
+                      View hours on Google Maps
+                      <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -91,7 +101,7 @@ export default function Footer() {
                   <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   {/* Link the Riverside address straight to Google Maps driving directions for the new location. */}
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa"
+                    href={LOCATION_LINKS.riverside.directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group block hover:text-pink-400 transition-colors"
@@ -111,7 +121,16 @@ export default function Footer() {
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p>Mon-Sun: 9am-8pm</p>
+                    <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                    <a
+                      href={LOCATION_LINKS.riverside.hoursUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                    >
+                      View hours on Google Maps
+                      <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                    </a>
                   </div>
                 </div>
               </div>

@@ -624,10 +624,16 @@ export default function Home() {
                         <div className="flex items-start space-x-3">
                           <Clock className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                           <div>
-                            <p className="text-gray-700 font-medium">{location.hours.monday}</p>
-                            <p className="text-gray-700 font-medium">{location.hours.weekdays}</p>
-                            <p className="text-gray-700">{location.hours.saturday}</p>
-                            <p className="text-gray-700">{location.hours.sunday}</p>
+                            <p className="text-gray-700">{location.hoursNote}</p>
+                            <a
+                              href={location.hoursUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-2 inline-flex items-center text-sm font-semibold text-pink-600 hover:text-pink-700 transition-colors"
+                            >
+                              View hours on Google Maps
+                              <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -635,7 +641,7 @@ export default function Home() {
                       <div className="mt-6 flex space-x-3">
                         <Button
                           onClick={() => {
-                            window.open(location.directions, '_blank');
+                            window.open(location.directions, '_blank', 'noopener,noreferrer');
                           }}
                           className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1">
                           Get Directions

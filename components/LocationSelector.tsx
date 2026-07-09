@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, MapPin, ChevronDown, Calendar, Clock } from 'lucide-react';
+import { Phone, MapPin, ChevronDown, Calendar, Clock, ExternalLink } from 'lucide-react';
+import { GOOGLE_MAPS_HOURS_MESSAGE, LOCATION_LINKS } from '@/lib/location-links';
 
 interface Location {
   id: string;
@@ -10,7 +11,7 @@ interface Location {
   address: string;
   phone: string;
   mapUrl: string;
-  hours: string;
+  hoursUrl: string;
 }
 
 const locations: Location[] = [
@@ -20,8 +21,8 @@ const locations: Location[] = [
     address: '3681 Riverside Dr, Ottawa, ON K1V 1H7',
     phone: '(343) 588-3182',
     // Google Maps directions link so users can navigate without extra clicks.
-    mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7',
-    hours: 'Mon-Sun: 9am-8pm'
+    mapUrl: LOCATION_LINKS.riverside.directionsUrl,
+    hoursUrl: LOCATION_LINKS.riverside.hoursUrl
   },
   {
     id: 'preston',
@@ -29,8 +30,8 @@ const locations: Location[] = [
     address: '141 Preston St, Ottawa, ON K1R 7P4',
     phone: '(343) 588-1300',
     // Same direct directions link for the Preston location.
-    mapUrl: 'https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4',
-    hours: 'Mon-Sun: 9am-8pm'
+    mapUrl: LOCATION_LINKS.preston.directionsUrl,
+    hoursUrl: LOCATION_LINKS.preston.hoursUrl
   }
 ];
 
@@ -54,7 +55,7 @@ export default function LocationSelector() {
   };
 
   const handleDirections = (mapUrl: string) => {
-    window.open(mapUrl, '_blank');
+    window.open(mapUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleBookAppointment = () => {
@@ -108,7 +109,16 @@ export default function LocationSelector() {
                     <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                       <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                       <div>
-                        <p>Mon-Sun: 9am-8pm</p>
+                        <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                        <a
+                          href={location.hoursUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 inline-flex items-center font-semibold text-pink-600 hover:text-pink-700 transition-colors"
+                        >
+                          View hours on Google Maps
+                          <ExternalLink className="ml-1 h-3 w-3" />
+                        </a>
                       </div>
                     </div>
                   </div>

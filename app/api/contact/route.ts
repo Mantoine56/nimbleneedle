@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { GOOGLE_MAPS_HOURS_MESSAGE, LOCATION_LINKS } from '@/lib/location-links';
 
 // Email configuration for Gmail
 const transporter = nodemailer.createTransport({
@@ -244,7 +245,11 @@ Timestamp: ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })
                 <p style="margin: 5px 0; color: #374151;">📞 (343) 588-3182</p>
               </div>
               
-              <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> Mon-Sun: 9am-8pm</p>
+              <p style="color: #374151; line-height: 1.6;"><strong>Hours:</strong> ${GOOGLE_MAPS_HOURS_MESSAGE}</p>
+              <p style="color: #374151; line-height: 1.6;">
+                <a href="${LOCATION_LINKS.preston.hoursUrl}" target="_blank" rel="noopener noreferrer" style="color: #ec4899; font-weight: 600;">View Preston hours on Google Maps</a><br>
+                <a href="${LOCATION_LINKS.riverside.hoursUrl}" target="_blank" rel="noopener noreferrer" style="color: #ec4899; font-weight: 600;">View Riverside Drive hours on Google Maps</a>
+              </p>
               
               <p style="color: #374151; line-height: 1.6; margin-top: 20px;">Walk-ins are always welcome at both locations!</p>
               
@@ -313,4 +318,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-} 
+}

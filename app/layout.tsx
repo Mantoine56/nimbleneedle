@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { League_Spartan, Montserrat, Poppins } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { LOCATION_LINKS } from '@/lib/location-links';
 
 const leagueSpartan = League_Spartan({
   subsets: ['latin'],
@@ -104,6 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "paymentAccepted": "Cash, Credit Card",
               "image": "https://nimbleneedle.ca/logo.png",
               "logo": "https://nimbleneedle.ca/logo.png",
+              "hasMap": [
+                LOCATION_LINKS.preston.hoursUrl,
+                LOCATION_LINKS.riverside.hoursUrl
+              ],
               "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "4.9",
@@ -140,11 +145,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   "latitude": "45.3685",
                   "longitude": "-75.6666"
                 }
-              ],
-              "openingHours": [
-                "Mo-Fr 10:00-20:00",
-                "Sa 10:00-18:00",
-                "Su 11:00-18:00"
               ],
               "sameAs": [
                 "https://www.facebook.com/nimbleneedle",

@@ -212,18 +212,12 @@ We are proud to be an Ottawa company that delivers top-quality services to our c
 ### Downtown Ottawa - Preston
 **Address:** 141 Preston St, Ottawa, ON K1R 7P4
 **Phone:** (343) 588-1300
-**Hours:** 
-- Mon-Fri: 10am - 8pm
-- Saturday: 10am - 6pm
-- Sunday: 11am - 6pm
+**Hours:** Please check the Preston Google Maps profile for current hours.
 
 ### New Location - Riverside  
 **Address:** 3681 Riverside Dr, Ottawa, ON K1V 1H7
 **Phone:** (343) 588-3182
-**Hours:**
-- Mon-Fri: 10am - 8pm
-- Saturday: 10am - 6pm
-- Sunday: 11am - 6pm
+**Hours:** Please check the Riverside Drive Google Maps profile for current hours.
 
 ### General Information
 **Email:** info@nimbleneedle.ca
@@ -371,4 +365,4 @@ Walk-ins welcome at both locations
 
 *Last Updated: June 2025*
 *Implementation by: Claude Code*
-*Based on: nimbleneedle.ca scraped data analysis* 
+*Based on: nimbleneedle.ca scraped data analysis*

@@ -162,7 +162,7 @@ export default function ZipperRepairPage() {
               </p>
 
               <p className="text-lg text-gray-600 mb-8 font-montserrat">
-                Customers are welcome to walk in during business hours. No appointment or prior consultation is required.
+                Customers are welcome to walk in. Please check our Google Maps profiles for current hours before visiting. No appointment or prior consultation is required.
               </p>
 
               {/* Service Features */}

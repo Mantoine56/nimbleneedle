@@ -25,6 +25,7 @@ import Navigation from '@/components/Navigation';
 import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import { useState, useEffect, useRef } from 'react';
+import { GOOGLE_MAPS_HOURS_MESSAGE, LOCATION_LINKS } from '@/lib/location-links';
 
 declare global {
   // Turnstile runtime injected by Cloudflare; typed as any for simplicity.
@@ -39,10 +40,8 @@ const locations = [
     address: "141 Preston St",
     city: "Ottawa, ON K1R 7P4",
     phone: "(343) 588-1300",
-    hours: {
-      weekdays: "Mon-Sun: 9am-8pm",
-      weekend: ""
-    },
+    hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
+    hoursUrl: LOCATION_LINKS.preston.hoursUrl,
     features: [
       "Walk-ins welcome",
       "Street parking available",
@@ -50,17 +49,15 @@ const locations = [
       "Wheelchair accessible"
     ],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.4928542718835!2d-75.71163!3d45.4085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04e7311278bd%3A0x65c3031023e94dc7!2s141%20Preston%20St%2C%20Ottawa%2C%20ON%20K1R%207P4%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
-    directions: "https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa"
+    directions: LOCATION_LINKS.preston.directionsUrl
   },
   {
     name: "Riverside & Uplands",
     address: "3681 Riverside Dr",
     city: "Ottawa, ON K1V 1H7",
     phone: "(343) 588-3182",
-    hours: {
-      weekdays: "Mon-Sun: 9am-8pm",
-      weekend: ""
-    },
+    hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
+    hoursUrl: LOCATION_LINKS.riverside.hoursUrl,
     features: [
       "Walk-ins welcome",
       "Free parking available",
@@ -68,7 +65,7 @@ const locations = [
       "Spacious location"
     ],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.2735842718835!2d-75.66663!3d45.3685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0759aa93a4c5%3A0x65c3031023e94dc8!2s3681%20Riverside%20Dr%2C%20Ottawa%2C%20ON%20K1V%201H7%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
-    directions: "https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa"
+    directions: LOCATION_LINKS.riverside.directionsUrl
   }
 ];
 
@@ -79,7 +76,7 @@ const contactMethods = [
     primary: "(343) 588-1300 - Preston St",
     secondary: "(343) 588-3182 - Riverside Dr",
     description: "Call either location directly",
-    available: "During business hours"
+    available: "Check Google Maps for current hours"
   },
   {
     method: "Email",
@@ -95,14 +92,14 @@ const contactMethods = [
     primary: "No appointment needed",
     secondary: "Both locations welcome walk-ins",
     description: "Visit us directly for consultation",
-    available: "During business hours"
+    available: "Check Google Maps for current hours"
   }
 ];
 
 const faqItems = [
   {
     question: "Do I need an appointment?",
-    answer: "No! Walk-ins are welcome at both locations during business hours. We pride ourselves on accommodating your schedule."
+    answer: "No! Walk-ins are welcome at both locations. Please check our Google Maps profiles for the most up-to-date business hours before visiting."
   },
   {
     question: "How long do alterations take?",
@@ -399,13 +396,22 @@ export default function ContactPage() {
                         <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                           <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p>Mon-Sun: 9am-8pm</p>
+                            <p>{location.hoursNote}</p>
+                            <a
+                              href={location.hoursUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 inline-flex items-center font-semibold text-pink-600 hover:text-pink-700 transition-colors"
+                            >
+                              View hours on Google Maps
+                              <ExternalLink className="ml-1 h-3 w-3" />
+                            </a>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => {
-                              window.open(location.directions, '_blank');
+                              window.open(location.directions, '_blank', 'noopener,noreferrer');
                               setIsLocationPopupOpen(false);
                             }}
                             size="sm"
@@ -775,10 +781,16 @@ export default function ContactPage() {
                     <div className="flex items-start space-x-3">
                       <Clock className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-gray-700">{location.hours.weekdays}</p>
-                        {location.hours.weekend && location.hours.weekend.split(' • ').map((day, idx) => (
-                          <p key={idx} className="text-gray-700">{day}</p>
-                        ))}
+                        <p className="text-gray-700">{location.hoursNote}</p>
+                        <a
+                          href={location.hoursUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center text-sm font-semibold text-pink-600 hover:text-pink-700 transition-colors"
+                        >
+                          View hours on Google Maps
+                          <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -798,7 +810,7 @@ export default function ContactPage() {
                   <div className="flex space-x-3">
                     <Button
                       className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white flex-1"
-                      onClick={() => window.open(location.directions, '_blank')}
+                      onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
                     >
                       <NavigationIcon className="h-4 w-4 mr-2" />
                       Get Directions
@@ -1000,7 +1012,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4"
+                      href={LOCATION_LINKS.preston.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -1020,7 +1032,16 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Sun: 9am-8pm</p>
+                      <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                      <a
+                        href={LOCATION_LINKS.preston.hoursUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                      >
+                        View hours on Google Maps
+                        <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1033,7 +1054,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7"
+                      href={LOCATION_LINKS.riverside.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -1053,7 +1074,16 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Sun: 9am-8pm</p>
+                      <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                      <a
+                        href={LOCATION_LINKS.riverside.hoursUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                      >
+                        View hours on Google Maps
+                        <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                      </a>
                     </div>
                   </div>
                 </div>

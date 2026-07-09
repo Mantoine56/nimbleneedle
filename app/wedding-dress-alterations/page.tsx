@@ -258,7 +258,7 @@ export default function WeddingDressAlterationsPage() {
               )}
 
               <p className="text-sm text-gray-500 mt-4 font-montserrat">
-                Call to schedule your fitting or visit our shop during business hours. Walk-ins welcome!
+                Call to schedule your fitting or check our Google Maps profiles for current hours before visiting. Walk-ins welcome!
               </p>
             </div>
 

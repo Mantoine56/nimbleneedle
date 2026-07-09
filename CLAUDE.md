@@ -130,4 +130,4 @@ The site is configured for static export (`output: 'export'`) with:
 - Vintage clothing restoration
 
 ### Hours
-- Mon-Sun: 9am-8pm
+- Do not hardcode visible hours. Direct visitors to each location's Google Maps profile for current hours.

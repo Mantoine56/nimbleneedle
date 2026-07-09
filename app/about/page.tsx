@@ -19,7 +19,8 @@ import {
   Sparkles,
   Mail,
   Facebook,
-  Instagram
+  Instagram,
+  ExternalLink
 } from 'lucide-react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
@@ -27,6 +28,7 @@ import SocialSidebar from '@/components/SocialSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection';
 import { locations } from '@/lib/data';
+import { GOOGLE_MAPS_HOURS_MESSAGE, LOCATION_LINKS } from '@/lib/location-links';
 
 const teamValues = [
   {
@@ -324,17 +326,22 @@ export default function AboutPage() {
                         <div className="text-gray-600 text-sm flex items-start gap-1 mt-1">
                           <Clock className="h-3 w-3 mt-0.5 flex-shrink-0" />
                           <div>
-                            <p>Mon-Sun: 9am-8pm</p>
+                            <p>{location.hoursNote}</p>
+                            <a
+                              href={location.hoursUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 inline-flex items-center font-semibold text-pink-600 hover:text-pink-700 transition-colors"
+                            >
+                              View hours on Google Maps
+                              <ExternalLink className="ml-1 h-3 w-3" />
+                            </a>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3">
                           <Button
                             onClick={() => {
-                              // Use the business name in the search to get to the actual business page
-                              const businessSearch = location.name.includes('Preston')
-                                ? 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+141+Preston+St+Ottawa'
-                                : 'https://www.google.com/maps/search/Nimble+Needle+Tailoring+3681+Riverside+Dr+Ottawa';
-                              window.open(businessSearch, '_blank');
+                              window.open(location.directions, '_blank', 'noopener,noreferrer');
                               setIsLocationPopupOpen(false);
                             }}
                             size="sm"
@@ -454,7 +461,7 @@ export default function AboutPage() {
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     {/* Link the Preston location to Google Maps so visitors can get directions instantly. */}
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=141+Preston+St,+Ottawa,+ON+K1R+7P4"
+                      href={LOCATION_LINKS.preston.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -474,7 +481,16 @@ export default function AboutPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Sun: 9am-8pm</p>
+                      <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                      <a
+                        href={LOCATION_LINKS.preston.hoursUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                      >
+                        View hours on Google Maps
+                        <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -488,7 +504,7 @@ export default function AboutPage() {
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     {/* Provide a directions link for the Riverside location to keep the footer consistent. */}
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=3681+Riverside+Dr,+Ottawa,+ON+K1V+1H7"
+                      href={LOCATION_LINKS.riverside.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -508,7 +524,16 @@ export default function AboutPage() {
                   <div className="flex items-start space-x-3">
                     <Clock className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p>Mon-Sun: 9am-8pm</p>
+                      <p>{GOOGLE_MAPS_HOURS_MESSAGE}</p>
+                      <a
+                        href={LOCATION_LINKS.riverside.hoursUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+                      >
+                        View hours on Google Maps
+                        <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                      </a>
                     </div>
                   </div>
                 </div>

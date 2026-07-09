@@ -184,7 +184,7 @@ export default function DryCleaningPage() {
               </p>
 
               <p className="text-lg text-pink-600 font-semibold mb-8 font-montserrat">
-                Walk-ins are welcome during business hours. No appointment or prior consultation is required.
+                Walk-ins are welcome. Please check our Google Maps profiles for current hours before visiting. No appointment or prior consultation is required.
               </p>
 
               {/* Main Features */}
@@ -481,4 +481,4 @@ export default function DryCleaningPage() {
       <Footer />
     </div>
   );
-} 
+}
