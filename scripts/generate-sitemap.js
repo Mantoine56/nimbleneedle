@@ -13,6 +13,7 @@ async function generateSitemap() {
     { url: '/zipper-repair', priority: '0.8', changefreq: 'weekly' },
     { url: '/about', priority: '0.7', changefreq: 'monthly' },
     { url: '/contact-us', priority: '0.7', changefreq: 'monthly' },
+    { url: '/alteration-policy', priority: '0.5', changefreq: 'yearly' },
     { url: '/blog', priority: '0.8', changefreq: 'weekly' }
   ];
 

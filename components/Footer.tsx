@@ -172,10 +172,11 @@ export default function Footer() {
             <div className="text-gray-400 text-sm font-montserrat">
               Copyright © 2025 - Nimble Needle Tailoring
             </div>
-            <div className="flex items-center space-x-6 text-sm text-gray-400 font-montserrat">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-400 font-montserrat md:justify-end">
               <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs font-semibold">
                 Walk-ins Welcome
               </span>
+              <a href="/alteration-policy" className="hover:text-pink-400 transition-colors">Alteration &amp; Refund Policy</a>
               <a href="/privacy-policy" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
               <a href="/terms-of-service" className="hover:text-pink-400 transition-colors">Terms of Service</a>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
@@ -439,6 +440,16 @@ export default function BookingsPage() {
                         }}
                       />
                     </div>
+                    <div className="border-t border-gray-200 bg-pink-50/70 px-5 py-4 text-sm leading-6 text-gray-700 sm:px-6">
+                      Booking an appointment does not start an alteration order. Our{' '}
+                      <Link
+                        href="/alteration-policy"
+                        className="font-semibold text-pink-700 underline decoration-pink-300 underline-offset-4 transition-colors hover:text-pink-800"
+                      >
+                        Alteration, Cancellation &amp; Fit Guarantee Policy
+                      </Link>{' '}
+                      applies when you approve your in-store work order.
+                    </div>
                   </CardContent>
                 </Card>
               )}
@@ -493,4 +504,4 @@ export default function BookingsPage() {
       <Footer />
     </div>
   );
-} 
+}

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Check, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
 
 /**
  * Guarantee terms and conditions section — ported from Riber's Suits
@@ -24,14 +25,14 @@ const guaranteePoints = [
       "We immediately rectify any errors on our part at absolutely no additional charge.",
   },
   {
-    title: "Reimbursement Policy",
+    title: "Approved Work",
     description:
-      "If a repair is not possible, we offer full reimbursement upon receipt presentation.",
+      "Corrections apply when our work comes undone or does not match your approved work order.",
   },
   {
-    title: "Garment Retention",
+    title: "Final Fitting",
     description:
-      "In the rare instance of a full reimbursement, the garment is retained by us.",
+      "Complete any requested final fitting so we can confirm the garment meets the approved fit.",
   },
 ];
 
@@ -134,6 +135,14 @@ export default function GuaranteeSection() {
                 </div>
               ))}
             </div>
+
+            <Link
+              href="/alteration-policy"
+              className="mt-10 inline-flex min-h-11 items-center gap-2 font-semibold text-pink-600 transition-colors hover:text-pink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-4"
+            >
+              Read our full alteration policy
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </div>
