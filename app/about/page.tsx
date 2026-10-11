@@ -459,9 +459,9 @@ export default function AboutPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    {/* Link the Preston location to Google Maps so visitors can get directions instantly. */}
+                    {/* Open the verified Preston business profile when visitors tap its address. */}
                     <a
-                      href={LOCATION_LINKS.preston.directionsUrl}
+                      href={LOCATION_LINKS.preston.businessUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -502,9 +502,9 @@ export default function AboutPage() {
                 <div className="space-y-4 text-gray-300 font-montserrat">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
-                    {/* Provide a directions link for the Riverside location to keep the footer consistent. */}
+                    {/* Open the verified Riverside business profile when visitors tap its address. */}
                     <a
-                      href={LOCATION_LINKS.riverside.directionsUrl}
+                      href={LOCATION_LINKS.riverside.businessUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"

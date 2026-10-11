@@ -605,9 +605,9 @@ export default function HomePageClient() {
                       <div className="space-y-4">
                         <button
                           type="button"
-                          onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                          onClick={() => window.open(location.businessUrl, '_blank', 'noopener,noreferrer')}
                           className="flex items-start space-x-3 text-left group"
-                          aria-label={`Open Google Maps directions for ${location.name}`}
+                          aria-label={`Open Google Maps business profile for ${location.name}`}
                         >
                           <MapPin className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                           <span className="text-gray-700 font-medium underline decoration-dotted underline-offset-4 group-hover:text-pink-600 transition-colors">

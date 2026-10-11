@@ -42,6 +42,7 @@ const locations = [
     phone: "(343) 588-1300",
     hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
     hoursUrl: LOCATION_LINKS.preston.hoursUrl,
+    businessUrl: LOCATION_LINKS.preston.businessUrl,
     features: [
       "Walk-ins welcome",
       "Street parking available",
@@ -58,6 +59,7 @@ const locations = [
     phone: "(343) 588-3182",
     hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
     hoursUrl: LOCATION_LINKS.riverside.hoursUrl,
+    businessUrl: LOCATION_LINKS.riverside.businessUrl,
     features: [
       "Walk-ins welcome",
       "Free parking available",
@@ -383,7 +385,7 @@ export default function ContactPage() {
                         <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
                         <button
                           type="button"
-                          onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                          onClick={() => window.open(location.businessUrl, '_blank', 'noopener,noreferrer')}
                           className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
                         >
                           <MapPin className="h-3 w-3" />
@@ -753,9 +755,9 @@ export default function ContactPage() {
                   <div className="space-y-4 mb-6">
                     <button
                       type="button"
-                      onClick={() => window.open(location.directions, '_blank', 'noopener,noreferrer')}
+                      onClick={() => window.open(location.businessUrl, '_blank', 'noopener,noreferrer')}
                       className="flex items-start space-x-3 text-left text-pink-600 hover:text-pink-700 font-semibold transition-colors"
-                      aria-label={`Open Google Maps directions for ${location.name}`}
+                      aria-label={`Open Google Maps business profile for ${location.name}`}
                     >
                       {/* Ensure the location address is clickable for quick map access. */}
                       <MapPin className="h-5 w-5 text-pink-500 mt-1 flex-shrink-0" />
@@ -1012,7 +1014,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <a
-                      href={LOCATION_LINKS.preston.directionsUrl}
+                      href={LOCATION_LINKS.preston.businessUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"
@@ -1054,7 +1056,7 @@ export default function ContactPage() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 text-pink-400 mt-0.5 flex-shrink-0" />
                     <a
-                      href={LOCATION_LINKS.riverside.directionsUrl}
+                      href={LOCATION_LINKS.riverside.businessUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hover:text-pink-400 transition-colors"

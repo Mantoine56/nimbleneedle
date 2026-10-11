@@ -216,6 +216,7 @@ export const locations = [
     phone: "(343) 588-1300",
     hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
     hoursUrl: LOCATION_LINKS.preston.hoursUrl,
+    businessUrl: LOCATION_LINKS.preston.businessUrl,
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.4928542718835!2d-75.71163!3d45.4085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04e7311278bd%3A0x65c3031023e94dc7!2s141%20Preston%20St%2C%20Ottawa%2C%20ON%20K1R%207P4%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
     directions: LOCATION_LINKS.preston.directionsUrl,
     delay: 0
@@ -226,6 +227,7 @@ export const locations = [
     phone: "(343) 588-3182",
     hoursNote: GOOGLE_MAPS_HOURS_MESSAGE,
     hoursUrl: LOCATION_LINKS.riverside.hoursUrl,
+    businessUrl: LOCATION_LINKS.riverside.businessUrl,
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.2735842718835!2d-75.66663!3d45.3685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0759aa93a4c5%3A0x65c3031023e94dc8!2s3681%20Riverside%20Dr%2C%20Ottawa%2C%20ON%20K1V%201H7%2C%20Canada!5e0!3m2!1sen!2sca!4v1234567890123!5m2!1sen!2sca",
     directions: LOCATION_LINKS.riverside.directionsUrl,
     delay: 300

@@ -12,6 +12,7 @@ interface Location {
   phone: string;
   mapUrl: string;
   hoursUrl: string;
+  businessUrl: string;
 }
 
 const locations: Location[] = [
@@ -22,6 +23,7 @@ const locations: Location[] = [
     phone: '(343) 588-3182',
     // Google Maps directions link so users can navigate without extra clicks.
     mapUrl: LOCATION_LINKS.riverside.directionsUrl,
+    businessUrl: LOCATION_LINKS.riverside.businessUrl,
     hoursUrl: LOCATION_LINKS.riverside.hoursUrl
   },
   {
@@ -31,6 +33,7 @@ const locations: Location[] = [
     phone: '(343) 588-1300',
     // Same direct directions link for the Preston location.
     mapUrl: LOCATION_LINKS.preston.directionsUrl,
+    businessUrl: LOCATION_LINKS.preston.businessUrl,
     hoursUrl: LOCATION_LINKS.preston.hoursUrl
   }
 ];
@@ -95,10 +98,10 @@ export default function LocationSelector() {
                     <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
                     <button
                       type="button"
-                      onClick={() => handleDirections(location.mapUrl)}
+                      onClick={() => handleDirections(location.businessUrl)}
                       className="text-gray-600 text-sm flex items-center gap-1 mt-1 underline decoration-dotted underline-offset-4 hover:text-pink-600 transition-colors"
                     >
-                      {/* Allow guests to click any listed address and jump straight to Google Maps directions. */}
+                      {/* Address taps open the corresponding verified business profile. */}
                       <MapPin className="h-3 w-3" />
                       <span>{location.address}</span>
                     </button>
