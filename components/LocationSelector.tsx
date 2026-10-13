@@ -80,19 +80,19 @@ export default function LocationSelector() {
         <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
       </Button>
 
-      {/* Dropdown Menu */}
+      {/* Keep all location actions reachable below the header on short screens. */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden z-50 animate-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-80 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 animate-in slide-in-from-top-2 duration-200">
           {/* Header */}
-          <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4">
+          <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-3">
             <h3 className="text-white font-semibold font-league-spartan text-lg">Visit Nimble Needle</h3>
             <p className="text-white/80 text-sm">Call us or get directions • Walk-ins welcome!</p>
           </div>
 
           {/* Locations */}
-          <div className="p-4 space-y-4">
+          <div className="px-4 py-2 space-y-2">
             {locations.map((location) => (
-              <div key={location.id} className="group bg-gray-50/50 rounded-xl p-4 hover:bg-gray-100/50 transition-colors duration-200">
+              <div key={location.id} className="group bg-gray-50/50 rounded-xl px-4 pt-3 pb-2 hover:bg-gray-100/50 transition-colors duration-200">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h4 className="font-semibold text-gray-900 font-montserrat">{location.name}</h4>
@@ -128,7 +128,7 @@ export default function LocationSelector() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2 mt-3">
+                <div className="flex gap-2 mt-2">
                   <Button
                     onClick={() => handleCall(location.phone)}
                     size="sm"
@@ -157,7 +157,7 @@ export default function LocationSelector() {
           </div>
 
           {/* Book Appointment CTA */}
-          <div className="border-t border-gray-200/50 p-4">
+          <div className="border-t border-gray-200/50 px-4 py-2">
             <Button
               onClick={handleBookAppointment}
               className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
